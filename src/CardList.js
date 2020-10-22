@@ -3,13 +3,13 @@ import {
   Button,
   Text,
   SafeAreaView,
-  ScrollView,
+  FlatList,
   StyleSheet,
   Constants,
 } from 'react-native';
-
 import {SearchContext} from './shared/react/SearchContext';
 import {SearchResultsContext} from './shared/react/SearchResultsContext';
+import { v4 as uuidv4 } from "uuid";
 
 const styles = StyleSheet.create({
   container: {
@@ -26,44 +26,38 @@ const styles = StyleSheet.create({
 });
 
 export default function CardList() {
+  const {searchID} = useContext(SearchContext);
   const {searchResults, fetchMoreResults} = useContext(SearchResultsContext);
-  const [items, setItems] = useState([]);
+
+  const FETCH_COUNT = 25;
+
+  function renderItem({item, index}) {
+    return (
+      <Text key={index}>{item.searchBlob.trackName}</Text>
+    );
+  }
+
+  function onReachedEnd() {
+    fetchMoreResults(FETCH_COUNT);
+  }
 
   useEffect(() => {
-    console.log('Init');
-    fetchMoreResults();
-  }, []);
-
-  const itemsRef = useRef();
-  itemsRef.current = items;
-
-  useEffect(() => {
-    if (searchResults === null) {
-      return;
-    }
-
-    if (Object.keys(searchResults).length === 0) {
-      return;
-    }
-
-    const slicePoint = itemsRef.current.length;
-    const resultsSlice = searchResults.results.slice(slicePoint);
-    const newItems = [];
-    resultsSlice.map((item) => {
-      // newItems.push(<div className="cardItemSeparator" />);
-      newItems.push(<Text>{item.searchBlob.trackName}</Text>)
-      //   newItems.push(<CardItem key={item.searchBlob.trackId} doc={item} />);
-      return null;
-    });
-
-    if (newItems.length > 0) {
-      setItems((prev) => prev.concat(newItems));
-    }
+    fetchMoreResults(FETCH_COUNT);
   }, [searchResults]);
+
+  // const listData = searchResults.results || [];
+
+  // console.log("Render")
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView style={styles.scrollView}>{items}</ScrollView>
+      <FlatList
+        data={searchResults.results}
+        renderItem={renderItem}
+        onEndReached={onReachedEnd}
+        onEndReachedThreshold={0}
+        initialNumToRender={FETCH_COUNT}
+        style={styles.scrollView}></FlatList>
     </SafeAreaView>
   );
 }
