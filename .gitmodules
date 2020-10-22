@@ -1,0 +1,3 @@
+[submodule "src/shared"]
+	path = src/shared
+	url = https://amroc-dev@github.com/amroc-dev/gametracker-shared.git

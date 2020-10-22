@@ -8,8 +8,8 @@ import {
   Constants,
 } from 'react-native';
 
-import {SearchContext} from './SearchContext';
-import {SearchResultsContext} from './SearchResultsContext';
+import {SearchContext} from './shared/react/SearchContext';
+import {SearchResultsContext} from './shared/react/SearchResultsContext';
 
 const styles = StyleSheet.create({
   container: {

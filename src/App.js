@@ -3,8 +3,8 @@ import {StyleSheet, Text, SafeAreaView} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import SearchPage from './SearchPage';
-import {SearchContextProvider} from './SearchContext';
-import {SearchResultsContextProvider} from './SearchResultsContext';
+import {SearchContextProvider} from './shared/react/SearchContext';
+import {SearchResultsContextProvider} from './shared/react/SearchResultsContext';
 
 const Stack = createStackNavigator();
 
