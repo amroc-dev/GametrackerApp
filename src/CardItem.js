@@ -1,6 +1,7 @@
 import {padding} from 'polished';
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
+import { numberWithCommas } from "./shared/react/Misc";
 import theme from './Theme';
 
 const dateMap = {
