@@ -1,50 +1,34 @@
 import {padding} from 'polished';
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
-import { numberWithCommas } from "./shared/react/Misc";
+import {
+  monthMap,
+  formatRatingCount,
+  objectKeyFromDotString,
+} from './shared/react/Misc';
 import theme from './Theme';
-
-const dateMap = {
-  1: 'Jan',
-  2: 'Feb',
-  3: 'Mar',
-  4: 'Apr',
-  5: 'May',
-  6: 'June',
-  7: 'July',
-  8: 'Aug',
-  9: 'Sept',
-  10: 'Oct',
-  11: 'Nov',
-  12: 'Dec',
-};
-
-//////////
-function formatRatingCount(rating) {
-  let val = rating;
-
-  if (val >= 10000) {
-    val = parseInt(val / 1000) + 'k';
-  } else if (val >= 1000) {
-    val = numberWithCommas(val);
-  } else if (val < 5) val = '';
-
-  return val;
-}
+const dbkeys = require('./shared/back-end/db-keys');
 
 export default function CardItem({doc}) {
   ////////// release date
 
-  const releaseDateArr = doc.lookupBlob.releaseDate.split('-');
-  const month = dateMap[parseInt(releaseDateArr[1])];
+  const doc_releaseDate = objectKeyFromDotString(doc, dbkeys.releaseDate);
+  const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
+  const doc_rating = objectKeyFromDotString(doc, dbkeys.rating);
+  const doc_formattedPrice = objectKeyFromDotString(doc, dbkeys.formattedPrice);
+  const doc_trackName = objectKeyFromDotString(doc, dbkeys.trackName);
+  const doc_artistName = objectKeyFromDotString(doc, dbkeys.trackName);
+
+  const releaseDateArr = doc_releaseDate.split('-');
+  const month = monthMap[parseInt(releaseDateArr[1])];
   const releaseDate = `${releaseDateArr[2]} ${month} ${releaseDateArr[0]}`;
 
   //////// rating
-  const countForCurrentVersion = doc.lookupBlob.userRating.ratingCount;
+  const countForCurrentVersion = doc_popularity;
   let rating = '-';
   let ratingCellColour = 'rgba(125, 145, 165, 1)';
 
-  const ratingVal = parseFloat(doc.lookupBlob.userRating.value);
+  const ratingVal = parseFloat(doc_rating);
   const remainder = Math.abs(ratingVal - Math.round(ratingVal));
   const fixedDigits = remainder < 0.1 ? 0 : 1;
 
@@ -65,7 +49,7 @@ export default function CardItem({doc}) {
 
   const ratingCellColor = {backgroundColor: ratingCellColour};
   const ratingCountElem = formatRatingCount(countForCurrentVersion);
-  const formattedPriceElem = doc.searchBlob.formattedPrice;
+  const formattedPriceElem = doc_formattedPrice;
 
   return (
     <View style={styles.cardItem}>
@@ -76,8 +60,8 @@ export default function CardItem({doc}) {
       <View style={styles.dataContainer}>
         <View style={styles.topRowContainer}>
           <View style={styles.titleContainer}>
-            <Text style={styles.titleText}>{doc.searchBlob.trackName}</Text>
-            <Text style={styles.artistText}>{doc.searchBlob.artistName}</Text>
+            <Text style={styles.titleText}>{doc_trackName}</Text>
+            <Text style={styles.artistText}>{doc_artistName}</Text>
           </View>
         </View>
         <View style={styles.bottomRowContainer}>
@@ -173,21 +157,20 @@ const styles = StyleSheet.create({
     marginBottom: theme.rem * 0.15,
   },
 
-  ratingValue : {
-    color: "white",
-    alignSelf : "center",
+  ratingValue: {
+    color: 'white',
+    alignSelf: 'center',
     fontSize: theme.fonts.sizes.rating,
-  }, 
+  },
 
   ratinCount: {
     color: theme.fonts.colors.secondary,
     fontSize: theme.fonts.sizes.secondary,
   },
 
-  price : {
-    color: "white",
+  price: {
+    color: 'white',
     flex: 0,
     fontSize: theme.fonts.sizes.primary,
-  }, 
-
+  },
 });
