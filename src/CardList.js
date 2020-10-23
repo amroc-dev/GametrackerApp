@@ -7,9 +7,12 @@ import {
   StyleSheet,
   Constants,
 } from 'react-native';
-import {SearchContext} from './shared/react/SearchContext';
+import {
+  SearchContext,
+  SearchContextProvider,
+} from './shared/react/SearchContext';
 import {SearchResultsContext} from './shared/react/SearchResultsContext';
-import { v4 as uuidv4 } from "uuid";
+import {v4 as uuidv4} from 'uuid';
 
 const styles = StyleSheet.create({
   container: {
@@ -26,37 +29,42 @@ const styles = StyleSheet.create({
 });
 
 export default function CardList() {
-  const {searchID} = useContext(SearchContext);
-  const {searchResults, fetchMoreResults} = useContext(SearchResultsContext);
-
-  const FETCH_COUNT = 25;
+  const {searchResults, fetchMoreResults, newSearchStarted} = useContext(SearchResultsContext);
+  const [results, setResults] = useState([])
 
   function renderItem({item, index}) {
     return (
-      <Text key={index}>{item.searchBlob.trackName}</Text>
+      <Text>{item.searchBlob.trackName}</Text>
     );
   }
+
+  const FETCH_COUNT = 25;
 
   function onReachedEnd() {
     fetchMoreResults(FETCH_COUNT);
   }
 
-  useEffect(() => {
+  useEffect( () => {
+    setResults([])
     fetchMoreResults(FETCH_COUNT);
-  }, [searchResults]);
+  }, [newSearchStarted])
 
-  // const listData = searchResults.results || [];
-
-  // console.log("Render")
+  useEffect( () => {
+    if (searchResults && searchResults.results)
+      setResults([...searchResults.results])
+    else
+      setResults([])
+  }, [searchResults])
 
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={searchResults.results}
+        data={results}
         renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
         onEndReached={onReachedEnd}
         onEndReachedThreshold={0}
-        initialNumToRender={FETCH_COUNT}
+        initialNumToRender={25}
         style={styles.scrollView}></FlatList>
     </SafeAreaView>
   );
