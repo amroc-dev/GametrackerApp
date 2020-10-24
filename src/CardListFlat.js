@@ -1,23 +1,15 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
-import {
-  Button,
-  Text,
-  View,
-  SafeAreaView,
-  FlatList,
-  StyleSheet,
-  Constants,
-} from 'react-native';
-import CardItem from './CardItem';
-import {SearchResultsContext} from './shared/react/SearchResultsContext';
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { Button, Text, View, SafeAreaView, FlatList, StyleSheet, Constants } from "react-native";
+import CardItem from "./CardItem";
+import SearchCountCard from "./SearchCountCard";
+import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 
-export default function CardList() {
-  const {searchResults, fetchMoreResults, newSearchSubmitted} = useContext(
-    SearchResultsContext,
-  );
+export default function CardListFlat() {
+  const { searchResults, fetchMoreResults, newSearchSubmitted } = useContext(SearchResultsContext);
   const [results, setResults] = useState([]);
+  const [resultCount, setResultCount] = useState();
 
-  function renderItem({item, index}) {
+  function renderItem({ item, index }) {
     return <CardItem doc={item}></CardItem>;
   }
 
@@ -33,10 +25,10 @@ export default function CardList() {
   }, [newSearchSubmitted]);
 
   useEffect(() => {
-    if (!searchResults || !searchResults.results)
-      setResults([])
-    else
-      setResults([...searchResults.results])
+    if (!searchResults || !searchResults.results) setResults([]);
+    else {
+      setResults([...searchResults.results]);
+    }
   }, [searchResults]);
 
   return (
@@ -48,7 +40,8 @@ export default function CardList() {
         onEndReached={onReachedEnd}
         onEndReachedThreshold={0}
         initialNumToRender={25}
-        style={styles.scrollView}></FlatList>
+        style={styles.scrollView}
+      ></FlatList>
     </View>
   );
 }

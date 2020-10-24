@@ -1,6 +1,7 @@
 import React, {useState, useEffect, useContext, useRef} from 'react';
 import {Button, SafeAreaView, View, StyleSheet} from 'react-native';
-import CardList from './CardList';
+import CardListFlat from './CardListFlat';
+import CardListScroll from './CardListScroll';
 import {SearchContext} from './shared/react/SearchContext';
 import theme from './Theme';
 
@@ -14,7 +15,7 @@ export default function SearchPage({navigation}) {
   return (
     <SafeAreaView style={styles.root}>
       <Button title="Search" onPress={onSearchPressed} />
-      <CardList />
+      <CardListScroll />
     </SafeAreaView>
   );
 }
