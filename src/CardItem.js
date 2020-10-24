@@ -85,20 +85,27 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background2,
     borderRadius: theme.borderRadius,
     marginTop: theme.rem * 0.5,
+    marginHorizontal: theme.rem * 0.5,
+    shadowColor: theme.shadowColor,
+    shadowOpacity: theme.shadowOpacity,
+    shadowRadius: theme.shadowRadius,
+    shadowOffset: theme.shadowOffset,
   },
 
   image: {
     width: 100,
     height: 100,
     borderRadius: theme.borderRadius,
+    borderBottomRightRadius: 0,
+    borderTopRightRadius: 0,
   },
 
   dataContainer: {
     display: 'flex',
     flex: 1,
     flexDirection: 'column',
-    padding: theme.rem * 0.15,
-    paddingHorizontal: theme.rem * 0.35,
+    padding: theme.rem * 0.25,
+    paddingHorizontal: theme.rem * 0.4,
     // backgroundColor: 'red',
   },
 
@@ -123,7 +130,7 @@ const styles = StyleSheet.create({
   titleText: {
     color: theme.fonts.colors.title,
     fontSize: theme.fonts.sizes.primaryBold,
-    fontWeight: '600',
+    fontWeight: '500',
   },
 
   artistText: {

@@ -12,16 +12,15 @@ export default function SearchPage({navigation}) {
   }
 
   return (
-    <View style={styles.root}>
+    <SafeAreaView style={styles.root}>
       <Button title="Search" onPress={onSearchPressed} />
       <CardList />
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   root: {
     backgroundColor: theme.colors.background1,
-    marginHorizontal: theme.rem * 0.5,
   },
 });

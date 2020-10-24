@@ -11,21 +11,8 @@ import {
 import CardItem from './CardItem';
 import {SearchResultsContext} from './shared/react/SearchResultsContext';
 
-const styles = StyleSheet.create({
-  container: {
-    // marginTop: Constants.statusBarHeight,
-  },
-  scrollView: {
-    // backgroundColor: 'pink',
-    // marginHorizontal: 20,
-  },
-  text: {
-    // fontSize: 42,
-  },
-});
-
 export default function CardList() {
-  const {searchResults, fetchMoreResults, newSearchStarted} = useContext(
+  const {searchResults, fetchMoreResults, newSearchSubmitted} = useContext(
     SearchResultsContext,
   );
   const [results, setResults] = useState([]);
@@ -43,12 +30,13 @@ export default function CardList() {
   useEffect(() => {
     setResults([]);
     fetchMoreResults(FETCH_COUNT);
-  }, [newSearchStarted]);
+  }, [newSearchSubmitted]);
 
   useEffect(() => {
-    if (searchResults && searchResults.results)
-      setResults([...searchResults.results]);
-    else setResults([]);
+    if (!searchResults || !searchResults.results)
+      setResults([])
+    else
+      setResults([...searchResults.results])
   }, [searchResults]);
 
   return (
@@ -64,3 +52,16 @@ export default function CardList() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    // marginTop: Constants.statusBarHeight,
+  },
+  scrollView: {
+    // backgroundColor: 'pink',
+    // marginHorizontal: 20,
+  },
+  text: {
+    // fontSize: 42,
+  },
+});
