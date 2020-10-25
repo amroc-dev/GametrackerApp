@@ -3,6 +3,7 @@ import { View, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
+import Searchbar from "./Searchbar";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from './Theme';
 
@@ -71,6 +72,7 @@ export default function CardListScroll() {
   return (
     <ScrollView style={styles.scrollView} ref={scrollViewRef} onScroll={onScroll} contentInsetAdjustmentBehavior="automatic" scrollEventThrottle={100}>
       <SafeAreaView>
+        <Searchbar />
         {searchCountCard}
         {items}
         {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
