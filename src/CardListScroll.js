@@ -4,6 +4,7 @@ import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import theme from './Theme';
 
 export default function CardListScroll() {
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
@@ -58,22 +59,29 @@ export default function CardListScroll() {
 
   function onScroll({ nativeEvent }) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
-    if (diff < 1) {
-      // fetchMoreResults(FETCH_COUNT);
+    if (diff < 50) {
+      fetchMoreResults(FETCH_COUNT);
     }
   }
 
+  const bottomMargin = (
+    <View style={{margin: 0, marginBottom: theme.rem * 0.5}}/>
+  )
+
   return (
-    <ScrollView ref={scrollViewRef} onScroll={onScroll} contentInsetAdjustmentBehavior="automatic"scrollEventThrottle={100}>
+    <ScrollView style={styles.scrollView} ref={scrollViewRef} onScroll={onScroll} contentInsetAdjustmentBehavior="automatic" scrollEventThrottle={100}>
       <SafeAreaView>
         {searchCountCard}
         {items}
         {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
+        {bottomMargin}
       </SafeAreaView>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  spinner: {},
+  scrollView: {
+    height: "100%",
+  },
 });
