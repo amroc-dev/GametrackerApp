@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
     spinner: {
       height: 100,
       paddingTop: theme.rem * 1.5,
+      // marginBottom: theme.rem * 3,
     },
   });

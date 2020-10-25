@@ -10,6 +10,7 @@ export default function CardListScroll() {
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
   const [hasMoreItems, setHasMoreItems] = useState(false);
+  const scrollViewRef = useRef(null);
 
   const FETCH_COUNT = 20;
 
@@ -18,6 +19,7 @@ export default function CardListScroll() {
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
+    scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [newSearchSubmitted]);
 
   useEffect(() => {
@@ -52,7 +54,6 @@ export default function CardListScroll() {
     if (searchResults.resultsCount === 0) {
       setHasMoreItems(false);
     }
-
   }, [searchResults]);
 
   function onScroll({ nativeEvent }) {
@@ -64,16 +65,15 @@ export default function CardListScroll() {
 
   return (
     <View>
-      <ScrollView onScroll={onScroll} scrollEventThrottle={100}>
+      <ScrollView ref={scrollViewRef} onScroll={onScroll} scrollEventThrottle={100}>
         {searchCountCard}
         {items}
-        { (isFetchingResults && hasMoreItems) ? <LoadingSpinner /> : null}
+        {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
       </ScrollView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  spinner: {
-  },
+  spinner: {},
 });
