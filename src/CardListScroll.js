@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { View, ScrollView, StyleSheet } from "react-native";
+import { View, ScrollView, StyleSheet, SafeAreaView } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
@@ -59,18 +59,18 @@ export default function CardListScroll() {
   function onScroll({ nativeEvent }) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
     if (diff < 1) {
-      fetchMoreResults(FETCH_COUNT);
+      // fetchMoreResults(FETCH_COUNT);
     }
   }
 
   return (
-    <View>
-      <ScrollView ref={scrollViewRef} onScroll={onScroll} scrollEventThrottle={100}>
+    <ScrollView ref={scrollViewRef} onScroll={onScroll} contentInsetAdjustmentBehavior="automatic"scrollEventThrottle={100}>
+      <SafeAreaView>
         {searchCountCard}
         {items}
         {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
-      </ScrollView>
-    </View>
+      </SafeAreaView>
+    </ScrollView>
   );
 }
 

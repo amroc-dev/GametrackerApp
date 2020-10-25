@@ -13,10 +13,10 @@ export default function SearchPage({navigation}) {
   }
 
   return (
-    <SafeAreaView style={styles.root}>
-      <Button title="Search" onPress={onSearchPressed} />
+    <View style={styles.root}>
+      {/* <Button title="Search" onPress={onSearchPressed} /> */}
       <CardListScroll />
-    </SafeAreaView>
+    </View>
   );
 }
 

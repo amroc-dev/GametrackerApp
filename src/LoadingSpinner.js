@@ -17,8 +17,6 @@ const styles = StyleSheet.create({
       justifyContent: "center",
     },
     spinner: {
-      height: 100,
-      paddingTop: theme.rem * 1.5,
-      // marginBottom: theme.rem * 3,
+      marginTop: theme.rem * 1.5,
     },
   });
