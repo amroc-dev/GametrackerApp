@@ -26,6 +26,7 @@ export default function SortBy() {
         items={pickerItems}
         arrowColor="white"
         dropDownMaxHeight={500}
+        onChangeItem={(item, index) => updateSortOption(item.value)}
       />
     </View>
   );
