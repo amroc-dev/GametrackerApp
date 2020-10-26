@@ -1,5 +1,6 @@
 import {lighten, darken} from 'polished';
 
+const primary = 'rgb(26, 155, 215)';
 const background1 = 'rgb(42, 63, 78)';
 const background2 = 'rgb(78, 94, 108)';
 // const background1 = 'rgb(34, 38, 38)';
@@ -12,7 +13,8 @@ const theme = {
   rem: rem,
 
   colors: {
-    primary: 'rgb(26, 155, 215)',
+    primary: primary,
+    primaryLight: lighten('0.1', primary),
     background1: background1,
     background2: background2,
     secondary: lighten('0.25', background2),

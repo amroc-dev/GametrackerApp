@@ -5,7 +5,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
 import Searchbar from "./Searchbar";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
-import theme from './Theme';
+import theme from "./Theme";
 
 export default function CardListScroll() {
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
@@ -39,6 +39,11 @@ export default function CardListScroll() {
       setSearchCountCard(<SearchCountCard key={0} count={searchResults.resultsCount} errorMessage={null} />);
     }
 
+    if (searchResults.resultsCount === 0) {
+      setHasMoreItems(false);
+      return;
+    }
+
     const slicePoint = items.length;
     const resultsSlice = searchResults.results.slice(slicePoint);
 
@@ -51,11 +56,16 @@ export default function CardListScroll() {
     if (newItems.length > 0) {
       setItems((prev) => prev.concat(newItems));
       setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
-    }
-
-    if (searchResults.resultsCount === 0) {
+    } else {
       setHasMoreItems(false);
     }
+
+    // console.log("A: " + searchResults.results.length + ", B: " + searchResults.resultsCount);
+    // setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
+
+    // if (searchResults.resultsCount === 0) {
+    //   setHasMoreItems(false);
+    // }
   }, [searchResults]);
 
   function onScroll({ nativeEvent }) {
@@ -65,12 +75,16 @@ export default function CardListScroll() {
     }
   }
 
-  const bottomMargin = (
-    <View style={{margin: 0, marginBottom: theme.rem * 0.5}}/>
-  )
+  const bottomMargin = <View style={{ margin: 0, marginBottom: theme.rem * 0.5 }} />;
 
   return (
-    <ScrollView style={styles.scrollView} ref={scrollViewRef} onScroll={onScroll} contentInsetAdjustmentBehavior="automatic" scrollEventThrottle={100}>
+    <ScrollView
+      style={styles.scrollView}
+      ref={scrollViewRef}
+      onScroll={onScroll}
+      contentInsetAdjustmentBehavior="automatic"
+      scrollEventThrottle={100}
+    >
       <SafeAreaView>
         <Searchbar />
         {searchCountCard}

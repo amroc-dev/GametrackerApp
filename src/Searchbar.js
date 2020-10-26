@@ -1,36 +1,58 @@
-import React from "react";
+import React, {useContext} from "react";
 import { View, TextInput, StyleSheet, Button } from "react-native";
+import { SearchBar } from "react-native-elements";
+import { SearchContext } from "./shared/react/SearchContext";
 import cardItemStyles from "./CardItem_styles";
 import theme from "./Theme";
 
 export default function Searchbar() {
+  const { submitSearch, searchTerm, setSearchTerm, clearSearchTerm } = useContext(SearchContext);
+
   return (
-    <View style={styles.root}>
-      <TextInput style={styles.textInput} placeholder="Search for name or tag"></TextInput>
-    </View>
+    <SearchBar
+      containerStyle={styles.root}
+      inputContainerStyle={styles.textInput}
+      inputStyle={styles.input}
+      platform="ios"
+      placeholder="Search for name or tag"
+      onChangeText={setSearchTerm}
+      onSubmitEditing={() => submitSearch()}
+      onClear={() => clearSearchTerm()}
+      cancelButtonProps={{
+        // buttonStyle : styles.cancelButton,
+        color: theme.fonts.colors.title,
+      }}
+      value={searchTerm}
+    />
+
+    // <View style={styles.root}>
+    //   <TextInput style={styles.textInput} placeholder="Search for name or tag"></TextInput>
+    //   <Button title="Search"></Button>
+    // </View>
   );
 }
 
 const styles = StyleSheet.create({
-    root: {
-      flexDirection: "row",
-      height: 34,
-      backgroundColor: "white",
-      marginTop: theme.rem * 0.5,
-      marginHorizontal: theme.rem * 0.5,
-      borderRadius: theme.borderRadius,
-    },
-    textInput: {
-      flex: 1,
-      backgroundColor: "white",
-      height: "100%",
-      borderRadius: theme.borderRadius,
-      marginHorizontal: theme.rem * 0.5,
-    },
-    searchButton: {
-      backgroundColor: theme.colors.primary,
-    },
-    // spinner: {
-    //   marginTop: theme.rem * 1.5,
-    // },
-  });
+  root: {
+    // flexDirection: "row",
+    height: 40,
+    backgroundColor: "rgba(0,0,0,0)",
+    marginTop: theme.rem * 0.5,
+    // marginHorizontal: theme.rem * 0.5,
+    borderRadius: theme.borderRadius,
+  },
+  textInput: {
+    flex: 1,
+    backgroundColor: "white",
+    // backgroundColor: theme.colors.background2,
+    // color: "white",
+    borderRadius: theme.borderRadius,
+  },
+  input: {
+
+    // color: theme.colors.primary,
+  },
+  cancelButton: {
+    backgroundColor: "red",
+  }
+});
