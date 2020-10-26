@@ -43,7 +43,8 @@ export default function SearchPills() {
     pillElems.push(
       <SearchPill
         key={pillElems.length}
-        name={"\"" + submittedSearchTerm + "\""}
+        name={submittedSearchTerm}
+        // name={"\"" + submittedSearchTerm + "\""}
         clickCallback={() => {
           clearSearchTerm();
         }}

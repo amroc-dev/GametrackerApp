@@ -1,17 +1,21 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView} from "react-native";
+import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
+import { Button} from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchPage from "./SearchPage";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
-import theme from "./Theme";
+import theme, {headerTitleStyle} from "./Theme";
+import "react-native-gesture-handler";
+import { rgb } from "polished";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
     <SearchContextProvider>
+      <StatusBar barStyle="light-content" />
       <SearchResultsContextProvider>
         <NavigationContainer>
           <Stack.Navigator
@@ -19,23 +23,36 @@ export default function App() {
               cardStyle: { backgroundColor: theme.colors.background1 },
             }}
           >
-            <Stack.Screen name="Search" component={SearchPage} options={{ title: "Search" }} />
-
-            {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+            <Stack.Screen
+              name="Search"
+              component={SearchPage}
+              options={{
+                headerTitle: "Search",
+                headerTintColor: "#fff",
+                headerTitleStyle: headerTitleStyle,
+                headerStyle: {
+                  backgroundColor: theme.colors.primary,
+                  shadowColor: theme.shadowColor,
+                  shadowOpacity: theme.shadowOpacity,
+                  shadowRadius: theme.shadowRadius,
+                  shadowOffset: theme.shadowOffset,
+                },
+                headerRight: () => (
+                  <Button
+                    onPress={() => {}}
+                    title="Filters"
+                    type="clear"
+                    titleStyle={headerTitleStyle}
+                  />
+                ),
+              }}
+            />
           </Stack.Navigator>
-          {/* <SafeAreaView style={styles.root}></SafeAreaView> */}
         </NavigationContainer>
       </SearchResultsContextProvider>
     </SearchContextProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  root: {
-    backgroundColor: theme.colors.background1,
-    // marginHorizontal: theme.rem * 0.5,
-  },
-});
 
 // /**
 //  * Sample React Native App

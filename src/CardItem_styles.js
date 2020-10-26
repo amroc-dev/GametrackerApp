@@ -51,8 +51,8 @@ const styles = StyleSheet.create({
   
     titleText: {
       color: theme.fonts.colors.title,
-      fontSize: theme.fonts.sizes.primaryBold,
-      fontWeight: '500',
+      fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
     },
   
     artistText: {

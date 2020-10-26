@@ -9,6 +9,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 
 export default function SortBy() {
   const { sortOption, updateSortOption } = useContext(SearchContext);
+  let controller;
 
   const pickerItems = sortOptions.map((item) => ({ label: item, value: item }));
 
@@ -22,6 +23,7 @@ export default function SortBy() {
     <View style={styles.root}>
       <Text style={styles.sortByLabel}>Sort by</Text>
       <DropDownPicker
+        controller={instance => controller = instance}
         style={styles.dropdownStyle}
         containerStyle={styles.dropdownContainer}
         dropDownStyle={styles.dropdown}
@@ -88,7 +90,7 @@ const styles = StyleSheet.create({
   labelStyle: {
     color: "white",
     fontSize: theme.fonts.sizes.primary,
-    fontWeight: "500",
+    fontWeight: theme.fonts.weights.bold,
     marginLeft: theme.rem * 0.75,
   },
   selectedLabelStyle: {},

@@ -26,7 +26,7 @@ function CardItem({doc}) {
   //////// rating
   const countForCurrentVersion = doc_popularity;
   let rating = '-';
-  let ratingCellColour = 'rgba(125, 145, 165, 1)';
+  let ratingCellColour = theme.colors.rating.na;
 
   const ratingVal = parseFloat(doc_rating);
   const remainder = Math.abs(ratingVal - Math.round(ratingVal));
@@ -34,13 +34,13 @@ function CardItem({doc}) {
 
   rating = ratingVal.toFixed(fixedDigits);
   if (countForCurrentVersion >= 5) {
-    ratingCellColour = 'rgb(92, 184, 92)';
+    ratingCellColour = theme.colors.rating.good;
 
     if (rating < 4) {
-      ratingCellColour = 'rgb(225, 180, 48)';
+      ratingCellColour = theme.colors.rating.average;
     }
     if (rating < 3) {
-      ratingCellColour = 'rgb(225, 0, 0)';
+      ratingCellColour = theme.colors.rating.bad;
     }
     rating = Math.round(rating * 2);
   } else {
