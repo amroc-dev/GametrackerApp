@@ -19,16 +19,10 @@ export default function Searchbar() {
       onSubmitEditing={() => submitSearch()}
       onClear={() => clearSearchTerm()}
       cancelButtonProps={{
-        // buttonStyle : styles.cancelButton,
         color: theme.fonts.colors.title,
       }}
       value={searchTerm}
     />
-
-    // <View style={styles.root}>
-    //   <TextInput style={styles.textInput} placeholder="Search for name or tag"></TextInput>
-    //   <Button title="Search"></Button>
-    // </View>
   );
 }
 
