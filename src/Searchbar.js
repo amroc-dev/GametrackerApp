@@ -30,7 +30,7 @@ export default function Searchbar() {
 const styles = StyleSheet.create({
   root: {
     // flexDirection: "row",
-    height: 44,
+    height: theme.rowHeight,
     backgroundColor: "rgba(0,0,0,0)",
     marginTop: theme.rem * 0.5,
     borderRadius: theme.borderRadius,

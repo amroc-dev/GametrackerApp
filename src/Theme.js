@@ -45,6 +45,7 @@ const theme = {
   },
 
   borderRadius: 8,
+  rowHeight: 44,
 };
 
 export default theme;

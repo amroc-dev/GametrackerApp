@@ -28,6 +28,9 @@ export default function SearchCountCard(props) {
 const styles = StyleSheet.create({
     card: {
       margin: 0,
+      // height: theme.rowHeight,
+      // paddingLeft: theme.rem * 0.8,
+      // alignItems: 'center',
       padding: theme.rem * 0.5,
     },
   });

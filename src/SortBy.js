@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
   root: {
     flexDirection: "row",
     justifyContent: "flex-end",
-    height: 44,
+    height: theme.rowHeight,
     backgroundColor: "rgba(0,0,0,0)",
     marginTop: theme.rem * 0.5,
     marginHorizontal: theme.rem * 0.5,
