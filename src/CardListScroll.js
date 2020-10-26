@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import { View, ScrollView, StyleSheet, SafeAreaView } from "react-native";
+import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
+import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
@@ -22,6 +23,23 @@ export default function CardListScroll() {
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
+    LayoutAnimation.configureNext({
+      create: {
+        duration: 50,
+        type: LayoutAnimation.Types.easeIn,
+        property: LayoutAnimation.Properties.opacity,
+      },
+      update: {
+        duration: 250,
+        type: LayoutAnimation.Types.easeInEaseOut,
+        property: LayoutAnimation.Properties.opacity,
+      },
+      delete: {
+        duration: 50,
+        type: LayoutAnimation.Types.easeOut,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    })
     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [newSearchSubmitted]);
 
@@ -61,6 +79,14 @@ export default function CardListScroll() {
       setHasMoreItems(false);
     }
 
+    LayoutAnimation.configureNext({
+      create: {
+        duration: 50,
+        type: LayoutAnimation.Types.easeIn,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    })
+
   }, [searchResults]);
 
   function onScroll({ nativeEvent }) {
@@ -81,12 +107,15 @@ export default function CardListScroll() {
       scrollEventThrottle={100}
     >
       <SafeAreaView>
+        <SearchPills />
         <Searchbar />
         <SortBy />
-        {searchCountCard}
-        {items}
-        {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
-        {bottomMargin}
+        <View>
+          {searchCountCard}
+          {items}
+          {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
+          {bottomMargin}
+        </View>
       </SafeAreaView>
     </ScrollView>
   );

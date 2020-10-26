@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import { sortOptions } from "./shared/react/SortOptions";
@@ -11,6 +11,12 @@ export default function SortBy() {
   const { sortOption, updateSortOption } = useContext(SearchContext);
 
   const pickerItems = sortOptions.map((item) => ({ label: item, value: item }));
+
+  function onOpen() {
+  }
+
+  function onClose() {
+  }
 
   return (
     <View style={styles.root}>
@@ -24,6 +30,8 @@ export default function SortBy() {
         placeholderStyle={styles.placeholder}
         defaultValue={sortOption}
         items={pickerItems}
+        onOpen={onOpen}
+        onOpen={onClose}
         arrowColor="white"
         dropDownMaxHeight={500}
         onChangeItem={(item, index) => updateSortOption(item.value)}

@@ -1,35 +1,32 @@
-import React from 'react';
-import {StyleSheet, Text, View, SafeAreaView} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import SearchPage from './SearchPage';
-import {SearchContextProvider} from './shared/react/SearchContext';
-import {SearchResultsContextProvider} from './shared/react/SearchResultsContext';
-import theme from './Theme';
+import React from "react";
+import { StyleSheet, Text, View, SafeAreaView} from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+import SearchPage from "./SearchPage";
+import { SearchContextProvider } from "./shared/react/SearchContext";
+import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
+import theme from "./Theme";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   return (
-      <SearchContextProvider>
-        <SearchResultsContextProvider>
-          <NavigationContainer>
-            <Stack.Navigator
-              screenOptions={{
-                cardStyle: {backgroundColor: theme.colors.background1},
-              }}>
-              <Stack.Screen
-                name="Search"
-                component={SearchPage}
-                options={{title: 'Search'}}
-              />
+    <SearchContextProvider>
+      <SearchResultsContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            screenOptions={{
+              cardStyle: { backgroundColor: theme.colors.background1 },
+            }}
+          >
+            <Stack.Screen name="Search" component={SearchPage} options={{ title: "Search" }} />
 
-              {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
-            </Stack.Navigator>
-            {/* <SafeAreaView style={styles.root}></SafeAreaView> */}
-          </NavigationContainer>
-        </SearchResultsContextProvider>
-      </SearchContextProvider>
+            {/* <Stack.Screen name="Profile" component={ProfileScreen} /> */}
+          </Stack.Navigator>
+          {/* <SafeAreaView style={styles.root}></SafeAreaView> */}
+        </NavigationContainer>
+      </SearchResultsContextProvider>
+    </SearchContextProvider>
   );
 }
 
