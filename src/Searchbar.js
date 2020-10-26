@@ -22,6 +22,7 @@ export default function Searchbar() {
         color: theme.fonts.colors.title,
       }}
       value={searchTerm}
+      returnKeyType={"search"}
     />
   );
 }
