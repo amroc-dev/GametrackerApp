@@ -4,6 +4,7 @@ import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
 import Searchbar from "./Searchbar";
+import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
 
@@ -60,12 +61,6 @@ export default function CardListScroll() {
       setHasMoreItems(false);
     }
 
-    // console.log("A: " + searchResults.results.length + ", B: " + searchResults.resultsCount);
-    // setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
-
-    // if (searchResults.resultsCount === 0) {
-    //   setHasMoreItems(false);
-    // }
   }, [searchResults]);
 
   function onScroll({ nativeEvent }) {
@@ -87,6 +82,7 @@ export default function CardListScroll() {
     >
       <SafeAreaView>
         <Searchbar />
+        <SortBy />
         {searchCountCard}
         {items}
         {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}

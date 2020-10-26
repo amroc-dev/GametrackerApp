@@ -35,21 +35,24 @@ export default function Searchbar() {
 const styles = StyleSheet.create({
   root: {
     // flexDirection: "row",
-    height: 40,
+    height: 44,
     backgroundColor: "rgba(0,0,0,0)",
     marginTop: theme.rem * 0.5,
-    // marginHorizontal: theme.rem * 0.5,
     borderRadius: theme.borderRadius,
+    // marginHorizontal: -theme.rem * 0.5,
+    // borderRadius: theme.borderRadius,
   },
   textInput: {
     flex: 1,
+    height: "100%",
+    marginVertical: -12.8,
     backgroundColor: "white",
+    borderRadius: theme.borderRadius,
     // backgroundColor: theme.colors.background2,
     // color: "white",
-    borderRadius: theme.borderRadius,
+    // borderRadius: theme.borderRadius,
   },
   input: {
-
     // color: theme.colors.primary,
   },
   cancelButton: {
