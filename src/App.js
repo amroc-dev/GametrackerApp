@@ -4,7 +4,7 @@ import { Button} from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchPageScreen from "./SearchPageScreen";
-import Filters from "./Filters";
+import FiltersPageScreen from "./FiltersPageScreen";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import theme, {headerTitleStyle} from "./Theme";
@@ -37,8 +37,9 @@ export default function App() {
               component={SearchPageScreen}
             />
             <Stack.Screen
-              name="SearchFilters"
-              component={Filters}>
+              name="Filters"
+              title="Filters"
+              component={FiltersPageScreen}>
             </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>

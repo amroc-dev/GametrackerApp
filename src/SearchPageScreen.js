@@ -10,7 +10,7 @@ export default function SearchPageScreen({ navigation }) {
       headerTitle: "Search",
       headerRight: () => (
         <Button
-          onPress={() => navigation.navigate("SearchFilters")}
+          onPress={() => navigation.navigate("Filters")}
           title="Filters"
           type="clear"
           titleStyle={headerTitleStyle}
