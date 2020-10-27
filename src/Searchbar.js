@@ -8,6 +8,11 @@ import theme from "./Theme";
 export default function Searchbar() {
   const { submitSearch, searchTerm, setSearchTerm, clearSearchTerm } = useContext(SearchContext);
 
+  function onSubmit({nativeEvent}) {
+    setSearchTerm(nativeEvent.text)
+    submitSearch()
+  }
+
   return (
     <SearchBar
       containerStyle={styles.root}
@@ -16,7 +21,7 @@ export default function Searchbar() {
       platform="ios"
       placeholder="Search for name or tag"
       onChangeText={setSearchTerm}
-      onSubmitEditing={() => submitSearch()}
+      onSubmitEditing={onSubmit}
       onClear={() => clearSearchTerm()}
       cancelButtonProps={{
         color: theme.fonts.colors.title,
