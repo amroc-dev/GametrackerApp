@@ -39,7 +39,7 @@ export default function CardListScroll() {
         type: LayoutAnimation.Types.easeOut,
         property: LayoutAnimation.Properties.opacity,
       },
-    })
+    });
     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [newSearchSubmitted]);
 
@@ -75,18 +75,17 @@ export default function CardListScroll() {
     if (newItems.length > 0) {
       setItems((prev) => prev.concat(newItems));
       setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
+
+      LayoutAnimation.configureNext({
+        create: {
+          duration: 50,
+          type: LayoutAnimation.Types.easeIn,
+          property: LayoutAnimation.Properties.opacity,
+        },
+      });
     } else {
       setHasMoreItems(false);
     }
-
-    LayoutAnimation.configureNext({
-      create: {
-        duration: 50,
-        type: LayoutAnimation.Types.easeIn,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    })
-
   }, [searchResults]);
 
   function onScroll({ nativeEvent }) {

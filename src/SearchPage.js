@@ -14,7 +14,6 @@ export default function SearchPage({ navigation }) {
 
   return (
     <View style={styles.root}>
-      {/* <Button title="Search" onPress={onSearchPressed} /> */}
       <CardListScroll />
     </View>
   );

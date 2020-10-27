@@ -3,7 +3,8 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { Button} from "react-native-elements";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import SearchPage from "./SearchPage";
+import SearchPageScreen from "./SearchPageScreen";
+import Filters from "./Filters";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import theme, {headerTitleStyle} from "./Theme";
@@ -20,33 +21,25 @@ export default function App() {
         <NavigationContainer>
           <Stack.Navigator
             screenOptions={{
-              cardStyle: { backgroundColor: theme.colors.background1 },
+              headerTintColor: "#fff",
+              headerTitleStyle: headerTitleStyle,
+              headerStyle: {
+                backgroundColor: theme.colors.primary,
+                shadowColor: theme.shadowColor,
+                shadowOpacity: theme.shadowOpacity,
+                shadowRadius: theme.shadowRadius,
+                shadowOffset: theme.shadowOffset,
+              },
             }}
           >
             <Stack.Screen
               name="Search"
-              component={SearchPage}
-              options={{
-                headerTitle: "Search",
-                headerTintColor: "#fff",
-                headerTitleStyle: headerTitleStyle,
-                headerStyle: {
-                  backgroundColor: theme.colors.primary,
-                  shadowColor: theme.shadowColor,
-                  shadowOpacity: theme.shadowOpacity,
-                  shadowRadius: theme.shadowRadius,
-                  shadowOffset: theme.shadowOffset,
-                },
-                headerRight: () => (
-                  <Button
-                    onPress={() => {}}
-                    title="Filters"
-                    type="clear"
-                    titleStyle={headerTitleStyle}
-                  />
-                ),
-              }}
+              component={SearchPageScreen}
             />
+            <Stack.Screen
+              name="SearchFilters"
+              component={Filters}>
+            </Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </SearchResultsContextProvider>
