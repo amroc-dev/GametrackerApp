@@ -70,3 +70,10 @@ export const headerTitleStyle = {
   fontSize: theme.fonts.sizes.header,
   fontWeight: theme.fonts.weights.bold,
 };
+
+// export const navButtonStyle = {
+//   color: theme.fonts.colors.title,
+// }
+
+export const navButtonStyle = headerTitleStyle;
+
