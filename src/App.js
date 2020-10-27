@@ -38,7 +38,6 @@ export default function App() {
             />
             <Stack.Screen
               name="Filters"
-              title="Filters"
               component={FiltersPageScreen}>
             </Stack.Screen>
           </Stack.Navigator>
