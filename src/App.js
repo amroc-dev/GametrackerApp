@@ -1,15 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import { Button} from "react-native-elements";
+import { StatusBar } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import SearchPageScreen from "./SearchPageScreen";
 import FiltersPageScreen from "./FiltersPageScreen";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
-import theme, {headerTitleStyle} from "./Theme";
+import theme, { headerTitleStyle } from "./Theme";
 import "react-native-gesture-handler";
-import { rgb } from "polished";
 
 const Stack = createStackNavigator();
 
@@ -32,14 +30,8 @@ export default function App() {
               },
             }}
           >
-            <Stack.Screen
-              name="Search"
-              component={SearchPageScreen}
-            />
-            <Stack.Screen
-              name="Filters"
-              component={FiltersPageScreen}>
-            </Stack.Screen>
+            <Stack.Screen name="Search" component={SearchPageScreen} />
+            <Stack.Screen name="Filters" component={FiltersPageScreen}></Stack.Screen>
           </Stack.Navigator>
         </NavigationContainer>
       </SearchResultsContextProvider>

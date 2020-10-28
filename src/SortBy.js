@@ -1,41 +1,25 @@
-import React, { useContext, useState } from "react";
-import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation } from "react-native";
+import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
+import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import { sortOptions } from "./shared/react/SortOptions";
 import cardItemStyles from "./CardItem_styles";
 import theme from "./Theme";
 import DropDownPicker from "react-native-dropdown-picker";
+import { TouchContext } from "./TouchContext";
+import ModalDropdown from "./ModalDropdown";
 
 export default function SortBy() {
   const { sortOption, updateSortOption } = useContext(SearchContext);
-  let controller;
 
   const pickerItems = sortOptions.map((item) => ({ label: item, value: item }));
-
-  function onOpen() {
-  }
-
-  function onClose() {
-  }
 
   return (
     <View style={styles.root}>
       <Text style={styles.sortByLabel}>Sort by</Text>
-      <DropDownPicker
-        controller={instance => controller = instance}
-        style={styles.dropdownStyle}
-        containerStyle={styles.dropdownContainer}
-        dropDownStyle={styles.dropdown}
-        itemStyle={styles.itemStyle}
-        labelStyle={styles.labelStyle}
-        placeholderStyle={styles.placeholder}
+      <ModalDropdown
         defaultValue={sortOption}
         items={pickerItems}
-        onOpen={onOpen}
-        onOpen={onClose}
-        arrowColor="white"
-        dropDownMaxHeight={500}
         onChangeItem={(item, index) => updateSortOption(item.value)}
       />
     </View>
@@ -45,12 +29,13 @@ export default function SortBy() {
 const styles = StyleSheet.create({
   root: {
     flexDirection: "row",
-    justifyContent: "flex-end",
+    width: 240,
+    alignSelf: "flex-end",
     height: theme.rowHeight,
     backgroundColor: "rgba(0,0,0,0)",
     marginTop: theme.rem * 0.5,
     marginHorizontal: theme.rem * 0.5,
-    zIndex: 100,
+    zIndex: 10,
   },
   sortByLabel: {
     color: theme.fonts.colors.secondary,
@@ -58,40 +43,4 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     marginRight: theme.rem * 0.5,
   },
-  dropdownStyle: {
-    borderTopLeftRadius: theme.borderRadius,
-    borderTopRightRadius: theme.borderRadius,
-    borderBottomLeftRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
-    backgroundColor: theme.colors.primary,
-    borderWidth: 0,
-  },
-  dropdownContainer: {
-    flex: 0.5,
-    borderWidth: 0,
-  },
-  dropdown: {
-    marginTop: theme.rem * 0.25,
-    marginRight: theme.rem * 2,
-    backgroundColor: theme.colors.primary,
-    borderTopLeftRadius: theme.borderRadius,
-    borderTopRightRadius: theme.borderRadius,
-    borderBottomLeftRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
-    borderWidth: 0,
-    shadowColor: theme.shadowColor,
-    shadowOpacity: theme.shadowOpacity,
-    shadowRadius: theme.shadowRadius,
-    shadowOffset: theme.shadowOffset,
-  },
-  itemStyle: {
-    justifyContent: 'flex-start',
-  },
-  labelStyle: {
-    color: "white",
-    fontSize: theme.fonts.sizes.primary,
-    fontWeight: theme.fonts.weights.bold,
-    marginLeft: theme.rem * 0.75,
-  },
-  selectedLabelStyle: {},
 });
