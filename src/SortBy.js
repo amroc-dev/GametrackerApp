@@ -16,7 +16,7 @@ export default function SortBy() {
 
   return (
     <View style={styles.root}>
-      <Text style={styles.sortByLabel}>Sort by</Text>
+      <Text style={styles.sortByLabel}>Sort</Text>
       <ModalDropdown
         defaultValue={sortOption}
         items={pickerItems}
@@ -29,7 +29,7 @@ export default function SortBy() {
 const styles = StyleSheet.create({
   root: {
     flexDirection: "row",
-    width: 240,
+    width: 210,
     alignSelf: "flex-end",
     height: theme.rowHeight,
     backgroundColor: "rgba(0,0,0,0)",

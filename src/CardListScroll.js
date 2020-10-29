@@ -103,7 +103,8 @@ export default function CardListScroll() {
       ref={scrollViewRef}
       onScroll={onScroll}
       contentInsetAdjustmentBehavior="automatic"
-      scrollEventThrottle={100}
+      scrollEventThrottle={10}
+      indicatorStyle='white'
     >
       <SafeAreaView>
         <SearchPills />

@@ -24,3 +24,31 @@ const styles = StyleSheet.create({
     backgroundColor: theme.colors.background1,
   },
 });
+
+
+
+
+
+// export default function SearchPage({ navigation, onScroll, containerPaddingTop, scrollIndicatorInsetTop }) {
+//   const { submitSearch } = useContext(SearchContext);
+
+//   function onSearchPressed() {
+//     submitSearch();
+//   }
+
+//   return (
+//     <View style={styles.root}>
+//       <CardListScroll
+//         onScroll={onScroll}
+//         containerPaddingTop={containerPaddingTop}
+//         scrollIndicatorInsetTop={scrollIndicatorInsetTop}
+//       />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   root: {
+//     backgroundColor: theme.colors.background1,
+//   },
+// });

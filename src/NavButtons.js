@@ -19,6 +19,18 @@ export function BackButton(props) {
   );
 }
 
+export function MenuButton(props) {
+  return (
+    <Button
+      type="clear"
+      titleStyle={navButtonStyle}
+      iconRight={false}
+      icon={<Icon style={styles.icon} name="ios-reorder-three-outline" size={iconSize} color="white" />}
+      {...props}
+    />
+  );
+}
+
 export function ForwardButton(props) {
   return (
 
