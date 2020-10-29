@@ -5,6 +5,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { useFocusEffect } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import FadeInOut from "./FadeInOut";
+import { lighten, darken } from "polished";
 
 export default function ModalDropdown(props) {
   const [overlay, setOverlay] = useState(null);
@@ -18,10 +19,9 @@ export default function ModalDropdown(props) {
     const HACKY_SIZE = 10000;
     setOverlay(
       <Pressable
-        onPressIn={() => controller.close()}
+        onPress={() => controller.close()}
         style={{
           position: "absolute",
-          pointerEvents: "box-none",
           top: -HACKY_SIZE,
           left: -HACKY_SIZE,
           width: HACKY_SIZE * 2,
@@ -88,18 +88,24 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     flex: 1,
-    marginTop: theme.rem * 0.25,
+    marginTop: theme.rem * 0.2,
     marginRight: theme.rem * 2,
     backgroundColor: theme.colors.primary,
-    borderTopLeftRadius: theme.borderRadius,
-    borderTopRightRadius: theme.borderRadius,
+    // borderTopLeftRadius: theme.borderRadius,
+    // borderTopRightRadius: theme.borderRadius,
     borderBottomLeftRadius: theme.borderRadius,
     borderBottomRightRadius: theme.borderRadius,
     borderWidth: 0,
+    // borderTopColor: "rgba(255,255,255,0.5)",
+    // borderTopWidth: 1,
     shadowColor: theme.shadowColor,
     shadowOpacity: theme.shadowOpacity,
     shadowRadius: theme.shadowRadius,
     shadowOffset: theme.shadowOffset,
+    shadowOffset: {
+      width: 0,
+      height: theme.shadowRadius,
+    },
   },
   itemStyle: {
     justifyContent: "flex-start",

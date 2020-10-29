@@ -1,17 +1,9 @@
 import React from "react";
-import { StatusBar, StyleSheet, View } from "react-native";
+import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import SearchPageScreen from "./SearchPageScreen";
-import FiltersPageScreen from "./FiltersPageScreen";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
-import theme, { headerTitleStyle } from "./Theme";
-import "react-native-gesture-handler";
-// import { BlurView } from "@react-native-community/blur";
-import { MenuButton } from "./NavButtons";
-
-const Stack = createStackNavigator();
+import MenuStackNavigator from "./MenuStackNavigator";
 
 export default function App() {
   return (
@@ -19,29 +11,7 @@ export default function App() {
       <StatusBar barStyle="light-content" />
       <SearchResultsContextProvider>
         <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerTintColor: "#fff",
-              headerTitleStyle: headerTitleStyle,
-              // headerTransparent: true,
-              // headerBackground: () => (
-              //   <BlurView tint="light" intensity={100} style={{...StyleSheet.absoluteFillObject, backgroundColor: "red"}} />
-              // ),
-              headerLeft: () => (
-                <MenuButton/>
-              ),
-              headerStyle: {
-                backgroundColor: theme.colors.primary,
-                shadowColor: theme.shadowColor,
-                shadowOpacity: theme.shadowOpacity,
-                shadowRadius: theme.shadowRadius,
-                shadowOffset: theme.shadowOffset,
-              },
-            }}
-          >
-            <Stack.Screen name="Search" component={SearchPageScreen} />
-            <Stack.Screen name="Filters" component={FiltersPageScreen}></Stack.Screen>
-          </Stack.Navigator>
+          <MenuStackNavigator />
         </NavigationContainer>
       </SearchResultsContextProvider>
     </SearchContextProvider>
