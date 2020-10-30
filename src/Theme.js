@@ -71,6 +71,13 @@ export const headerTitleStyle = {
   fontWeight: theme.fonts.weights.bold,
 };
 
+export const shadowStyle = {
+  shadowColor: theme.shadowColor,
+  shadowOpacity: theme.shadowOpacity,
+  shadowRadius: theme.shadowRadius,
+  shadowOffset: theme.shadowOffset,
+}
+
 // export const navButtonStyle = {
 //   color: theme.fonts.colors.title,
 // }

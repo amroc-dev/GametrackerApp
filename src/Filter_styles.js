@@ -16,17 +16,20 @@ export const filterStyles = StyleSheet.create({
     outerContainer: {
       margin: theme.rem * 0.5,
       marginTop: 0,
-
+      shadowColor: theme.shadowColor,
+      shadowOpacity: theme.shadowOpacity,
+      shadowRadius: theme.shadowRadius,
+      shadowOffset: theme.shadowOffset,
     },
     bodyContainer: {
       backgroundColor: theme.colors.background2,
       height: 200,
-      marginTop: 2,
+      marginTop: 0,
       // marginHorizontal: theme.rem * 0.5,
-      // borderRadius: theme.borderRadius,
-      borderTopRightRadius: theme.borderRadius,
-      borderBottomLeftRadius: theme.borderRadius,
-      borderBottomRightRadius: theme.borderRadius,
+      borderRadius: theme.borderRadius,
+      // borderTopRightRadius: theme.borderRadius,
+      // borderBottomLeftRadius: theme.borderRadius,
+      // borderBottomRightRadius: theme.borderRadius,
     },
     headerView: {
       flexDirection: "row",
@@ -34,8 +37,9 @@ export const filterStyles = StyleSheet.create({
       // justifyContent: "center",
 
       alignItems: "center",
-      backgroundColor: theme.colors.primary,
+      backgroundColor: rgba(0,0,0,0),//theme.colors.primary,
       height: theme.rowHeight * 0.75,
+      marginLeft: theme.rem * 0.5,
   
       // borderRadius: theme.borderRadius,
       borderTopLeftRadius: theme.borderRadius,
@@ -46,10 +50,10 @@ export const filterStyles = StyleSheet.create({
       // borderBottomWidth: 2,
     },
     headerText:{
-      color: theme.fonts.colors.title,
-      fontSize: theme.fonts.sizes.primary,
+      color: theme.fonts.colors.primary,
+      fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
-      marginHorizontal: theme.rem * 1,
+      // marginHorizontal: theme.rem * 1,
       width: 80,
     },
     // headerText: headerTitleStyle,
