@@ -41,7 +41,6 @@ export default function FilterTags() {
 
 const styles = StyleSheet.create({
   outer: {
-    marginTop: theme.rem * 1,
     marginBottom: 0,
   },
 

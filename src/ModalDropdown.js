@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     flex: 1,
-    borderColor: theme.colors.background1,
-    borderTopWidth: 2,
+    borderColor: "rgba(255,255,255,0.4)",
+    borderTopWidth: 1,
     backgroundColor: theme.colors.primary,
     // borderTopLeftRadius: theme.borderRadius,
     // borderTopRightRadius: theme.borderRadius,
@@ -98,13 +98,14 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     // borderTopColor: "rgba(255,255,255,0.5)",
     // borderTopWidth: 1,
+    // marginTop: theme.rem * 0.3,
     shadowColor: theme.shadowColor,
-    shadowOpacity: theme.shadowOpacity,
+    shadowOpacity: theme.shadowOpacity * 0.5,
     shadowRadius: theme.shadowRadius,
     shadowOffset: theme.shadowOffset,
     shadowOffset: {
       width: 0,
-      height: theme.shadowRadius,
+      height: theme.shadowRadius + 2,
     },
   },
   itemStyle: {

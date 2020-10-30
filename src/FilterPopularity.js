@@ -16,7 +16,7 @@ export default function FilterPopularity() {
 
 const styles = StyleSheet.create({
 outer: {
-  marginTop: theme.rem * 1,
+
 },
 
 body: {
