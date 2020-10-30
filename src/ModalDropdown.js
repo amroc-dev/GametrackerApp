@@ -88,8 +88,8 @@ const styles = StyleSheet.create({
   },
   dropdown: {
     flex: 1,
-    marginTop: theme.rem * 0.2,
-    marginRight: theme.rem * 2,
+    borderColor: theme.colors.background1,
+    borderTopWidth: 2,
     backgroundColor: theme.colors.primary,
     // borderTopLeftRadius: theme.borderRadius,
     // borderTopRightRadius: theme.borderRadius,

@@ -3,12 +3,17 @@ import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
+import FilterTags from "./FilterTags";
+import FilterDevice from "./FilterDevice";
+import FilterPopularity from "./FilterPopularity";
 
 export default function FiltersPage() {
   return (
     <View style={styles.root}>
       <ScrollView style={styles.scrollView}>
-        <Text>filters</Text>
+        <FilterTags />
+        <FilterDevice />
+        <FilterPopularity />
       </ScrollView>
     </View>
   );

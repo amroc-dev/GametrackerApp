@@ -14,8 +14,6 @@ import { MenuButton } from "./NavButtons";
 
 export default function SearchStackNavigator( {navigation}) {
   
-  console.log(navigation)
-  
   return (
     <Stack.Navigator
       screenOptions={{

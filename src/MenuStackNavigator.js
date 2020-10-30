@@ -9,7 +9,7 @@ const Drawer = createDrawerNavigator();
 export default function MenuStackNavigator() {
 
   return (
-    <Drawer.Navigator drawerType="back" edgeWidth={0}>
+    <Drawer.Navigator drawerType="back">
       <Drawer.Screen name="Search" component={SearchStackNavigator} />
     </Drawer.Navigator>
   );
