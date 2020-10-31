@@ -4,18 +4,21 @@ import { NavigationContainer } from "@react-navigation/native";
 import { CoreContextProvider } from "./shared/react/CoreContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
+import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
 import MenuStackNavigator from "./MenuStackNavigator";
 
 export default function App() {
   return (
     <CoreContextProvider>
       <SearchContextProvider>
-        <StatusBar barStyle="light-content" />
-        <SearchResultsContextProvider>
-          <NavigationContainer>
-            <MenuStackNavigator />
-          </NavigationContainer>
-        </SearchResultsContextProvider>
+        <FilterTagsContextProvider>
+          <StatusBar barStyle="light-content" />
+          <SearchResultsContextProvider>
+            <NavigationContainer>
+              <MenuStackNavigator />
+            </NavigationContainer>
+          </SearchResultsContextProvider>
+        </FilterTagsContextProvider>
       </SearchContextProvider>
     </CoreContextProvider>
   );

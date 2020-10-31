@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState, memo } from "react";
-import { View, Text, TextInput, StyleSheet, ScrollView, FlatList } from "react-native";
+import React, { useContext, useEffect, useLayoutEffect, useState, memo } from "react";
+import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
@@ -7,61 +7,64 @@ import theme from "./Theme";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { SearchBar } from "react-native-elements";
 import { rgba } from "polished";
+import { FilterTagsContext, FiterTagsContext } from "./shared/react/FilterTagsContext";
+import { SearchInput } from "./Common";
 
 function FilterTags() {
   const { tags } = useContext(CoreContext);
+  const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
   const [tagColumns, setTagColumns] = useState([]);
-
-  // useEffect(() => {
-  //   if (!tags) return;
-
-  //   let groups = [];
-  //   groups.push([]);
-
-  //   for (let i = 0; i < tags.length; i++) {
-  //     groups[groups.length - 1].push(
-  //       <Text style={styles.tagItem} key={i}>
-  //         {tags[i].name}
-  //       </Text>
-  //     );
-  //     if (groups[groups.length - 1].length == 10) {
-  //       groups.push([]);
-  //     }
-  //   }
-
-  //   let columns = [];
-
-  //   groups.forEach((g, i) => {
-  //     columns.push(
-  //       <View style={styles.tagColumn} key={i}>
-  //         {g}
-  //       </View>
-  //     );
-  //   });
-
-  //   setTagColumns(columns);
-  // }, [tags]);
+  const [showActivityIndicator, setShowActivityIndicator] = useState(false);
 
   useEffect(() => {
-    if (!tags) return;
+    if (!tags) {
+      return;
+    }
 
     let groups = [];
-    groups.push([]);
-
-    for (let i = 0; i < tags.length; i++) {
-      groups[groups.length - 1].push(tags[i]);
-      if (groups[groups.length - 1].length == 8) {
-        // break;
+    tags.map((t) => {
+      if (groups.length === 0 || groups[groups.length - 1].length === 10) {
         groups.push([]);
       }
+
+      const currentGroup = groups[groups.length - 1];
+
+      if (tagSearchField.length === 0) currentGroup.push(t);
+      else if (t.name.toLowerCase().startsWith(tagSearchField.toLowerCase())) currentGroup.push(t);
+      return null;
+    });
+
+    if (groups.length > 0 && groups[groups.length - 1].length === 0) {
+      groups.pop();
     }
+
+    // LayoutAnimation.configureNext({
+    //   // create: {
+    //   //   duration: 500,
+    //   //   type: LayoutAnimation.Types.easeInEaseOut,
+    //   //   property: LayoutAnimation.Properties.opacity,
+    //   // },
+    //   update: {
+    //     duration: 250,
+    //     type: LayoutAnimation.Types.easeInEaseOut,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    //   // delete: {
+    //   //   duration: 500,
+    //   //   type: LayoutAnimation.Types.easeInEaseOut,
+    //   //   property: LayoutAnimation.Properties.opacity,
+    //   // },
+    // });
+
     setTagColumns(groups);
-  }, [tags]);
+    setShowActivityIndicator(false);
+
+
+  }, [tagSearchField, tags]);
 
   function renderItem({ item, index }) {
-    
     const cardStyle = index === 0 ? [styles.tagCard, styles.tagCardFirst] : styles.tagCard;
-    
+
     return (
       <View style={cardStyle}>
         {item.map((tagItem) => (
@@ -72,65 +75,44 @@ function FilterTags() {
         ))}
       </View>
     );
-
-    return <CardItem doc={item}></CardItem>;
   }
+
+  function onChangeText(text) {
+    setShowActivityIndicator(true);
+    setTagSearchField(text);
+  }
+
+  const tagFlatList = (
+    <FlatList
+      data={tagColumns}
+      renderItem={renderItem}
+      keyExtractor={(item, index) => index.toString()}
+      initialNumToRender={5}
+      horizontal={true}
+      windowSize={100}
+      updateCellsBatchingPeriod={5}
+      style={styles.scrollView}
+      indicatorStyle="white"
+    />
+  );
+
+  const noMatchesText = (
+    <Text style={{ marginLeft: theme.rem, marginTop: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
+      No Matches
+    </Text>
+  );
 
   return (
     <>
       <View style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
-        <FlatList
-          data={tagColumns}
-          renderItem={renderItem}
-          keyExtractor={(item, index) => index.toString()}
-          initialNumToRender={5}
-          horizontal={true}
-          windowSize={100}
-          // pagingEnabled={true}
-          updateCellsBatchingPeriod={1}
-          // maxToRenderPerBatch={1000}
-          // removeClippedSubviews={false}
-          style={styles.scrollView}
-          indicatorStyle='white'
+        {tagColumns.length > 0 ? <View style={styles.body}>{tagFlatList}</View> : noMatchesText}
+        <SearchInput
+          style={styles.searchInput}
+          returnKeyType="done"
+          placeholder={"Search " + tags.length + " tags"}
+          onChangeText={onChangeText}
         />
-        <SearchBar
-          containerStyle={styles.searchBarContainer}
-          inputContainerStyle={styles.searchInputContainer}
-          inputStyle={styles.searchInput}
-          platform="ios"
-          placeholder="Search for tag"
-
-          // onChangeText={}
-          // onSubmitEditing={}
-          // onClear={}
-          cancelButtonProps={{
-            color: theme.fonts.colors.title,
-          }}
-          // value={}
-          // returnKeyType={"search"}
-        />
-        {/* <View style={[filterStyles.bodyContainer, styles.body]}>
-          <View style={styles.innerBody}>
-
-
-            <SearchBar
-              containerStyle={styles.searchBar}
-              inputContainerStyle={styles.textInput}
-              inputStyle={styles.input}
-              platform="ios"
-              placeholder="Search for tag"
-              // onChangeText={}
-              // onSubmitEditing={}
-              // onClear={}
-              cancelButtonProps={{
-                color: theme.fonts.colors.title,
-              }}
-              // value={}
-              // returnKeyType={"search"}
-            />
-          </View>
-        </View> */}
       </View>
     </>
   );
@@ -143,8 +125,11 @@ const styles = StyleSheet.create({
 
   body: {
     height: "auto",
+    backgroundColor: theme.colors.background2,
+    marginHorizontal: theme.rem * 0.5,
+    borderRadius: theme.borderRadius,
   },
-
+  scrollView: {},
   innerBody: {
     flexDirection: "column",
     flex: 1,
@@ -153,18 +138,16 @@ const styles = StyleSheet.create({
   tags: {
     flex: 1,
     flexDirection: "column",
-
     alignSelf: "flex-start",
     margin: theme.rem * 0.5,
   },
 
   tagCard: {
-    marginRight: theme.rem * 0.5,
-    minWidth: 10,
-    backgroundColor: theme.colors.background2,
-    borderRadius: theme.borderRadius,
+    // marginRight: theme.rem * 0.5,
+    // backgroundColor: theme.colors.background2,
+    // borderRadius: theme.borderRadius,
     padding: theme.rem * 0.5,
-    // minWidth: 198.5,
+    minWidth: 160,
   },
 
   tagCardFirst: {
@@ -190,19 +173,22 @@ const styles = StyleSheet.create({
     fontSize: theme.fonts.sizes.mini,
   },
 
-  searchBarContainer: {
-    alignSelf: "flex-end",
-    height: theme.rowHeight + theme.rem, // * 0.5
-    backgroundColor: rgba(0, 0, 0, 0),
-    borderBottomLeftRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
+  // searchBarContainer: {
+  //   alignSelf: "flex-end",
+  //   height: theme.rowHeight + theme.rem, // * 0.5
+  //   backgroundColor: rgba(0, 0, 0, 0),
+  //   borderBottomLeftRadius: theme.borderRadius,
+  //   borderBottomRightRadius: theme.borderRadius,
+  // },
+  // searchInputContainer: {
+  //   height: theme.rowHeight,
+  //   backgroundColor: "white",
+  //   borderRadius: theme.borderRadius,
+  // },
+  searchInput: {
+    margin: theme.rem * 0.5,
+    marginBottom: 0,
   },
-  searchInputContainer: {
-    height: theme.rowHeight,
-    backgroundColor: "white",
-    borderRadius: theme.borderRadius,
-  },
-  searchInput: {},
 });
 
-export default memo(FilterTags);
+export default FilterTags;

@@ -1,38 +1,57 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import { View, TextInput, StyleSheet, Button } from "react-native";
 import { SearchBar } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import cardItemStyles from "./CardItem_styles";
 import theme from "./Theme";
+import { SearchInput } from "./Common";
 
 export default function Searchbar() {
   const { submitSearch, searchTerm, setSearchTerm, clearSearchTerm } = useContext(SearchContext);
 
-  function onSubmit({nativeEvent}) {
-    setSearchTerm(nativeEvent.text)
-    submitSearch()
+  function onSubmit({ nativeEvent }) {
+    setSearchTerm(nativeEvent.text);
+    submitSearch();
+  }
+
+  function test(text) {
+    setSearchTerm(text);
   }
 
   return (
-    <SearchBar
-      containerStyle={styles.root}
-      inputContainerStyle={styles.textInput}
-      inputStyle={styles.input}
-      platform="ios"
+    // <SearchBar
+    //   containerStyle={styles.root}
+    //   inputContainerStyle={styles.textInput}
+    //   inputStyle={styles.input}
+    //   platform="ios"
+    //   placeholder="Search for name or tag"
+    //   onChangeText={setSearchTerm}
+    //   onSubmitEditing={onSubmit}
+    //   onClear={() => clearSearchTerm()}
+    //   cancelButtonProps={{
+    //     color: theme.fonts.colors.title,
+    //   }}
+    //   value={searchTerm}
+    //   returnKeyType={"search"}
+    // />
+    <SearchInput
+      style={styles.searchInput}
       placeholder="Search for name or tag"
-      onChangeText={setSearchTerm}
-      onSubmitEditing={onSubmit}
-      onClear={() => clearSearchTerm()}
-      cancelButtonProps={{
-        color: theme.fonts.colors.title,
-      }}
       value={searchTerm}
-      returnKeyType={"search"}
-    />
+      onSubmitEditing={onSubmit}
+      onChangeText={setSearchTerm}
+      returnKeyType="search"
+      useCancelButton={true}
+    ></SearchInput>
   );
 }
 
 const styles = StyleSheet.create({
+  searchInput: {
+    margin: theme.rem * 0.5,
+    marginBottom: 0,
+  },
+
   root: {
     // flexDirection: "row",
     height: theme.rowHeight,
@@ -57,5 +76,5 @@ const styles = StyleSheet.create({
   },
   cancelButton: {
     backgroundColor: "red",
-  }
+  },
 });
