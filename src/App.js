@@ -1,20 +1,23 @@
 import React from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
+import { CoreContextProvider } from "./shared/react/CoreContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import MenuStackNavigator from "./MenuStackNavigator";
 
 export default function App() {
   return (
-    <SearchContextProvider>
-      <StatusBar barStyle="light-content" />
-      <SearchResultsContextProvider>
-        <NavigationContainer>
-          <MenuStackNavigator />
-        </NavigationContainer>
-      </SearchResultsContextProvider>
-    </SearchContextProvider>
+    <CoreContextProvider>
+      <SearchContextProvider>
+        <StatusBar barStyle="light-content" />
+        <SearchResultsContextProvider>
+          <NavigationContainer>
+            <MenuStackNavigator />
+          </NavigationContainer>
+        </SearchResultsContextProvider>
+      </SearchContextProvider>
+    </CoreContextProvider>
   );
 }
 

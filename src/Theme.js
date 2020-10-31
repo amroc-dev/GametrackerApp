@@ -42,6 +42,7 @@ const theme = {
       primary: 1 * fontSize,
       primary2: 0.9 * fontSize,
       secondary: 0.7 * fontSize,
+      mini: 0.6 * fontSize,
       rating: 1.2 * fontSize,
     },
 
