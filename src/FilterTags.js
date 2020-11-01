@@ -9,12 +9,15 @@ import { SearchBar } from "react-native-elements";
 import { rgba } from "polished";
 import { FilterTagsContext, FiterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput } from "./Common";
+// import Dots from "react-native-dots-pagination";
 
-function FilterTags() {
+function FilterTags(props) {
   const { tags } = useContext(CoreContext);
   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
   const [tagColumns, setTagColumns] = useState([]);
   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+  const [rootViewWidth, setRootViewWidth] = useState(0);
+  // const [activeDot, setActiveDot] = useState(0);
 
   useEffect(() => {
     if (!tags) {
@@ -37,39 +40,20 @@ function FilterTags() {
     if (groups.length > 0 && groups[groups.length - 1].length === 0) {
       groups.pop();
     }
-
-    // LayoutAnimation.configureNext({
-    //   // create: {
-    //   //   duration: 500,
-    //   //   type: LayoutAnimation.Types.easeInEaseOut,
-    //   //   property: LayoutAnimation.Properties.opacity,
-    //   // },
-    //   update: {
-    //     duration: 250,
-    //     type: LayoutAnimation.Types.easeInEaseOut,
-    //     property: LayoutAnimation.Properties.opacity,
-    //   },
-    //   // delete: {
-    //   //   duration: 500,
-    //   //   type: LayoutAnimation.Types.easeInEaseOut,
-    //   //   property: LayoutAnimation.Properties.opacity,
-    //   // },
-    // });
-
     setTagColumns(groups);
     setShowActivityIndicator(false);
-
-
   }, [tagSearchField, tags]);
 
   function renderItem({ item, index }) {
-    const cardStyle = index === 0 ? [styles.tagCard, styles.tagCardFirst] : styles.tagCard;
+    const cardStyle = [styles.tagCard, { width: rootViewWidth / 2 }];
 
     return (
       <View style={cardStyle}>
         {item.map((tagItem) => (
           <View style={styles.tagItem} key={tagItem.name}>
-            <Text style={styles.tagName}>{tagItem.name}</Text>
+            <Text numberOfLines={1} style={styles.tagName}>
+              {tagItem.name}
+            </Text>
             <Text style={styles.tagCount}>{tagItem.count}</Text>
           </View>
         ))}
@@ -82,18 +66,49 @@ function FilterTags() {
     setTagSearchField(text);
   }
 
+  function onFlatListScroll({ nativeEvent }) {
+    // const dotCount = tagColumns.length / 2;
+    // let activeDot = (nativeEvent.contentOffset.x / nativeEvent.contentSize.width) * dotCount;
+    // activeDot = Math.round(activeDot + 0.1);
+    // if (activeDot < 0) activeDot = 0;
+    // else if (activeDot > Math.floor(dotCount)) {
+    //   activeDot = Math.floor(dotCount);
+    // }
+    // setActiveDot(activeDot);
+  }
+
   const tagFlatList = (
-    <FlatList
-      data={tagColumns}
-      renderItem={renderItem}
-      keyExtractor={(item, index) => index.toString()}
-      initialNumToRender={5}
-      horizontal={true}
-      windowSize={100}
-      updateCellsBatchingPeriod={5}
-      style={styles.scrollView}
-      indicatorStyle="white"
-    />
+    <>
+      <FlatList
+        data={tagColumns}
+        renderItem={renderItem}
+        keyExtractor={(item, index) => index.toString()}
+        initialNumToRender={5}
+        horizontal={true}
+        windowSize={100}
+        updateCellsBatchingPeriod={5}
+        style={styles.scrollView}
+        indicatorStyle="white"
+        pagingEnabled={true}
+        persistentScrollbar={true}
+        getItemLayout={(data, index) => (
+          {length: 200, offset: rootViewWidth * index, index}
+        )}
+      />
+      {/* <View style={{ marginTop: -theme.rem * 0.25 }}>
+        <Dots
+          width={rootViewWidth}
+          length={Math.round(tagColumns.length / 2)}
+          activeColor={theme.fonts.colors.title}
+          passiveColor={theme.fonts.colors.secondary}
+          passiveDotWidth={7}
+          passiveDotHeight={7}
+          activeDotWidth={12}
+          activeDotHeight={12}
+          active={activeDot}
+        />
+      </View> */}
+    </>
   );
 
   const noMatchesText = (
@@ -102,9 +117,13 @@ function FilterTags() {
     </Text>
   );
 
+  function onRootViewLayout({ nativeEvent }) {
+    if (rootViewWidth !== nativeEvent.layout.width) setRootViewWidth(nativeEvent.layout.width - theme.rem);
+  }
+
   return (
     <>
-      <View style={[filterStyles.outerContainer, styles.outer]}>
+      <View onLayout={onRootViewLayout} style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
         {tagColumns.length > 0 ? <View style={styles.body}>{tagFlatList}</View> : noMatchesText}
         <SearchInput
@@ -147,7 +166,7 @@ const styles = StyleSheet.create({
     // backgroundColor: theme.colors.background2,
     // borderRadius: theme.borderRadius,
     padding: theme.rem * 0.5,
-    minWidth: 160,
+    // minWidth: 160,
   },
 
   tagCardFirst: {
@@ -164,7 +183,7 @@ const styles = StyleSheet.create({
   tagName: {
     color: theme.fonts.colors.primary,
     fontSize: theme.fonts.sizes.primary2,
-    // fontWeight: theme.fonts.weights.bold,
+    fontWeight: theme.fonts.weights.bold,
     margin: theme.rem * 0.25,
   },
 
@@ -192,3 +211,123 @@ const styles = StyleSheet.create({
 });
 
 export default FilterTags;
+
+// function FilterTags() {
+//   const { tags } = useContext(CoreContext);
+//   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
+//   const [tagColumns, setTagColumns] = useState([]);
+//   const [test, setTest] = useState([]);
+//   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+
+//   useEffect(() => {
+//     if (!tags) {
+//       return;
+//     }
+
+//     if (tagSearchField.length === 0 && test.length > 0) {
+//       return
+//     }
+
+//     let groups = [];
+//     tags.map((t) => {
+//       if (groups.length === 0 || groups[groups.length - 1].length === 10) {
+//         groups.push([]);
+//       }
+
+//       const currentGroup = groups[groups.length - 1];
+
+//       if (tagSearchField.length === 0) currentGroup.push(t);
+//       else if (t.name.toLowerCase().startsWith(tagSearchField.toLowerCase())) currentGroup.push(t);
+//       return null;
+//     });
+
+//     if (groups.length > 0 && groups[groups.length - 1].length === 0) {
+//       groups.pop();
+//     }
+
+//     let viewGroups = [];
+//     groups.forEach((group) => {
+//       viewGroups.push(
+//         <View style={styles.tagCard}>
+//           {group.map((tagItem) => (
+//             <View style={styles.tagItem} key={tagItem.name}>
+//               <Text style={styles.tagName}>{tagItem.name}</Text>
+//               <Text style={styles.tagCount}>{tagItem.count}</Text>
+//             </View>
+//           ))}
+//         </View>
+//       );
+//     });
+
+//     setTagColumns(viewGroups);
+//     if (test.length === 0) {
+//       setTest(viewGroups)
+//     }
+//     setShowActivityIndicator(false);
+//   }, [tagSearchField, tags]);
+
+//   // function renderItem({ item, index }) {
+//   //   const cardStyle = index === 0 ? [styles.tagCard, styles.tagCardFirst] : styles.tagCard;
+
+//   //   return (
+//   //     <View style={cardStyle}>
+//   //       {item.map((tagItem) => (
+//   //         <View style={styles.tagItem} key={tagItem.name}>
+//   //           <Text style={styles.tagName}>{tagItem.name}</Text>
+//   //           <Text style={styles.tagCount}>{tagItem.count}</Text>
+//   //         </View>
+//   //       ))}
+//   //     </View>
+//   //   );
+//   // }
+
+//   function onChangeText(text) {
+//     setShowActivityIndicator(true);
+//     setTagSearchField(text);
+//   }
+
+//   const fullTagView = (
+//     <ScrollView
+//     keyExtractor={(item, index) => index.toString()}
+//     horizontal={true}
+//     style={styles.scrollView}
+//     indicatorStyle="white"
+//   >
+//     {test}
+//   </ScrollView>
+//   )
+
+//   const tagScrollView = (
+//     <ScrollView
+//       keyExtractor={(item, index) => index.toString()}
+//       horizontal={true}
+//       style={styles.scrollView}
+//       indicatorStyle="white"
+//     >
+//       {tagColumns}
+//     </ScrollView>
+//   );
+
+//   const scrollViewToUse = tagSearchField.length === 0 ? fullTagView : tagScrollView
+
+//   const noMatchesText = (
+//     <Text style={{ marginLeft: theme.rem, marginTop: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
+//       No Matches
+//     </Text>
+//   );
+
+//   return (
+//     <>
+//       <View style={[filterStyles.outerContainer, styles.outer]}>
+//         <FilterHeader title={"Tags"} />
+//         {tagColumns.length > 0 ? <View style={styles.body}>{scrollViewToUse}</View> : noMatchesText}
+//         <SearchInput
+//           style={styles.searchInput}
+//           returnKeyType="done"
+//           placeholder={"Search " + tags.length + " tags"}
+//           onChangeText={onChangeText}
+//         />
+//       </View>
+//     </>
+//   );
+// }

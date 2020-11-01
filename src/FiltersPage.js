@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
@@ -8,12 +8,20 @@ import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 
 export default function FiltersPage() {
+
   return (
     <View style={styles.root}>
-      <ScrollView style={styles.scrollView}>
+      <ScrollView 
+      enableAutomaticScroll={true}
+        // canCancelContentTouches={false}
+        // disableScrollViewPanResponder={true}
+        style={styles.scrollView}
+      >
+        <View>
         <FilterTags />
         <FilterDevice />
         <FilterPopularity />
+        </View>
       </ScrollView>
     </View>
   );
