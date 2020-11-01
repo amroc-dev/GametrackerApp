@@ -63,7 +63,7 @@ function FilterTags(props) {
     setTagSearchField(text);
   }
 
-  useEffect( () => {
+  useLayoutEffect( () => {
     if (flatListRef.current) {
       flatListRef.current.scrollToOffset({offset:0, animated:false});
     }
@@ -75,17 +75,17 @@ function FilterTags(props) {
         data={tagColumns}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
-        initialNumToRender={5}
+        initialNumToRender={4}
         horizontal={true}
-        windowSize={100}
-        updateCellsBatchingPeriod={5}
+        windowSize={60}
+        updateCellsBatchingPeriod={10}
         style={styles.scrollView}
         indicatorStyle="white"
+        showsHorizontalScrollIndicator={tagColumns.length > 2}
         pagingEnabled={true}
-        persistentScrollbar={true}
         keyboardDismissMode="on-drag"
         getItemLayout={(data, index) => (
-          {length: 200, offset: rootViewWidth * index, index}
+          {length: 100, offset: rootViewWidth * index, index}
         )}
       />
   );
