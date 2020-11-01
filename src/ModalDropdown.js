@@ -89,7 +89,7 @@ const styles = StyleSheet.create({
   dropdown: {
     flex: 1,
     borderColor: "rgba(255,255,255,0.4)",
-    borderTopWidth: 1,
+    borderTopWidth: 0,
     backgroundColor: theme.colors.primary,
     // borderTopLeftRadius: theme.borderRadius,
     // borderTopRightRadius: theme.borderRadius,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     shadowOffset: theme.shadowOffset,
     shadowOffset: {
       width: 0,
-      height: theme.shadowRadius + 2,
+      height: theme.shadowRadius * 2,
     },
   },
   itemStyle: {

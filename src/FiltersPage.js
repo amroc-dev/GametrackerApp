@@ -12,7 +12,7 @@ export default function FiltersPage() {
   return (
     <View style={styles.root}>
       <ScrollView 
-      enableAutomaticScroll={true}
+      keyboardDismissMode="on-drag"
         // canCancelContentTouches={false}
         // disableScrollViewPanResponder={true}
         style={styles.scrollView}

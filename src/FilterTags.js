@@ -1,15 +1,11 @@
-import React, { useContext, useEffect, useLayoutEffect, useState, memo } from "react";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
-import { SearchContext } from "./shared/react/SearchContext";
-import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
 import { filterStyles, FilterHeader } from "./Filter_styles";
-import { SearchBar } from "react-native-elements";
 import { rgba } from "polished";
-import { FilterTagsContext, FiterTagsContext } from "./shared/react/FilterTagsContext";
+import { FilterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput } from "./Common";
-// import Dots from "react-native-dots-pagination";
 
 function FilterTags(props) {
   const { tags } = useContext(CoreContext);
@@ -17,7 +13,7 @@ function FilterTags(props) {
   const [tagColumns, setTagColumns] = useState([]);
   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
   const [rootViewWidth, setRootViewWidth] = useState(0);
-  // const [activeDot, setActiveDot] = useState(0);
+  const flatListRef = useRef(null)
 
   useEffect(() => {
     if (!tags) {
@@ -42,6 +38,7 @@ function FilterTags(props) {
     }
     setTagColumns(groups);
     setShowActivityIndicator(false);
+
   }, [tagSearchField, tags]);
 
   function renderItem({ item, index }) {
@@ -66,20 +63,15 @@ function FilterTags(props) {
     setTagSearchField(text);
   }
 
-  function onFlatListScroll({ nativeEvent }) {
-    // const dotCount = tagColumns.length / 2;
-    // let activeDot = (nativeEvent.contentOffset.x / nativeEvent.contentSize.width) * dotCount;
-    // activeDot = Math.round(activeDot + 0.1);
-    // if (activeDot < 0) activeDot = 0;
-    // else if (activeDot > Math.floor(dotCount)) {
-    //   activeDot = Math.floor(dotCount);
-    // }
-    // setActiveDot(activeDot);
-  }
+  useEffect( () => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToOffset({offset:0, animated:false});
+    }
+  }, [tagColumns])
 
   const tagFlatList = (
-    <>
       <FlatList
+        ref={flatListRef}
         data={tagColumns}
         renderItem={renderItem}
         keyExtractor={(item, index) => index.toString()}
@@ -91,24 +83,11 @@ function FilterTags(props) {
         indicatorStyle="white"
         pagingEnabled={true}
         persistentScrollbar={true}
+        keyboardDismissMode="on-drag"
         getItemLayout={(data, index) => (
           {length: 200, offset: rootViewWidth * index, index}
         )}
       />
-      {/* <View style={{ marginTop: -theme.rem * 0.25 }}>
-        <Dots
-          width={rootViewWidth}
-          length={Math.round(tagColumns.length / 2)}
-          activeColor={theme.fonts.colors.title}
-          passiveColor={theme.fonts.colors.secondary}
-          passiveDotWidth={7}
-          passiveDotHeight={7}
-          activeDotWidth={12}
-          activeDotHeight={12}
-          active={activeDot}
-        />
-      </View> */}
-    </>
   );
 
   const noMatchesText = (
@@ -131,6 +110,7 @@ function FilterTags(props) {
           returnKeyType="done"
           placeholder={"Search " + tags.length + " tags"}
           onChangeText={onChangeText}
+          value={tagSearchField}
         />
       </View>
     </>
