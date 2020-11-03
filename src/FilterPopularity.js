@@ -20,6 +20,6 @@ outer: {
 },
 
 body: {
-  height: 80,
+  height: 200,
 },
 });

@@ -8,7 +8,7 @@ const background2 = "rgb(78, 94, 108)";
 // const background1 = 'rgb(34, 38, 38)';
 // const background2 = 'rgb(48, 51, 51)';
 
-const fontSize = 17;
+const fontSize = 16;
 const rem = fontSize;
 
 const theme = {
@@ -42,7 +42,7 @@ const theme = {
       primary: 1 * fontSize,
       primary2: 0.9 * fontSize,
       secondary: 0.7 * fontSize,
-      mini: 0.6 * fontSize,
+      mini: 0.65 * fontSize,
       rating: 1.2 * fontSize,
     },
 

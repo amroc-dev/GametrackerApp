@@ -1,19 +1,22 @@
-import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo } from "react";
-import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation } from "react-native";
+import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo, useMemo } from "react";
+import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation, Pressable } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
+import { Button } from "react-native-elements";
 import theme from "./Theme";
+import { SearchContext } from "./shared/react/SearchContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
-import { rgba } from "polished";
+import { rgba, darken } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput } from "./Common";
+import { Dimensions } from "react-native";
 
 function FilterTags(props) {
   const { tags } = useContext(CoreContext);
+  const { searchTags, addSearchTag, removeSearchTag } = useContext(SearchContext);
   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
   const [tagColumns, setTagColumns] = useState([]);
-  const [showActivityIndicator, setShowActivityIndicator] = useState(false);
-  const [rootViewWidth, setRootViewWidth] = useState(0);
-  const flatListRef = useRef(null)
+  const [tagsViewContainerWidth] = useState(Dimensions.get("window").width - theme.rem);
+  const flatListRef = useRef(null);
 
   useEffect(() => {
     if (!tags) {
@@ -22,7 +25,7 @@ function FilterTags(props) {
 
     let groups = [];
     tags.map((t) => {
-      if (groups.length === 0 || groups[groups.length - 1].length === 10) {
+      if (groups.length === 0 || groups[groups.length - 1].length === 8) {
         groups.push([]);
       }
 
@@ -36,75 +39,109 @@ function FilterTags(props) {
     if (groups.length > 0 && groups[groups.length - 1].length === 0) {
       groups.pop();
     }
-    setTagColumns(groups);
-    setShowActivityIndicator(false);
 
+    setTagColumns(groups);
   }, [tagSearchField, tags]);
 
   function renderItem({ item, index }) {
-    const cardStyle = [styles.tagCard, { width: rootViewWidth / 2 }];
+    const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
 
-    return (
-      <View style={cardStyle}>
-        {item.map((tagItem) => (
-          <View style={styles.tagItem} key={tagItem.name}>
+    const items = [];
+
+    item.forEach((tagItem) => {
+      const active = searchTags.includes(tagItem.name);
+      const tagButtonStyle = [styles.tagButton];
+      const tagCountStyle = [styles.tagCount];
+      if (active) {
+        tagButtonStyle.push(styles.tagButton_selected);
+        tagCountStyle.push(styles.tagCount_selected);
+      }
+
+      items.push(
+        <View style={styles.tagRow} key={tagItem.name}>
+          {/* <Button
+            buttonStyle={tagButtonStyle}
+            titleStyle={styles.tagName}
+            titleProps={{numberOfLines:1}}
+            onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
+            title={tagItem.name}
+            type="solid"
+            color={theme.colors.secondary}
+            iconRight
+            icon={<Text numberOfLines={1} style={tagCountStyle}>{"  " + tagItem.count}</Text>}
+          /> */}
+
+          <Pressable
+            onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
+            style={tagButtonStyle}
+          >
             <Text numberOfLines={1} style={styles.tagName}>
               {tagItem.name}
+              <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
             </Text>
-            <Text style={styles.tagCount}>{tagItem.count}</Text>
-          </View>
-        ))}
-      </View>
-    );
+          </Pressable>
+        </View>
+      );
+    });
+
+    return <View style={cardStyle}>{items}</View>;
   }
 
   function onChangeText(text) {
-    setShowActivityIndicator(true);
     setTagSearchField(text);
   }
 
-  useLayoutEffect( () => {
+  useLayoutEffect(() => {
     if (flatListRef.current) {
-      flatListRef.current.scrollToOffset({offset:0, animated:false});
+      flatListRef.current.scrollToOffset({ offset: 0, animated: false });
     }
-  }, [tagColumns])
+  }, [tagColumns]);
 
-  const tagFlatList = (
-      <FlatList
-        ref={flatListRef}
-        data={tagColumns}
-        renderItem={renderItem}
-        keyExtractor={(item, index) => index.toString()}
-        initialNumToRender={4}
-        horizontal={true}
-        windowSize={60}
-        updateCellsBatchingPeriod={10}
-        style={styles.scrollView}
-        indicatorStyle="white"
-        showsHorizontalScrollIndicator={tagColumns.length > 2}
-        pagingEnabled={true}
-        keyboardDismissMode="on-drag"
-        getItemLayout={(data, index) => (
-          {length: 100, offset: rootViewWidth * index, index}
-        )}
-      />
-  );
-
-  const noMatchesText = (
+  const [noMatchesText] = useState(
     <Text style={{ marginLeft: theme.rem, marginTop: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
       No Matches
     </Text>
   );
 
-  function onRootViewLayout({ nativeEvent }) {
-    if (rootViewWidth !== nativeEvent.layout.width) setRootViewWidth(nativeEvent.layout.width - theme.rem);
-  }
+  // function onRootViewLayout({ nativeEvent }) {
+  //   console.log("A: " + Dimensions.get('window').width + ", B: " + nativeEvent.layout.width)
+  //   if (rootViewWidth !== nativeEvent.layout.width) setRootViewWidth(nativeEvent.layout.width - theme.rem);
+  // }
 
   return (
     <>
-      <View onLayout={onRootViewLayout} style={[filterStyles.outerContainer, styles.outer]}>
+      <View style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
-        {tagColumns.length > 0 ? <View style={styles.body}>{tagFlatList}</View> : noMatchesText}
+        {tagColumns.length > 0 ? (
+          <View style={styles.body}>
+            <FlatList
+              ref={flatListRef}
+              data={tagColumns}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString()}
+              initialNumToRender={4}
+              horizontal={true}
+              // windowSize={4}
+              // maxToRenderPerBatch={4}
+              updateCellsBatchingPeriod={16}
+              style={styles.scrollView}
+              indicatorStyle="white"
+              showsHorizontalScrollIndicator={tagColumns.length > 2}
+              snapToInterval={tagsViewContainerWidth / 2}
+              snapToAlignment={"start"}
+              pagingEnabled
+              keyboardDismissMode="on-drag"
+              decelerationRate={"fast"}
+              getItemLayout={(data, index) => ({
+                length: tagsViewContainerWidth / 2,
+                offset: (tagsViewContainerWidth / 2) * index,
+                index,
+              })}
+            />
+          </View>
+        ) : (
+          noMatchesText
+        )}
         <SearchInput
           style={styles.searchInput}
           returnKeyType="done"
@@ -146,6 +183,7 @@ const styles = StyleSheet.create({
     // backgroundColor: theme.colors.background2,
     // borderRadius: theme.borderRadius,
     padding: theme.rem * 0.5,
+    flexDirection: "column",
     // minWidth: 160,
   },
 
@@ -154,36 +192,43 @@ const styles = StyleSheet.create({
     // borderTopLeftRadius: 0,
   },
 
-  tagItem: {
+  tagRow: {
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
+    marginBottom: theme.rem * 0.1,
+    marginRight: theme.rem * 0.25,
+    // paddingRight: theme.rem * 0.5,
+    // backgroundColor: "red",
   },
-
+  tagButton: {
+    flexDirection: "row",
+    justifyContent: "flex-start",
+    alignItems: "center",
+    backgroundColor: rgba(0, 0, 0, 0),
+    padding: theme.rem * 0.25,
+    paddingHorizontal: theme.rem * 0.5,
+    borderRadius: theme.borderRadius,
+  },
+  tagButton_selected: {
+    backgroundColor: theme.colors.primary,
+  },
   tagName: {
-    color: theme.fonts.colors.primary,
-    fontSize: theme.fonts.sizes.primary2,
+    color: theme.fonts.colors.title,
+    fontSize: theme.fonts.sizes.primary,
     fontWeight: theme.fonts.weights.bold,
-    margin: theme.rem * 0.25,
+    maxWidth: 166,
   },
 
   tagCount: {
     color: theme.fonts.colors.secondary,
     fontSize: theme.fonts.sizes.mini,
+    paddingTop: 4,
   },
-
-  // searchBarContainer: {
-  //   alignSelf: "flex-end",
-  //   height: theme.rowHeight + theme.rem, // * 0.5
-  //   backgroundColor: rgba(0, 0, 0, 0),
-  //   borderBottomLeftRadius: theme.borderRadius,
-  //   borderBottomRightRadius: theme.borderRadius,
-  // },
-  // searchInputContainer: {
-  //   height: theme.rowHeight,
-  //   backgroundColor: "white",
-  //   borderRadius: theme.borderRadius,
-  // },
+  tagCount_selected: {
+    color: theme.fonts.colors.primary,
+    // color: darken(0.3, theme.fonts.colors.secondary),
+  },
   searchInput: {
     margin: theme.rem * 0.5,
     marginBottom: 0,

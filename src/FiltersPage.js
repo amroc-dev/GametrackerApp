@@ -8,19 +8,13 @@ import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 
 export default function FiltersPage() {
-
   return (
     <View style={styles.root}>
-      <ScrollView 
-      keyboardDismissMode="on-drag"
-        // canCancelContentTouches={false}
-        // disableScrollViewPanResponder={true}
-        style={styles.scrollView}
-      >
+      <ScrollView keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
-        <FilterTags />
-        <FilterDevice />
-        <FilterPopularity />
+          <FilterTags />
+          <FilterDevice />
+          <FilterPopularity />
         </View>
       </ScrollView>
     </View>

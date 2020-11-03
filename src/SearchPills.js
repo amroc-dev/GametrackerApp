@@ -11,7 +11,7 @@ function SearchPill({ name, clickCallback }) {
   return (
     <Button buttonStyle={styles.button}
       titleStyle={styles.title}
-      onPress={clickCallback}
+      onPress={() => clickCallback(name)}
       title={name}
       type="solid"
       color={theme.colors.secondary}
@@ -32,8 +32,8 @@ export default function SearchPills() {
 
   const { submittedSearchTerm } = useContext(SearchResultsContext);
 
-  function onTagPillClick(e) {
-    removeSearchTag(e.target.value);
+  function onTagPillClick(name) {
+    removeSearchTag(name);
   }
 
   let pillElems = [];
@@ -52,17 +52,17 @@ export default function SearchPills() {
     );
   }
 
-  // // tags pills
-  // searchTags.map((e) => {
-  //   pillElems.push(
-  //     <SearchPill
-  //       key={pillElems.length}
-  //       name={e}
-  //       clickCallback={onTagPillClick}
-  //     />
-  //   );
-  //   return null;
-  // });
+  // tags pills
+  searchTags.map((e) => {
+    pillElems.push(
+      <SearchPill
+        key={pillElems.length}
+        name={e}
+        clickCallback={onTagPillClick}
+      />
+    );
+    return null;
+  });
 
 
   // // device filter pills
