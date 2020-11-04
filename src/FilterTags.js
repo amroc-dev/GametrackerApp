@@ -7,7 +7,7 @@ import { SearchContext } from "./shared/react/SearchContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { rgba, darken } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
-import { SearchInput } from "./Common";
+import { SearchInput, ToggleButton } from "./Common";
 import { Dimensions } from "react-native";
 
 function FilterTags(props) {
@@ -71,15 +71,23 @@ function FilterTags(props) {
             icon={<Text numberOfLines={1} style={tagCountStyle}>{"  " + tagItem.count}</Text>}
           /> */}
 
-          <Pressable
+          <ToggleButton 
+            activeColor={theme.colors.primary} 
+            style={tagButtonStyle}
+            active={active}
+            onPressed={ () => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}>
+            <Text numberOfLines={1} style={styles.tagName}>
+                {tagItem.name}
+                <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
+            </Text>
+          </ToggleButton>
+          {/* <Pressable
             onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
             style={tagButtonStyle}
           >
-            <Text numberOfLines={1} style={styles.tagName}>
-              {tagItem.name}
-              <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
-            </Text>
-          </Pressable>
+
+  
+          </Pressable> */}
         </View>
       );
     });
@@ -119,16 +127,16 @@ function FilterTags(props) {
               data={tagColumns}
               renderItem={renderItem}
               keyExtractor={(item, index) => index.toString()}
-              initialNumToRender={4}
+              initialNumToRender={2}
               horizontal={true}
-              // windowSize={4}
-              // maxToRenderPerBatch={4}
-              updateCellsBatchingPeriod={16}
+              windowSize={2}
+              maxToRenderPerBatch={1}
+              // updateCellsBatchingPeriod={16}
               style={styles.scrollView}
               indicatorStyle="white"
               showsHorizontalScrollIndicator={tagColumns.length > 2}
-              snapToInterval={tagsViewContainerWidth / 2}
-              snapToAlignment={"start"}
+              // snapToInterval={tagsViewContainerWidth / 2}
+              // snapToAlignment={"start"}
               pagingEnabled
               keyboardDismissMode="on-drag"
               decelerationRate={"fast"}
@@ -217,13 +225,12 @@ const styles = StyleSheet.create({
     color: theme.fonts.colors.title,
     fontSize: theme.fonts.sizes.primary,
     fontWeight: theme.fonts.weights.bold,
-    maxWidth: 166,
+    // maxWidth: 166,
   },
 
   tagCount: {
     color: theme.fonts.colors.secondary,
     fontSize: theme.fonts.sizes.mini,
-    paddingTop: 4,
   },
   tagCount_selected: {
     color: theme.fonts.colors.primary,

@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable, ImagePropTypes } from "react-native";
 // import { Button } from "react-native-elements";
 import theme from "./Theme";
 import { rgba } from "polished";
@@ -75,3 +75,15 @@ const styles = StyleSheet.create({
     color: theme.fonts.colors.secondary,
   },
 });
+
+export function ToggleButton(props) {
+  return (
+    <Pressable 
+      onPress={() => props.onPressed ? props.onPressed() : {}} 
+      {...props}
+      style={[props.style, {backgroundColor: props.active ? props.activeColor : rgba(0,0,0,0)}]} 
+      >
+      {props.children}
+    </Pressable>
+  );
+}
