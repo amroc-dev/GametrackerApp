@@ -23,23 +23,23 @@ export default function CardListScroll() {
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
-    LayoutAnimation.configureNext({
-      create: {
-        duration: 50,
-        type: LayoutAnimation.Types.easeIn,
-        property: LayoutAnimation.Properties.opacity,
-      },
-      update: {
-        duration: 250,
-        type: LayoutAnimation.Types.easeInEaseOut,
-        property: LayoutAnimation.Properties.opacity,
-      },
-      delete: {
-        duration: 50,
-        type: LayoutAnimation.Types.easeOut,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    });
+    // LayoutAnimation.configureNext({
+    //   create: {
+    //     duration: 50,
+    //     type: LayoutAnimation.Types.easeIn,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    //   update: {
+    //     duration: 250,
+    //     type: LayoutAnimation.Types.easeInEaseOut,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    //   delete: {
+    //     duration: 50,
+    //     type: LayoutAnimation.Types.easeOut,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    // });
     scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [newSearchSubmitted]);
 
@@ -76,13 +76,13 @@ export default function CardListScroll() {
       setItems((prev) => prev.concat(newItems));
       setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
 
-      LayoutAnimation.configureNext({
-        create: {
-          duration: 50,
-          type: LayoutAnimation.Types.easeIn,
-          property: LayoutAnimation.Properties.opacity,
-        },
-      });
+      // LayoutAnimation.configureNext({
+      //   create: {
+      //     duration: 50,
+      //     type: LayoutAnimation.Types.easeIn,
+      //     property: LayoutAnimation.Properties.opacity,
+      //   },
+      // });
     } else {
       setHasMoreItems(false);
     }

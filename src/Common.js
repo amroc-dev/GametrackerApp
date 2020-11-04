@@ -1,5 +1,5 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable, ImagePropTypes } from "react-native";
+import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable, Animated } from "react-native";
 // import { Button } from "react-native-elements";
 import theme from "./Theme";
 import { rgba } from "polished";
@@ -77,13 +77,36 @@ const styles = StyleSheet.create({
 });
 
 export function ToggleButton(props) {
+  const pressFade = useRef(new Animated.Value(1)).current;
+
+  const togStyle = {
+    padding: theme.rem * 0.5,
+  };
+
   return (
-    <Pressable 
-      onPress={() => props.onPressed ? props.onPressed() : {}} 
+    <Pressable
+      onPressIn={() =>
+        Animated.timing(pressFade, {
+          toValue: 0.5,
+          duration: 50,
+          useNativeDriver: true,
+        }).start()
+      }
+      onPressOut={() =>
+        Animated.timing(pressFade, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }).start()
+      }
       {...props}
-      style={[props.style, {backgroundColor: props.active ? props.activeColor : rgba(0,0,0,0)}]} 
-      >
-      {props.children}
+      style={[
+        togStyle,
+        props.style,
+        { backgroundColor: props.active ? props.style.backgroundColor : rgba(0, 0, 0, 0) },
+      ]}
+    >
+      <Animated.View style={{ opacity: pressFade }}>{props.children}</Animated.View>
     </Pressable>
   );
 }

@@ -16,11 +16,10 @@ export default function FilterDevice() {
     Object.keys(filter).forEach((key) => {
       items.push(
         <ToggleButton
-          activeColor={theme.colors.primary}
           style={styles.button}
           active={filter[key]}
           key={items.length}
-          onPressed={() => toggleDeviceFilter(key)}
+          onPress={() => toggleDeviceFilter(key)}
         >
           <Text style={styles.buttonTitle}>{key}</Text>
         </ToggleButton>
@@ -61,8 +60,8 @@ const styles = StyleSheet.create({
     marginRight: theme.rem * 0.5,
     borderRadius: theme.borderRadius,
     padding: theme.rem * 0.5,
+    backgroundColor: theme.colors.primary,
   },
-  button_selected: {},
   buttonTitle: {
     color: theme.fonts.colors.title,
     fontSize: theme.fonts.sizes.primary,

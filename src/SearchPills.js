@@ -1,21 +1,32 @@
 import React, { useContext } from "react";
-import { View, Text, TextInput, StyleSheet } from "react-native";
+import { View, Text, TextInput, StyleSheet, LayoutAnimation } from "react-native";
 import { Button } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
+import { ToggleButton } from "./Common";
 
 function SearchPill({ name, clickCallback }) {
   return (
-    <Button buttonStyle={styles.button}
-      titleStyle={styles.title}
+    // <Button buttonStyle={styles.button}
+    //   titleStyle={styles.title}
+    //   onPress={() => clickCallback(name)}
+    //   title={name}
+    //   type="solid"
+    //   color={theme.colors.secondary}
+    // />
+
+    <ToggleButton
+      style={styles.button}
+      active={true}
       onPress={() => clickCallback(name)}
-      title={name}
-      type="solid"
-      color={theme.colors.secondary}
-    />
+    >
+      <Text style={styles.title}>
+        {name}
+      </Text>
+    </ToggleButton>
   );
 }
 
@@ -54,16 +65,9 @@ export default function SearchPills() {
 
   // tags pills
   searchTags.map((e) => {
-    pillElems.push(
-      <SearchPill
-        key={pillElems.length}
-        name={e}
-        clickCallback={onTagPillClick}
-      />
-    );
+    pillElems.push(<SearchPill key={pillElems.length} name={e} clickCallback={onTagPillClick} />);
     return null;
   });
-
 
   // // device filter pills
   // function onDevicePillClick(e) {
@@ -120,5 +124,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: theme.fonts.sizes.primary2,
-  }
+    color: theme.fonts.colors.title,
+    fontWeight: theme.fonts.weights.bold,
+  },
 });

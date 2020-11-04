@@ -18,7 +18,7 @@ function FilterTags(props) {
   const [tagsViewContainerWidth] = useState(Dimensions.get("window").width - theme.rem);
   const flatListRef = useRef(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!tags) {
       return;
     }
@@ -50,10 +50,8 @@ function FilterTags(props) {
 
     item.forEach((tagItem) => {
       const active = searchTags.includes(tagItem.name);
-      const tagButtonStyle = [styles.tagButton];
       const tagCountStyle = [styles.tagCount];
       if (active) {
-        tagButtonStyle.push(styles.tagButton_selected);
         tagCountStyle.push(styles.tagCount_selected);
       }
 
@@ -71,21 +69,25 @@ function FilterTags(props) {
             icon={<Text numberOfLines={1} style={tagCountStyle}>{"  " + tagItem.count}</Text>}
           /> */}
 
-          <ToggleButton 
-            activeColor={theme.colors.primary} 
-            style={tagButtonStyle}
+          <ToggleButton
+            style={styles.tagButton}
             active={active}
-            onPressed={ () => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}>
+            key={items.length}
+            onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
+          >
             <Text numberOfLines={1} style={styles.tagName}>
-                {tagItem.name}
-                <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
+              {tagItem.name}
+              <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
             </Text>
           </ToggleButton>
           {/* <Pressable
             onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
             style={tagButtonStyle}
           >
-
+            <Text numberOfLines={1} style={styles.tagName}>
+              {tagItem.name}
+              <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
+            </Text>
   
           </Pressable> */}
         </View>
@@ -213,13 +215,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: rgba(0, 0, 0, 0),
+    backgroundColor: theme.colors.primary,
     padding: theme.rem * 0.25,
     paddingHorizontal: theme.rem * 0.5,
     borderRadius: theme.borderRadius,
-  },
-  tagButton_selected: {
-    backgroundColor: theme.colors.primary,
   },
   tagName: {
     color: theme.fonts.colors.title,
