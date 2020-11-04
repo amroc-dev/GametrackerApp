@@ -40,6 +40,8 @@ export function SearchInput(props) {
           style={styles.textInput}
           onFocus={props.useCancelButton ? onTextFocus : null}
           onEndEditing={props.useCancelButton ? onEndEditing : null}
+          autoCompleteType='off'
+          autoCorrect={false}
         />
       </View>
       {cancelButton}
@@ -79,8 +81,10 @@ const styles = StyleSheet.create({
 export function ToggleButton(props) {
   const pressFade = useRef(new Animated.Value(1)).current;
 
-  const togStyle = {
+  const baseStyle = {
     padding: theme.rem * 0.5,
+    // height: theme.rowHeight,
+    justifyContent: 'center',
     backgroundColor: props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
   };
 
@@ -102,9 +106,9 @@ export function ToggleButton(props) {
       }
       {...props}
       style={[
-        togStyle,
+        baseStyle,
         props.style,
-        { backgroundColor: props.active ? togStyle.backgroundColor : rgba(0, 0, 0, 0) },
+        { backgroundColor: props.active ? baseStyle.backgroundColor : rgba(0, 0, 0, 0) },
       ]}
     >
       <Animated.View style={{ opacity: pressFade }}>{props.children}</Animated.View>

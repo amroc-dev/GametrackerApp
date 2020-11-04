@@ -130,8 +130,8 @@ function FilterTags(props) {
               keyExtractor={(item, index) => index.toString()}
               initialNumToRender={2}
               horizontal={true}
-              windowSize={2}
-              maxToRenderPerBatch={1}
+              windowSize={3}
+              maxToRenderPerBatch={2}
               // updateCellsBatchingPeriod={16}
               style={styles.scrollView}
               indicatorStyle="white"

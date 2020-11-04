@@ -114,9 +114,10 @@ const styles = StyleSheet.create({
     marginBottom: theme.rem * 0.5,
     marginRight: theme.rem * 0.4,
     borderRadius: theme.borderRadius,
+    height: "auto",
   },
   title: {
-    fontSize: theme.fonts.sizes.primary2,
+    fontSize: theme.fonts.sizes.primary,
     color: theme.fonts.colors.title,
     fontWeight: theme.fonts.weights.bold,
   },
