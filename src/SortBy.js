@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable } from "react-native";
-import { SearchBar } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import { sortOptions } from "./shared/react/SortOptions";
 import cardItemStyles from "./CardItem_styles";

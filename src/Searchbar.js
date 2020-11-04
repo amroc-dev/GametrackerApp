@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { View, TextInput, StyleSheet, Button } from "react-native";
-import { SearchBar } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import cardItemStyles from "./CardItem_styles";
 import theme from "./Theme";

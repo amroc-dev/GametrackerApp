@@ -81,6 +81,7 @@ export function ToggleButton(props) {
 
   const togStyle = {
     padding: theme.rem * 0.5,
+    backgroundColor: props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
   };
 
   return (
@@ -88,14 +89,14 @@ export function ToggleButton(props) {
       onPressIn={() =>
         Animated.timing(pressFade, {
           toValue: 0.5,
-          duration: 50,
+          duration: 100,
           useNativeDriver: true,
         }).start()
       }
       onPressOut={() =>
         Animated.timing(pressFade, {
           toValue: 1,
-          duration: 200,
+          duration: 100,
           useNativeDriver: true,
         }).start()
       }
@@ -103,7 +104,7 @@ export function ToggleButton(props) {
       style={[
         togStyle,
         props.style,
-        { backgroundColor: props.active ? props.style.backgroundColor : rgba(0, 0, 0, 0) },
+        { backgroundColor: props.active ? togStyle.backgroundColor : rgba(0, 0, 0, 0) },
       ]}
     >
       <Animated.View style={{ opacity: pressFade }}>{props.children}</Animated.View>

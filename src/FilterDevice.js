@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
-import { Button } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import theme from "./Theme";
 import { filterStyles, FilterHeader } from "./Filter_styles";
@@ -60,7 +59,6 @@ const styles = StyleSheet.create({
     marginRight: theme.rem * 0.5,
     borderRadius: theme.borderRadius,
     padding: theme.rem * 0.5,
-    backgroundColor: theme.colors.primary,
   },
   buttonTitle: {
     color: theme.fonts.colors.title,

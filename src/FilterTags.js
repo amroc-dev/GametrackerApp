@@ -1,7 +1,6 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo, useMemo } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation, Pressable } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
-import { Button } from "react-native-elements";
 import theme from "./Theme";
 import { SearchContext } from "./shared/react/SearchContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
@@ -123,7 +122,7 @@ function FilterTags(props) {
       <View style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
         {tagColumns.length > 0 ? (
-          <View style={styles.body}>
+          <View style={filterStyles.bodyContainer}>
             <FlatList
               ref={flatListRef}
               data={tagColumns}
@@ -215,7 +214,6 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: theme.colors.primary,
     padding: theme.rem * 0.25,
     paddingHorizontal: theme.rem * 0.5,
     borderRadius: theme.borderRadius,

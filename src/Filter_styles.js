@@ -1,7 +1,6 @@
 import { rgba } from "polished";
 import React from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import { ThemeConsumer } from "react-native-elements";
 import theme, { headerTitleStyle } from "./Theme";
 
 

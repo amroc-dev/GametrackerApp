@@ -1,6 +1,5 @@
 import React, { useContext } from "react";
 import { View, Text, TextInput, StyleSheet, LayoutAnimation } from "react-native";
-import { Button } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
@@ -69,25 +68,20 @@ export default function SearchPills() {
     return null;
   });
 
-  // // device filter pills
-  // function onDevicePillClick(e) {
-  //   const val = e.target.value;
-  //   toggleDeviceFilter(val);
-  // }
-
-  // const filter = { ...deviceFilter };
-  // Object.keys(filter).forEach((i) => {
-  //   if (filter[i]) {
-  //     pillElems.push(
-  //       <SearchPill
-  //         key={pillElems.length}
-  //         name={i}
-  //         clickCallback={onDevicePillClick}
-  //       />
-  //     );
-  //   }
-  //   return filter[i];
-  // });
+  // device pills
+  const filter = { ...deviceFilter };
+  Object.keys(filter).forEach((i) => {
+    if (filter[i]) {
+      pillElems.push(
+        <SearchPill
+          key={pillElems.length}
+          name={i}
+          clickCallback={() => toggleDeviceFilter(i)}
+        />
+      );
+    }
+    return filter[i];
+  });
 
   // // popularity filter pill
   // function onPopularityPillClick(e) {
@@ -117,7 +111,6 @@ const styles = StyleSheet.create({
     backgroundColor: "rgba(0,0,0,0)",
   },
   button: {
-    backgroundColor: theme.colors.secondary,
     marginBottom: theme.rem * 0.5,
     marginRight: theme.rem * 0.4,
     borderRadius: theme.borderRadius,
