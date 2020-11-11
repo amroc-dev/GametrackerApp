@@ -106,11 +106,13 @@ function FilterPopularity() {
         {getText()}
 
         <Pressable
+          style={styles.sliderContainer}
           onPressIn={() => {
             sliderPressed = true;
           }}
         >
           <RangeSlider
+            style={styles.slider}
             min={0}
             max={popularityIntervals.length - 1}
             step={1}
@@ -127,7 +129,7 @@ function FilterPopularity() {
             minDistance={popularityIntervals.length / 15}
             selectedMinimum={initialSliderMin}
             selectedMaximum={initialSliderMax}
-            style={styles.slider}
+
             onChange={onChange}
             // style={{ flex: 1, height: 70, padding: 10, backgroundColor: "#ddd" }}
           />
@@ -160,15 +162,13 @@ const styles = StyleSheet.create({
   body: {
     paddingHorizontal: theme.rem * 1,
   },
-
+  sliderContainer: {
+    marginTop: theme.rem * -0.75,
+  },
   slider: {
-    // padding: theme.rem * 1,
-    // paddingHorizontal: theme.rem * 2,
-    marginTop: 0,
   },
   textContainer: {
-    padding: theme.rem * 1,
-    paddingBottom: theme.rem * 0.25,
+    paddingTop: theme.rem * 1,
     alignSelf: "center",
     flexDirection: "row",
     alignItems: "flex-end",

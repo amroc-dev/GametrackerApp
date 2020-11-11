@@ -94,10 +94,10 @@ export default function SearchPills() {
     
     let text = ""
     if (popularityFilter.max === -1) {
-      text = "up to " + numberWithCommas(popularityFilter.min)
+      text = "at least " + numberWithCommas(popularityFilter.min)
     }
     else if (popularityFilter.min === -1) {
-      text = "at least " + numberWithCommas(popularityFilter.max)
+      text = "up to " + numberWithCommas(popularityFilter.max)
     }
     else {
       text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max)

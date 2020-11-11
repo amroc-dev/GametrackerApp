@@ -50,11 +50,9 @@ function CardItem({ doc }) {
   const formattedPriceElem = doc_formattedPrice;
 
   async function onTap() {
-    await Linking.openURL(
-      'itms-apps://apps.apple.com/id/app/id' + doc_trackId
-    ).catch(err => {
-      console.log(err)
-    })
+    await Linking.openURL("itms-apps://apps.apple.com/id/app/id" + doc_trackId).catch((err) => {
+      console.log(err);
+    });
   }
 
   return (
