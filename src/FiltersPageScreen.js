@@ -11,6 +11,7 @@ export default function FiltersPageScreen({ navigation }) {
     
     navigation.setOptions({
       headerTitle: "Filters",
+      gestureEnabled: false,
       headerLeft: () => (
         <BackButton onPress={() => navigation.goBack()} />
       ),
