@@ -2,6 +2,8 @@ import React, { useContext } from "react";
 import { View, Text, TextInput, StyleSheet, LayoutAnimation } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import { CoreContext } from "./shared/react/CoreContext";
+import { numberWithCommas } from "./shared/react/Misc";
 import theme from "./Theme";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
@@ -36,8 +38,8 @@ export default function SearchPills() {
     clearSearchTerm,
     deviceFilter,
     toggleDeviceFilter,
-    popularityFilterIndex,
-    setPopularityFilterIndex,
+    popularityFilter,
+    setPopularityFilter,
   } = useContext(SearchContext);
 
   const { submittedSearchTerm } = useContext(SearchResultsContext);
@@ -83,20 +85,31 @@ export default function SearchPills() {
     return filter[i];
   });
 
-  // // popularity filter pill
-  // function onPopularityPillClick(e) {
-  //   setPopularityFilterIndex(popularityFilterCategories.length - 1)
-  // }
+  // popularity filter pill
+  function onPopularityPillClick(e) {
+    setPopularityFilter(-1, -1)
+  }
 
-  // if (popularityFilterCategories[popularityFilterIndex] !== -1) {
-  //   pillElems.push(
-  //     <SearchPill
-  //       key={pillElems.length}
-  //       name={"Popularity < " + MakeLabel(popularityFilterIndex)}
-  //       clickCallback={onPopularityPillClick}
-  //     />
-  //   );
-  // }
+  if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
+    
+    let text = ""
+    if (popularityFilter.max === -1) {
+      text = "up to " + numberWithCommas(popularityFilter.min)
+    }
+    else if (popularityFilter.min === -1) {
+      text = "at least " + numberWithCommas(popularityFilter.max)
+    }
+    else {
+      text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max)
+    }
+    pillElems.push(
+      <SearchPill
+        key={pillElems.length}
+        name={"Popularity " + text}
+        clickCallback={onPopularityPillClick}
+      />
+    );
+  }
 
   return <View style={styles.container}>{pillElems}</View>;
 }

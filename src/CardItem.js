@@ -1,5 +1,5 @@
 import React, { memo, useState, useEffect, useContext, useRef } from "react";
-import { View, Text, Image, StyleSheet, Linking } from "react-native";
+import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native";
 import { monthMap, formatRatingCount, objectKeyFromDotString } from "./shared/react/Misc";
 import Tappable from "./Tappable";
 import styles from "./CardItem_styles";
@@ -58,7 +58,7 @@ function CardItem({ doc }) {
   }
 
   return (
-    <Tappable onTap={onTap}>
+    <Pressable onPress={onTap}>
       <View style={styles.cardItem}>
         <Image style={styles.image} source={{ uri: doc.searchBlob.artworkUrl512 }} />
         <View style={styles.dataContainer}>
@@ -80,7 +80,7 @@ function CardItem({ doc }) {
           </View>
         </View>
       </View>
-    </Tappable>
+    </Pressable>
   );
 }
 

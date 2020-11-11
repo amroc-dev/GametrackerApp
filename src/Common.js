@@ -1,5 +1,15 @@
 import React, { useContext, useState, useEffect, useRef } from "react";
-import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable, Animated } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  LayoutAnimation,
+  Pressable,
+  Animated,
+  ScrollView,
+} from "react-native";
 // import { Button } from "react-native-elements";
 import theme from "./Theme";
 import { rgba } from "polished";
@@ -27,7 +37,9 @@ export function SearchInput(props) {
     setShowClearButton(false);
   }
 
-  const cancelButton = showCancelButton ? <Button title="Cancel" type="clear" color="white" /> : null;
+  const cancelButton = showCancelButton ? (
+    <Button onPress={ () => {textInputRef.current.clear(); textInputRef.current.blur()}} title="Cancel" type="clear" color="white" />
+  ) : null;
 
   return (
     <View style={[styles.container, props.style]}>
@@ -40,7 +52,7 @@ export function SearchInput(props) {
           style={styles.textInput}
           onFocus={props.useCancelButton ? onTextFocus : null}
           onEndEditing={props.useCancelButton ? onEndEditing : null}
-          autoCompleteType='off'
+          autoCompleteType="off"
           autoCorrect={false}
         />
       </View>
@@ -84,7 +96,7 @@ export function ToggleButton(props) {
   const baseStyle = {
     padding: theme.rem * 0.5,
     // height: theme.rowHeight,
-    justifyContent: 'center',
+    justifyContent: "center",
     backgroundColor: props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
   };
 
@@ -105,13 +117,66 @@ export function ToggleButton(props) {
         }).start()
       }
       {...props}
-      style={[
-        baseStyle,
-        props.style,
-        { backgroundColor: props.active ? baseStyle.backgroundColor : rgba(0, 0, 0, 0) },
-      ]}
+      style={[baseStyle, props.style, { backgroundColor: props.active ? baseStyle.backgroundColor : rgba(0, 0, 0, 0) }]}
     >
       <Animated.View style={{ opacity: pressFade }}>{props.children}</Animated.View>
     </Pressable>
   );
 }
+
+export function FatSlider(props) {
+  const ref = useRef(null);
+
+  const baseStyle = {
+    margin: theme.rem * 0.5,
+
+    // justifyContent: 'center',
+    // backgroundColor: props.style && props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
+    borderRadius: theme.borderRadius * 4,
+  };
+
+  const barStyle = {
+    backgroundColor: theme.colors.primary,
+    flex: 1,
+  };
+
+  const containerViewStyle = {
+    flexDirection: "row",
+    width: 760,
+  };
+  return (
+    <Pressable style={{ flex: 1 }}>
+      <View
+      // onStartShouldSetResponderCapture={() => {
+      //   console.log("re");
+      //   return true;
+      // }}
+      // onResponderGrant={ () => console.log("grant")}
+      // style={barStyle}
+      ></View>
+    </Pressable>
+    // <ScrollView
+    //   {...props}
+    //   horizontal
+    //   bounces={false}
+    //   showsHorizontalScrollIndicator={false}
+    //   // onTouchMove={ ( {nativeEvent}) => console.log(nativeEvent) }
+    //   style={[baseStyle, props.style]}
+    //   // value={props.value}
+    //   ref = {ref}
+    //   // onMomentumScrollBegin={({nativeEvent}) => ref.current.scrollTo({ x: nativeEvent.contentOffset.x, animated: false }) }
+    //   // onScrollEndDrag={ ({nativeEvent}) => ref.current.scrollTo({ x: nativeEvent.contentOffset.x, animated: false })  }
+    //   // onMomentumScrollBegin={() => console.log("onMomentumScrollBegin")}
+    //   onScrollEndDrag={ (e) => {setHalt(-1); setHalt(e.nativeEvent.contentOffset.x)}}
+    //   // onTouchEndCapture={ () => console.log("end")}
+    //   >
+    //     <View style={containerViewStyle}>
+    //       <View style={barStyle}/>
+    //       <View style={{opacity: 0, flex: 1}}/>
+    //     </View>
+
+    // </ScrollView>
+  );
+}
+
+const fatSliderStyles = StyleSheet.create({});

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useContext, useRef } from "react";
 import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
@@ -18,7 +18,7 @@ export default function CardListScroll() {
 
   const FETCH_COUNT = 20;
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setSearchCountCard(null);
     setItems([]);
     setHasMoreItems(true);
@@ -105,6 +105,7 @@ export default function CardListScroll() {
       contentInsetAdjustmentBehavior="automatic"
       scrollEventThrottle={10}
       indicatorStyle='white'
+      keyboardShouldPersistTaps='handled'
     >
       <SafeAreaView>
         <SearchPills />

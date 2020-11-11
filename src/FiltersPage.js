@@ -10,7 +10,9 @@ import FilterPopularity from "./FilterPopularity";
 export default function FiltersPage() {
   return (
     <View style={styles.root}>
-      <ScrollView keyboardDismissMode="on-drag" style={styles.scrollView}>
+      <ScrollView 
+      decelerationRate="fast"
+      keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
           <FilterTags />
           <FilterDevice />

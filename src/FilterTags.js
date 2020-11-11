@@ -56,17 +56,6 @@ function FilterTags(props) {
 
       items.push(
         <View style={styles.tagRow} key={tagItem.name}>
-          {/* <Button
-            buttonStyle={tagButtonStyle}
-            titleStyle={styles.tagName}
-            titleProps={{numberOfLines:1}}
-            onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
-            title={tagItem.name}
-            type="solid"
-            color={theme.colors.secondary}
-            iconRight
-            icon={<Text numberOfLines={1} style={tagCountStyle}>{"  " + tagItem.count}</Text>}
-          /> */}
 
           <ToggleButton
             style={styles.tagButton}
@@ -79,16 +68,6 @@ function FilterTags(props) {
               <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
             </Text>
           </ToggleButton>
-          {/* <Pressable
-            onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
-            style={tagButtonStyle}
-          >
-            <Text numberOfLines={1} style={styles.tagName}>
-              {tagItem.name}
-              <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
-            </Text>
-  
-          </Pressable> */}
         </View>
       );
     });
@@ -112,12 +91,7 @@ function FilterTags(props) {
     </Text>
   );
 
-  // function onRootViewLayout({ nativeEvent }) {
-  //   console.log("A: " + Dimensions.get('window').width + ", B: " + nativeEvent.layout.width)
-  //   if (rootViewWidth !== nativeEvent.layout.width) setRootViewWidth(nativeEvent.layout.width - theme.rem);
-  // }
-
-  return (
+  return useMemo( () => (
     <>
       <View style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
@@ -160,7 +134,7 @@ function FilterTags(props) {
         />
       </View>
     </>
-  );
+  ),[tagColumns, searchTags])
 }
 
 const styles = StyleSheet.create({
@@ -239,7 +213,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default FilterTags;
+export default memo(FilterTags);
 
 // function FilterTags() {
 //   const { tags } = useContext(CoreContext);

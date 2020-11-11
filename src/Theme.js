@@ -1,4 +1,4 @@
-import { lighten, darken } from "polished";
+import { lighten, darken, rgb } from "polished";
 
 const primary = "rgb(26, 155, 215)";
 // const primary = "rgb(29, 172, 82)";
@@ -34,6 +34,7 @@ const theme = {
     colors: {
       title: "rgb(255, 255, 255)",
       primary: "rgb(234, 234, 234)",
+      primary2: "rgb(210, 210, 210)",
       secondary: "rgb(150, 158, 166)",
     },
 
