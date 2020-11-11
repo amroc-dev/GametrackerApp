@@ -1,20 +1,35 @@
 import React from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme  } from "@react-navigation/native";
 import { CoreContextProvider } from "./shared/react/CoreContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
+import theme from "./Theme";
 import MenuStackNavigator from "./MenuStackNavigator";
+import RootViewBackgroundColor from 'react-native-root-view-background-color';
+import { extractRGB } from "./shared/react/Misc"
+ 
+const bgRGB = extractRGB(theme.colors.background1)
+RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
+
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: theme.colors.primary,
+    background: theme.colors.background1
+  },
+};
 
 export default function App() {
   return (
     <CoreContextProvider>
       <SearchContextProvider>
         <FilterTagsContextProvider>
-          <StatusBar barStyle="light-content" />
+          <StatusBar barStyle="light-content"/>
           <SearchResultsContextProvider>
-            <NavigationContainer>
+            <NavigationContainer theme={navTheme}>
               <MenuStackNavigator />
             </NavigationContainer>
           </SearchResultsContextProvider>
