@@ -16,6 +16,7 @@ function CardItem({ doc }) {
   const doc_trackName = objectKeyFromDotString(doc, dbkeys.trackName);
   const doc_trackId = objectKeyFromDotString(doc, dbkeys.trackId);
   const doc_artistName = objectKeyFromDotString(doc, dbkeys.artistName);
+  const doc_artworkUrl = objectKeyFromDotString(doc, dbkeys.artworkUrl)
 
   const releaseDateArr = doc_releaseDate.split("-");
   const month = monthMap[parseInt(releaseDateArr[1])];
@@ -58,7 +59,7 @@ function CardItem({ doc }) {
   return (
     <Pressable onPress={onTap}>
       <View style={styles.cardItem}>
-        <Image style={styles.image} source={{ uri: doc.searchBlob.artworkUrl512 }} />
+        <Image style={styles.image} source={{ uri: doc_artworkUrl }} />
         <View style={styles.dataContainer}>
           <View style={styles.topRowContainer}>
             <View style={styles.titleContainer}>

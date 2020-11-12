@@ -7,6 +7,7 @@ import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import InfiniteScrollView from "./InfiniteScrollView";
 import theme from "./Theme";
 
 export default function CardListScroll() {
@@ -14,7 +15,6 @@ export default function CardListScroll() {
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
   const [hasMoreItems, setHasMoreItems] = useState(false);
-  const scrollViewRef = useRef(null);
 
   const FETCH_COUNT = 20;
 
@@ -40,7 +40,6 @@ export default function CardListScroll() {
     //     property: LayoutAnimation.Properties.opacity,
     //   },
     // });
-    scrollViewRef.current?.scrollTo({ y: 0, animated: false });
   }, [newSearchSubmitted]);
 
   useEffect(() => {
@@ -88,24 +87,14 @@ export default function CardListScroll() {
     }
   }, [searchResults]);
 
-  function onScroll({ nativeEvent }) {
-    const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
-    if (diff < 50) {
-      fetchMoreResults(FETCH_COUNT);
-    }
-  }
-
-  const bottomMargin = <View style={{ margin: 0, marginBottom: theme.rem * 0.5 }} />;
-
   return (
-    <ScrollView
+    <InfiniteScrollView
+      hasMoreItems={ () => hasMoreItems}
+      fetchMoreResults={ () => {fetchMoreResults(FETCH_COUNT)} }
       style={styles.scrollView}
-      ref={scrollViewRef}
-      onScroll={onScroll}
       contentInsetAdjustmentBehavior="automatic"
-      scrollEventThrottle={10}
-      indicatorStyle='white'
-      keyboardShouldPersistTaps='handled'
+      indicatorStyle="white"
+      keyboardShouldPersistTaps="handled"
     >
       <SafeAreaView>
         <SearchPills />
@@ -114,11 +103,9 @@ export default function CardListScroll() {
         <View>
           {searchCountCard}
           {items}
-          {isFetchingResults && hasMoreItems ? <LoadingSpinner /> : null}
-          {bottomMargin}
         </View>
       </SafeAreaView>
-    </ScrollView>
+    </InfiniteScrollView>
   );
 }
 
