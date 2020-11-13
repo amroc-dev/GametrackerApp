@@ -2,14 +2,22 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Button, SafeAreaView, View, StyleSheet, StatusBar } from "react-native";
 import CardListFlat from "./CardListFlat";
 import CardListScroll from "./CardListScroll";
-import { SearchContext } from "./shared/react/SearchContext";
+import { Platform } from "react-native";
+import FiltersPage from "./FiltersPage";
 import theme from "./Theme";
 
-export default function SearchPage({ navigation }) {
-  const { submitSearch } = useContext(SearchContext);
-
-  function onSearchPressed() {
-    submitSearch();
+export default function SearchPage() {
+  if (Platform.isPad) {
+    return (
+      <View style={styles.root}>
+        <View style={styles.splitRoot_search}>
+          <CardListScroll />
+        </View>
+        <View style={styles.splitRoot_filters}>
+          <FiltersPage />
+        </View>
+      </View>
+    );
   }
 
   return (
@@ -22,12 +30,16 @@ export default function SearchPage({ navigation }) {
 const styles = StyleSheet.create({
   root: {
     backgroundColor: theme.colors.background1,
+    flexDirection: "row",
   },
+
+  splitRoot_search: {
+    flex: 1.5,
+  },
+  splitRoot_filters: {
+    flex: 1,
+  }
 });
-
-
-
-
 
 // export default function SearchPage({ navigation, onScroll, containerPaddingTop, scrollIndicatorInsetTop }) {
 //   const { submitSearch } = useContext(SearchContext);

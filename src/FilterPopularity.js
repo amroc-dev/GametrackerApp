@@ -1,85 +1,94 @@
 import React, { useContext, useState, useEffect, memo, useRef } from "react";
-import { View, Text, TextInput, StyleSheet, ScrollView, Pressable } from "react-native";
+import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
 import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
+import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import RangeSlider from "@jesster2k10/react-native-range-slider";
 import rgbHex from "rgb-hex";
+// import RangeSlider from "rn-range-slider";
+// import { Thumb, Rail, RailSelected, Notch, Label } from "./RangeSliderParts";
 
 let sliderPressed = false;
 
 function FilterPopularity() {
   const { popularityIntervals } = useContext(CoreContext);
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
-  const [initialSliderMax] = useState(getIinitialSliderMax());
-  const [initialSliderMin] = useState(getIinitialSliderMin());
+  const { newSearchSumitted } = useContext(SearchResultsContext);
+  const [sliderVal, setSliderVal] = useState({ min: 0, max: 0 });
 
   useEffect(() => {
     sliderPressed = false;
   }, []);
 
-  function onValueChange(val) {
-    setSliderVal(val);
-    const filterVal = val === popularityIntervals.length - 1 ? -1 : popularityIntervals[val];
-    setPopularityFilter(filterVal);
-  }
+  // useEffect(() => {
+  //   function getSliderMax() {
+  //     if (popularityFilter.max === -1) {
+  //       return popularityIntervals.length - 1;
+  //     }
 
-  function getIinitialSliderMax() {
-    if (popularityFilter.max === -1) {
-      return popularityIntervals.length - 1;
-    }
+  //     for (let i = 0; i < popularityIntervals.length; i++) {
+  //       if (popularityIntervals[i] >= popularityFilter.max) {
+  //         return i;
+  //       }
+  //     }
 
-    for (let i = 0; i < popularityIntervals.length; i++) {
-      if (popularityIntervals[i] >= popularityFilter.max) {
-        return i;
-      }
-    }
+  //     return 1;
+  //   }
 
-    return 1;
-  }
+  //   function getSliderMin() {
+  //     if (popularityFilter.min === -1) {
+  //       return 0;
+  //     }
 
-  function getIinitialSliderMin() {
-    if (popularityFilter.min === -1) {
-      return 0;
-    }
+  //     for (let i = popularityIntervals.length - 1; i > 0; i--) {
+  //       if (popularityIntervals[i] <= popularityFilter.min) {
+  //         return i;
+  //       }
+  //     }
+  //     return 0;
+  //   }
 
-    for (let i = popularityIntervals.length - 1; i > 0; i--) {
-      if (popularityIntervals[i] <= popularityFilter.min) {
-        return i;
-      }
-    }
-    return 0;
-  }
+  //   setSliderVal({ min: getSliderMin(), max: getSliderMax() });
+  // }, [popularityIntervals, popularityFilter]);
 
   function onChange(min, max) {
-    if (sliderPressed) {
-      const maxVal = max === popularityIntervals.length - 1 ? -1 : popularityIntervals[max];
-      const minVal = min === 0 ? -1 : popularityIntervals[min];
-      setPopularityFilter(minVal, maxVal);
+    {
+      // const maxVal = max === popularityIntervals.length - 1 ? -1 : popularityIntervals[max];
+      // const minVal = min === 0 ? -1 : popularityIntervals[min];
+      setSliderVal({ min: min, max: max });
+      // setPopularityFilter(minVal, maxVal);
     }
   }
 
   function getText() {
     let text = "";
-    if (popularityFilter.max === -1 && popularityFilter.min === -1) {
-      text = <View style={styles.textContainer}><Text style={styles.textUnits}>All</Text></View>
+    const sliderMin = sliderVal.min === -1 ? 0 : sliderVal.min;
+    const sliderMax = sliderVal.max === -1 ? popularityIntervals.length - 1 : sliderVal.max;
+
+    if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
+      text = (
+        <View style={styles.textContainer}>
+          <Text style={styles.textUnits}>All</Text>
+        </View>
+      );
     } else {
-      if (popularityFilter.max === -1) {
+      if (sliderVal.max === popularityIntervals.length - 1) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>At least </Text>
-            <Text style={styles.textUnits}>{numberWithCommas(popularityFilter.min)}</Text>
+            <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
         );
-      } else if (popularityFilter.min === -1) {
+      } else if (sliderVal.min === 0) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Up to </Text>
-            <Text style={styles.textUnits}>{numberWithCommas(popularityFilter.max)}</Text>
+            <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
         );
@@ -87,69 +96,72 @@ function FilterPopularity() {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Between </Text>
-            <Text style={styles.textUnits}>{numberWithCommas(popularityFilter.min)}</Text>
+            <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> and </Text>
-            <Text style={styles.textUnits}>{numberWithCommas(popularityFilter.max)}</Text>
+            <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
-        )
+        );
       }
     }
 
     return text;
   }
 
+  const [hitSlop, setHitSlop] = useState(0);
+
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
       <FilterHeader title={"Popularity"} />
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
-
         <Pressable
           style={styles.sliderContainer}
+          hitSlop={hitSlop}
           onPressIn={() => {
             sliderPressed = true;
+            setHitSlop(999)
+          }}
+          onPressOut={() => {
+            sliderPressed = false;
+            const minVal = sliderVal.min === 0 ? -1 : popularityIntervals[sliderVal.min];
+            const maxVal = sliderVal.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderVal.max];
+            setPopularityFilter(minVal, maxVal);
+            setHitSlop(0)
           }}
         >
           <RangeSlider
+            type='range'
             style={styles.slider}
             min={0}
             max={popularityIntervals.length - 1}
             step={1}
             lineHeight={3}
             hideLabels={true}
-            // handleDiameter={20}
-            // minDistance={1}
             tintColor={lighten(0.07, theme.colors.background2)}
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
             handleColor={lighten(0.0, theme.fonts.colors.primary)}
-            // tintColor={"#da0f22"}
-            // handleBorderWidth={1}
-            // handleBorderColor="#454d55"
             minDistance={popularityIntervals.length / 15}
-            selectedMinimum={initialSliderMin}
-            selectedMaximum={initialSliderMax}
-
+            // selectedMinimum={ sliderVal.min }
+            // selectedMaximum={ sliderVal.max }
+            // onChange={(min, max) => {sliderPressed ? onChange(min, max) : false}}
             onChange={onChange}
-            // style={{ flex: 1, height: 70, padding: 10, backgroundColor: "#ddd" }}
           />
         </Pressable>
 
-        {/* <Text style={styles.text}>
-          {sliderVal === popularityIntervals.length - 1
-            ? "All"
-            : numberWithCommas(popularityIntervals[sliderVal]) + " ratings or less"}
-        </Text>
-        <Slider
-          style={styles.slider}
-          minimumValue={0}
-          maximumValue={popularityIntervals.length - 1}
-          step={1}
-          //value={mapPopularityFilterToSlider()} // Slider isn't a controlled component, 'value' is just used to set initial state
-          onValueChange={onValueChange}
-          minimumTrackTintColor={lighten(0.0, theme.colors.primary)}
-          maximumTrackTintColor={lighten(0.07, theme.colors.background2)}
-          thumbTintColor={theme.colors.primary}
+        {/* <RangeSlider
+          style={{ width: 160, height: 80 }}
+          gravity={"center"}
+          min={200}
+          max={1000}
+          step={20}
+          selectionColor="#3df"
+          blankColor="#f618"
+          renderThumb={Thumb}
+          renderRail={Rail}
+          renderRailSelected={RailSelected}
+          renderLabel={Label}
+          renderNotch={Notch}
         /> */}
       </View>
     </View>
@@ -165,8 +177,7 @@ const styles = StyleSheet.create({
   sliderContainer: {
     marginTop: theme.rem * -0.75,
   },
-  slider: {
-  },
+  slider: {},
   textContainer: {
     paddingTop: theme.rem * 1,
     alignSelf: "center",

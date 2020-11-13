@@ -8,8 +8,6 @@ function TouchContextProvider(props) {
 
   function onTap(event) {
     if (event.nativeEvent.state === State.END) {
-      // console.log(event.nativeEvent)
-      // setSingleTap( t => !t)
     }
   }
 

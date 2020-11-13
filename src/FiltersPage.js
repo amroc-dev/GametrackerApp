@@ -8,15 +8,18 @@ import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 
 export default function FiltersPage() {
+  const [scrollEnabled, setScrollEnabled] = useState(true)
+  
   return (
-    <View style={styles.root}>
-      <ScrollView 
+    <View style={styles.root} >
+      <ScrollView
+      scrollEnabled={scrollEnabled}
       decelerationRate="fast"
       keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
           <FilterTags />
           <FilterDevice />
-          <FilterPopularity />
+          <FilterPopularity setScrollEnabled={setScrollEnabled} />
         </View>
       </ScrollView>
     </View>

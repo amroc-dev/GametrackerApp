@@ -6,7 +6,7 @@ import theme from "./Theme";
 export default function LoadingSpinner() {
   return (
     <View style={styles.parent}>
-      <Wave style={styles.spinner} size={64} color={theme.fonts.colors.primary} />
+      <Wave style={styles.spinner} size={48} color={theme.fonts.colors.primary} />
     </View>
   );
 }

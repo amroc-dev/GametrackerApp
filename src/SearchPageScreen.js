@@ -1,26 +1,25 @@
 import React, { useLayoutEffect } from "react";
+import { Platform } from "react-native";
 import SearchPage from "./SearchPage";
 import theme from "./Theme";
 import { ForwardButton } from "./NavButtons";
 
 export default function SearchPageScreen({ navigation }) {
-  useLayoutEffect(() => {
-    navigation.setOptions({
-      headerTitle: "Search",
-      headerRight: () => (
-        <ForwardButton onPress={() => navigation.navigate("Filters")} title="Filters"/>
-      ),
-    });
-  }, [navigation]);
+  if (Platform.isPad) {
+  } else {
+    useLayoutEffect(() => {
+      navigation.setOptions({
+        headerTitle: "Search",
+        headerRight: () => <ForwardButton onPress={() => navigation.navigate("Filters")} title="Filters" />,
+      });
+    }, [navigation]);
+  }
 
   return <SearchPage />;
 }
 
-
-
-
 // export default function SearchPageScreen({ navigation }) {
-  
+
 //   useLayoutEffect(() => {
 //     const options = {
 //       headerTitle: "Search",
@@ -28,7 +27,7 @@ export default function SearchPageScreen({ navigation }) {
 //     };
 
 //     navigation.setOptions(options);
-    
+
 //   }, [navigation]);
 
 //   const options = {

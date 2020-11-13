@@ -14,7 +14,7 @@ function FilterTags(props) {
   const { searchTags, addSearchTag, removeSearchTag } = useContext(SearchContext);
   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
   const [tagColumns, setTagColumns] = useState([]);
-  const [tagsViewContainerWidth] = useState(Dimensions.get("window").width - theme.rem);
+  const [tagsViewContainerWidth, setTagsViewContainerWidth] = useState(0);
   const flatListRef = useRef(null);
 
   useLayoutEffect(() => {
@@ -24,7 +24,7 @@ function FilterTags(props) {
 
     let groups = [];
     tags.map((t) => {
-      if (groups.length === 0 || groups[groups.length - 1].length === 8) {
+      if (groups.length === 0 || groups[groups.length - 1].length === 12) {
         groups.push([]);
       }
 
@@ -40,7 +40,7 @@ function FilterTags(props) {
     }
 
     setTagColumns(groups);
-  }, [tagSearchField, tags]);
+  }, [tagSearchField, tags, tagsViewContainerWidth]);
 
   function renderItem({ item, index }) {
     const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
@@ -93,7 +93,8 @@ function FilterTags(props) {
 
   return useMemo( () => (
     <>
-      <View style={[filterStyles.outerContainer, styles.outer]}>
+      <View onLayout={ e => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
+      style={[filterStyles.outerContainer, styles.outer]}>
         <FilterHeader title={"Tags"} />
         {tagColumns.length > 0 ? (
           <View style={filterStyles.bodyContainer}>

@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "@jesster2k10/react-native-range-slider": "^0.3.1",
+    "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/masked-view": "^0.1.10",
+    "@react-native-community/slider": "^3.0.3",
     "@react-navigation/drawer": "^5.10.1",
     "@react-navigation/native": "^5.7.6",
     "@react-navigation/stack": "^5.9.3",
@@ -27,7 +29,8 @@
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",
     "react-native-vector-icons": "^7.1.0",
-    "rgb-hex": "^3.0.0"
+    "rgb-hex": "^3.0.0",
+    "rn-range-slider": "^2.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
