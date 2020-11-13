@@ -9,7 +9,7 @@ import theme from "./Theme";
 export default function SearchPage() {
   if (Platform.isPad) {
     return (
-      <View style={styles.root}>
+      <View style={[styles.root, {flexDirection: 'row'}]}>
         <View style={styles.splitRoot_search}>
           <CardListScroll />
         </View>
@@ -30,7 +30,6 @@ export default function SearchPage() {
 const styles = StyleSheet.create({
   root: {
     backgroundColor: theme.colors.background1,
-    flexDirection: "row",
   },
 
   splitRoot_search: {

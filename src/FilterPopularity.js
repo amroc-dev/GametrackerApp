@@ -3,7 +3,6 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } fr
 import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
-import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import theme from "./Theme";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
@@ -17,7 +16,6 @@ let sliderPressed = false;
 function FilterPopularity() {
   const { popularityIntervals } = useContext(CoreContext);
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
-  const { newSearchSumitted } = useContext(SearchResultsContext);
   const [sliderValRead, setSliderValRead] = useState({ min: 0, max: 0 });
   const [sliderValWrite, setSliderValWrite] = useState({ min: 0, max: 0 });
 
