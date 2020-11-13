@@ -5,8 +5,8 @@ const primary = "rgb(26, 155, 215)";
 // const primary = "rgb(92, 184, 92)";
 const background1 = "rgb(42, 63, 78)";
 const background2 = "rgb(78, 94, 108)";
-// const background1 = 'rgb(34, 38, 38)';
-// const background2 = 'rgb(48, 51, 51)';
+// const background1 = 'rgb(33, 38, 45)';
+// const background2 = 'rgb(48, 55, 66)';
 
 const fontSize = 16;
 const rem = fontSize;
@@ -61,7 +61,7 @@ const theme = {
     height: 0,
   },
 
-  borderRadius: 8,
+  borderRadius: 10,
   rowHeight: 44,
 };
 

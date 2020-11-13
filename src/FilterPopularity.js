@@ -18,56 +18,57 @@ function FilterPopularity() {
   const { popularityIntervals } = useContext(CoreContext);
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
   const { newSearchSumitted } = useContext(SearchResultsContext);
-  const [sliderVal, setSliderVal] = useState({ min: 0, max: 0 });
+  const [sliderValRead, setSliderValRead] = useState({ min: 0, max: 0 });
+  const [sliderValWrite, setSliderValWrite] = useState({ min: 0, max: 0 });
 
   useEffect(() => {
     sliderPressed = false;
   }, []);
 
-  // useEffect(() => {
-  //   function getSliderMax() {
-  //     if (popularityFilter.max === -1) {
-  //       return popularityIntervals.length - 1;
-  //     }
+  useEffect(() => {
+    function getSliderMax() {
+      if (popularityFilter.max === -1) {
+        return popularityIntervals.length - 1;
+      }
 
-  //     for (let i = 0; i < popularityIntervals.length; i++) {
-  //       if (popularityIntervals[i] >= popularityFilter.max) {
-  //         return i;
-  //       }
-  //     }
+      for (let i = 0; i < popularityIntervals.length; i++) {
+        if (popularityIntervals[i] >= popularityFilter.max) {
+          return i;
+        }
+      }
 
-  //     return 1;
-  //   }
+      return 1;
+    }
 
-  //   function getSliderMin() {
-  //     if (popularityFilter.min === -1) {
-  //       return 0;
-  //     }
+    function getSliderMin() {
+      if (popularityFilter.min === -1) {
+        return 0;
+      }
 
-  //     for (let i = popularityIntervals.length - 1; i > 0; i--) {
-  //       if (popularityIntervals[i] <= popularityFilter.min) {
-  //         return i;
-  //       }
-  //     }
-  //     return 0;
-  //   }
+      for (let i = popularityIntervals.length - 1; i > 0; i--) {
+        if (popularityIntervals[i] <= popularityFilter.min) {
+          return i;
+        }
+      }
+      return 0;
+    }
 
-  //   setSliderVal({ min: getSliderMin(), max: getSliderMax() });
-  // }, [popularityIntervals, popularityFilter]);
+    setSliderValWrite({ min: getSliderMin(), max: getSliderMax() });
+  }, [popularityIntervals, popularityFilter]);
 
   function onChange(min, max) {
     {
       // const maxVal = max === popularityIntervals.length - 1 ? -1 : popularityIntervals[max];
       // const minVal = min === 0 ? -1 : popularityIntervals[min];
-      setSliderVal({ min: min, max: max });
+      setSliderValRead({ min: min, max: max });
       // setPopularityFilter(minVal, maxVal);
     }
   }
 
   function getText() {
     let text = "";
-    const sliderMin = sliderVal.min === -1 ? 0 : sliderVal.min;
-    const sliderMax = sliderVal.max === -1 ? popularityIntervals.length - 1 : sliderVal.max;
+    const sliderMin = sliderValRead.min === -1 ? 0 : sliderValRead.min;
+    const sliderMax = sliderValRead.max === -1 ? popularityIntervals.length - 1 : sliderValRead.max;
 
     if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
       text = (
@@ -76,7 +77,7 @@ function FilterPopularity() {
         </View>
       );
     } else {
-      if (sliderVal.max === popularityIntervals.length - 1) {
+      if (sliderValRead.max === popularityIntervals.length - 1) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>At least </Text>
@@ -84,7 +85,7 @@ function FilterPopularity() {
             <Text style={styles.text}> ratings </Text>
           </View>
         );
-      } else if (sliderVal.min === 0) {
+      } else if (sliderValRead.min === 0) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Up to </Text>
@@ -124,8 +125,8 @@ function FilterPopularity() {
           }}
           onPressOut={() => {
             sliderPressed = false;
-            const minVal = sliderVal.min === 0 ? -1 : popularityIntervals[sliderVal.min];
-            const maxVal = sliderVal.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderVal.max];
+            const minVal = sliderValRead.min === 0 ? -1 : popularityIntervals[sliderValRead.min];
+            const maxVal = sliderValRead.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderValRead.max];
             setPopularityFilter(minVal, maxVal);
             setHitSlop(0)
           }}
@@ -142,9 +143,8 @@ function FilterPopularity() {
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
             handleColor={lighten(0.0, theme.fonts.colors.primary)}
             minDistance={popularityIntervals.length / 15}
-            // selectedMinimum={ sliderVal.min }
-            // selectedMaximum={ sliderVal.max }
-            // onChange={(min, max) => {sliderPressed ? onChange(min, max) : false}}
+            selectedMinimum={ sliderValWrite.min }
+            selectedMaximum={ sliderValWrite.max }
             onChange={onChange}
           />
         </Pressable>

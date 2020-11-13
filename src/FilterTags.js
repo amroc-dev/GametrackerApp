@@ -127,7 +127,7 @@ function FilterTags(props) {
           noMatchesText
         )}
         <SearchInput
-          style={styles.searchInput}
+          style={[filterStyles.bodyContainer, styles.searchInput,] }
           returnKeyType="done"
           placeholder={"Search " + tags.length + " tags"}
           onChangeText={onChangeText}
@@ -209,8 +209,7 @@ const styles = StyleSheet.create({
     // color: darken(0.3, theme.fonts.colors.secondary),
   },
   searchInput: {
-    margin: theme.rem * 0.5,
-    marginBottom: 0,
+    marginTop: theme.rem * 0.5,
   },
 });
 

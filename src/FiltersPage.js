@@ -14,12 +14,14 @@ export default function FiltersPage() {
     <View style={styles.root} >
       <ScrollView
       scrollEnabled={scrollEnabled}
+      indicatorStyle="white"
       decelerationRate="fast"
       keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
           <FilterTags />
           <FilterDevice />
           <FilterPopularity setScrollEnabled={setScrollEnabled} />
+          <View style={{marginTop:theme.rem}} />
         </View>
       </ScrollView>
     </View>

@@ -29,8 +29,7 @@
     "react-native-safe-area-context": "^3.1.8",
     "react-native-screens": "^2.11.0",
     "react-native-vector-icons": "^7.1.0",
-    "rgb-hex": "^3.0.0",
-    "rn-range-slider": "^2.0.3"
+    "rgb-hex": "^3.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
