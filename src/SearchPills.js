@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useEffect, useLayoutEffect } from "react";
 import { View, Text, TextInput, StyleSheet, LayoutAnimation } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
@@ -11,22 +11,8 @@ import { ToggleButton } from "./Common";
 
 function SearchPill({ name, clickCallback }) {
   return (
-    // <Button buttonStyle={styles.button}
-    //   titleStyle={styles.title}
-    //   onPress={() => clickCallback(name)}
-    //   title={name}
-    //   type="solid"
-    //   color={theme.colors.secondary}
-    // />
-
-    <ToggleButton
-      style={styles.button}
-      active={true}
-      onPress={() => clickCallback(name)}
-    >
-      <Text style={styles.title}>
-        {name}
-      </Text>
+    <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
+      <Text style={styles.title}>{name}</Text>
     </ToggleButton>
   );
 }
@@ -42,74 +28,67 @@ export default function SearchPills() {
     setPopularityFilter,
   } = useContext(SearchContext);
 
-  const { submittedSearchTerm } = useContext(SearchResultsContext);
+  const { submittedSearchTerm, newSearchSubmitted } = useContext(SearchResultsContext);
 
-  function onTagPillClick(name) {
-    removeSearchTag(name);
-  }
+  const [pillElems, setPillElems] = useState([]);
 
-  let pillElems = [];
+  useEffect(() => {
+    let pills = [];
 
-  // search pill
-  if (submittedSearchTerm.length > 0) {
-    pillElems.push(
-      <SearchPill
-        key={pillElems.length}
-        name={submittedSearchTerm}
-        // name={"\"" + submittedSearchTerm + "\""}
-        clickCallback={() => {
-          clearSearchTerm();
-        }}
-      />
-    );
-  }
-
-  // tags pills
-  searchTags.map((e) => {
-    pillElems.push(<SearchPill key={pillElems.length} name={e} clickCallback={onTagPillClick} />);
-    return null;
-  });
-
-  // device pills
-  const filter = { ...deviceFilter };
-  Object.keys(filter).forEach((i) => {
-    if (filter[i]) {
-      pillElems.push(
+    // search pill
+    if (submittedSearchTerm.length > 0) {
+      pills.push(
         <SearchPill
-          key={pillElems.length}
-          name={i}
-          clickCallback={() => toggleDeviceFilter(i)}
+          key={pills.length}
+          name={submittedSearchTerm}
+          // name={"\"" + submittedSearchTerm + "\""}
+          clickCallback={() => {
+            clearSearchTerm();
+          }}
         />
       );
     }
-    return filter[i];
-  });
 
-  // popularity filter pill
-  function onPopularityPillClick(e) {
-    setPopularityFilter(-1, -1)
-  }
+    function onTagPillClick(name) {
+      removeSearchTag(name);
+    }
 
-  if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
-    
-    let text = ""
-    if (popularityFilter.max === -1) {
-      text = "at least " + numberWithCommas(popularityFilter.min)
+    // tags pills
+    searchTags.map((e) => {
+      pills.push(<SearchPill key={pills.length} name={e} clickCallback={onTagPillClick} />);
+      return null;
+    });
+
+    // device pills
+    const filter = { ...deviceFilter };
+    Object.keys(filter).forEach((i) => {
+      if (filter[i]) {
+        pills.push(<SearchPill key={pills.length} name={i} clickCallback={() => toggleDeviceFilter(i)} />);
+      }
+      return filter[i];
+    });
+
+    // popularity filter pill
+    function onPopularityPillClick(e) {
+      setPopularityFilter(-1, -1);
     }
-    else if (popularityFilter.min === -1) {
-      text = "up to " + numberWithCommas(popularityFilter.max)
+
+    if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
+      let text = "";
+      if (popularityFilter.max === -1) {
+        text = "Min " + numberWithCommas(popularityFilter.min);
+      } else if (popularityFilter.min === -1) {
+        text = "Max " + numberWithCommas(popularityFilter.max);
+      } else {
+        text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
+      }
+      pills.push(
+        <SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />
+      );
     }
-    else {
-      text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max)
-    }
-    pillElems.push(
-      <SearchPill
-        key={pillElems.length}
-        name={"Popularity " + text}
-        clickCallback={onPopularityPillClick}
-      />
-    );
-  }
+
+    setPillElems(pills)
+  }, [newSearchSubmitted]);
 
   return <View style={styles.container}>{pillElems}</View>;
 }

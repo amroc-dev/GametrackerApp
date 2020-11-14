@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, ScrollView} from "react-native";
+import { View, ScrollView } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
 import theme from "./Theme";
@@ -10,26 +10,21 @@ export default function InfiniteScrollView(props) {
   function onScroll({ nativeEvent }) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
 
-    if (diff < 50) {
+    if (diff < 200) {
       if (nativeEvent.contentSize.height != contentHeight) {
         setContentHeight(nativeEvent.contentSize.height);
 
-        if (props.hasMoreItems()) {
-          props.fetchMoreResults();
-        }
+        if (props.hasMoreItems) props.fetchMoreResults();
       }
     }
   }
 
-  const defaultLoadingView = props.loadingView ? props.loadingView : <LoadingSpinner />
+  const defaultLoadingView = props.loadingView ? props.loadingView : <LoadingSpinner />;
 
   const bottomMargin = <View style={{ margin: 0, marginBottom: theme.rem * 0.5 }} />;
   const loadingView =
-    defaultLoadingView && props.hasMoreItems() ? (
-      <>
-        {defaultLoadingView}
-        <View style={{ margin: 0, marginBottom: theme.rem * 0.5 }} />
-      </>
+    defaultLoadingView && props.hasMoreItems ? (
+      <View style={{ marginVertical: theme.rem * 1 }}>{defaultLoadingView}</View>
     ) : null;
 
   return (
@@ -41,7 +36,7 @@ export default function InfiniteScrollView(props) {
 }
 
 InfiniteScrollView.propTypes = {
-  hasMoreItems: PropTypes.func.isRequired,
+  hasMoreItems: PropTypes.bool.isRequired,
   fetchMoreResults: PropTypes.func.isRequired,
   loadingView: PropTypes.element,
 };

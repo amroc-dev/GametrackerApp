@@ -78,7 +78,7 @@ function FilterPopularity() {
       if (sliderValRead.max === popularityIntervals.length - 1) {
         text = (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>At least </Text>
+            <Text style={styles.text}>Min </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
@@ -86,7 +86,7 @@ function FilterPopularity() {
       } else if (sliderValRead.min === 0) {
         text = (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Up to </Text>
+            <Text style={styles.text}>Max </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
@@ -94,9 +94,9 @@ function FilterPopularity() {
       } else {
         text = (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Between </Text>
+            {/* <Text style={styles.text}>Min </Text> */}
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
-            <Text style={styles.text}> and </Text>
+            <Text style={styles.text}> to </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
