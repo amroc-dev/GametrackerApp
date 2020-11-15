@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { View, ScrollView } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
 import theme from "./Theme";
 
+const status_hidden = "hidden";
+const status_visible = "visible";
+
 export default function InfiniteScrollView(props) {
   const [contentHeight, setContentHeight] = useState(0);
+  const [status, setStatus] = useState(status_hidden);
 
   function onScroll({ nativeEvent }) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
@@ -19,18 +23,26 @@ export default function InfiniteScrollView(props) {
     }
   }
 
-  const defaultLoadingView = props.loadingView ? props.loadingView : <LoadingSpinner />;
+  useEffect(() => {
+    if (props.showLoadingView[0]) {
+      if (status === status_hidden) {
+        const newId = setTimeout(() => {setStatus(status_visible); console.log("showing")}, props.showLoadingView[1]);
+        setStatus(newId);
+      }
+    } else {
+      if (status !== status_hidden && status !== status_visible) {
+        clearTimeout(status);
+      }
+      setStatus(status_hidden);
+    }
+  }, [props.showLoadingView]);
 
-  const bottomMargin = <View style={{ margin: 0, marginBottom: theme.rem * 0.5 }} />;
-  const loadingView =
-    defaultLoadingView && props.hasMoreItems ? (
-      <View style={{ marginVertical: theme.rem * 1 }}>{defaultLoadingView}</View>
-    ) : null;
+  const loadingView = <View style={{ marginVertical: theme.rem * 1 }}><LoadingSpinner /></View>
 
   return (
     <ScrollView scrollEventThrottle={16} {...props} onScroll={onScroll}>
       {props.children}
-      {loadingView}
+      {status === status_visible ? loadingView : null}
     </ScrollView>
   );
 }
@@ -38,5 +50,5 @@ export default function InfiniteScrollView(props) {
 InfiniteScrollView.propTypes = {
   hasMoreItems: PropTypes.bool.isRequired,
   fetchMoreResults: PropTypes.func.isRequired,
-  loadingView: PropTypes.element,
+  showLoadingView: PropTypes.array, // [0] is bool specifying whether to show loading view, [1] is delay in ms before showing
 };

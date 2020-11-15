@@ -12,7 +12,7 @@ import theme from "./Theme";
 import { Transitioning, Transition } from "react-native-reanimated";
 
 export default function CardListScroll() {
-  const { searchResults, fetchMoreResults, newSearchSubmitted } = useContext(SearchResultsContext);
+  const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
   const [hasMoreItems, setHasMoreItems] = useState(false);
@@ -88,6 +88,7 @@ export default function CardListScroll() {
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
+      showLoadingView={[isFetchingResults, items.length === 0 ? 125 : 0]}
       fetchMoreResults={() => {
         fetchMoreResults(FETCH_COUNT);
       }}
@@ -101,10 +102,10 @@ export default function CardListScroll() {
         <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
           <Searchbar />
           <SortBy />
-          <View>
+          <View style={{ marginBottom: theme.rem * 0.5 }}>
             {searchCountCard}
             {items}
-          </View>
+          </View >
         </Transitioning.View>
       </SafeAreaView>
     </InfiniteScrollView>
