@@ -1,7 +1,6 @@
 import React, { memo, useState, useEffect, useContext, useRef } from "react";
 import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native";
 import { monthMap, formatRatingCount, objectKeyFromDotString } from "./shared/react/Misc";
-import Tappable from "./Tappable";
 import styles from "./CardItem_styles";
 import theme from "./Theme";
 const dbkeys = require("./shared/back-end/db-keys");

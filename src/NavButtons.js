@@ -33,15 +33,14 @@ export function MenuButton(props) {
 
 export function ForwardButton(props) {
   return (
-
-      <Button
-        title="Forward"
-        type="clear"
-        titleStyle={navButtonStyle}
-        iconRight={true}
-        icon={<Icon style={styles.icon} name="ios-chevron-forward" size={iconSize} color={theme.colors.primary} />}
-        {...props}
-      />
+    <Button
+      title="Forward"
+      type="clear"
+      titleStyle={navButtonStyle}
+      iconRight={true}
+      icon={<Icon style={styles.icon} name="ios-chevron-forward" size={iconSize} color={theme.colors.primary} />}
+      {...props}
+    />
   );
 }
 

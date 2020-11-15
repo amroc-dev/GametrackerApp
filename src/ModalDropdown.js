@@ -4,18 +4,14 @@ import theme from "./Theme";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useFocusEffect } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
-import FadeInOut from "./FadeInOut";
 import { lighten, darken } from "polished";
 
 export default function ModalDropdown(props) {
   const [overlay, setOverlay] = useState(null);
-  const [fadeIn, setFadeIn] = useState(false);
   const isFocused = useIsFocused();
   let controller;
 
   function onOpen() {
-    setFadeIn(true);
-
     const HACKY_SIZE = 10000;
     setOverlay(
       <Pressable
@@ -33,13 +29,7 @@ export default function ModalDropdown(props) {
   }
 
   function onClose() {
-    setFadeIn(false);
-  }
-
-  function onFadeComplete() {
-    if (!controller.isOpen()) {
-      setOverlay(null);
-    }
+    setOverlay(null)
   }
 
   useEffect(() => {
@@ -50,9 +40,7 @@ export default function ModalDropdown(props) {
 
   return (
     <>
-      <FadeInOut visible={fadeIn} onFadeComplete={onFadeComplete} duration={1}>
         {overlay}
-      </FadeInOut>
       <DropDownPicker
         controller={(instance) => (controller = instance)}
         style={styles.dropdownStyle}

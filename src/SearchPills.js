@@ -8,12 +8,21 @@ import theme from "./Theme";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
+import Fade from "react-native-fade";
 
 function SearchPill({ name, clickCallback }) {
+  const [visible, setVisible] = useState(false)
+
+  useEffect( () => {
+    setVisible(true)
+  }, [])
+  
   return (
-    <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
-      <Text style={styles.title}>{name}</Text>
-    </ToggleButton>
+    <Fade visible={visible}>
+      <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
+        <Text style={styles.title}>{name}</Text>
+      </ToggleButton>
+    </Fade>
   );
 }
 
@@ -82,12 +91,10 @@ export default function SearchPills() {
       } else {
         text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
       }
-      pills.push(
-        <SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />
-      );
+      pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
 
-    setPillElems(pills)
+    setPillElems(pills);
   }, [newSearchSubmitted]);
 
   return <View style={styles.container}>{pillElems}</View>;
