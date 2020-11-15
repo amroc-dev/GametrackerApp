@@ -16,6 +16,7 @@ export default function FiltersPage() {
       scrollEnabled={scrollEnabled}
       indicatorStyle="white"
       decelerationRate="fast"
+      keyboardShouldPersistTaps="handled"
       keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
           <FilterTags />

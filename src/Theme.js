@@ -1,10 +1,15 @@
-import { lighten, darken, rgb } from "polished";
+import { lighten, darken, rgb, rgbToColorString } from "polished";
 
-const primary = "rgb(26, 155, 215)";
+// let primary = "rgb(26, 155, 215)";
 // const primary = "rgb(29, 172, 82)";
 // const primary = "rgb(92, 184, 92)";
-const background1 = "rgb(42, 63, 78)";
-const background2 = "rgb(78, 94, 108)";
+// const background1 = "rgb(42, 63, 78)";
+// const background2 = "rgb(78, 94, 108)";
+const primary = "rgb(240, 126, 24)";
+const background1 = "rgb(21, 23, 25)";
+const background2 = "rgb(51, 54, 57)";
+
+// const primary = lighten("0.25", background1);
 // const background1 = 'rgb(33, 38, 45)';
 // const background2 = 'rgb(48, 55, 66)';
 
@@ -16,11 +21,10 @@ const theme = {
 
   colors: {
     primary: primary,
-    primaryLight: lighten("0.1", primary),
-    header: darken("0.1", background1),
+    header: background1,
     background1: background1,
     background2: background2,
-    secondary: lighten("0.25", background2),
+    secondary: lighten("0.15", background2).toString(),
 
     rating: {
       good: 'rgb(92, 184, 92)',
@@ -35,7 +39,7 @@ const theme = {
       title: "rgb(255, 255, 255)",
       primary: "rgb(234, 234, 234)",
       primary2: "rgb(210, 210, 210)",
-      secondary: "rgb(150, 158, 166)",
+      secondary: "rgb(150, 150, 150)",
     },
 
     sizes: {
@@ -73,6 +77,12 @@ export const headerTitleStyle = {
   fontWeight: theme.fonts.weights.bold,
 };
 
+export const headerSideButtonTitleStyle = {
+  color: theme.colors.primary,
+  fontSize: theme.fonts.sizes.header,
+  fontWeight: theme.fonts.weights.bold,
+};
+
 export const shadowStyle = {
   shadowColor: theme.shadowColor,
   shadowOpacity: theme.shadowOpacity,
@@ -84,5 +94,5 @@ export const shadowStyle = {
 //   color: theme.fonts.colors.title,
 // }
 
-export const navButtonStyle = headerTitleStyle;
+export const navButtonStyle = headerSideButtonTitleStyle;
 

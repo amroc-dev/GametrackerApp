@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useLayoutEffect, useRef } from "react";
 import {
   View,
   Text,
@@ -10,7 +10,7 @@ import {
   Animated,
   ScrollView,
 } from "react-native";
-// import { Button } from "react-native-elements";
+import { Button as ElemButton } from "react-native-elements";
 import theme from "./Theme";
 import { rgba } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
@@ -19,7 +19,8 @@ const iconSize = 22;
 
 export function SearchInput(props) {
   const [showCancelButton, setShowCancelButton] = useState(false);
-  const [showClearButton, setShowClearButton] = useState(true);
+  const [showClearButton, setShowClearButton] = useState(false);
+  const [textValue, setTextValue] = useState("");
   const textInputRef = useRef(null);
 
   function onTextFocus() {
@@ -33,20 +34,39 @@ export function SearchInput(props) {
   }
 
   function Animate() {
-    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut, () => setShowClearButton(true));
-    setShowClearButton(false);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }
 
   const cancelButton = showCancelButton ? (
-    <Button onPress={ () => {textInputRef.current.clear(); textInputRef.current.blur()}} title="Cancel" type="clear" color="white" />
+    <Button
+      onPress={() => {
+        textInputRef.current.clear();
+        textInputRef.current.blur();
+        onChangeText("");
+      }}
+      title="Cancel"
+      type="clear"
+      color={theme.fonts.colors.primary}
+    />
   ) : null;
+
+  useEffect( () => {
+  }, [props.value])
+
+  function onChangeText(text) {
+    if (props.onChangeText) {
+      props.onChangeText(text)
+    }
+  }
 
   return (
     <View style={[styles.container, props.style]}>
+      {cancelButton}
       <View style={styles.searchInput}>
         <Icon style={styles.icon} name="search" size={iconSize} />
         <TextInput
-          clearButtonMode={showClearButton ? "always" : "never"}
+          clearButtonMode={"never"}
+          placeholderTextColor={theme.fonts.colors.secondary}
           ref={textInputRef}
           {...props}
           style={styles.textInput}
@@ -55,29 +75,36 @@ export function SearchInput(props) {
           autoCompleteType="off"
           autoCorrect={false}
         />
+        {props.value.length > 0 ? (
+          <ElemButton 
+          type="clear" 
+          icon={<Icon name="close-circle" size={iconSize} color={theme.fonts.colors.secondary} />} 
+          onPress={ () => onChangeText("")}
+          />
+        ) : null}
       </View>
-      {cancelButton}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
+    flexDirection: "row-reverse",
     alignItems: "center",
   },
   searchInput: {
     flex: 1,
     height: theme.rowHeight,
     flexDirection: "row",
-    backgroundColor: "white",
+    backgroundColor: theme.colors.secondary,
     alignItems: "center",
     borderRadius: theme.borderRadius,
     paddingHorizontal: theme.rem * 0.5,
   },
   textInput: {
     flex: 1,
-    backgroundColor: "white",
+    color: theme.fonts.colors.title,
+    backgroundColor: theme.colors.secondary,
     borderRadius: 0,
     borderTopRightRadius: theme.borderRadius,
     borderBottomRightRadius: theme.borderRadius,
@@ -86,7 +113,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     height: iconSize,
-    color: theme.fonts.colors.secondary,
+    color: theme.fonts.colors.primary,
   },
 });
 

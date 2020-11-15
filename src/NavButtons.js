@@ -13,7 +13,7 @@ export function BackButton(props) {
       type="clear"
       titleStyle={navButtonStyle}
       iconRight={false}
-      icon={<Icon style={styles.icon} name="ios-chevron-back" size={iconSize} color="white" />}
+      icon={<Icon style={styles.icon} name="ios-chevron-back" size={iconSize} color={theme.colors.primary} />}
       {...props}
     />
   );
@@ -25,7 +25,7 @@ export function MenuButton(props) {
       type="clear"
       titleStyle={navButtonStyle}
       iconRight={false}
-      icon={<Icon style={styles.icon} name="ios-reorder-three-outline" size={iconSize} color="white" />}
+      icon={<Icon style={styles.icon} name="ios-reorder-three-outline" size={iconSize} color={theme.colors.primary} />}
       {...props}
     />
   );
@@ -39,7 +39,7 @@ export function ForwardButton(props) {
         type="clear"
         titleStyle={navButtonStyle}
         iconRight={true}
-        icon={<Icon style={styles.icon} name="ios-chevron-forward" size={iconSize} color="white" />}
+        icon={<Icon style={styles.icon} name="ios-chevron-forward" size={iconSize} color={theme.colors.primary} />}
         {...props}
       />
   );

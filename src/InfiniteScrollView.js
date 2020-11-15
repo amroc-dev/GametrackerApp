@@ -26,7 +26,7 @@ export default function InfiniteScrollView(props) {
   useEffect(() => {
     if (props.showLoadingView[0]) {
       if (status === status_hidden) {
-        const newId = setTimeout(() => {setStatus(status_visible); console.log("showing")}, props.showLoadingView[1]);
+        const newId = setTimeout(() => setStatus(status_visible), props.showLoadingView[1]);
         setStatus(newId);
       }
     } else {

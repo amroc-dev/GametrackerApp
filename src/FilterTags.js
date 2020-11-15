@@ -24,7 +24,7 @@ function FilterTags(props) {
 
     let groups = [];
     tags.map((t) => {
-      if (groups.length === 0 || groups[groups.length - 1].length === 12) {
+      if (groups.length === 0 || groups[groups.length - 1].length === 10) {
         groups.push([]);
       }
 

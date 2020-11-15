@@ -13,10 +13,6 @@ export default function Searchbar() {
     submitSearch();
   }
 
-  function test(text) {
-    setSearchTerm(text);
-  }
-
   return (
     // <SearchBar
     //   containerStyle={styles.root}
@@ -54,7 +50,7 @@ const styles = StyleSheet.create({
   root: {
     // flexDirection: "row",
     height: theme.rowHeight,
-    backgroundColor: "rgba(0,0,0,0)",
+    // backgroundColor: "rgba(0,0,0,0)",
     marginTop: theme.rem * 0.5,
     borderRadius: theme.borderRadius,
     // marginHorizontal: -theme.rem * 0.5,

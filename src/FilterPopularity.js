@@ -139,7 +139,7 @@ function FilterPopularity() {
             hideLabels={true}
             tintColor={lighten(0.07, theme.colors.background2)}
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
-            handleColor={lighten(0.0, theme.fonts.colors.primary)}
+            handleColor={lighten(0.0, theme.colors.primary)}
             minDistance={popularityIntervals.length / 15}
             selectedMinimum={ sliderValWrite.min }
             selectedMaximum={ sliderValWrite.max }

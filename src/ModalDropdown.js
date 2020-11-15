@@ -63,7 +63,7 @@ export default function ModalDropdown(props) {
         placeholderStyle={styles.placeholder}
         onOpen={onOpen}
         onClose={onClose}
-        arrowColor="white"
+        arrowColor={theme.fonts.colors.primary}
         arrowSize={20}
         dropDownMaxHeight={500}
         {...props}
@@ -71,6 +71,8 @@ export default function ModalDropdown(props) {
     </>
   );
 }
+
+const backgroundColor = theme.colors.secondary
 
 const styles = StyleSheet.create({
   dropdownContainer: {
@@ -83,14 +85,13 @@ const styles = StyleSheet.create({
     borderTopRightRadius: theme.borderRadius,
     borderBottomLeftRadius: theme.borderRadius,
     borderBottomRightRadius: theme.borderRadius,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: backgroundColor,
     borderWidth: 0,
   },
   dropdown: {
     flex: 1,
-    borderColor: "rgba(255,255,255,0.4)",
     borderTopWidth: 0,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: backgroundColor,
     // borderTopLeftRadius: theme.borderRadius,
     // borderTopRightRadius: theme.borderRadius,
     borderBottomLeftRadius: theme.borderRadius,
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
     // borderTopWidth: 1,
     // marginTop: theme.rem * 0.3,
     shadowColor: theme.shadowColor,
-    shadowOpacity: theme.shadowOpacity * 0.5,
+    shadowOpacity: theme.shadowOpacity * 1,
     shadowRadius: theme.shadowRadius,
     shadowOffset: theme.shadowOffset,
     shadowOffset: {
@@ -113,7 +114,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   labelStyle: {
-    color: "white",
+    color: theme.fonts.colors.primary,
     flex: 1,
     fontSize: theme.fonts.sizes.primary,
     fontWeight: theme.fonts.weights.bold,

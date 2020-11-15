@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
       display: 'flex',
       flex: 1,
       flexDirection: 'column',
-      padding: theme.rem * 0.25,
-      paddingHorizontal: theme.rem * 0.4,
+      padding: theme.rem * 0.5,
+      // paddingHorizontal: theme.rem * 0.5,
       // backgroundColor: 'red',
     },
   

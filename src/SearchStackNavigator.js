@@ -17,7 +17,6 @@ export default function SearchStackNavigator( {navigation}) {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTintColor: "#fff",
         headerTitleStyle: headerTitleStyle,
         // headerTransparent: true,
         // headerBackground: () => (
@@ -25,11 +24,15 @@ export default function SearchStackNavigator( {navigation}) {
         // ),
         headerLeft: () => <MenuButton onPress={() => navigation.openDrawer()}  />,
         headerStyle: {
-          backgroundColor: theme.colors.primary,
-          shadowColor: theme.shadowColor,
-          shadowOpacity: theme.shadowOpacity,
-          shadowRadius: theme.shadowRadius,
-          shadowOffset: theme.shadowOffset,
+          backgroundColor: theme.colors.header,
+          shadowOpacity: 0,
+          // borderWidth: 10,
+          borderColor: theme.colors.header,
+          shadowColor: theme.colors.primary,
+          // shadowColor: theme.shadowColor,
+          // shadowOpacity: theme.shadowOpacity,
+          // shadowRadius: theme.shadowRadius,
+          // shadowOffset: theme.shadowOffset,
         },
       }}
     >
