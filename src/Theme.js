@@ -7,7 +7,7 @@ import { lighten, darken, rgb, rgbToColorString } from "polished";
 // const background2 = "rgb(78, 94, 108)";
 const primary = "rgb(240, 126, 24)";
 const background1 = "rgb(21, 23, 25)";
-const background2 = "rgb(51, 54, 57)";
+const background2 = "rgb(41, 44, 47)";
 
 // const primary = lighten("0.25", background1);
 // const background1 = 'rgb(33, 38, 45)';
@@ -65,7 +65,7 @@ const theme = {
     height: 0,
   },
 
-  borderRadius: 10,
+  borderRadius: 6,
   rowHeight: 44,
 };
 
