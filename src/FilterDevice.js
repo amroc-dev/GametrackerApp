@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
 
   button: {
     marginRight: theme.rem * 0.5,
-    borderRadius: theme.borderRadius,
-    padding: theme.rem * 0.5,
+    borderRadius: theme.pillBorderRadius,
+    // padding: theme.rem * 0.5,
   },
   buttonTitle: {
     color: theme.fonts.colors.title,

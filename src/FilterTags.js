@@ -191,7 +191,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: theme.rem * 0.25,
     paddingHorizontal: theme.rem * 0.5,
-    borderRadius: theme.borderRadius,
+
+    borderRadius: theme.pillBorderRadius,
   },
   tagName: {
     color: theme.fonts.colors.title,

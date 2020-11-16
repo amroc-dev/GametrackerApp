@@ -9,7 +9,7 @@ export default function Searchbar() {
   const { submitSearch, searchTerm, setSearchTerm, clearSearchTerm } = useContext(SearchContext);
 
   function onSubmit({ nativeEvent }) {
-    setSearchTerm(nativeEvent.text);
+    setSearchTerm(nativeEvent.text.trim());
     submitSearch();
   }
 

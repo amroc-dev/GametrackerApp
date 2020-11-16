@@ -8,8 +8,6 @@ import { filterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import RangeSlider from "@jesster2k10/react-native-range-slider";
 import rgbHex from "rgb-hex";
-// import RangeSlider from "rn-range-slider";
-// import { Thumb, Rail, RailSelected, Notch, Label } from "./RangeSliderParts";
 
 let sliderPressed = false;
 
@@ -55,12 +53,7 @@ function FilterPopularity() {
   }, [popularityIntervals, popularityFilter]);
 
   function onChange(min, max) {
-    {
-      // const maxVal = max === popularityIntervals.length - 1 ? -1 : popularityIntervals[max];
-      // const minVal = min === 0 ? -1 : popularityIntervals[min];
-      setSliderValRead({ min: min, max: max });
-      // setPopularityFilter(minVal, maxVal);
-    }
+    setSliderValRead({ min: min, max: max });
   }
 
   function getText() {
@@ -119,18 +112,19 @@ function FilterPopularity() {
           hitSlop={hitSlop}
           onPressIn={() => {
             sliderPressed = true;
-            setHitSlop(999)
+            setHitSlop(9999);
           }}
           onPressOut={() => {
             sliderPressed = false;
             const minVal = sliderValRead.min === 0 ? -1 : popularityIntervals[sliderValRead.min];
-            const maxVal = sliderValRead.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderValRead.max];
+            const maxVal =
+              sliderValRead.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderValRead.max];
             setPopularityFilter(minVal, maxVal);
-            setHitSlop(0)
+            setHitSlop(0);
           }}
         >
           <RangeSlider
-            type='range'
+            type="range"
             style={styles.slider}
             min={0}
             max={popularityIntervals.length - 1}
@@ -141,26 +135,11 @@ function FilterPopularity() {
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
             handleColor={lighten(0.0, theme.colors.primary)}
             minDistance={popularityIntervals.length / 15}
-            selectedMinimum={ sliderValWrite.min }
-            selectedMaximum={ sliderValWrite.max }
+            selectedMinimum={sliderValWrite.min}
+            selectedMaximum={sliderValWrite.max}
             onChange={onChange}
           />
         </Pressable>
-
-        {/* <RangeSlider
-          style={{ width: 160, height: 80 }}
-          gravity={"center"}
-          min={200}
-          max={1000}
-          step={20}
-          selectionColor="#3df"
-          blankColor="#f618"
-          renderThumb={Thumb}
-          renderRail={Rail}
-          renderRailSelected={RailSelected}
-          renderLabel={Label}
-          renderNotch={Notch}
-        /> */}
       </View>
     </View>
   );

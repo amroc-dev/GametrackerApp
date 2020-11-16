@@ -35,6 +35,7 @@ export default function CardListScroll() {
     
     // this is just for the condition when search results has been cleared at the start of a new search
     if (Object.keys(searchResults).length === 0) {
+      setSearchCountCard(null);
       return;
     }
 
@@ -75,8 +76,7 @@ export default function CardListScroll() {
   transitionViewRef = useRef();
   const cardListTransition = (
     <Transition.Together>
-      <Transition.In type="fade" durationMs={125} interpolation="easeIn" />
-      {/* <Transition.Out type="fade" durationMs={62} interpolation="easeOut" /> */}
+      <Transition.In type="fade" durationMs={125} interpolation="easeIn" delayMs={100}/>
       <Transition.Change interpolation="easeInOut" />
     </Transition.Together>
   );
@@ -88,7 +88,7 @@ export default function CardListScroll() {
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
-      showLoadingView={[isFetchingResults, items.length === 0 ? 125 : 0]}
+      showLoadingView={[isFetchingResults, items.length === 0 ? 200 : 0]}
       fetchMoreResults={() => {
         fetchMoreResults(FETCH_COUNT);
       }}

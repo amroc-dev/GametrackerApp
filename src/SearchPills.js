@@ -35,13 +35,14 @@ export default function SearchPills() {
     toggleDeviceFilter,
     popularityFilter,
     setPopularityFilter,
+    searchID,
   } = useContext(SearchContext);
 
   const { submittedSearchTerm, newSearchSubmitted } = useContext(SearchResultsContext);
 
   const [pillElems, setPillElems] = useState([]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let pills = [];
 
     // search pill
@@ -95,7 +96,7 @@ export default function SearchPills() {
     }
 
     setPillElems(pills);
-  }, [newSearchSubmitted]);
+  }, [newSearchSubmitted, searchID]);
 
   return <View style={styles.container}>{pillElems}</View>;
 }
@@ -106,13 +107,14 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     margin: theme.rem * 0.5,
     marginBottom: theme.rem * -0.5,
-    // justifyContent: "flex-end",
     backgroundColor: "rgba(0,0,0,0)",
   },
   button: {
     marginBottom: theme.rem * 0.5,
     marginRight: theme.rem * 0.4,
-    borderRadius: theme.borderRadius,
+    borderRadius: theme.pillBorderRadius,
+    minWidth: 60,
+    alignItems: "center",
     height: "auto",
   },
   title: {

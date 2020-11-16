@@ -66,6 +66,7 @@ const theme = {
   },
 
   borderRadius: 6,
+  pillBorderRadius: 100,
   rowHeight: 44,
 };
 

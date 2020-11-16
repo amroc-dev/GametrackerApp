@@ -24,15 +24,13 @@ export default function InfiniteScrollView(props) {
   }
 
   useEffect(() => {
+    if (status !== status_hidden && status !== status_visible) {
+      clearTimeout(status);
+    }
     if (props.showLoadingView[0]) {
-      if (status === status_hidden) {
         const newId = setTimeout(() => setStatus(status_visible), props.showLoadingView[1]);
         setStatus(newId);
-      }
     } else {
-      if (status !== status_hidden && status !== status_visible) {
-        clearTimeout(status);
-      }
       setStatus(status_hidden);
     }
   }, [props.showLoadingView]);
