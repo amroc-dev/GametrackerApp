@@ -62,7 +62,7 @@ const baseTheme = {
   borderRadius: 6,
   pillBorderRadius: 100,
   rowHeight: 44,
-  borderWidth: 0,//StyleSheet.hairlineWidth,
+  borderWidth: 0, //StyleSheet.hairlineWidth,
   // borderColor: "rgba(0,0,0,0.15)",
 
   get headerTitleStyle() {
@@ -104,6 +104,11 @@ function ThemeContextProvider(props) {
     RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
   }
 
+  function setThemeWithName(name) {
+    if (name === "light") setTheme(getLightTheme());
+    else if (name === "dark") setTheme(getDarkTheme());
+  }
+
   ////////////////////////////////////////////////////////////
 
   function getDarkTheme() {
@@ -139,9 +144,9 @@ function ThemeContextProvider(props) {
 
   ////////////////////////////////////////////////////////////
 
-  useEffect( () => {
-    setTheme(theme.name === 'light' ? getLightTheme() : getDarkTheme())
-  })
+  useEffect(() => {
+    setTheme(theme.name === "light" ? getLightTheme() : getDarkTheme());
+  });
 
   function getLightTheme() {
     const primary = "rgb(250, 126, 14)";
@@ -156,7 +161,7 @@ function ThemeContextProvider(props) {
         header: background1,
         background1: background1,
         background2: background2,
-        secondary: darken("0.15", background2).toString(),
+        secondary: darken("0.13", background2).toString(),
       },
 
       fonts: {
@@ -178,6 +183,15 @@ function ThemeContextProvider(props) {
     return merge.recursive(baseTheme, theme);
   }
 
-  return <ThemeContext.Provider value={{ theme }}>{props.children}</ThemeContext.Provider>;
+  return (
+    <ThemeContext.Provider
+      value={{
+        theme,
+        setThemeWithName,
+      }}
+    >
+      {props.children}
+    </ThemeContext.Provider>
+  );
 }
 export { ThemeContextProvider, ThemeContext };

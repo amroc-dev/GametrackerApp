@@ -33,7 +33,6 @@ function getStyles(theme) {
       flexDirection: "row",
       alignSelf: "flex-end",
       height: theme.rowHeight,
-
       marginTop: theme.rem * 0.5,
       marginHorizontal: theme.rem * 0.5,
       zIndex: 10,

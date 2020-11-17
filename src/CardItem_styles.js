@@ -86,7 +86,6 @@ function getStyles(theme) {
       display: "flex",
       borderRadius: theme.borderRadius,
       justifyContent: "center",
-      marginBottom: theme.rem * 0.15,
     },
 
     ratingValue: {
