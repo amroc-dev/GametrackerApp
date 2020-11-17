@@ -23,7 +23,7 @@ export default function ModalDropdown(props) {
           left: -HACKY_SIZE,
           width: HACKY_SIZE * 2,
           height: HACKY_SIZE * 2,
-          backgroundColor: "rgba(0,0,0,0.0)",
+          backgroundColor: "rgba(0,0,0,0.2)",
         }}
       />
     );
@@ -65,7 +65,7 @@ export default function ModalDropdown(props) {
 
 function getStyles(theme) {
   
-  const backgroundColor = theme.colors.secondary;
+  const backgroundColor = theme.colors.background2;
   
   return StyleSheet.create({
     dropdownContainer: {

@@ -1,12 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { CoreContextProvider } from "./shared/react/CoreContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
-import { ThemeContextProvider } from "./ThemeContext";
+import { ThemeContextProvider, ThemeContext } from "./ThemeContext";
 import MenuStackNavigator from "./MenuStackNavigator";
+
+function StatusBarSettings() {
+  const {theme} = useContext(ThemeContext)
+
+  const barStyle = theme.name === 'dark' ? 'light-content' : 'dark-content'
+  return <StatusBar barStyle={barStyle}/>
+}
 
 export default function App() {
   return (
@@ -14,7 +21,7 @@ export default function App() {
       <SearchContextProvider>
         <FilterTagsContextProvider>
           <ThemeContextProvider>
-            <StatusBar barStyle="light-content" />
+            <StatusBarSettings />
             <SearchResultsContextProvider>
               <NavigationContainer>
                 <MenuStackNavigator />

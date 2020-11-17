@@ -1,4 +1,4 @@
-import { rgba } from "polished";
+import { rgba, readableColor } from "polished";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { ThemeContext } from "./ThemeContext"
@@ -21,17 +21,18 @@ export function getFilterStyles(theme) {
     outerContainer: {
       // marginHorizontal: theme.rem * 0.5,
       marginTop: theme.rem * 1,
-
-      shadowColor: theme.shadowColor,
-      shadowOpacity: theme.shadowOpacity,
-      shadowRadius: theme.shadowRadius,
-      shadowOffset: theme.shadowOffset,
     },
     bodyContainer: {
       backgroundColor: theme.colors.background2,
       marginTop: 0,
       marginHorizontal: theme.rem * 0.5,
       borderRadius: theme.borderRadius,
+      shadowColor: theme.shadowColor,
+      shadowOpacity: theme.shadowOpacity,
+      shadowRadius: theme.shadowRadius,
+      shadowOffset: theme.shadowOffset,
+      borderWidth: theme.borderWidth,
+      borderColor: theme.borderColor,
       // borderTopLeftRadius: 0,
     },
     headerView: {
@@ -45,14 +46,19 @@ export function getFilterStyles(theme) {
       borderTopRightRadius: theme.borderRadius,
       // borderRadius: theme.borderRadius,
       marginBottom: theme.rem * 0.25,
+
     },
     headerText:{
       color: theme.fonts.colors.primary,
       fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
+
       // width: 100,
       // padding: theme.rem * 0.25,
       paddingHorizontal: theme.rem * 0.25,
     },
+    filterTextSelected: {
+      color: theme.name === 'light' ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
+    }
   });
 }

@@ -34,16 +34,13 @@ function getStyles(theme) {
     searchInput: {
       margin: theme.rem * 0.5,
       marginBottom: 0,
-    },
-
-    root: {
-      // flexDirection: "row",
-      height: theme.rowHeight,
-      // backgroundColor: "rgba(0,0,0,0)",
-      marginTop: theme.rem * 0.5,
       borderRadius: theme.borderRadius,
-      // marginHorizontal: -theme.rem * 0.5,
-      // borderRadius: theme.borderRadius,
+      shadowColor: theme.shadowColor,
+      shadowOpacity: theme.shadowOpacity,
+      shadowRadius: theme.shadowRadius,
+      shadowOffset: theme.shadowOffset,
+      borderWidth: theme.borderWidth,
+      borderColor: theme.borderColor,
     },
     textInput: {
       flex: 1,

@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { ThemeConsumer } from "react-native-elements";
 
 function getStyles(theme) {
   return StyleSheet.create({
@@ -12,6 +13,8 @@ function getStyles(theme) {
       shadowOpacity: theme.shadowOpacity,
       shadowRadius: theme.shadowRadius,
       shadowOffset: theme.shadowOffset,
+      borderWidth: theme.borderWidth,
+      borderColor: theme.borderColor,
     },
 
     image: {
@@ -98,7 +101,7 @@ function getStyles(theme) {
     },
 
     price: {
-      color: "white",
+      color: theme.fonts.colors.primary,
       flex: 0,
       fontSize: theme.fonts.sizes.primary,
     },

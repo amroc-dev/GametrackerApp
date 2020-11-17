@@ -13,10 +13,15 @@ export default function FilterDevice() {
   const styles = getStyles(theme);
   const filterStyles = getFilterStyles(theme);
 
+
+
   useEffect(() => {
     const filter = { ...deviceFilter };
     const items = [];
     Object.keys(filter).forEach((key) => {
+      
+      const buttonTextStyle = [styles.buttonTitle]
+      if (filter[key]) buttonTextStyle.push(filterStyles.filterTextSelected)
       items.push(
         <ToggleButton
           style={styles.button}
@@ -24,7 +29,7 @@ export default function FilterDevice() {
           key={items.length}
           onPress={() => toggleDeviceFilter(key)}
         >
-          <Text style={styles.buttonTitle}>{key}</Text>
+          <Text style={buttonTextStyle}>{key}</Text>
         </ToggleButton>
       );
     });

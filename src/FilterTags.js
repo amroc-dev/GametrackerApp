@@ -4,7 +4,7 @@ import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { SearchContext } from "./shared/react/SearchContext";
 import { getFilterStyles, FilterHeader } from "./Filter_styles";
-import { rgba, darken } from "polished";
+import { rgba, darken, readableColor } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput, ToggleButton } from "./Common";
 import { Dimensions } from "react-native";
@@ -17,6 +17,9 @@ function FilterTags(props) {
   const [tagColumns, setTagColumns] = useState([]);
   const [tagsViewContainerWidth, setTagsViewContainerWidth] = useState(0);
   const flatListRef = useRef(null);
+
+  const styles = getStyles(theme);
+  const filterStyles = getFilterStyles(theme);
 
   useLayoutEffect(() => {
     if (!tags) {
@@ -50,9 +53,11 @@ function FilterTags(props) {
 
     item.forEach((tagItem) => {
       const active = searchTags.includes(tagItem.name);
+      const tagNameStyle = [styles.tagName]
       const tagCountStyle = [styles.tagCount];
       if (active) {
-        tagCountStyle.push(styles.tagCount_selected);
+        tagCountStyle.push(filterStyles.filterTextSelected);
+        tagNameStyle.push(filterStyles.filterTextSelected);
       }
 
       items.push(
@@ -63,7 +68,7 @@ function FilterTags(props) {
             key={items.length}
             onPress={() => (active ? removeSearchTag(tagItem.name) : addSearchTag(tagItem.name))}
           >
-            <Text numberOfLines={1} style={styles.tagName}>
+            <Text numberOfLines={1} style={tagNameStyle}>
               {tagItem.name}
               <Text style={tagCountStyle}>{"  " + tagItem.count}</Text>
             </Text>
@@ -91,8 +96,7 @@ function FilterTags(props) {
     </Text>
   );
 
-  const styles = getStyles(theme);
-  const filterStyles = getFilterStyles(theme);
+
 
   return useMemo(
     () => (
@@ -211,14 +215,15 @@ function getStyles(theme) {
       fontWeight: theme.fonts.weights.bold,
       // maxWidth: 166,
     },
-
+    tagName_selected: {
+      color: readableColor(theme.colors.primary),
+    },
     tagCount: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.mini,
     },
     tagCount_selected: {
-      color: theme.fonts.colors.primary,
-      // color: darken(0.3, theme.fonts.colors.secondary),
+      color: readableColor(theme.colors.primary),
     },
     searchInput: {
       marginTop: theme.rem * 0.5,

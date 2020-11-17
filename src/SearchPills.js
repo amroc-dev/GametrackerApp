@@ -8,6 +8,7 @@ import { ThemeContext } from "./ThemeContext";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
+import { getFilterStyles } from "./Filter_styles";
 import Fade from "react-native-fade";
 
 function SearchPill({ name, clickCallback }) {
@@ -17,6 +18,8 @@ function SearchPill({ name, clickCallback }) {
   useEffect(() => {
     setVisible(true);
   }, []);
+
+  const filtersStyles = getFilterStyles(theme)
 
   const styles = StyleSheet.create({
     button: {
@@ -37,7 +40,7 @@ function SearchPill({ name, clickCallback }) {
   return (
     <Fade visible={visible}>
       <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
-        <Text style={styles.title}>{name}</Text>
+        <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text>
       </ToggleButton>
     </Fade>
   );

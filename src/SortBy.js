@@ -16,11 +16,13 @@ export default function SortBy() {
   return (
     <View style={styles.root}>
       <Text style={styles.sortByLabel}>Sort</Text>
-      <ModalDropdown
-        defaultValue={sortOption}
-        items={pickerItems}
-        onChangeItem={(item, index) => updateSortOption(item.value)}
-      />
+      <View style={styles.dropdownContainer}>
+        <ModalDropdown
+          defaultValue={sortOption}
+          items={pickerItems}
+          onChangeItem={(item, index) => updateSortOption(item.value)}
+        />
+      </View>
     </View>
   );
 }
@@ -29,13 +31,22 @@ function getStyles(theme) {
   return StyleSheet.create({
     root: {
       flexDirection: "row",
-      width: 210,
       alignSelf: "flex-end",
       height: theme.rowHeight,
-      backgroundColor: "rgba(0,0,0,0)",
+
       marginTop: theme.rem * 0.5,
       marginHorizontal: theme.rem * 0.5,
       zIndex: 10,
+    },
+    dropdownContainer: {
+      width: 170,
+      shadowColor: theme.shadowColor,
+      shadowOpacity: theme.shadowOpacity,
+      shadowRadius: theme.shadowRadius,
+      shadowOffset: theme.shadowOffset,
+      borderRadius: theme.borderRadius,
+      borderWidth: theme.borderWidth,
+      borderColor: theme.borderColor,
     },
     sortByLabel: {
       color: theme.fonts.colors.secondary,
