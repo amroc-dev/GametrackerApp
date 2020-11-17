@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo, useMemo } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation, Pressable } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { SearchContext } from "./shared/react/SearchContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { rgba, darken } from "polished";
@@ -10,6 +10,7 @@ import { SearchInput, ToggleButton } from "./Common";
 import { Dimensions } from "react-native";
 
 function FilterTags(props) {
+  const { theme } = useContext(ThemeContext);
   const { tags } = useContext(CoreContext);
   const { searchTags, addSearchTag, removeSearchTag } = useContext(SearchContext);
   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
@@ -56,7 +57,6 @@ function FilterTags(props) {
 
       items.push(
         <View style={styles.tagRow} key={tagItem.name}>
-
           <ToggleButton
             style={styles.tagButton}
             active={active}
@@ -91,247 +91,136 @@ function FilterTags(props) {
     </Text>
   );
 
-  return useMemo( () => (
-    <>
-      <View onLayout={ e => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
-      style={[filterStyles.outerContainer, styles.outer]}>
-        <FilterHeader title={"Tags"} />
-        {tagColumns.length > 0 ? (
-          <View style={filterStyles.bodyContainer}>
-            <FlatList
-              ref={flatListRef}
-              data={tagColumns}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString()}
-              initialNumToRender={2}
-              horizontal={true}
-              windowSize={3}
-              maxToRenderPerBatch={2}
-              // updateCellsBatchingPeriod={16}
-              style={styles.scrollView}
-              indicatorStyle="white"
-              showsHorizontalScrollIndicator={tagColumns.length > 2}
-              // snapToInterval={tagsViewContainerWidth / 2}
-              // snapToAlignment={"start"}
-              pagingEnabled
-              keyboardDismissMode="on-drag"
-              decelerationRate={"fast"}
-              getItemLayout={(data, index) => ({
-                length: tagsViewContainerWidth / 2,
-                offset: (tagsViewContainerWidth / 2) * index,
-                index,
-              })}
-            />
-          </View>
-        ) : (
-          noMatchesText
-        )}
-        <SearchInput
-          style={[filterStyles.bodyContainer, styles.searchInput,] }
-          returnKeyType="done"
-          placeholder={"Search " + tags.length + " tags"}
-          onChangeText={onChangeText}
-          value={tagSearchField}
-        />
-      </View>
-    </>
-  ),[tagColumns, searchTags])
+  const styles = getStyles(theme);
+
+  return useMemo(
+    () => (
+      <>
+        <View
+          onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
+          style={[filterStyles.outerContainer, styles.outer]}
+        >
+          <FilterHeader title={"Tags"} />
+          {tagColumns.length > 0 ? (
+            <View style={filterStyles.bodyContainer}>
+              <FlatList
+                ref={flatListRef}
+                data={tagColumns}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString()}
+                initialNumToRender={2}
+                horizontal={true}
+                windowSize={3}
+                maxToRenderPerBatch={2}
+                // updateCellsBatchingPeriod={16}
+                style={styles.scrollView}
+                indicatorStyle="white"
+                showsHorizontalScrollIndicator={tagColumns.length > 2}
+                // snapToInterval={tagsViewContainerWidth / 2}
+                // snapToAlignment={"start"}
+                pagingEnabled
+                keyboardDismissMode="on-drag"
+                decelerationRate={"fast"}
+                getItemLayout={(data, index) => ({
+                  length: tagsViewContainerWidth / 2,
+                  offset: (tagsViewContainerWidth / 2) * index,
+                  index,
+                })}
+              />
+            </View>
+          ) : (
+            noMatchesText
+          )}
+          <SearchInput
+            style={[filterStyles.bodyContainer, styles.searchInput]}
+            returnKeyType="done"
+            placeholder={"Search " + tags.length + " tags"}
+            onChangeText={onChangeText}
+            value={tagSearchField}
+          />
+        </View>
+      </>
+    ),
+    [tagColumns, searchTags]
+  );
 }
-
-const styles = StyleSheet.create({
-  outer: {
-    marginBottom: 0,
-  },
-
-  body: {
-    height: "auto",
-    backgroundColor: theme.colors.background2,
-    marginHorizontal: theme.rem * 0.5,
-    borderRadius: theme.borderRadius,
-  },
-  scrollView: {},
-  innerBody: {
-    flexDirection: "column",
-    flex: 1,
-  },
-
-  tags: {
-    flex: 1,
-    flexDirection: "column",
-    alignSelf: "flex-start",
-    margin: theme.rem * 0.5,
-  },
-
-  tagCard: {
-    // marginRight: theme.rem * 0.5,
-    // backgroundColor: theme.colors.background2,
-    // borderRadius: theme.borderRadius,
-    padding: theme.rem * 0.5,
-    flexDirection: "column",
-    // minWidth: 160,
-  },
-
-  tagCardFirst: {
-    marginLeft: theme.rem * 0.5,
-    // borderTopLeftRadius: 0,
-  },
-
-  tagRow: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    marginBottom: theme.rem * 0.1,
-    marginRight: theme.rem * 0.25,
-    // paddingRight: theme.rem * 0.5,
-    // backgroundColor: "red",
-  },
-  tagButton: {
-    flexDirection: "row",
-    justifyContent: "flex-start",
-    alignItems: "center",
-    padding: theme.rem * 0.25,
-    paddingHorizontal: theme.rem * 0.5,
-
-    borderRadius: theme.pillBorderRadius,
-  },
-  tagName: {
-    color: theme.fonts.colors.title,
-    fontSize: theme.fonts.sizes.primary,
-    fontWeight: theme.fonts.weights.bold,
-    // maxWidth: 166,
-  },
-
-  tagCount: {
-    color: theme.fonts.colors.secondary,
-    fontSize: theme.fonts.sizes.mini,
-  },
-  tagCount_selected: {
-    color: theme.fonts.colors.primary,
-    // color: darken(0.3, theme.fonts.colors.secondary),
-  },
-  searchInput: {
-    marginTop: theme.rem * 0.5,
-  },
-});
 
 export default memo(FilterTags);
 
-// function FilterTags() {
-//   const { tags } = useContext(CoreContext);
-//   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
-//   const [tagColumns, setTagColumns] = useState([]);
-//   const [test, setTest] = useState([]);
-//   const [showActivityIndicator, setShowActivityIndicator] = useState(false);
+function getStyles(theme) {
+  return StyleSheet.create({
+    outer: {
+      marginBottom: 0,
+    },
 
-//   useEffect(() => {
-//     if (!tags) {
-//       return;
-//     }
+    body: {
+      height: "auto",
+      backgroundColor: theme.colors.background2,
+      marginHorizontal: theme.rem * 0.5,
+      borderRadius: theme.borderRadius,
+    },
+    scrollView: {},
+    innerBody: {
+      flexDirection: "column",
+      flex: 1,
+    },
 
-//     if (tagSearchField.length === 0 && test.length > 0) {
-//       return
-//     }
+    tags: {
+      flex: 1,
+      flexDirection: "column",
+      alignSelf: "flex-start",
+      margin: theme.rem * 0.5,
+    },
 
-//     let groups = [];
-//     tags.map((t) => {
-//       if (groups.length === 0 || groups[groups.length - 1].length === 10) {
-//         groups.push([]);
-//       }
+    tagCard: {
+      // marginRight: theme.rem * 0.5,
+      // backgroundColor: theme.colors.background2,
+      // borderRadius: theme.borderRadius,
+      padding: theme.rem * 0.5,
+      flexDirection: "column",
+      // minWidth: 160,
+    },
 
-//       const currentGroup = groups[groups.length - 1];
+    tagCardFirst: {
+      marginLeft: theme.rem * 0.5,
+      // borderTopLeftRadius: 0,
+    },
 
-//       if (tagSearchField.length === 0) currentGroup.push(t);
-//       else if (t.name.toLowerCase().startsWith(tagSearchField.toLowerCase())) currentGroup.push(t);
-//       return null;
-//     });
+    tagRow: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      marginBottom: theme.rem * 0.1,
+      marginRight: theme.rem * 0.25,
+      // paddingRight: theme.rem * 0.5,
+      // backgroundColor: "red",
+    },
+    tagButton: {
+      flexDirection: "row",
+      justifyContent: "flex-start",
+      alignItems: "center",
+      padding: theme.rem * 0.25,
+      paddingHorizontal: theme.rem * 0.5,
 
-//     if (groups.length > 0 && groups[groups.length - 1].length === 0) {
-//       groups.pop();
-//     }
+      borderRadius: theme.pillBorderRadius,
+    },
+    tagName: {
+      color: theme.fonts.colors.title,
+      fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
+      // maxWidth: 166,
+    },
 
-//     let viewGroups = [];
-//     groups.forEach((group) => {
-//       viewGroups.push(
-//         <View style={styles.tagCard}>
-//           {group.map((tagItem) => (
-//             <View style={styles.tagItem} key={tagItem.name}>
-//               <Text style={styles.tagName}>{tagItem.name}</Text>
-//               <Text style={styles.tagCount}>{tagItem.count}</Text>
-//             </View>
-//           ))}
-//         </View>
-//       );
-//     });
-
-//     setTagColumns(viewGroups);
-//     if (test.length === 0) {
-//       setTest(viewGroups)
-//     }
-//     setShowActivityIndicator(false);
-//   }, [tagSearchField, tags]);
-
-//   // function renderItem({ item, index }) {
-//   //   const cardStyle = index === 0 ? [styles.tagCard, styles.tagCardFirst] : styles.tagCard;
-
-//   //   return (
-//   //     <View style={cardStyle}>
-//   //       {item.map((tagItem) => (
-//   //         <View style={styles.tagItem} key={tagItem.name}>
-//   //           <Text style={styles.tagName}>{tagItem.name}</Text>
-//   //           <Text style={styles.tagCount}>{tagItem.count}</Text>
-//   //         </View>
-//   //       ))}
-//   //     </View>
-//   //   );
-//   // }
-
-//   function onChangeText(text) {
-//     setShowActivityIndicator(true);
-//     setTagSearchField(text);
-//   }
-
-//   const fullTagView = (
-//     <ScrollView
-//     keyExtractor={(item, index) => index.toString()}
-//     horizontal={true}
-//     style={styles.scrollView}
-//     indicatorStyle="white"
-//   >
-//     {test}
-//   </ScrollView>
-//   )
-
-//   const tagScrollView = (
-//     <ScrollView
-//       keyExtractor={(item, index) => index.toString()}
-//       horizontal={true}
-//       style={styles.scrollView}
-//       indicatorStyle="white"
-//     >
-//       {tagColumns}
-//     </ScrollView>
-//   );
-
-//   const scrollViewToUse = tagSearchField.length === 0 ? fullTagView : tagScrollView
-
-//   const noMatchesText = (
-//     <Text style={{ marginLeft: theme.rem, marginTop: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
-//       No Matches
-//     </Text>
-//   );
-
-//   return (
-//     <>
-//       <View style={[filterStyles.outerContainer, styles.outer]}>
-//         <FilterHeader title={"Tags"} />
-//         {tagColumns.length > 0 ? <View style={styles.body}>{scrollViewToUse}</View> : noMatchesText}
-//         <SearchInput
-//           style={styles.searchInput}
-//           returnKeyType="done"
-//           placeholder={"Search " + tags.length + " tags"}
-//           onChangeText={onChangeText}
-//         />
-//       </View>
-//     </>
-//   );
-// }
+    tagCount: {
+      color: theme.fonts.colors.secondary,
+      fontSize: theme.fonts.sizes.mini,
+    },
+    tagCount_selected: {
+      color: theme.fonts.colors.primary,
+      // color: darken(0.3, theme.fonts.colors.secondary),
+    },
+    searchInput: {
+      marginTop: theme.rem * 0.5,
+    },
+  });
+}

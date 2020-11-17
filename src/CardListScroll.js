@@ -8,10 +8,11 @@ import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import InfiniteScrollView from "./InfiniteScrollView";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
 
 export default function CardListScroll() {
+  const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
@@ -32,7 +33,7 @@ export default function CardListScroll() {
       setSearchCountCard(<SearchCountCard key={0} count={0} errorMessage={"Cannot reach server"} />);
       return;
     }
-    
+
     // this is just for the condition when search results has been cleared at the start of a new search
     if (Object.keys(searchResults).length === 0) {
       setSearchCountCard(null);
@@ -76,7 +77,7 @@ export default function CardListScroll() {
   transitionViewRef = useRef();
   const cardListTransition = (
     <Transition.Together>
-      <Transition.In type="fade" durationMs={125} interpolation="easeIn" delayMs={100}/>
+      <Transition.In type="fade" durationMs={125} interpolation="easeIn" delayMs={100} />
       <Transition.Change interpolation="easeInOut" />
     </Transition.Together>
   );
@@ -105,7 +106,7 @@ export default function CardListScroll() {
           <View style={{ marginBottom: theme.rem * 0.5 }}>
             {searchCountCard}
             {items}
-          </View >
+          </View>
         </Transitioning.View>
       </SafeAreaView>
     </InfiniteScrollView>

@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } fr
 import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import RangeSlider from "@jesster2k10/react-native-range-slider";
@@ -12,10 +12,13 @@ import rgbHex from "rgb-hex";
 let sliderPressed = false;
 
 function FilterPopularity() {
+  const { theme } = useContext(ThemeContext);
   const { popularityIntervals } = useContext(CoreContext);
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
   const [sliderValRead, setSliderValRead] = useState({ min: 0, max: 0 });
   const [sliderValWrite, setSliderValWrite] = useState({ min: 0, max: 0 });
+
+  const styles = getStyles(theme)
 
   useEffect(() => {
     sliderPressed = false;
@@ -145,32 +148,34 @@ function FilterPopularity() {
   );
 }
 
-const styles = StyleSheet.create({
-  outer: {},
-
-  body: {
-    paddingHorizontal: theme.rem * 1,
-  },
-  sliderContainer: {
-    marginTop: theme.rem * -0.75,
-  },
-  slider: {},
-  textContainer: {
-    paddingTop: theme.rem * 1,
-    alignSelf: "center",
-    flexDirection: "row",
-    alignItems: "flex-end",
-  },
-  text: {
-    color: theme.fonts.colors.secondary,
-    fontSize: theme.fonts.sizes.primary,
-    fontWeight: theme.fonts.weights.bold,
-  },
-  textUnits: {
-    color: theme.fonts.colors.title,
-    fontSize: theme.fonts.sizes.header,
-    fontWeight: theme.fonts.weights.bold,
-  },
-});
-
 export default memo(FilterPopularity);
+
+function getStyles(theme) {
+  return StyleSheet.create({
+    outer: {},
+
+    body: {
+      paddingHorizontal: theme.rem * 1,
+    },
+    sliderContainer: {
+      marginTop: theme.rem * -0.75,
+    },
+    slider: {},
+    textContainer: {
+      paddingTop: theme.rem * 1,
+      alignSelf: "center",
+      flexDirection: "row",
+      alignItems: "flex-end",
+    },
+    text: {
+      color: theme.fonts.colors.secondary,
+      fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
+    },
+    textUnits: {
+      color: theme.fonts.colors.title,
+      fontSize: theme.fonts.sizes.header,
+      fontWeight: theme.fonts.weights.bold,
+    },
+  });
+}

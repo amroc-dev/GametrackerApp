@@ -1,6 +1,5 @@
 import React, { useContext, useState, useEffect, memo, useRef } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
-import theme from "./Theme";
 
 export function Thumb() {
   const THUMB_RADIUS = 16;

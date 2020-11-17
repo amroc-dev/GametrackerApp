@@ -11,16 +11,15 @@ import {
   ScrollView,
 } from "react-native";
 import { Button as ElemButton } from "react-native-elements";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { rgba } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const iconSize = 22;
 
 export function SearchInput(props) {
+  const { theme } = useContext(ThemeContext);
   const [showCancelButton, setShowCancelButton] = useState(false);
-  const [showClearButton, setShowClearButton] = useState(false);
-  const [textValue, setTextValue] = useState("");
   const textInputRef = useRef(null);
 
   function onTextFocus() {
@@ -37,6 +36,36 @@ export function SearchInput(props) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }
 
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row-reverse",
+      alignItems: "center",
+    },
+    searchInput: {
+      flex: 1,
+      height: theme.rowHeight,
+      flexDirection: "row",
+      backgroundColor: theme.colors.secondary,
+      alignItems: "center",
+      borderRadius: theme.borderRadius,
+      paddingHorizontal: theme.rem * 0.5,
+    },
+    textInput: {
+      flex: 1,
+      color: theme.fonts.colors.title,
+      backgroundColor: theme.colors.secondary,
+      borderRadius: 0,
+      borderTopRightRadius: theme.borderRadius,
+      borderBottomRightRadius: theme.borderRadius,
+      fontSize: theme.fonts.sizes.header,
+      paddingHorizontal: theme.rem * 0.5,
+    },
+    icon: {
+      height: iconSize,
+      color: theme.fonts.colors.primary,
+    },
+  }); 
+
   const cancelButton = showCancelButton ? (
     <Button
       onPress={() => {
@@ -50,12 +79,11 @@ export function SearchInput(props) {
     />
   ) : null;
 
-  useEffect( () => {
-  }, [props.value])
+  useEffect(() => {}, [props.value]);
 
   function onChangeText(text) {
     if (props.onChangeText) {
-      props.onChangeText(text)
+      props.onChangeText(text);
     }
   }
 
@@ -76,49 +104,24 @@ export function SearchInput(props) {
           autoCorrect={false}
         />
         {props.value.length > 0 ? (
-          <ElemButton 
-          type="clear" 
-          icon={<Icon name="close-circle" size={iconSize} color={theme.fonts.colors.secondary} />} 
-          onPress={ () => onChangeText("")}
+          <ElemButton
+            type="clear"
+            icon={<Icon name="close-circle" size={iconSize} color={theme.fonts.colors.secondary} />}
+            onPress={() => onChangeText("")}
           />
         ) : null}
       </View>
     </View>
   );
+
+
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row-reverse",
-    alignItems: "center",
-  },
-  searchInput: {
-    flex: 1,
-    height: theme.rowHeight,
-    flexDirection: "row",
-    backgroundColor: theme.colors.secondary,
-    alignItems: "center",
-    borderRadius: theme.borderRadius,
-    paddingHorizontal: theme.rem * 0.5,
-  },
-  textInput: {
-    flex: 1,
-    color: theme.fonts.colors.title,
-    backgroundColor: theme.colors.secondary,
-    borderRadius: 0,
-    borderTopRightRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
-    fontSize: theme.fonts.sizes.header,
-    paddingHorizontal: theme.rem * 0.5,
-  },
-  icon: {
-    height: iconSize,
-    color: theme.fonts.colors.primary,
-  },
-});
+//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function ToggleButton(props) {
   const pressFade = useRef(new Animated.Value(1)).current;
+  const { theme } = useContext(ThemeContext);
 
   const baseStyle = {
     padding: theme.rem * 0.5,
@@ -150,60 +153,3 @@ export function ToggleButton(props) {
     </Pressable>
   );
 }
-
-export function FatSlider(props) {
-  const ref = useRef(null);
-
-  const baseStyle = {
-    margin: theme.rem * 0.5,
-
-    // justifyContent: 'center',
-    // backgroundColor: props.style && props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
-    borderRadius: theme.borderRadius * 4,
-  };
-
-  const barStyle = {
-    backgroundColor: theme.colors.primary,
-    flex: 1,
-  };
-
-  const containerViewStyle = {
-    flexDirection: "row",
-    width: 760,
-  };
-  return (
-    <Pressable style={{ flex: 1 }}>
-      <View
-      // onStartShouldSetResponderCapture={() => {
-      //   console.log("re");
-      //   return true;
-      // }}
-      // onResponderGrant={ () => console.log("grant")}
-      // style={barStyle}
-      ></View>
-    </Pressable>
-    // <ScrollView
-    //   {...props}
-    //   horizontal
-    //   bounces={false}
-    //   showsHorizontalScrollIndicator={false}
-    //   // onTouchMove={ ( {nativeEvent}) => console.log(nativeEvent) }
-    //   style={[baseStyle, props.style]}
-    //   // value={props.value}
-    //   ref = {ref}
-    //   // onMomentumScrollBegin={({nativeEvent}) => ref.current.scrollTo({ x: nativeEvent.contentOffset.x, animated: false }) }
-    //   // onScrollEndDrag={ ({nativeEvent}) => ref.current.scrollTo({ x: nativeEvent.contentOffset.x, animated: false })  }
-    //   // onMomentumScrollBegin={() => console.log("onMomentumScrollBegin")}
-    //   onScrollEndDrag={ (e) => {setHalt(-1); setHalt(e.nativeEvent.contentOffset.x)}}
-    //   // onTouchEndCapture={ () => console.log("end")}
-    //   >
-    //     <View style={containerViewStyle}>
-    //       <View style={barStyle}/>
-    //       <View style={{opacity: 0, flex: 1}}/>
-    //     </View>
-
-    // </ScrollView>
-  );
-}
-
-const fatSliderStyles = StyleSheet.create({});

@@ -4,19 +4,36 @@ import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { numberWithCommas } from "./shared/react/Misc";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
 import Fade from "react-native-fade";
 
 function SearchPill({ name, clickCallback }) {
-  const [visible, setVisible] = useState(false)
+  const { theme } = useContext(ThemeContext);
+  const [visible, setVisible] = useState(false);
 
-  useEffect( () => {
-    setVisible(true)
-  }, [])
-  
+  useEffect(() => {
+    setVisible(true);
+  }, []);
+
+  const styles = StyleSheet.create({
+    button: {
+      marginBottom: theme.rem * 0.5,
+      marginRight: theme.rem * 0.4,
+      borderRadius: theme.pillBorderRadius,
+      minWidth: 60,
+      alignItems: "center",
+      height: "auto",
+    },
+    title: {
+      fontSize: theme.fonts.sizes.primary,
+      color: theme.fonts.colors.title,
+      fontWeight: theme.fonts.weights.bold,
+    },
+  });
+
   return (
     <Fade visible={visible}>
       <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
@@ -37,6 +54,17 @@ export default function SearchPills() {
     setPopularityFilter,
     searchID,
   } = useContext(SearchContext);
+  const { theme } = useContext(ThemeContext);
+
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      margin: theme.rem * 0.5,
+      marginBottom: theme.rem * -0.5,
+      backgroundColor: "rgba(0,0,0,0)",
+    },
+  });
 
   const { submittedSearchTerm, newSearchSubmitted } = useContext(SearchResultsContext);
 
@@ -100,26 +128,3 @@ export default function SearchPills() {
 
   return <View style={styles.container}>{pillElems}</View>;
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    margin: theme.rem * 0.5,
-    marginBottom: theme.rem * -0.5,
-    backgroundColor: "rgba(0,0,0,0)",
-  },
-  button: {
-    marginBottom: theme.rem * 0.5,
-    marginRight: theme.rem * 0.4,
-    borderRadius: theme.pillBorderRadius,
-    minWidth: 60,
-    alignItems: "center",
-    height: "auto",
-  },
-  title: {
-    fontSize: theme.fonts.sizes.primary,
-    color: theme.fonts.colors.title,
-    fontWeight: theme.fonts.weights.bold,
-  },
-});

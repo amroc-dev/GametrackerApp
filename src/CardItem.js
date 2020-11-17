@@ -2,10 +2,11 @@ import React, { memo, useState, useEffect, useContext, useRef } from "react";
 import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native";
 import { monthMap, formatRatingCount, objectKeyFromDotString } from "./shared/react/Misc";
 import styles from "./CardItem_styles";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 const dbkeys = require("./shared/back-end/db-keys");
 
 function CardItem({ doc }) {
+  const { theme } = useContext(ThemeContext);
   ////////// release date
 
   const doc_releaseDate = objectKeyFromDotString(doc, dbkeys.releaseDate);
@@ -15,7 +16,7 @@ function CardItem({ doc }) {
   const doc_trackName = objectKeyFromDotString(doc, dbkeys.trackName);
   const doc_trackId = objectKeyFromDotString(doc, dbkeys.trackId);
   const doc_artistName = objectKeyFromDotString(doc, dbkeys.artistName);
-  const doc_artworkUrl = objectKeyFromDotString(doc, dbkeys.artworkUrl)
+  const doc_artworkUrl = objectKeyFromDotString(doc, dbkeys.artworkUrl);
 
   const releaseDateArr = doc_releaseDate.split("-");
   const month = monthMap[parseInt(releaseDateArr[1])];

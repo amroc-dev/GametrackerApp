@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { View, ScrollView } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 
 const status_hidden = "hidden";
 const status_visible = "visible";
 
 export default function InfiniteScrollView(props) {
+  const {theme} = useContext(ThemeContext);
   const [contentHeight, setContentHeight] = useState(0);
   const [status, setStatus] = useState(status_hidden);
 

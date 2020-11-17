@@ -1,13 +1,16 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { ToggleButton } from "./Common";
 
 export default function FilterDevice() {
+  const { theme } = useContext(ThemeContext);
   const [elements, setElements] = useState([]);
   const { deviceFilter, toggleDeviceFilter } = useContext(SearchContext);
+
+  const styles = getStyles(theme)
 
   useEffect(() => {
     const filter = { ...deviceFilter };
@@ -22,15 +25,6 @@ export default function FilterDevice() {
         >
           <Text style={styles.buttonTitle}>{key}</Text>
         </ToggleButton>
-
-        // <Button
-        //   buttonStyle = {styles.button}
-        //   titleStyle = {styles.buttonTitle}
-        //   type={filter[key] ? "solid" : "clear"}
-        //   onPress={() => toggleDeviceFilter(key)}
-        //   key={items.length}
-        //   title={key}
-        // />
       );
     });
 
@@ -45,24 +39,26 @@ export default function FilterDevice() {
   );
 }
 
-const styles = StyleSheet.create({
-  outer: {},
+function getStyles(theme) {
+  return StyleSheet.create({
+    outer: {},
 
-  body: {
-    paddingVertical: theme.rem * 0.5,
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
+    body: {
+      paddingVertical: theme.rem * 0.5,
+      flexDirection: "row",
+      justifyContent: "center",
+      alignItems: "center",
+    },
 
-  button: {
-    marginRight: theme.rem * 0.5,
-    borderRadius: theme.pillBorderRadius,
-    // padding: theme.rem * 0.5,
-  },
-  buttonTitle: {
-    color: theme.fonts.colors.title,
-    fontSize: theme.fonts.sizes.primary,
-    fontWeight: theme.fonts.weights.bold,
-  },
-});
+    button: {
+      marginRight: theme.rem * 0.5,
+      borderRadius: theme.pillBorderRadius,
+      // padding: theme.rem * 0.5,
+    },
+    buttonTitle: {
+      color: theme.fonts.colors.title,
+      fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
+    },
+  });
+}

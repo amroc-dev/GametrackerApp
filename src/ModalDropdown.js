@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Pressable } from "react-native";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useFocusEffect } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import { lighten, darken } from "polished";
 
 export default function ModalDropdown(props) {
+  const { theme } = useContext(ThemeContext);
   const [overlay, setOverlay] = useState(null);
   const isFocused = useIsFocused();
   let controller;
@@ -29,7 +30,7 @@ export default function ModalDropdown(props) {
   }
 
   function onClose() {
-    setOverlay(null)
+    setOverlay(null);
   }
 
   useEffect(() => {
@@ -38,9 +39,11 @@ export default function ModalDropdown(props) {
     }
   }, [isFocused]);
 
+  const styles = getStyles(theme);
+
   return (
     <>
-        {overlay}
+      {overlay}
       <DropDownPicker
         controller={(instance) => (controller = instance)}
         style={styles.dropdownStyle}
@@ -60,53 +63,56 @@ export default function ModalDropdown(props) {
   );
 }
 
-const backgroundColor = theme.colors.secondary
-
-const styles = StyleSheet.create({
-  dropdownContainer: {
-    borderWidth: 0,
-    flex: 1,
-    flexDirection: "row",
-  },
-  dropdownStyle: {
-    borderTopLeftRadius: theme.borderRadius,
-    borderTopRightRadius: theme.borderRadius,
-    borderBottomLeftRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
-    backgroundColor: backgroundColor,
-    borderWidth: 0,
-  },
-  dropdown: {
-    flex: 1,
-    borderTopWidth: 0,
-    backgroundColor: backgroundColor,
-    // borderTopLeftRadius: theme.borderRadius,
-    // borderTopRightRadius: theme.borderRadius,
-    borderBottomLeftRadius: theme.borderRadius,
-    borderBottomRightRadius: theme.borderRadius,
-    borderWidth: 0,
-    // borderTopColor: "rgba(255,255,255,0.5)",
-    // borderTopWidth: 1,
-    // marginTop: theme.rem * 0.3,
-    shadowColor: theme.shadowColor,
-    shadowOpacity: theme.shadowOpacity * 1,
-    shadowRadius: theme.shadowRadius,
-    shadowOffset: theme.shadowOffset,
-    shadowOffset: {
-      width: 0,
-      height: theme.shadowRadius * 2,
+function getStyles(theme) {
+  
+  const backgroundColor = theme.colors.secondary;
+  
+  return StyleSheet.create({
+    dropdownContainer: {
+      borderWidth: 0,
+      flex: 1,
+      flexDirection: "row",
     },
-  },
-  itemStyle: {
-    justifyContent: "flex-start",
-    flex: 1,
-  },
-  labelStyle: {
-    color: theme.fonts.colors.primary,
-    flex: 1,
-    fontSize: theme.fonts.sizes.primary,
-    fontWeight: theme.fonts.weights.bold,
-    marginLeft: theme.rem * 0.75,
-  },
-  selectedLabelStyle: {},
-});
+    dropdownStyle: {
+      borderTopLeftRadius: theme.borderRadius,
+      borderTopRightRadius: theme.borderRadius,
+      borderBottomLeftRadius: theme.borderRadius,
+      borderBottomRightRadius: theme.borderRadius,
+      backgroundColor: backgroundColor,
+      borderWidth: 0,
+    },
+    dropdown: {
+      flex: 1,
+      borderTopWidth: 0,
+      backgroundColor: backgroundColor,
+      // borderTopLeftRadius: theme.borderRadius,
+      // borderTopRightRadius: theme.borderRadius,
+      borderBottomLeftRadius: theme.borderRadius,
+      borderBottomRightRadius: theme.borderRadius,
+      borderWidth: 0,
+      // borderTopColor: "rgba(255,255,255,0.5)",
+      // borderTopWidth: 1,
+      // marginTop: theme.rem * 0.3,
+      shadowColor: theme.shadowColor,
+      shadowOpacity: theme.shadowOpacity * 1,
+      shadowRadius: theme.shadowRadius,
+      shadowOffset: theme.shadowOffset,
+      shadowOffset: {
+        width: 0,
+        height: theme.shadowRadius * 2,
+      },
+    },
+    itemStyle: {
+      justifyContent: "flex-start",
+      flex: 1,
+    },
+    labelStyle: {
+      color: theme.fonts.colors.primary,
+      flex: 1,
+      fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
+      marginLeft: theme.rem * 0.75,
+    },
+    selectedLabelStyle: {},
+  });
+}

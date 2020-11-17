@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Wave } from "react-native-animated-spinkit";
-import theme from "./Theme";
+import { ThemeContext } from "./shared/react/ThemeContext";
 
 export default function LoadingSpinner() {
+  const { theme } = useContext(ThemeContext);
+
+  const styles = getStyles(theme);
+
   return (
     <View style={styles.parent}>
       <Wave style={styles.spinner} size={48} color={theme.colors.primary} />
@@ -11,8 +15,9 @@ export default function LoadingSpinner() {
   );
 }
 
-const styles = StyleSheet.create({
-    parent: { 
+function getStyles(theme) {
+  return StyleSheet.create({
+    parent: {
       flexDirection: "row",
       justifyContent: "center",
     },
@@ -20,3 +25,4 @@ const styles = StyleSheet.create({
       marginTop: theme.rem * 1.5,
     },
   });
+}

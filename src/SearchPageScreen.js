@@ -1,10 +1,10 @@
-import React, { useLayoutEffect } from "react";
+import React, { useContext, useLayoutEffect } from "react";
 import { Platform } from "react-native";
 import SearchPage from "./SearchPage";
-import theme from "./Theme";
 import { ForwardButton } from "./NavButtons";
 
 export default function SearchPageScreen({ navigation }) {
+
   if (Platform.isPad) {
   } else {
     useLayoutEffect(() => {
