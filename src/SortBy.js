@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState, useLayoutEffect } from "react";
 import { View, Text, TextInput, StyleSheet, Button, LayoutAnimation, Pressable } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { sortOptions } from "./shared/react/SortOptions";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import ModalDropdown from "./ModalDropdown";
 
 export default function SortBy() {

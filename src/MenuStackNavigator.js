@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import SearchStackNavigator from "./SearchStackNavigator";

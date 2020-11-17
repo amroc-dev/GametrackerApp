@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import { View, ScrollView } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 
 const status_hidden = "hidden";
 const status_visible = "visible";

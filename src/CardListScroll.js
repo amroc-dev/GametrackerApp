@@ -8,7 +8,7 @@ import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import InfiniteScrollView from "./InfiniteScrollView";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
 
 export default function CardListScroll() {

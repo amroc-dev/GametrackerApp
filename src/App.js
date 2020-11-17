@@ -5,7 +5,7 @@ import { CoreContextProvider } from "./shared/react/CoreContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
-import { ThemeContextProvider } from "./shared/react/ThemeContext";
+import { ThemeContextProvider } from "./ThemeContext";
 import MenuStackNavigator from "./MenuStackNavigator";
 
 export default function App() {

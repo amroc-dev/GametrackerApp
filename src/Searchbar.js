@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, TextInput, StyleSheet, Button } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { SearchInput } from "./Common";
 
 export default function Searchbar() {

@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo, useMemo } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation, Pressable } from "react-native";
 import { CoreContext } from "./shared/react/CoreContext";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { SearchContext } from "./shared/react/SearchContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { rgba, darken } from "polished";

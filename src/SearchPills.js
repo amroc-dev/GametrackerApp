@@ -4,7 +4,7 @@ import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { numberWithCommas } from "./shared/react/Misc";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";

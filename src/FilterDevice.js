@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { ToggleButton } from "./Common";
 
@@ -38,6 +38,8 @@ export default function FilterDevice() {
     </View>
   );
 }
+
+
 
 function getStyles(theme) {
   return StyleSheet.create({

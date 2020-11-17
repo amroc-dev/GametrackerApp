@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
-import { ThemeContext } from  "./shared/react/ThemeContext";
+import { ThemeContext } from  "./ThemeContext";
 import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
@@ -11,15 +11,7 @@ export default function FiltersPage() {
   const {theme} = useContext(ThemeContext)
   const [scrollEnabled, setScrollEnabled] = useState(true)
 
-  const styles = StyleSheet.create({
-    root: {
-      backgroundColor: theme.colors.background1,
-    },
-    scrollView: {
-      height: "100%",
-    },
-  });
-  
+  const styles = getStyles(theme)
   
   return (
     <View style={styles.root} >
@@ -40,3 +32,13 @@ export default function FiltersPage() {
   );
 }
 
+function getStyles(theme) {
+  return StyleSheet.create({
+    root: {
+      backgroundColor: theme.colors.background1,
+    },
+    scrollView: {
+      height: "100%",
+    },
+  });
+}

@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } fr
 import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import { filterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import RangeSlider from "@jesster2k10/react-native-range-slider";

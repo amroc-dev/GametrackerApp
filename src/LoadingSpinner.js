@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { View, StyleSheet } from "react-native";
 import { Wave } from "react-native-animated-spinkit";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 
 export default function LoadingSpinner() {
   const { theme } = useContext(ThemeContext);

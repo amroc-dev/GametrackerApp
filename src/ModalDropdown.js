@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { StyleSheet, Pressable } from "react-native";
-import { ThemeContext } from "./shared/react/ThemeContext";
+import { ThemeContext } from "./ThemeContext";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useFocusEffect } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
