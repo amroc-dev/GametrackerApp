@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "./shared/react/SearchContext";
 import { ThemeContext } from "./ThemeContext";
-import { filterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { ToggleButton } from "./Common";
 
 export default function FilterDevice() {
@@ -10,7 +10,8 @@ export default function FilterDevice() {
   const [elements, setElements] = useState([]);
   const { deviceFilter, toggleDeviceFilter } = useContext(SearchContext);
 
-  const styles = getStyles(theme)
+  const styles = getStyles(theme);
+  const filterStyles = getFilterStyles(theme);
 
   useEffect(() => {
     const filter = { ...deviceFilter };
@@ -38,8 +39,6 @@ export default function FilterDevice() {
     </View>
   );
 }
-
-
 
 function getStyles(theme) {
   return StyleSheet.create({

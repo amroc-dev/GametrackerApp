@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimatio
 import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { SearchContext } from "./shared/react/SearchContext";
-import { filterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { rgba, darken } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput, ToggleButton } from "./Common";
@@ -92,6 +92,7 @@ function FilterTags(props) {
   );
 
   const styles = getStyles(theme);
+  const filterStyles = getFilterStyles(theme);
 
   return useMemo(
     () => (

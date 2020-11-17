@@ -61,16 +61,41 @@ const baseTheme = {
   borderRadius: 6,
   pillBorderRadius: 100,
   rowHeight: 44,
+
+  get headerTitleStyle() {
+    return {
+      color: this.fonts.colors.title,
+      fontSize: this.fonts.sizes.header,
+      fontWeight: this.fonts.weights.bold,
+    };
+  },
+
+  get headerNavButtonStyle() {
+    return {
+      color: this.colors.primary,
+      fontSize: this.fonts.sizes.header,
+      fontWeight: this.fonts.weights.bold,
+    };
+  },
+
+  shadowStyle: function () {
+    return {
+      shadowColor: this.shadowColor,
+      shadowOpacity: this.shadowOpacity,
+      shadowRadius: this.shadowRadius,
+      shadowOffset: this.shadowOffset,
+    };
+  },
 };
 
 function ThemeContextProvider(props) {
   const [theme, setTheme] = useState(getDarkTheme());
 
-  useEffect( () => {
-    setRootViewBackground(theme.colors.background1)
-  }, [theme])
+  useEffect(() => {
+    setRootViewBackground(theme.colors.background1);
+  }, [theme]);
 
-  function setRootViewBackground( col ) {
+  function setRootViewBackground(col) {
     const bgRGB = extractRGB(col);
     RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
   }
@@ -96,10 +121,10 @@ function ThemeContextProvider(props) {
           primary2: "rgb(210, 210, 210)",
           secondary: "rgb(150, 150, 150)",
         },
-      }
+      },
     };
-    
-    return merge.recursive(baseTheme, dark)
+
+    return merge.recursive(baseTheme, dark);
   }
 
   function setLightTheme() {}

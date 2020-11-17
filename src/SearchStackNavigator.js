@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -7,17 +7,18 @@ import { NavigationContainer } from "@react-navigation/native";
 import SearchPageScreen from "./SearchPageScreen";
 import FiltersPageScreen from "./FiltersPageScreen";
 
-import theme, { headerTitleStyle } from "./Theme";
+import { ThemeContext } from "./ThemeContext";
 
 const Stack = createStackNavigator();
 import { MenuButton } from "./NavButtons";
 
 export default function SearchStackNavigator( {navigation}) {
-  
+  const {theme} = useContext(ThemeContext)
+
   return (
     <Stack.Navigator
       screenOptions={{
-        headerTitleStyle: headerTitleStyle,
+        headerTitleStyle: theme.headerTitleStyle,
         // headerTransparent: true,
         // headerBackground: () => (
         //   <BlurView tint="light" intensity={100} style={{...StyleSheet.absoluteFillObject, backgroundColor: "red"}} />

@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import { numberWithCommas } from "./shared/react/Misc";
-import cardItemStyles from "./CardItem_styles"
-import theme from './Theme';
+import getStyles from "./CardItem_styles"
+import { ThemeContext } from "./ThemeContext";
 
 //////////
 export default function SearchCountCard(props) {
+  const { theme } = useContext(ThemeContext)
+  
   let text = props.errorMessage ? props.errorMessage : "No results";
   if (props.count > 0) {
     text = `Showing ${numberWithCommas(props.count)} results`;
@@ -21,6 +23,8 @@ export default function SearchCountCard(props) {
       padding: theme.rem * 0.5,
     },
   });
+
+  const cardItemStyles = getStyles(theme)
 
   return (
     <>

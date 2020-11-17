@@ -1,10 +1,14 @@
 import { rgba } from "polished";
-import React from "react";
+import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import theme, { headerTitleStyle } from "./Theme";
+import { ThemeContext } from "./ThemeContext"
 
 
 export function FilterHeader( {title} ) {
+  const {theme} = useContext(ThemeContext)
+
+  const filterStyles = getFilterStyles(theme)
+  
   return (
     <View style={filterStyles.headerView}>
       <Text style={filterStyles.headerText}>{title}</Text>
@@ -12,7 +16,8 @@ export function FilterHeader( {title} ) {
   )
 }
 
-export const filterStyles = StyleSheet.create({
+export function getFilterStyles(theme) {
+  return StyleSheet.create({
     outerContainer: {
       // marginHorizontal: theme.rem * 0.5,
       marginTop: theme.rem * 1,
@@ -50,3 +55,4 @@ export const filterStyles = StyleSheet.create({
       paddingHorizontal: theme.rem * 0.25,
     },
   });
+}

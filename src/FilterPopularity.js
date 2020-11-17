@@ -4,7 +4,7 @@ import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
-import { filterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import RangeSlider from "@jesster2k10/react-native-range-slider";
 import rgbHex from "rgb-hex";
@@ -19,6 +19,7 @@ function FilterPopularity() {
   const [sliderValWrite, setSliderValWrite] = useState({ min: 0, max: 0 });
 
   const styles = getStyles(theme)
+  const filterStyles = getFilterStyles(theme)
 
   useEffect(() => {
     sliderPressed = false;
