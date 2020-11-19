@@ -61,6 +61,7 @@ function getStyles(theme) {
     artistText: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.secondary,
+      paddingTop: theme.rem * 0.15,
     },
 
     releaseDate: {

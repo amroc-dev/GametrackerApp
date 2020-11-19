@@ -138,7 +138,7 @@ function FilterPopularity() {
             tintColor={theme.colors.secondary}
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
             handleColor={lighten(0.0, theme.colors.primary)}
-            minDistance={popularityIntervals.length / 15}
+            minDistance={0}
             selectedMinimum={sliderValWrite.min}
             selectedMaximum={sliderValWrite.max}
             onChange={onChange}

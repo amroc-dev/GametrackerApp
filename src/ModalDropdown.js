@@ -29,7 +29,7 @@ export default function ModalDropdown(props) {
           left: -HACKY_SIZE,
           width: HACKY_SIZE * 2,
           height: HACKY_SIZE * 2,
-          backgroundColor: "rgba(0,0,0,0.25)",
+          backgroundColor: "rgba(0,0,0,0.0)",
         }}
       />
     );
@@ -113,12 +113,12 @@ function getStyles(theme) {
       // borderTopWidth: 1,
       // marginTop: theme.rem * 0.3,
       shadowColor: theme.shadowColor,
-      shadowOpacity: theme.shadowOpacity * 1,
-      shadowRadius: theme.shadowRadius,
+      shadowOpacity: theme.name === 'light' ? theme.shadowOpacity * 2 : theme.shadowOpacity,
+      shadowRadius: theme.shadowRadius * 4,
       shadowOffset: theme.shadowOffset,
       shadowOffset: {
         width: 0,
-        height: theme.shadowRadius * 2,
+        height: theme.shadowRadius * 8,
       },
     },
     itemStyle: {

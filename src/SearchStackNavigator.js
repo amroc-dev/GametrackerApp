@@ -12,13 +12,15 @@ import { MenuButton } from "./NavButtons";
 export default function SearchStackNavigator( {navigation}) {
   const {theme} = useContext(ThemeContext)
 
+  const blurType = theme.name === 'light' ? 'thinMaterialLight' : 'materialDark'
+
   return (
     <Stack.Navigator
       screenOptions={{
         headerTitleStyle: theme.headerTitleStyle,
         headerTransparent: true,
         headerBackground: () => (
-          <BlurView blurType={theme.name} intensity={100} style={{...StyleSheet.absoluteFillObject}} />
+          <BlurView blurType={blurType} style={{...StyleSheet.absoluteFillObject}} />
         ),
         headerLeft: () => <MenuButton onPress={() => navigation.openDrawer()}  />,
         headerStyle: {

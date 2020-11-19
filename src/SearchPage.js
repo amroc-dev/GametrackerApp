@@ -39,9 +39,12 @@ function getStyles(theme) {
 
     splitRoot_search: {
       flex: 1.5,
+      marginLeft: theme.rem * 0.25,
+      marginRight: theme.rem * -0.25,
     },
     splitRoot_filters: {
       flex: 1,
+      marginRight: theme.rem * 0.25,
     },
   });
 }
