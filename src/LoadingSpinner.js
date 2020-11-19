@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet } from "react-native";
 import { Wave } from "react-native-animated-spinkit";
 import { ThemeContext } from "./ThemeContext";
+import PropTypes from "prop-types";
 
-export default function LoadingSpinner() {
+export default function LoadingSpinner(props) {
   const { theme } = useContext(ThemeContext);
 
   const styles = getStyles(theme);
@@ -14,6 +15,11 @@ export default function LoadingSpinner() {
     </View>
   );
 }
+
+LoadingSpinner.propTypes = {
+  delayMs: PropTypes.number
+};
+
 
 function getStyles(theme) {
   return StyleSheet.create({

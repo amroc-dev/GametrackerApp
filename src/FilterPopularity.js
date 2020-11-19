@@ -135,7 +135,7 @@ function FilterPopularity() {
             step={1}
             lineHeight={3}
             hideLabels={true}
-            tintColor={rgbHex(theme.colors.background1)}
+            tintColor={theme.colors.secondary}
             tintColorBetweenHandles={rgbHex(theme.colors.primary)}
             handleColor={lighten(0.0, theme.colors.primary)}
             minDistance={popularityIntervals.length / 15}

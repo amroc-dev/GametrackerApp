@@ -238,9 +238,11 @@ PODS:
     - React-cxxreact (= 0.63.3)
     - React-jsi (= 0.63.3)
   - React-jsinspector (0.63.3)
+  - react-native-blur (0.8.0):
+    - React
   - react-native-root-view-background-color (1.0.2):
     - React
-  - react-native-safe-area-context (3.1.8):
+  - react-native-safe-area-context (3.1.9):
     - React-Core
   - react-native-slider (3.0.3):
     - React
@@ -356,6 +358,7 @@ DEPENDENCIES:
   - React-jsi (from `../node_modules/react-native/ReactCommon/jsi`)
   - React-jsiexecutor (from `../node_modules/react-native/ReactCommon/jsiexecutor`)
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
+  - "react-native-blur (from `../node_modules/@react-native-community/blur`)"
   - react-native-root-view-background-color (from `../node_modules/react-native-root-view-background-color`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - "react-native-slider (from `../node_modules/@react-native-community/slider`)"
@@ -424,6 +427,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/jsiexecutor"
   React-jsinspector:
     :path: "../node_modules/react-native/ReactCommon/jsinspector"
+  react-native-blur:
+    :path: "../node_modules/@react-native-community/blur"
   react-native-root-view-background-color:
     :path: "../node_modules/react-native-root-view-background-color"
   react-native-safe-area-context:
@@ -491,8 +496,9 @@ SPEC CHECKSUMS:
   React-jsi: df07aa95b39c5be3e41199921509bfa929ed2b9d
   React-jsiexecutor: b56c03e61c0dd5f5801255f2160a815f4a53d451
   React-jsinspector: 8e68ffbfe23880d3ee9bafa8be2777f60b25cbe2
+  react-native-blur: cad4d93b364f91e7b7931b3fa935455487e5c33c
   react-native-root-view-background-color: e7ba21b82c8b7b2a1f902750f08c9dc1a5b38cea
-  react-native-safe-area-context: 79fea126c6830c85f65947c223a5e3058a666937
+  react-native-safe-area-context: b6e0e284002381d2ff29fa4fff42b4d8282e3c94
   react-native-slider: e99fc201cefe81270fc9d81714a7a0f5e566b168
   React-RCTActionSheet: 53ea72699698b0b47a6421cb1c8b4ab215a774aa
   React-RCTAnimation: 1befece0b5183c22ae01b966f5583f42e69a83c2

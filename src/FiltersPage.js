@@ -6,6 +6,7 @@ import { ThemeContext } from  "./ThemeContext";
 import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
+import { HeaderSpace } from "./Common";
 
 export default function FiltersPage() {
   const {theme} = useContext(ThemeContext)
@@ -20,8 +21,10 @@ export default function FiltersPage() {
       indicatorStyle="white"
       decelerationRate="fast"
       keyboardShouldPersistTaps="handled"
+      contentInsetAdjustmentBehavior="automatic"
       keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
+          <HeaderSpace />
           <FilterTags />
           <FilterDevice />
           <FilterPopularity setScrollEnabled={setScrollEnabled} />

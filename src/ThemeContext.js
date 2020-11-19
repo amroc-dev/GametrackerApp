@@ -60,6 +60,7 @@ const baseTheme = {
   },
 
   borderRadius: 6,
+  borderRadius2: 12,
   pillBorderRadius: 100,
   rowHeight: 44,
   borderWidth: 0, //StyleSheet.hairlineWidth,
@@ -92,8 +93,8 @@ const baseTheme = {
 };
 
 function ThemeContextProvider(props) {
-  // const [theme, setTheme] = useState(getDarkTheme());
-  const [theme, setTheme] = useState(getLightTheme());
+  const [theme, setTheme] = useState(getDarkTheme());
+  // const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
     setRootViewBackground(theme.colors.background1);
@@ -112,7 +113,7 @@ function ThemeContextProvider(props) {
   ////////////////////////////////////////////////////////////
 
   function getDarkTheme() {
-    const primary = "rgb(240, 126, 24)";
+    const primary = "rgb(230, 126, 34)";
     const background1 = "rgb(21, 23, 25)";
     const background2 = "rgb(41, 44, 47)";
 
@@ -149,19 +150,19 @@ function ThemeContextProvider(props) {
   });
 
   function getLightTheme() {
-    const primary = "rgb(250, 126, 14)";
-    const background1 = "rgb(241, 241, 241)";
+    const primary = "rgb(33, 149, 211)";
+    const background1 = "rgb(241, 245, 246)";
     const background2 = "rgb(255, 255, 255)";
 
     const theme = {
       name: "light",
 
       colors: {
-        // primary: primary,
-        header: background1,
+        primary: primary,
+        header: background2,
         background1: background1,
         background2: background2,
-        secondary: darken("0.13", background2).toString(),
+        secondary: rgb(220, 224, 228).toString(),
       },
 
       fonts: {
@@ -177,7 +178,8 @@ function ThemeContextProvider(props) {
         },
       },
 
-      shadowOpacity: 0.025,
+      shadowOpacity: 0.03,
+      // shadowRadius: 15,
     };
 
     return merge.recursive(baseTheme, theme);

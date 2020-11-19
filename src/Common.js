@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Button as ElemButton } from "react-native-elements";
 import { ThemeContext } from "./ThemeContext";
-import { rgba } from "polished";
+import { rgba, transparentize, invert } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 
 const iconSize = 22;
@@ -36,6 +36,10 @@ export function SearchInput(props) {
     LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
   }
 
+  const inputBackgroundColor = theme.colors.secondary;
+  const textColor = theme.fonts.colors.title;
+  const placeholderColor = transparentize(0.6, textColor).toString()
+
   const styles = StyleSheet.create({
     container: {
       flexDirection: "row-reverse",
@@ -45,15 +49,15 @@ export function SearchInput(props) {
       flex: 1,
       height: theme.rowHeight,
       flexDirection: "row",
-      backgroundColor: theme.colors.secondary,
+      backgroundColor: inputBackgroundColor,
       alignItems: "center",
-      borderRadius: theme.borderRadius,
+      borderRadius: theme.borderRadius2,
       paddingHorizontal: theme.rem * 0.5,
     },
     textInput: {
       flex: 1,
-      color: theme.fonts.colors.title,
-      backgroundColor: theme.colors.secondary,
+      color: textColor,
+      backgroundColor: inputBackgroundColor,
       borderRadius: 0,
       borderTopRightRadius: theme.borderRadius,
       borderBottomRightRadius: theme.borderRadius,
@@ -62,7 +66,7 @@ export function SearchInput(props) {
     },
     icon: {
       height: iconSize,
-      color: theme.fonts.colors.primary,
+      color: placeholderColor,
     },
   }); 
 
@@ -94,7 +98,7 @@ export function SearchInput(props) {
         <Icon style={styles.icon} name="search" size={iconSize} />
         <TextInput
           clearButtonMode={"never"}
-          placeholderTextColor={theme.fonts.colors.secondary}
+          placeholderTextColor={placeholderColor}
           ref={textInputRef}
           {...props}
           style={styles.textInput}
@@ -106,7 +110,7 @@ export function SearchInput(props) {
         {props.value.length > 0 ? (
           <ElemButton
             type="clear"
-            icon={<Icon name="close-circle" size={iconSize} color={theme.fonts.colors.secondary} />}
+            icon={<Icon name="close-circle" size={iconSize} color={placeholderColor} />}
             onPress={() => onChangeText("")}
           />
         ) : null}
@@ -115,6 +119,15 @@ export function SearchInput(props) {
   );
 
 
+}
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+import { getStatusBarHeight } from "react-native-status-bar-height";
+
+export function HeaderSpace() {
+  const headerHeight = getStatusBarHeight(true)// useHeaderHeight()
+  return <View style={{height:44, opacity:0}} />
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

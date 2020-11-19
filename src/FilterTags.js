@@ -227,6 +227,7 @@ function getStyles(theme) {
     },
     searchInput: {
       marginTop: theme.rem * 0.5,
+      borderRadius: theme.borderRadius2,
     },
   });
 }

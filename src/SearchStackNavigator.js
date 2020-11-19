@@ -1,12 +1,9 @@
 import React, { useContext } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
-import { createDrawerNavigator } from "@react-navigation/drawer";
-import { NavigationContainer } from "@react-navigation/native";
-
 import SearchPageScreen from "./SearchPageScreen";
 import FiltersPageScreen from "./FiltersPageScreen";
-
+import { BlurView } from "@react-native-community/blur";
 import { ThemeContext } from "./ThemeContext";
 
 const Stack = createStackNavigator();
@@ -19,10 +16,10 @@ export default function SearchStackNavigator( {navigation}) {
     <Stack.Navigator
       screenOptions={{
         headerTitleStyle: theme.headerTitleStyle,
-        // headerTransparent: true,
-        // headerBackground: () => (
-        //   <BlurView tint="light" intensity={100} style={{...StyleSheet.absoluteFillObject, backgroundColor: "red"}} />
-        // ),
+        headerTransparent: true,
+        headerBackground: () => (
+          <BlurView blurType={theme.name} intensity={100} style={{...StyleSheet.absoluteFillObject}} />
+        ),
         headerLeft: () => <MenuButton onPress={() => navigation.openDrawer()}  />,
         headerStyle: {
           backgroundColor: theme.colors.header,

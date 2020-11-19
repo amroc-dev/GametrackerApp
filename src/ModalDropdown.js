@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useContext } from "react";
-import { StyleSheet, Pressable } from "react-native";
+import React, { useState, useEffect, useContext, useRef } from "react";
+import { StyleSheet, Pressable, ToolbarAndroidBase } from "react-native";
 import { ThemeContext } from "./ThemeContext";
 import DropDownPicker from "react-native-dropdown-picker";
 import { useFocusEffect } from "@react-navigation/native";
 import { useIsFocused } from "@react-navigation/native";
 import { lighten, darken } from "polished";
+import { Transitioning, Transition } from "react-native-reanimated";
+import nextFrame from "next-frame";
+
 
 export default function ModalDropdown(props) {
   const { theme } = useContext(ThemeContext);
@@ -13,6 +16,9 @@ export default function ModalDropdown(props) {
   let controller;
 
   function onOpen() {
+
+    modalTransitioningView.current.animateNextTransition();
+
     const HACKY_SIZE = 10000;
     setOverlay(
       <Pressable
@@ -23,14 +29,19 @@ export default function ModalDropdown(props) {
           left: -HACKY_SIZE,
           width: HACKY_SIZE * 2,
           height: HACKY_SIZE * 2,
-          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColor: "rgba(0,0,0,0.25)",
         }}
       />
     );
   }
 
   function onClose() {
-    setOverlay(null);
+    async function onCloseNext() {
+      await nextFrame();
+      if (modalTransitioningView.current)
+        setOverlay(undefined);
+    }
+    onCloseNext() 
   }
 
   useEffect(() => {
@@ -41,8 +52,15 @@ export default function ModalDropdown(props) {
 
   const styles = getStyles(theme);
 
+  modalTransitioningView = useRef();
+  const modalTransition = (
+    <Transition.Together>
+      <Transition.In type="fade" durationMs={200} interpolation="linear"/>
+    </Transition.Together>
+  );
+
   return (
-    <>
+    <Transitioning.View style={{flexDirection: 'row'}} ref={modalTransitioningView} transition={modalTransition}>
       {overlay}
       <DropDownPicker
         controller={(instance) => (controller = instance)}
@@ -59,7 +77,8 @@ export default function ModalDropdown(props) {
         dropDownMaxHeight={500}
         {...props}
       />
-    </>
+    </Transitioning.View>
+
   );
 }
 

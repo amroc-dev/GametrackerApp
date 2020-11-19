@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useLayoutEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
 import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
@@ -6,19 +6,27 @@ import SearchCountCard from "./SearchCountCard";
 import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
+import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import InfiniteScrollView from "./InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
+import { HeaderSpace } from "./Common";
 
-export default function CardListScroll() {
+export default memo(function CardListScroll() {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
+  const { searchID } = useContext(SearchContext);
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
   const [hasMoreItems, setHasMoreItems] = useState(false);
 
   const FETCH_COUNT = 20;
+
+  useLayoutEffect(() => {
+    setSearchCountCard(null);
+    setItems([]);
+  }, [searchID]);
 
   useLayoutEffect(() => {
     setSearchCountCard(null);
@@ -77,19 +85,28 @@ export default function CardListScroll() {
   transitionViewRef = useRef();
   const cardListTransition = (
     <Transition.Together>
-      <Transition.In type="fade" durationMs={125} interpolation="easeIn" delayMs={100} />
-      <Transition.Change interpolation="easeInOut" />
+      {/* <Transition.In type="fade" durationMs={125} interpolation="easeIn" /> */}
+      {/* <Transition.Out type="fade" durationMs={50} interpolation="easeOut"/> */}
+      <Transition.Change interpolation="easeInOut"/>
     </Transition.Together>
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     transitionViewRef.current.animateNextTransition();
-  });
+
+    LayoutAnimation.configureNext({
+      create: {
+        duration: 125,
+        type: LayoutAnimation.Types.easeIn,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    });
+  }, [searchResults]);
 
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
-      showLoadingView={[isFetchingResults, items.length === 0 ? 200 : 0]}
+      showLoadingView={isFetchingResults}
       fetchMoreResults={() => {
         fetchMoreResults(FETCH_COUNT);
       }}
@@ -98,20 +115,19 @@ export default function CardListScroll() {
       indicatorStyle="white"
       keyboardShouldPersistTaps="handled"
     >
-      <SafeAreaView>
-        <SearchPills />
-        <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
-          <Searchbar />
-          <SortBy />
-          <View style={{ marginBottom: theme.rem * 0.5 }}>
-            {searchCountCard}
-            {items}
-          </View>
-        </Transitioning.View>
-      </SafeAreaView>
+      <HeaderSpace />
+      <SearchPills />
+      <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
+        <Searchbar />
+        <SortBy />
+        <View style={{ marginBottom: theme.rem * 0.5 }}>
+          {searchCountCard}
+          {items}
+        </View>
+      </Transitioning.View>
     </InfiniteScrollView>
   );
-}
+})
 
 const styles = StyleSheet.create({
   scrollView: {

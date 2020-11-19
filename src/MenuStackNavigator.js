@@ -11,7 +11,7 @@ export default function MenuStackNavigator() {
   
   return (
     <Drawer.Navigator drawerType="back" edgeWidth={0} screenOptions={{ headerShown: false, background: theme.colors.background1 }}>
-      <Drawer.Screen name="Search" component={SearchStackNavigator} />
+      <Drawer.Screen name="Menu" component={SearchStackNavigator} />
     </Drawer.Navigator>
   );
 }

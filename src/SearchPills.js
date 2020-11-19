@@ -10,6 +10,7 @@ import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
 import Fade from "react-native-fade";
+import nextFrame from "next-frame";
 
 function SearchPill({ name, clickCallback }) {
   const { theme } = useContext(ThemeContext);
@@ -38,11 +39,11 @@ function SearchPill({ name, clickCallback }) {
   });
 
   return (
-    <Fade visible={visible}>
+    // <Fade visible={visible}>
       <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
         <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text>
       </ToggleButton>
-    </Fade>
+    // </Fade>
   );
 }
 
@@ -127,6 +128,7 @@ export default function SearchPills() {
     }
 
     setPillElems(pills);
+
   }, [newSearchSubmitted, searchID]);
 
   return <View style={styles.container}>{pillElems}</View>;
