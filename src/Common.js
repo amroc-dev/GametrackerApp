@@ -38,7 +38,7 @@ export function SearchInput(props) {
 
   const inputBackgroundColor = theme.colors.secondary;
   const textColor = theme.fonts.colors.title;
-  const placeholderColor = transparentize(0.6, textColor).toString()
+  const placeholderColor = transparentize(0.6, textColor).toString();
 
   const styles = StyleSheet.create({
     container: {
@@ -68,7 +68,7 @@ export function SearchInput(props) {
       height: iconSize,
       color: placeholderColor,
     },
-  }); 
+  });
 
   const cancelButton = showCancelButton ? (
     <Button
@@ -117,17 +117,15 @@ export function SearchInput(props) {
       </View>
     </View>
   );
-
-
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////
-import { getStatusBarHeight } from "react-native-status-bar-height";
 
 export function HeaderSpace() {
-  const headerHeight = getStatusBarHeight(true)// useHeaderHeight()
-  return <View style={{height:44, opacity:0}} />
+  const { theme } = useContext(ThemeContext);
+  const height = 0;
+
+  return <View style={{ height: theme.isDark ? height : 0, opacity: 0 }} />;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

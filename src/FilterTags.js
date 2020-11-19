@@ -137,7 +137,7 @@ function FilterTags(props) {
             noMatchesText
           )}
           <SearchInput
-            style={[filterStyles.bodyContainer, styles.searchInput]}
+            style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
             returnKeyType="done"
             placeholder={"Search " + tags.length + " tags"}
             onChangeText={onChangeText}

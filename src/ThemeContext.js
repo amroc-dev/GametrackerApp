@@ -53,7 +53,7 @@ const baseTheme = {
 
   shadowColor: "rgb(0,0,0)",
   shadowOpacity: 0.15,
-  shadowRadius: 5,
+  shadowRadius: rem * 0.5,
   shadowOffset: {
     width: 0,
     height: 0,
@@ -90,6 +90,20 @@ const baseTheme = {
       shadowOffset: this.shadowOffset,
     };
   },
+
+  get noShadowStyle() {
+    return {
+      shadowOpacity: 0,
+      shadowRadius: 0,
+      shadowOffset: {
+        width: 0,
+        height: 0,
+      },
+    };
+  },
+
+  get isDark() { return this.name === 'dark'},
+  get isLight() { return this.name === 'light'}
 };
 
 function ThemeContextProvider(props) {
@@ -122,7 +136,7 @@ function ThemeContextProvider(props) {
 
       colors: {
         // primary: primary,
-        header: background1,
+        header: background2,
         background1: background1,
         background2: background2,
         secondary: lighten("0.15", background2).toString(),
@@ -151,7 +165,7 @@ function ThemeContextProvider(props) {
 
   function getLightTheme() {
     const primary = "rgb(33, 149, 211)";
-    const background1 = "rgb(241, 245, 246)";
+    const background1 = "rgb(240, 244, 245)"; //    "rgb(235, 238, 239)";//
     const background2 = "rgb(255, 255, 255)";
 
     const theme = {
@@ -162,7 +176,7 @@ function ThemeContextProvider(props) {
         header: background2,
         background1: background1,
         background2: background2,
-        secondary: rgb(220, 224, 228).toString(),
+        secondary: rgb(218, 222, 226).toString(), //darken(0.09, background1).toString(),
       },
 
       fonts: {
