@@ -118,6 +118,7 @@ export default memo(function CardListScroll() {
       <HeaderSpace />
       <SearchPills />
       <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
+        
         <Searchbar />
         <SortBy />
         <View style={{ marginBottom: theme.rem * 0.5 }}>

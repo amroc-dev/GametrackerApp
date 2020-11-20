@@ -106,6 +106,7 @@ export function SearchInput(props) {
           onEndEditing={props.useCancelButton ? onEndEditing : null}
           autoCompleteType="off"
           autoCorrect={false}
+          keyboardAppearance={theme.name}
         />
         {props.value.length > 0 ? (
           <ElemButton

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef, useEffect } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { CoreContextProvider } from "./shared/react/CoreContext";
@@ -6,17 +6,34 @@ import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "./ThemeContext";
-import MenuStackNavigator from "./MenuStackNavigator";
+import MenuDrawerNavigator from "./MenuDrawerNavigator";
 import Animated from "react-native-reanimated";
 
 function StatusBarSettings() {
-  const { theme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const barStyle = theme.name === "dark" ? "light-content" : "dark-content";
   return <StatusBar barStyle={barStyle} />;
 }
 
+function ThemeMonitor({ navContainerRef }) {
+  const { theme } = useContext(ThemeContext);
+
+  const mounted = useRef(false);
+  useEffect(() => {
+    // if (!mounted.current) {
+    //   mounted.current = true;
+    //   return;
+    // }
+    console.log("themeChanged");
+  }, [theme]);
+
+  return <></>;
+}
+
 export default function App() {
+  const navContainerRef = useRef();
+
   return (
     <CoreContextProvider>
       <SearchContextProvider>
@@ -24,8 +41,9 @@ export default function App() {
           <ThemeContextProvider>
             <StatusBarSettings />
             <SearchResultsContextProvider>
-              <NavigationContainer>
-                <MenuStackNavigator />
+              <NavigationContainer ref={navContainerRef}>
+                <ThemeMonitor navContainerRef={navContainerRef} />
+                <MenuDrawerNavigator />
               </NavigationContainer>
             </SearchResultsContextProvider>
           </ThemeContextProvider>

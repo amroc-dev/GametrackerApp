@@ -15,6 +15,7 @@ export default function SearchStackNavigator({ navigation }) {
   // const blurType = theme.name === 'light' ? 'thinMaterialLight' : 'materialDark'
 
   let screenOptions = {
+    headerShown: true,
     headerTitleStyle: theme.headerTitleStyle,
     // headerTransparent: true,
     // headerBackground: () => (
@@ -25,7 +26,7 @@ export default function SearchStackNavigator({ navigation }) {
       backgroundColor: theme.colors.header,
       shadowOpacity: 0,
       borderBottomWidth: StyleSheet.hairlineWidth,
-      borderBottomColor: theme.isDark ? "rgba(0,0,0,0.75)" : "rgba(0,0,0,0.15)",
+      borderBottomColor: theme.isDark ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.15)",
       borderColor: theme.colors.header,
       shadowColor: theme.colors.primary,
       // shadowColor: theme.shadowColor,

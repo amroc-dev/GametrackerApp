@@ -113,12 +113,12 @@ function getStyles(theme) {
       // borderTopWidth: 1,
       // marginTop: theme.rem * 0.3,
       shadowColor: theme.shadowColor,
-      shadowOpacity: theme.name === 'light' ? theme.shadowOpacity * 2 : theme.shadowOpacity,
-      shadowRadius: theme.shadowRadius * 4,
+      shadowOpacity: theme.isLight ? 0.2 : 0.35,
+      shadowRadius: theme.shadowRadius,
       shadowOffset: theme.shadowOffset,
       shadowOffset: {
         width: 0,
-        height: theme.shadowRadius * 8,
+        height: theme.shadowRadius * 2,
       },
     },
     itemStyle: {
