@@ -146,7 +146,7 @@ function FilterTags(props) {
         </View>
       </>
     ),
-    [tagColumns, searchTags]
+    [tagColumns, searchTags, theme]
   );
 }
 

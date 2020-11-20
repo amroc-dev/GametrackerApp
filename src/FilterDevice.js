@@ -13,15 +13,12 @@ export default function FilterDevice() {
   const styles = getStyles(theme);
   const filterStyles = getFilterStyles(theme);
 
-
-
   useEffect(() => {
     const filter = { ...deviceFilter };
     const items = [];
     Object.keys(filter).forEach((key) => {
-      
-      const buttonTextStyle = [styles.buttonTitle]
-      if (filter[key]) buttonTextStyle.push(filterStyles.filterTextSelected)
+      const buttonTextStyle = [styles.buttonTitle];
+      if (filter[key]) buttonTextStyle.push(filterStyles.filterTextSelected);
       items.push(
         <ToggleButton
           style={styles.button}
@@ -35,17 +32,21 @@ export default function FilterDevice() {
     });
 
     setElements(items);
-  }, [deviceFilter]);
+  }, [deviceFilter, theme]);
 
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
       <FilterHeader title={"Device"} />
-      <View style={[filterStyles.bodyContainer, styles.body]}>{elements}</View>
+      <View style={[filterStyles.bodyContainer, styles.body]}>
+        <View style={styles.inner}>{elements}</View>
+      </View>
     </View>
   );
 }
 
 function getStyles(theme) {
+  const itemSpacing = theme.rem * 0.5;
+  
   return StyleSheet.create({
     outer: {},
 
@@ -55,9 +56,13 @@ function getStyles(theme) {
       justifyContent: "center",
       alignItems: "center",
     },
+    inner: {
+      flexDirection: "row",
+      marginRight: -itemSpacing,
+    },
 
     button: {
-      marginRight: theme.rem * 0.5,
+      marginRight: itemSpacing,
       borderRadius: theme.pillBorderRadius,
       paddingHorizontal: theme.pillHorizontalPadding,
       paddingVertical: theme.pillVerticalPadding,
