@@ -67,8 +67,9 @@ function getBaseTheme() {
     pillHorizontalPadding: rem * 0.66,
     pillVerticalPadding: rem * 0.425,
     rowHeight: 44,
+    borderWidth: 0,
     // borderWidth: StyleSheet.hairlineWidth,
-    // borderColor: "rgba(0,0,0,0.0)",
+    // borderColor: "rgba(0,0,0,0.05)",
 
     get headerTitleStyle() {
       return {
@@ -116,8 +117,8 @@ function getBaseTheme() {
 }
 
 function ThemeContextProvider(props) {
-  const [theme, setTheme] = useState(getDarkTheme());
-  // const [theme, setTheme] = useState(getLightTheme());
+  // const [theme, setTheme] = useState(getDarkTheme());
+  const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
     setRootViewBackground(theme.colors.background1);
@@ -202,7 +203,7 @@ function ThemeContextProvider(props) {
       },
 
       shadowOpacity: 0.03,
-      // shadowRadius: 15,
+      // shadowRadius: 1,
     };
 
     return merge.recursive(getBaseTheme(), theme);

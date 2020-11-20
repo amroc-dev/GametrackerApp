@@ -114,11 +114,11 @@ function getStyles(theme) {
       // marginTop: theme.rem * 0.3,
       shadowColor: theme.shadowColor,
       shadowOpacity: theme.isLight ? 0.2 : 0.35,
-      shadowRadius: theme.shadowRadius,
+      shadowRadius: 5,
       shadowOffset: theme.shadowOffset,
       shadowOffset: {
         width: 0,
-        height: theme.shadowRadius * 2,
+        height: 10,
       },
     },
     itemStyle: {
