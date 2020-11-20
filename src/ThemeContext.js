@@ -64,7 +64,8 @@ function getBaseTheme() {
     borderRadius: 6,
     borderRadius2: 12,
     pillBorderRadius: 100,
-    pillHorizontalPadding: rem * 0.75,
+    pillHorizontalPadding: rem * 0.66,
+    pillVerticalPadding: rem * 0.425,
     rowHeight: 44,
     // borderWidth: StyleSheet.hairlineWidth,
     // borderColor: "rgba(0,0,0,0.0)",
@@ -195,9 +196,9 @@ function ThemeContextProvider(props) {
           secondary: "rgb(140, 140, 140)",
         },
 
-        weights: {
-          bold: "400",
-        },
+        // weights: {
+        //   bold: "400",
+        // },
       },
 
       shadowOpacity: 0.03,

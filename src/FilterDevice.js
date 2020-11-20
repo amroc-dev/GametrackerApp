@@ -60,6 +60,7 @@ function getStyles(theme) {
       marginRight: theme.rem * 0.5,
       borderRadius: theme.pillBorderRadius,
       paddingHorizontal: theme.pillHorizontalPadding,
+      paddingVertical: theme.pillVerticalPadding,
       // padding: theme.rem * 0.5,
     },
     buttonTitle: {

@@ -204,9 +204,9 @@ function getStyles(theme) {
       flexDirection: "row",
       justifyContent: "flex-start",
       alignItems: "center",
-      padding: theme.rem * 0.25,
-      paddingHorizontal: theme.pillHorizontalPadding,
-
+      // padding: theme.rem * 0.25,
+      paddingHorizontal: theme.rem * 0.55,
+      paddingVertical: theme.rem * 0.25,
       borderRadius: theme.pillBorderRadius,
     },
     tagName: {
