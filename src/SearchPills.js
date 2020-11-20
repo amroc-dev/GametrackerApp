@@ -30,6 +30,7 @@ function SearchPill({ name, clickCallback }) {
       minWidth: 60,
       alignItems: "center",
       height: "auto",
+      paddingHorizontal: theme.pillHorizontalPadding,
     },
     title: {
       fontSize: theme.fonts.sizes.primary,

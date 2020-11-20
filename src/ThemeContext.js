@@ -64,6 +64,7 @@ function getBaseTheme() {
     borderRadius: 6,
     borderRadius2: 12,
     pillBorderRadius: 100,
+    pillHorizontalPadding: rem * 0.75,
     rowHeight: 44,
     // borderWidth: StyleSheet.hairlineWidth,
     // borderColor: "rgba(0,0,0,0.0)",

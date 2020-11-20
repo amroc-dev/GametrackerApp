@@ -16,21 +16,6 @@ function StatusBarSettings() {
   return <StatusBar barStyle={barStyle} />;
 }
 
-function ThemeMonitor({ navContainerRef }) {
-  const { theme } = useContext(ThemeContext);
-
-  const mounted = useRef(false);
-  useEffect(() => {
-    // if (!mounted.current) {
-    //   mounted.current = true;
-    //   return;
-    // }
-    console.log("themeChanged");
-  }, [theme]);
-
-  return <></>;
-}
-
 export default function App() {
   const navContainerRef = useRef();
 
@@ -42,7 +27,6 @@ export default function App() {
             <StatusBarSettings />
             <SearchResultsContextProvider>
               <NavigationContainer ref={navContainerRef}>
-                <ThemeMonitor navContainerRef={navContainerRef} />
                 <MenuDrawerNavigator />
               </NavigationContainer>
             </SearchResultsContextProvider>

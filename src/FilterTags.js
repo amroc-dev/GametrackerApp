@@ -205,7 +205,7 @@ function getStyles(theme) {
       justifyContent: "flex-start",
       alignItems: "center",
       padding: theme.rem * 0.25,
-      paddingHorizontal: theme.rem * 0.5,
+      paddingHorizontal: theme.pillHorizontalPadding,
 
       borderRadius: theme.pillBorderRadius,
     },
