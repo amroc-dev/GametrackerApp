@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
-import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation } from "react-native";
+import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation, Text } from "react-native";
 import CardItem from "./CardItem";
 import LoadingSpinner from "./LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
@@ -19,17 +19,20 @@ export default memo(function CardListScroll() {
   const { searchID } = useContext(SearchContext);
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
+  const [networkError, setNetworkError] = useState(false);
   const [hasMoreItems, setHasMoreItems] = useState(false);
 
   const FETCH_COUNT = 15;
 
   useLayoutEffect(() => {
     setSearchCountCard(null);
+    setNetworkError(false);
     setItems([]);
   }, [searchID]);
 
   useLayoutEffect(() => {
-    setSearchCountCard(null);
+    setSearchCountCard(null)
+    setNetworkError(false)
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
@@ -43,9 +46,7 @@ export default memo(function CardListScroll() {
     }
 
     if (searchResults.status === statusCodes.TimedOut || searchResults.status === statusCodes.Failed) {
-      // setItems([]);
-      // setHasMoreItems(false);
-      setSearchCountCard(<SearchCountCard key={0} count={0} errorMessage={"Cannot reach server"} />);
+      setNetworkError(true)
       return;
     }
 
@@ -108,10 +109,12 @@ export default memo(function CardListScroll() {
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
-      showLoadingView={isFetchingResults}
+      isFetchingResults={isFetchingResults}
       fetchMoreResults={() => {
+        setNetworkError(false)
         fetchMoreResults(FETCH_COUNT);
       }}
+      showNetworkError={networkError}
       style={styles.scrollView}
       contentInsetAdjustmentBehavior="automatic"
       indicatorStyle={theme.isDark ? "white" : "black"}
