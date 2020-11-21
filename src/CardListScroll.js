@@ -7,7 +7,7 @@ import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchContext } from "./shared/react/SearchContext";
-import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsContext";
 import InfiniteScrollView from "./InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
@@ -21,7 +21,7 @@ export default memo(function CardListScroll() {
   const [searchCountCard, setSearchCountCard] = useState();
   const [hasMoreItems, setHasMoreItems] = useState(false);
 
-  const FETCH_COUNT = 20;
+  const FETCH_COUNT = 15;
 
   useLayoutEffect(() => {
     setSearchCountCard(null);
@@ -36,15 +36,16 @@ export default memo(function CardListScroll() {
   }, [newSearchSubmitted]);
 
   useEffect(() => {
-    if (searchResults === null) {
-      setHasMoreItems(false);
-      setSearchCountCard(<SearchCountCard key={0} count={0} errorMessage={"Cannot reach server"} />);
+    // this is just for the condition when search results has been cleared at the start of a new search
+    if (searchResults.status === statusCodes.None) {
+      setSearchCountCard(null);
       return;
     }
 
-    // this is just for the condition when search results has been cleared at the start of a new search
-    if (Object.keys(searchResults).length === 0) {
-      setSearchCountCard(null);
+    if (searchResults.status === statusCodes.TimedOut || searchResults.status === statusCodes.Failed) {
+      // setItems([]);
+      // setHasMoreItems(false);
+      setSearchCountCard(<SearchCountCard key={0} count={0} errorMessage={"Cannot reach server"} />);
       return;
     }
 
@@ -86,13 +87,14 @@ export default memo(function CardListScroll() {
   const cardListTransition = (
     <Transition.Together>
       {/* <Transition.In type="fade" durationMs={125} interpolation="easeIn" /> */}
-      {/* <Transition.Out type="fade" durationMs={50} interpolation="easeOut"/> */}
-      <Transition.Change interpolation="easeInOut"/>
+      <Transition.Change interpolation="easeInOut" />
     </Transition.Together>
   );
 
   useEffect(() => {
-    transitionViewRef.current.animateNextTransition();
+    if (searchResults.status === statusCodes.None) {
+      transitionViewRef.current.animateNextTransition();
+    }
 
     LayoutAnimation.configureNext({
       create: {
@@ -112,13 +114,12 @@ export default memo(function CardListScroll() {
       }}
       style={styles.scrollView}
       contentInsetAdjustmentBehavior="automatic"
-      indicatorStyle="white"
+      indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardShouldPersistTaps="handled"
     >
       <HeaderSpace />
       <SearchPills />
       <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
-        
         <Searchbar />
         <SortBy />
         <View style={{ marginBottom: theme.rem * 0.5 }}>
@@ -128,7 +129,7 @@ export default memo(function CardListScroll() {
       </Transitioning.View>
     </InfiniteScrollView>
   );
-})
+});
 
 const styles = StyleSheet.create({
   scrollView: {

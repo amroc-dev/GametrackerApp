@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import MenuDrawerContent from "./MenuDrawerContent"
 import SearchStackNavigator from "./SearchStackNavigator";
 import SettingsPage from "./SettingsPage";
+import { transparentize } from "polished";
 
 const Drawer = createDrawerNavigator();
 
@@ -13,9 +14,14 @@ export default function MenuDrawerNavigator() {
 
   return (
     <Drawer.Navigator
-    // drawerContent={(props) => <MenuDrawerContent {...props} />}
+    drawerContentOptions={{
+      activeBackgroundColor: 'rgba(0,0,0,0)',//transparentize(0.0, theme.colors.background2),
+      // labelStyle:{color: theme.fonts.colors.title},
+      activeTintColor: theme.fonts.colors.title,
+      inactiveTintColor: theme.fonts.colors.secondary,
+    }}
     drawerStyle={{
-      backgroundColor: theme.colors.background,
+      backgroundColor: theme.isDark ? theme.colors.background : theme.colors.secondary,
       width: 200,
     }}
       drawerType="back"

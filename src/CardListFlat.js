@@ -2,15 +2,29 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Button, Text, View, SafeAreaView, FlatList, StyleSheet, Constants } from "react-native";
 import CardItem from "./CardItem";
 import SearchCountCard from "./SearchCountCard";
+import SearchPills from "./SearchPills";
+import Searchbar from "./Searchbar";
+import SortBy from "./SortBy";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import { SearchBar } from "react-native-elements";
 
 export default function CardListFlat() {
   const { searchResults, fetchMoreResults, newSearchSubmitted } = useContext(SearchResultsContext);
-  const [results, setResults] = useState([]);
-  const [resultCount, setResultCount] = useState();
 
   function renderItem({ item, index }) {
-    return <CardItem doc={item}></CardItem>;
+    
+    if (index === 0) {
+      return <SearchPills />
+    }
+    else if (index === 1) {
+      return <SearchBar />
+    }
+    else if (index === 2) {
+      return <SortBy />
+    }
+
+    return null
+    // return <CardItem doc={item}></CardItem>;
   }
 
   const FETCH_COUNT = 25;
@@ -20,15 +34,9 @@ export default function CardListFlat() {
   }
 
   useEffect(() => {
-    setResults([]);
-    fetchMoreResults(FETCH_COUNT);
   }, [newSearchSubmitted]);
 
   useEffect(() => {
-    if (!searchResults || !searchResults.results) setResults([]);
-    else {
-      setResults([...searchResults.results]);
-    }
   }, [searchResults]);
 
   return (

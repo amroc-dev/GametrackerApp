@@ -18,7 +18,7 @@ export default function FiltersPage() {
     <View style={styles.root} >
       <ScrollView
       scrollEnabled={scrollEnabled}
-      indicatorStyle="white"
+      indicatorStyle={theme.isDark ? "white" : "black"}
       decelerationRate="fast"
       keyboardShouldPersistTaps="handled"
       contentInsetAdjustmentBehavior="automatic"
