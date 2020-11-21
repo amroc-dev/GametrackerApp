@@ -4,6 +4,7 @@ import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
 import { ThemeContext } from "./ThemeContext";
 import nextFrame from "next-frame";
+import { Dimensions } from 'react-native';
 
 const status_hidden = "hidden";
 const status_visible = "visible";
@@ -17,7 +18,9 @@ export default function InfiniteScrollView(props) {
   function onScroll({ nativeEvent }) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
 
-    if (diff < 100 && okToFetch && props.hasMoreItems) {
+    const triggerZone = Dimensions.get('window').height / 4
+
+    if (diff < triggerZone && okToFetch && props.hasMoreItems) {
       setOkToFetch(false);
       props.fetchMoreResults();
     }
