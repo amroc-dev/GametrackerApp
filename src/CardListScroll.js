@@ -22,7 +22,7 @@ export default memo(function CardListScroll() {
   const [networkError, setNetworkError] = useState(false);
   const [hasMoreItems, setHasMoreItems] = useState(false);
 
-  const FETCH_COUNT = 15;
+  const FETCH_COUNT = 20;
 
   useLayoutEffect(() => {
     setSearchCountCard(null);
