@@ -53,7 +53,7 @@ function getBaseTheme() {
     },
 
     shadowColor: "rgb(0,0,0)",
-    shadowOpacity: 0.35,
+    shadowOpacity: 0.0,
     shadowOpacity_dropdown: 0.35,
     shadowRadius: 5,
     shadowOffset: {
