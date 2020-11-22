@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Button, SafeAreaView, View, StyleSheet, StatusBar } from "react-native";
-import CardListFlat from "./CardListFlat";
-import CardListScroll from "./CardListScroll";
+import SearchPageContent from "./SearchPageContent";
 import { Platform } from "react-native";
 import FiltersPage from "./FiltersPage";
 import { ThemeContext } from "./ThemeContext";
@@ -15,7 +14,7 @@ export default function SearchPage() {
     return (
       <View style={[styles.root, { flexDirection: "row" }]}>
         <View style={styles.splitRoot_search}>
-          <CardListScroll />
+          <SearchPageContent />
         </View>
         <View style={styles.splitRoot_filters}>
           <FiltersPage />
@@ -26,7 +25,7 @@ export default function SearchPage() {
 
   return (
     <View style={styles.root}>
-      <CardListScroll />
+      <SearchPageContent />
     </View>
   );
 }

@@ -13,7 +13,7 @@ import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
 import { HeaderSpace } from "./Common";
 
-export default memo(function CardListScroll() {
+export default memo(function SearchPageContent() {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
   const { searchID } = useContext(SearchContext);

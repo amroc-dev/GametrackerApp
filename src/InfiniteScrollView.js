@@ -66,7 +66,7 @@ export default function InfiniteScrollView(props) {
     color: theme.fonts.colors.primary,
     fontSize: theme.fonts.sizes.primary,
   };
-  const networkError = <Text style={networkErrorStyle}>Unable to connect</Text>;
+  const networkError = <Text style={networkErrorStyle}>Network error</Text>;
 
   const statusView = networkErrorTime !== -1 ? networkError : loadingView;
 
