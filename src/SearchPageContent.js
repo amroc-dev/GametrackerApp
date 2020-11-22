@@ -99,7 +99,7 @@ export default memo(function SearchPageContent() {
 
     LayoutAnimation.configureNext({
       create: {
-        duration: 125,
+        duration: theme.transitionSpeed,
         type: LayoutAnimation.Types.easeIn,
         property: LayoutAnimation.Properties.opacity,
       },

@@ -3,6 +3,7 @@ import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native"
 import { monthMap, formatRatingCount, objectKeyFromDotString } from "./shared/react/Misc";
 import getStyles from "./CardItem_styles";
 import { ThemeContext } from "./ThemeContext";
+import ImageFadeIn from "./ImageFadeIn";
 const dbkeys = require("./shared/back-end/db-keys");
 
 function CardItem({ doc }) {
@@ -60,7 +61,7 @@ function CardItem({ doc }) {
   return (
     <Pressable onPress={onTap}>
       <View style={styles.cardItem}>
-        <Image style={styles.image} source={{ uri: doc_artworkUrl }} />
+        <ImageFadeIn style={styles.image} duration={theme.transitionSpeed} source={{ uri: doc_artworkUrl }} />
         <View style={styles.dataContainer}>
           <View style={styles.topRowContainer}>
             <View style={styles.titleContainer}>

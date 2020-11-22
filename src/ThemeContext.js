@@ -71,6 +71,8 @@ function getBaseTheme() {
     // borderWidth: StyleSheet.hairlineWidth,
     // borderColor: "rgba(0,0,0,0.05)",
 
+    transitionSpeed: 125,
+
     get headerTitleStyle() {
       return {
         color: this.fonts.colors.title,
