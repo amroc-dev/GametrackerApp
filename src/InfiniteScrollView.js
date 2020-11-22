@@ -20,7 +20,7 @@ export default function InfiniteScrollView(props) {
     const diff = nativeEvent.contentSize.height - (nativeEvent.contentOffset.y + nativeEvent.layoutMeasurement.height);
 
     const windowHeight = Dimensions.get("window").height;
-    const triggerZone = windowHeight / 4;
+    const triggerZone = windowHeight / 2;
 
     if (networkErrorTime !== -1) {
       const elapsed = (new Date).getTime() - networkErrorTime;

@@ -2,6 +2,7 @@ import React, { useContext, useRef, useEffect } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { CoreContextProvider } from "./shared/react/CoreContext";
+import { NetworkContextProvider } from "./shared/react/NetworkContext";
 import { SearchContextProvider } from "./shared/react/SearchContext";
 import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
@@ -20,20 +21,22 @@ export default function App() {
   const navContainerRef = useRef();
 
   return (
-    <CoreContextProvider>
-      <SearchContextProvider>
-        <FilterTagsContextProvider>
-          <ThemeContextProvider>
-            <StatusBarSettings />
-            <SearchResultsContextProvider>
-              <NavigationContainer ref={navContainerRef}>
-                <MenuDrawerNavigator />
-              </NavigationContainer>
-            </SearchResultsContextProvider>
-          </ThemeContextProvider>
-        </FilterTagsContextProvider>
-      </SearchContextProvider>
-    </CoreContextProvider>
+    <NetworkContextProvider>
+      <CoreContextProvider>
+        <SearchContextProvider>
+          <FilterTagsContextProvider>
+            <ThemeContextProvider>
+              <StatusBarSettings />
+              <SearchResultsContextProvider>
+                <NavigationContainer ref={navContainerRef}>
+                  <MenuDrawerNavigator />
+                </NavigationContainer>
+              </SearchResultsContextProvider>
+            </ThemeContextProvider>
+          </FilterTagsContextProvider>
+        </SearchContextProvider>
+      </CoreContextProvider>
+    </NetworkContextProvider>
   );
 }
 
