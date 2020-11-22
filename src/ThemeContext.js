@@ -55,7 +55,7 @@ function getBaseTheme() {
     shadowColor: "rgb(0,0,0)",
     shadowOpacity: 0.35,
     shadowOpacity_dropdown: 0.35,
-    shadowRadius: rem * 0.5,
+    shadowRadius: 5,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -161,7 +161,7 @@ function ThemeContextProvider(props) {
         },
       },
 
-      shadowOpacity: 0.35,
+      shadowOpacity: 0.1,
     };
 
     return merge.recursive(getBaseTheme(), theme);
