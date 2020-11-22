@@ -61,7 +61,7 @@ function CardItem({ doc }) {
   return (
     <Pressable onPress={onTap}>
       <View style={styles.cardItem}>
-        <ImageFadeIn style={styles.image} duration={theme.transitionSpeed} source={{ uri: doc_artworkUrl }} />
+        <ImageFadeIn style={styles.image} duration={theme.fadeSpeed} source={{ uri: doc_artworkUrl }} />
         <View style={styles.dataContainer}>
           <View style={styles.topRowContainer}>
             <View style={styles.titleContainer}>
