@@ -117,7 +117,7 @@ function getBaseTheme() {
       return this.name === "light";
     },
     get searchPageTopPadding() {
-      return rem * (Platform.isPad ? 1 : 0.5);
+      return rem * (Platform.isPad ? 0.5 : 0.5);
     },
   };
 }
@@ -127,13 +127,9 @@ function ThemeContextProvider(props) {
   // const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
-    setRootViewBackground(theme.colors.background1);
-  }, [theme]);
-
-  function setRootViewBackground(col) {
-    const bgRGB = extractRGB(col);
+    const bgRGB = extractRGB(theme.colors.background1);
     RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
-  }
+  }, [theme]);
 
   function setThemeWithName(name) {
     if (name === "light") setTheme(getLightTheme());
@@ -192,7 +188,7 @@ function ThemeContextProvider(props) {
         header: background2,
         background1: background1,
         background2: background2,
-        secondary: rgb(218, 222, 226).toString(), //darken(0.09, background1).toString(),
+        secondary: rgb(213, 217, 221).toString(), //darken(0.09, background1).toString(),
       },
 
       fonts: {

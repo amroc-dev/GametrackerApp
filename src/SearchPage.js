@@ -3,6 +3,7 @@ import { Button, SafeAreaView, View, StyleSheet, StatusBar } from "react-native"
 import SearchPageContent from "./SearchPageContent";
 import { Platform } from "react-native";
 import FiltersPage from "./FiltersPage";
+import { transparentize, invert } from "polished";
 import { ThemeContext } from "./ThemeContext";
 
 export default function SearchPage() {
@@ -35,24 +36,26 @@ function getStyles(theme) {
   return StyleSheet.create({
     root: {
       backgroundColor: theme.colors.background1,
+      // shadowColor: 'black',
+      // shadowOpacity: 0.1,
+      // shadowRadius: 8,
+      // shadowOffset: theme.shadowOffset,
     },
 
     splitRoot_search: {
       flex: 1.45,
-      marginLeft: theme.rem * 0.5,
-      // marginRight: theme.rem * -0.25,
+      // marginLeft: theme.rem * 0.5,
     },
     splitRoot_spacer: {
       width: 2,
-      marginLeft: 4,
-      borderRadius: 10,
-      height: '90%',
+      borderRadius: 1,
+      height: '75%',
       alignSelf: 'center',
       backgroundColor: theme.colors.background2,
     },
     splitRoot_filters: {
       flex: 1,
-      marginRight: theme.rem * 0.5,
+      // marginRight: theme.rem * 0.5,
     },
   });
 }
