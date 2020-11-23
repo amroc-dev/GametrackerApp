@@ -32,7 +32,7 @@ export default function Searchbar() {
 function getStyles(theme) {
   return StyleSheet.create({
     searchInput: {
-      marginTop: theme.rem * 0.5,
+
 
       marginBottom: 0,
       borderRadius: theme.borderRadius,

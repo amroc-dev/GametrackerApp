@@ -11,7 +11,7 @@ import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsC
 import InfiniteScrollView from "./InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace } from "./Common";
+import { HeaderSpace, Spacer } from "./Common";
 
 export default memo(function SearchPageContent() {
   const { theme } = useContext(ThemeContext);
@@ -123,6 +123,7 @@ export default memo(function SearchPageContent() {
       keyboardShouldPersistTaps="handled"
     >
       <HeaderSpace />
+      <Spacer size={theme.searchPageTopPadding} />
       <SearchPills />
       <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
         <Searchbar />
@@ -141,8 +142,6 @@ function getStyles(theme) {
   scrollView: {
     height: "100%",
     paddingHorizontal: theme.rem * 0.5,
-    // marginTop: theme.rem * 0.5,
-
   },
   cardList: {
 

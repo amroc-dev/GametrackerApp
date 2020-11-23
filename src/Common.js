@@ -148,6 +148,12 @@ export function Separator() {
   />;
 }
 
+export function Spacer({size}) {
+  const {theme} = useContext(ThemeContext)
+  const marginSize = size ? size : 0;
+  return <View style={{marginTop:marginSize}}/>
+}
+
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function ToggleButton(props) {

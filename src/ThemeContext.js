@@ -4,6 +4,7 @@ import { lighten, darken, rgb, rgbToColorString } from "polished";
 import RootViewBackgroundColor from "react-native-root-view-background-color";
 import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
 import { extractRGB } from "./shared/react/Misc";
+import { Platform } from "react-native";
 import merge from "merge";
 
 function getBaseTheme() {
@@ -114,6 +115,9 @@ function getBaseTheme() {
     },
     get isLight() {
       return this.name === "light";
+    },
+    get searchPageTopPadding() {
+      return rem * (Platform.isPad ? 0.75 : 0.5);
     },
   };
 }

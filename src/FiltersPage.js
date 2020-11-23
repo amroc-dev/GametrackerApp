@@ -6,7 +6,7 @@ import { ThemeContext } from  "./ThemeContext";
 import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
-import { HeaderSpace, Separator } from "./Common";
+import { HeaderSpace, Separator, Spacer } from "./Common";
 
 export default function FiltersPage() {
   const {theme} = useContext(ThemeContext)
@@ -25,23 +25,17 @@ export default function FiltersPage() {
       keyboardDismissMode="on-drag" style={styles.scrollView}>
         <View>
           <HeaderSpace />
-          <Spacer size={0.5} />
+          <Spacer size={theme.searchPageTopPadding} />
           <FilterTags />
-          <Spacer size={2} />
+          <Spacer size={theme.rem * 2} />
           <FilterDevice />
-          <Spacer size={2} />
+          <Spacer size={theme.rem * 2} />
           <FilterPopularity setScrollEnabled={setScrollEnabled} />
           <View style={{marginTop:theme.rem}} />
         </View>
       </ScrollView>
     </View>
   );
-}
-
-function Spacer({size}) {
-  const {theme} = useContext(ThemeContext)
-  const marginSize = size ? theme.rem * size : theme.rem;
-  return <View style={{marginTop:marginSize}}/>
 }
 
 function getStyles(theme) {
