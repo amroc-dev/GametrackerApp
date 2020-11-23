@@ -32,20 +32,19 @@ export function getFilterStyles(theme) {
       shadowOffset: theme.shadowOffset,
       borderWidth: theme.borderWidth,
       borderColor: theme.borderColor,
-      borderTopLeftRadius: 0,
+      // borderTopLeftRadius: 0,
     },
     headerView: {
       flexDirection: "row",
       alignSelf: "flex-start",
       alignItems: "center",
-      backgroundColor: theme.colors.background2, //
+      backgroundColor: rgba(0,0,0,0),// theme.colors.primary, //
       // height: theme.rowHeight * 0.5,
       marginLeft: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
       // borderRadius: theme.borderRadius,
-      // marginBottom: theme.rem * 0.25,
-      padding: theme.rem * 0.5,
+      marginBottom: theme.rem * 0.35,
 
     },
     headerText:{
@@ -54,7 +53,6 @@ export function getFilterStyles(theme) {
       fontWeight: theme.fonts.weights.bold,
 
       // width: 100,
-      // padding: theme.rem * 0.25,
       paddingHorizontal: theme.rem * 0.25,
     },
     filterTextSelected: {

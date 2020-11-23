@@ -50,6 +50,7 @@ function getStyles(theme) {
     sortByLabel: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.primary2,
+      fontWeight: theme.fonts.weights.bold,
       alignSelf: "center",
       marginRight: theme.rem * 0.5,
     },

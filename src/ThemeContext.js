@@ -123,8 +123,8 @@ function getBaseTheme() {
 }
 
 function ThemeContextProvider(props) {
-  const [theme, setTheme] = useState(getDarkTheme());
-  // const [theme, setTheme] = useState(getLightTheme());
+  // const [theme, setTheme] = useState(getDarkTheme());
+  const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
     const bgRGB = extractRGB(theme.colors.background1);
@@ -177,7 +177,7 @@ function ThemeContextProvider(props) {
 
   function getLightTheme() {
     const primary = "rgb(54, 164, 234)";//"rgb(33, 149, 211)";
-    const background1 = "rgb(234, 239, 240)";//"rgb(240, 244, 245)"; //    " 
+    const background1 = "rgb(240, 244, 245)";//"rgb(240, 244, 245)"; //    " 
     const background2 = "rgb(255, 255, 255)";
 
     const theme = {

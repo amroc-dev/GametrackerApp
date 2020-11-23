@@ -8,6 +8,7 @@ import { rgba, darken, readableColor } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
 import { SearchInput, ToggleButton } from "./Common";
 import { Dimensions } from "react-native";
+import { nanoid } from "nanoid/non-secure";
 
 function FilterTags(props) {
   const { theme } = useContext(ThemeContext);
@@ -39,21 +40,37 @@ function FilterTags(props) {
       return null;
     });
 
-    if (groups.length > 0 && groups[groups.length - 1].length === 0) {
-      groups.pop();
-    }
-
     setTagColumns(groups);
   }, [tagSearchField, tags, tagsViewContainerWidth]);
 
+  useLayoutEffect(() => {
+    LayoutAnimation.configureNext({
+      update: {
+        duration: theme.fadeSpeed,
+        type: LayoutAnimation.Types.easeInOut,
+        property: LayoutAnimation.Properties.opacity,
+      },
+    });
+  }, [tagColumns]);
+
   function renderItem({ item, index }) {
+    
+    // this is the condition for when whatever the user has entered in the tag search fields brought back no tag matches
+    if (tagColumns.length === 1 && tagColumns[0].length === 0) {
+      return (
+        <Text style={{ marginLeft: theme.rem, marginVertical: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
+          No Matches
+        </Text>
+      );
+    }
+
     const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
 
     const items = [];
 
     item.forEach((tagItem) => {
       const active = searchTags.includes(tagItem.name);
-      const tagNameStyle = [styles.tagName]
+      const tagNameStyle = [styles.tagName];
       const tagCountStyle = [styles.tagCount];
       if (active) {
         tagCountStyle.push(filterStyles.filterTextSelected);
@@ -96,46 +113,42 @@ function FilterTags(props) {
     </Text>
   );
 
-
-
-  return useMemo(
-    () => (
+  return useMemo(() => {
+    let keyExtractorRoot = nanoid();
+    return (
       <>
         <View
           onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
           style={[filterStyles.outerContainer, styles.outer]}
         >
           <FilterHeader title={"Tags"} />
-          {tagColumns.length > 0 ? (
-            <View style={filterStyles.bodyContainer}>
-              <FlatList
-                ref={flatListRef}
-                data={tagColumns}
-                renderItem={renderItem}
-                keyExtractor={(item, index) => index.toString()}
-                initialNumToRender={2}
-                horizontal={true}
-                windowSize={3}
-                maxToRenderPerBatch={2}
-                // updateCellsBatchingPeriod={16}
-                style={styles.scrollView}
-                indicatorStyle= {theme.isDark ? 'white' : 'black'}
-                showsHorizontalScrollIndicator={tagColumns.length > 2}
-                // snapToInterval={tagsViewContainerWidth / 2}
-                // snapToAlignment={"start"}
-                pagingEnabled
-                keyboardDismissMode="on-drag"
-                decelerationRate={"fast"}
-                getItemLayout={(data, index) => ({
-                  length: tagsViewContainerWidth / 2,
-                  offset: (tagsViewContainerWidth / 2) * index,
-                  index,
-                })}
-              />
-            </View>
-          ) : (
-            noMatchesText
-          )}
+
+          <View style={filterStyles.bodyContainer}>
+            <FlatList
+              ref={flatListRef}
+              data={tagColumns}
+              renderItem={renderItem}
+              keyExtractor={(item, index) => index.toString() + keyExtractorRoot}
+              initialNumToRender={2}
+              horizontal={true}
+              windowSize={3}
+              maxToRenderPerBatch={2}
+              // updateCellsBatchingPeriod={16}
+              style={styles.scrollView}
+              indicatorStyle={theme.isDark ? "white" : "black"}
+              showsHorizontalScrollIndicator={tagColumns.length > 2}
+              // snapToInterval={tagsViewContainerWidth / 2}
+              // snapToAlignment={"start"}
+              pagingEnabled
+              keyboardDismissMode="on-drag"
+              decelerationRate={"fast"}
+              getItemLayout={(data, index) => ({
+                length: tagsViewContainerWidth / 2,
+                offset: (tagsViewContainerWidth / 2) * index,
+                index,
+              })}
+            />
+          </View>
           <SearchInput
             style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
             returnKeyType="done"
@@ -145,9 +158,8 @@ function FilterTags(props) {
           />
         </View>
       </>
-    ),
-    [tagColumns, searchTags, theme]
-  );
+    );
+  }, [tagColumns, searchTags, theme]);
 }
 
 export default memo(FilterTags);
@@ -228,7 +240,7 @@ function getStyles(theme) {
     searchInput: {
       marginTop: theme.rem * 0.5,
       borderRadius: theme.borderRadius2,
-      backgroundColor: 'rgba(0,0,0,0)'
+      backgroundColor: "rgba(0,0,0,0)",
     },
   });
 }
