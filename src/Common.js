@@ -14,6 +14,7 @@ import { Button as ElemButton } from "react-native-elements";
 import { ThemeContext } from "./ThemeContext";
 import { rgba, transparentize, invert } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
+import { ThemeProvider } from "@react-navigation/native";
 
 const iconSize = 22;
 
@@ -127,6 +128,24 @@ export function HeaderSpace() {
   const height = 0;
 
   return <View style={{ height: theme.isDark ? height : 0, opacity: 0 }} />;
+}
+
+export function Separator() {
+
+  const { theme } = useContext(ThemeContext);
+  const height = 1
+
+  return <View style={{
+      height: height,
+      width: "86%",
+      marginHorizontal: theme.rem * 0,
+      marginVertical: theme.rem * 0.25,
+      // marginTop: theme.rem * 0.5,
+      alignSelf: "center",
+      // backgroundColor: theme.colors.secondary,
+
+    }}
+  />;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////

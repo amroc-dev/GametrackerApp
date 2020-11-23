@@ -106,6 +106,8 @@ export default memo(function SearchPageContent() {
     });
   }, [searchResults]);
 
+  const styles = getStyles(theme)
+
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
@@ -125,7 +127,7 @@ export default memo(function SearchPageContent() {
       <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
         <Searchbar />
         <SortBy />
-        <View style={{ marginBottom: theme.rem * 0.5 }}>
+        <View style={styles.cardList}>
           {searchCountCard}
           {items}
         </View>
@@ -134,8 +136,16 @@ export default memo(function SearchPageContent() {
   );
 });
 
-const styles = StyleSheet.create({
+function getStyles(theme) {
+  return StyleSheet.create({
   scrollView: {
     height: "100%",
+    paddingHorizontal: theme.rem * 0.5,
+    // marginTop: theme.rem * 0.5,
+
+  },
+  cardList: {
+
   },
 });
+}

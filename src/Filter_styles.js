@@ -20,7 +20,6 @@ export function getFilterStyles(theme) {
   return StyleSheet.create({
     outerContainer: {
       // marginHorizontal: theme.rem * 0.5,
-      marginTop: theme.rem * 1,
     },
     bodyContainer: {
       backgroundColor: theme.colors.background2,
@@ -33,23 +32,24 @@ export function getFilterStyles(theme) {
       shadowOffset: theme.shadowOffset,
       borderWidth: theme.borderWidth,
       borderColor: theme.borderColor,
-      // borderTopLeftRadius: 0,
+      borderTopLeftRadius: 0,
     },
     headerView: {
       flexDirection: "row",
       alignSelf: "flex-start",
       alignItems: "center",
-      backgroundColor: rgba(0,0,0,0),// theme.colors.primary, //
+      backgroundColor: theme.colors.background2, //
       // height: theme.rowHeight * 0.5,
       marginLeft: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
       // borderRadius: theme.borderRadius,
-      marginBottom: theme.rem * 0.25,
+      // marginBottom: theme.rem * 0.25,
+      padding: theme.rem * 0.5,
 
     },
     headerText:{
-      color: theme.fonts.colors.primary,
+      color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
 

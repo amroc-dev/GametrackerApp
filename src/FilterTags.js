@@ -119,7 +119,7 @@ function FilterTags(props) {
                 maxToRenderPerBatch={2}
                 // updateCellsBatchingPeriod={16}
                 style={styles.scrollView}
-                indicatorStyle="white"
+                indicatorStyle= {theme.isDark ? 'white' : 'black'}
                 showsHorizontalScrollIndicator={tagColumns.length > 2}
                 // snapToInterval={tagsViewContainerWidth / 2}
                 // snapToAlignment={"start"}
@@ -228,6 +228,7 @@ function getStyles(theme) {
     searchInput: {
       marginTop: theme.rem * 0.5,
       borderRadius: theme.borderRadius2,
+      backgroundColor: 'rgba(0,0,0,0)'
     },
   });
 }

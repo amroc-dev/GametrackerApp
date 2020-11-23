@@ -5,6 +5,7 @@ import getStyles from "./CardItem_styles";
 import { ThemeContext } from "./ThemeContext";
 import ImageFadeIn from "./ImageFadeIn";
 const dbkeys = require("./shared/back-end/db-keys");
+import {Separator} from "./Common";
 
 function CardItem({ doc }) {
   const { theme } = useContext(ThemeContext);
@@ -60,6 +61,7 @@ function CardItem({ doc }) {
 
   return (
     <Pressable onPress={onTap}>
+      {/* <Separator /> */}
       <View style={styles.cardItem}>
         <ImageFadeIn style={styles.image} duration={theme.fadeSpeed} source={{ uri: doc_artworkUrl }} />
         <View style={styles.dataContainer}>

@@ -1,3 +1,4 @@
+import { borderRadius } from "polished";
 import { StyleSheet } from "react-native";
 import { ThemeConsumer } from "react-native-elements";
 
@@ -8,21 +9,24 @@ function getStyles(theme) {
       backgroundColor: theme.colors.background2,
       borderRadius: theme.borderRadius,
       marginTop: theme.rem * 0.5,
-      marginHorizontal: theme.rem * 0.5,
+      // marginHorizontal: theme.rem * 1,
       shadowColor: theme.shadowColor,
       shadowOpacity: theme.shadowOpacity,
       shadowRadius: theme.shadowRadius,
       shadowOffset: theme.shadowOffset,
       borderWidth: theme.borderWidth,
       borderColor: theme.borderColor,
+
     },
 
     image: {
       width: 100,
       height: 100,
       borderRadius: theme.borderRadius,
+      marginRight: theme.rem * 0.25,
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
+      alignItems: 'center'
     },
 
     dataContainer: {
@@ -72,7 +76,7 @@ function getStyles(theme) {
     },
 
     ratingContainer: {
-      flex: 1,
+      flex: 0.6,
       flexDirection: "row",
       flexWrap: "nowrap",
       alignItems: "flex-end",

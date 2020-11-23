@@ -156,7 +156,7 @@ function getStyles(theme) {
     outer: {},
 
     body: {
-      paddingHorizontal: theme.rem * 1,
+      paddingHorizontal: theme.rem * 0.5,
     },
     sliderContainer: {
       marginTop: theme.rem * -0.75,

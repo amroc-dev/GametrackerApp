@@ -16,6 +16,7 @@ export default function SearchPage() {
         <View style={styles.splitRoot_search}>
           <SearchPageContent />
         </View>
+        {/* <View style={styles.splitRoot_spacer} /> */}
         <View style={styles.splitRoot_filters}>
           <FiltersPage />
         </View>
@@ -40,6 +41,14 @@ function getStyles(theme) {
       flex: 1.45,
       marginLeft: theme.rem * 0.25,
       marginRight: theme.rem * -0.25,
+    },
+    splitRoot_spacer: {
+      width: 2,
+      marginLeft: 4,
+      borderRadius: 10,
+      height: '90%',
+      alignSelf: 'center',
+      backgroundColor: theme.colors.background2,
     },
     splitRoot_filters: {
       flex: 1,

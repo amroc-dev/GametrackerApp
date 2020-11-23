@@ -66,7 +66,7 @@ export default function SearchPills() {
     container: {
       flexDirection: "row",
       flexWrap: "wrap",
-      margin: theme.rem * 0.5,
+      marginTop: theme.rem * 0.5,
       marginBottom: theme.rem * -0.5,
       backgroundColor: "rgba(0,0,0,0)",
     },
