@@ -117,14 +117,14 @@ function getBaseTheme() {
       return this.name === "light";
     },
     get searchPageTopPadding() {
-      return rem * (Platform.isPad ? 0.75 : 0.5);
+      return rem * (Platform.isPad ? 1 : 0.5);
     },
   };
 }
 
 function ThemeContextProvider(props) {
-  // const [theme, setTheme] = useState(getDarkTheme());
-  const [theme, setTheme] = useState(getLightTheme());
+  const [theme, setTheme] = useState(getDarkTheme());
+  // const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
     setRootViewBackground(theme.colors.background1);
