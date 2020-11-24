@@ -49,6 +49,7 @@ function getBaseTheme() {
       },
 
       weights: {
+        regular: "400",
         bold: "500",
       },
     },

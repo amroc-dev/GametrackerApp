@@ -215,7 +215,7 @@ function getStyles(theme) {
       justifyContent: "flex-start",
       alignItems: "center",
       marginBottom: theme.rem * 0.1,
-      marginRight: theme.rem * 0.25,
+      // marginRight: theme.rem * 0.25,
       // paddingRight: theme.rem * 0.5,
       // backgroundColor: "red",
     },
@@ -230,7 +230,7 @@ function getStyles(theme) {
     },
     tagName: {
       color: theme.fonts.colors.title,
-      fontSize: theme.fonts.sizes.primary,
+      fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
       // maxWidth: 166,
     },
