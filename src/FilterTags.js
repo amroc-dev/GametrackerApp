@@ -40,6 +40,10 @@ function FilterTags(props) {
       return null;
     });
 
+    if (groups.length > 1 && groups[groups.length - 1].length === 0) {
+      groups.pop();
+    }
+
     setTagColumns(groups);
   }, [tagSearchField, tags, tagsViewContainerWidth]);
 
@@ -54,17 +58,20 @@ function FilterTags(props) {
   }, [tagColumns]);
 
   function renderItem({ item, index }) {
-    
+    const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
+
     // this is the condition for when whatever the user has entered in the tag search fields brought back no tag matches
     if (tagColumns.length === 1 && tagColumns[0].length === 0) {
       return (
-        <Text style={{ marginLeft: theme.rem, marginVertical: theme.rem * 0.5, color: theme.fonts.colors.secondary }}>
-          No Matches
-        </Text>
+        <View style={cardStyle}>
+          <View style={styles.tagRow}>
+            <View style={styles.tagButton}>
+            <Text style={{ fontSize: theme.fonts.sizes.primary, color: theme.fonts.colors.secondary}}>No matches</Text>
+            </View>
+          </View>
+        </View>
       );
     }
-
-    const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
 
     const items = [];
 

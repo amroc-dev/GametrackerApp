@@ -162,7 +162,7 @@ export class ControlledLayoutAnimation {
   
   static configureNext(animObj) {
     if (ControlledLayoutAnimation.animSet) {
-      console.log("ControlledLayoutAnimation: skipping")
+      // console.log("ControlledLayoutAnimation: skipping")
       return
     }
   
