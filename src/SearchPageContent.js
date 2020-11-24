@@ -11,7 +11,7 @@ import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsC
 import InfiniteScrollView from "./InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer } from "./Common";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./Common";
 
 export default memo(function SearchPageContent() {
   const { theme } = useContext(ThemeContext);
@@ -71,14 +71,7 @@ export default memo(function SearchPageContent() {
     if (newItems.length > 0) {
       setItems((prev) => prev.concat(newItems));
       setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
-
-      // LayoutAnimation.configureNext({
-      //   create: {
-      //     duration: 50,
-      //     type: LayoutAnimation.Types.easeIn,
-      //     property: LayoutAnimation.Properties.opacity,
-      //   },
-      // });
+      
     } else {
       setHasMoreItems(false);
     }
@@ -97,7 +90,7 @@ export default memo(function SearchPageContent() {
       transitionViewRef.current.animateNextTransition();
     }
 
-    LayoutAnimation.configureNext({
+    ControlledLayoutAnimation.configureNext({
       create: {
         duration: theme.fadeSpeed,
         type: LayoutAnimation.Types.easeIn,

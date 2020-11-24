@@ -6,7 +6,7 @@ import { SearchContext } from "./shared/react/SearchContext";
 import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { rgba, darken, readableColor } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
-import { SearchInput, ToggleButton } from "./Common";
+import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "./Common";
 import { Dimensions } from "react-native";
 import { nanoid } from "nanoid/non-secure";
 
@@ -44,7 +44,7 @@ function FilterTags(props) {
   }, [tagSearchField, tags, tagsViewContainerWidth]);
 
   useLayoutEffect(() => {
-    LayoutAnimation.configureNext({
+    ControlledLayoutAnimation.configureNext({
       update: {
         duration: theme.fadeSpeed,
         type: LayoutAnimation.Types.easeInOut,

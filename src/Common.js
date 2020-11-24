@@ -15,6 +15,7 @@ import { ThemeContext } from "./ThemeContext";
 import { rgba, transparentize, invert } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ThemeProvider } from "@react-navigation/native";
+import nextFrame from "next-frame";
 
 const iconSize = 22;
 
@@ -152,6 +153,29 @@ export function Spacer({size}) {
   const {theme} = useContext(ThemeContext)
   const marginSize = size ? size : 0;
   return <View style={{marginTop:marginSize}}/>
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export class ControlledLayoutAnimation {
+  static animSet = false
+  
+  static configureNext(animObj) {
+    if (ControlledLayoutAnimation.animSet) {
+      console.log("ControlledLayoutAnimation: skipping")
+      return
+    }
+  
+    ControlledLayoutAnimation.animSet = true
+    LayoutAnimation.configureNext(animObj)
+    
+    async function unSetNextFrame() {
+      await nextFrame()
+      ControlledLayoutAnimation.animSet = false
+    }
+
+    unSetNextFrame()
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
