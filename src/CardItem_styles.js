@@ -23,7 +23,6 @@ function getStyles(theme) {
       width: 100,
       height: 100,
       borderRadius: theme.borderRadius,
-      marginRight: theme.rem * 0.25,
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,
       alignItems: 'center'
@@ -34,7 +33,7 @@ function getStyles(theme) {
       flex: 1,
       flexDirection: "column",
       padding: theme.rem * 0.5,
-      // paddingHorizontal: theme.rem * 0.5,
+      paddingHorizontal: theme.rem * 0.7,
       // backgroundColor: 'red',
     },
 
@@ -76,7 +75,7 @@ function getStyles(theme) {
     },
 
     ratingContainer: {
-      flex: 0.6,
+      flex: 0.75,
       flexDirection: "row",
       flexWrap: "nowrap",
       alignItems: "flex-end",
@@ -86,17 +85,19 @@ function getStyles(theme) {
     ratingCell: {
       marginRight: theme.rem * 0.5,
       marginTop: theme.rem * 0.75,
-      width: 32,
-      height: 32,
+      width: 36,
+      height: 36,
       display: "flex",
       borderRadius: theme.borderRadius,
       justifyContent: "center",
+      alignItems: 'center',
     },
 
     ratingValue: {
       color: "white",
-      alignSelf: "center",
+      paddingLeft: 1,
       fontSize: theme.fonts.sizes.rating,
+      fontWeight: theme.fonts.weights.bold,
     },
 
     ratinCount: {

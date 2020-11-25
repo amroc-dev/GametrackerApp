@@ -27,7 +27,7 @@ function getBaseTheme() {
         good: "rgb(92, 184, 92)",
         average: "rgb(225, 180, 48)",
         bad: "rgb(225, 0, 0)",
-        na: "rgba(125, 145, 165)",
+        na: "rgb(125, 125, 125)",
       },
     },
 
@@ -38,7 +38,7 @@ function getBaseTheme() {
         primary2: 0.9 * fontSize,
         secondary: 0.7 * fontSize,
         mini: 0.65 * fontSize,
-        rating: 1.2 * fontSize,
+        rating: 1.0 * fontSize,
       },
 
       colors: {
@@ -153,6 +153,10 @@ function ThemeContextProvider(props) {
         background1: background1,
         background2: background2,
         secondary: lighten("0.15", background2).toString(),
+
+        rating: {
+          na: "rgb(125, 125, 125)",
+        },
       },
 
       fonts: {
@@ -177,8 +181,8 @@ function ThemeContextProvider(props) {
   // });
 
   function getLightTheme() {
-    const primary = "rgb(54, 164, 234)";//"rgb(33, 149, 211)";
-    const background1 = "rgb(240, 244, 245)";//"rgb(240, 244, 245)"; //    " 
+    const primary = "rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
+    const background1 = "rgb(240, 244, 245)"; //"rgb(240, 244, 245)"; //    "
     const background2 = "rgb(255, 255, 255)";
 
     const theme = {
@@ -190,6 +194,10 @@ function ThemeContextProvider(props) {
         background1: background1,
         background2: background2,
         secondary: rgb(213, 217, 221).toString(), //darken(0.09, background1).toString(),
+
+        rating: {
+          na: "rgb(175, 175, 175)",
+        },
       },
 
       fonts: {

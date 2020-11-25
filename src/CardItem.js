@@ -44,7 +44,8 @@ function CardItem({ doc }) {
     if (rating < 3) {
       ratingCellColour = theme.colors.rating.bad;
     }
-    rating = Math.round(rating * 2);
+    // rating *= 2;
+    // rating = Math.round(rating * 20);
   } else {
     rating = "-";
   }
@@ -67,8 +68,8 @@ function CardItem({ doc }) {
         <View style={styles.dataContainer}>
           <View style={styles.topRowContainer}>
             <View style={styles.titleContainer}>
-              <Text style={styles.titleText}>{doc_trackName}</Text>
-              <Text style={styles.artistText}>{doc_artistName}</Text>
+              <Text numberOfLines={1} style={styles.titleText}>{doc_trackName}</Text>
+              <Text numberOfLines={1} style={styles.artistText}>{doc_artistName}</Text>
             </View>
           </View>
           <View style={styles.bottomRowContainer}>
