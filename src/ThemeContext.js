@@ -34,9 +34,9 @@ function getBaseTheme() {
     fonts: {
       sizes: {
         header: 1.1 * fontSize,
-        primary: 1 * fontSize,
+        primary: 1 * fontSize,  
         primary2: 0.9 * fontSize,
-        secondary: 0.7 * fontSize,
+        secondary: 0.75 * fontSize,
         mini: 0.65 * fontSize,
         rating: 1.0 * fontSize,
       },

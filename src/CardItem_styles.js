@@ -33,7 +33,7 @@ function getStyles(theme) {
       flex: 1,
       flexDirection: "column",
       padding: theme.rem * 0.5,
-      paddingHorizontal: theme.rem * 0.7,
+      paddingHorizontal: theme.rem * 0.65,
       // backgroundColor: 'red',
     },
 
@@ -85,8 +85,8 @@ function getStyles(theme) {
     ratingCell: {
       marginRight: theme.rem * 0.5,
       marginTop: theme.rem * 0.75,
-      width: 36,
-      height: 36,
+      width: 38,
+      height: 32,
       display: "flex",
       borderRadius: theme.borderRadius,
       justifyContent: "center",
