@@ -31,14 +31,15 @@ export default memo(function SearchPageContent() {
   }, [searchID]);
 
   useLayoutEffect(() => {
-    setSearchCountCard(null)
-    setNetworkError(false)
+    setSearchCountCard(null);
+    setNetworkError(false);
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
   }, [newSearchSubmitted]);
 
   useEffect(() => {
+
     // this is just for the condition when search results has been cleared at the start of a new search
     if (searchResults.status === statusCodes.None) {
       setSearchCountCard(null);
@@ -46,7 +47,7 @@ export default memo(function SearchPageContent() {
     }
 
     if (searchResults.status === statusCodes.TimedOut || searchResults.status === statusCodes.Failed) {
-      setNetworkError(true)
+      setNetworkError(true);
       return;
     }
 
@@ -71,7 +72,6 @@ export default memo(function SearchPageContent() {
     if (newItems.length > 0) {
       setItems((prev) => prev.concat(newItems));
       setHasMoreItems(searchResults.results.length < searchResults.resultsCount);
-      
     } else {
       setHasMoreItems(false);
     }
@@ -99,14 +99,14 @@ export default memo(function SearchPageContent() {
     });
   }, [searchResults]);
 
-  const styles = getStyles(theme)
+  const styles = getStyles(theme);
 
   return (
     <InfiniteScrollView
       hasMoreItems={hasMoreItems}
       isFetchingResults={isFetchingResults}
       fetchMoreResults={() => {
-        setNetworkError(false)
+        setNetworkError(false);
         fetchMoreResults(FETCH_COUNT);
       }}
       showNetworkError={networkError}
@@ -115,29 +115,31 @@ export default memo(function SearchPageContent() {
       indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardShouldPersistTaps="handled"
     >
-      <HeaderSpace />
-      <Spacer size={theme.searchPageTopPadding} />
-      <SearchPills />
-      <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
-        <Searchbar />
-        <SortBy />
-        <View style={styles.cardList}>
-          {searchCountCard}
-          {items}
-        </View>
-      </Transitioning.View>
+      <View style={styles.contentRoot}>
+        <HeaderSpace />
+        <Spacer size={theme.searchPageTopPadding} />
+        <SearchPills />
+        <Transitioning.View ref={transitionViewRef} transition={cardListTransition}>
+          <Searchbar />
+          <SortBy />
+          {/* <View style={styles.cardList}> */}
+            {searchCountCard}
+            {items}
+          {/* </View> */}
+        </Transitioning.View>
+      </View>
     </InfiniteScrollView>
   );
 });
 
 function getStyles(theme) {
   return StyleSheet.create({
-  scrollView: {
-    height: "100%",
-    paddingHorizontal: theme.rem * 0.5,
-  },
-  cardList: {
-
-  },
-});
+    scrollView: {
+      // height: "100%",
+      paddingHorizontal: theme.rem * 0.5,
+    },
+    contentRoot: {
+    },
+    cardList: {},
+  });
 }

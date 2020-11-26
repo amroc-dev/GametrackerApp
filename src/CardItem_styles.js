@@ -100,7 +100,7 @@ function getStyles(theme) {
       fontWeight: theme.fonts.weights.bold,
     },
 
-    ratinCount: {
+    ratingCount: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.secondary,
     },

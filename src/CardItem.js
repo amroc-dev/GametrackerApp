@@ -5,7 +5,7 @@ import getStyles from "./CardItem_styles";
 import { ThemeContext } from "./ThemeContext";
 import ImageFadeIn from "./ImageFadeIn";
 const dbkeys = require("./shared/back-end/db-keys");
-import {Separator} from "./Common";
+import { Separator } from "./Common";
 
 function CardItem({ doc }) {
   const { theme } = useContext(ThemeContext);
@@ -61,27 +61,33 @@ function CardItem({ doc }) {
   }
 
   return (
-    <Pressable onPress={onTap}>
-      {/* <Separator /> */}
-      <View style={styles.cardItem}>
-        <ImageFadeIn style={styles.image} duration={theme.fadeSpeed} source={{ uri: doc_artworkUrl }} />
-        <View style={styles.dataContainer}>
-          <View style={styles.topRowContainer}>
-            <View style={styles.titleContainer}>
-              <Text numberOfLines={1} style={styles.titleText}>{doc_trackName}</Text>
-              <Text numberOfLines={1} style={styles.artistText}>{doc_artistName}</Text>
-            </View>
+    <Pressable onPress={onTap} style={styles.cardItem}>
+      <ImageFadeIn
+        resizeMethod="resize"
+        style={styles.image}
+        duration={theme.fadeSpeed}
+        source={{ uri: doc_artworkUrl }}
+      />
+      <View style={styles.dataContainer}>
+        <View style={styles.topRowContainer}>
+          <View style={styles.titleContainer}>
+            <Text numberOfLines={1} style={styles.titleText}>
+              {doc_trackName}
+            </Text>
+            <Text numberOfLines={1} style={styles.artistText}>
+              {doc_artistName}
+            </Text>
           </View>
-          <View style={styles.bottomRowContainer}>
-            <Text style={styles.releaseDate}>{releaseDate}</Text>
-            <View style={styles.ratingContainer}>
-              <View style={[ratingCellColor, styles.ratingCell]}>
-                <Text style={styles.ratingValue}>{rating}</Text>
-              </View>
-              <Text style={styles.ratinCount}>{ratingCountElem}</Text>
+        </View>
+        <View style={styles.bottomRowContainer}>
+          <Text style={styles.releaseDate}>{releaseDate}</Text>
+          <View style={styles.ratingContainer}>
+            <View style={[ratingCellColor, styles.ratingCell]}>
+              <Text style={styles.ratingValue}>{rating}</Text>
             </View>
-            <Text style={styles.price}>{formattedPriceElem}</Text>
+            <Text style={styles.ratingCount}>{ratingCountElem}</Text>
           </View>
+          <Text style={styles.price}>{formattedPriceElem}</Text>
         </View>
       </View>
     </Pressable>

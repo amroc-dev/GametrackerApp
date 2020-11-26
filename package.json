@@ -10,7 +10,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@jesster2k10/react-native-range-slider": "^0.3.1",
     "@ptomasroos/react-native-multi-slider": "^2.2.2",
     "@react-native-community/blur": "^3.6.0",
     "@react-native-community/masked-view": "^0.1.10",
@@ -36,7 +35,8 @@
     "react-native-screens": "^2.11.0",
     "react-native-status-bar-height": "^2.6.0",
     "react-native-vector-icons": "^7.1.0",
-    "rgb-hex": "^3.0.0"
+    "rgb-hex": "^3.0.0",
+    "shallow-equal": "^1.2.1"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",

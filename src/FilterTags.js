@@ -10,6 +10,8 @@ import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "./Common";
 import { Dimensions } from "react-native";
 import { nanoid } from "nanoid/non-secure";
 
+let keyExtractorRoot = 0;
+
 function FilterTags(props) {
   const { theme } = useContext(ThemeContext);
   const { tags } = useContext(CoreContext);
@@ -105,6 +107,7 @@ function FilterTags(props) {
   }
 
   function onChangeText(text) {
+    keyExtractorRoot = nanoid();
     setTagSearchField(text);
   }
 
@@ -121,7 +124,6 @@ function FilterTags(props) {
   );
 
   return useMemo(() => {
-    let keyExtractorRoot = nanoid();
     return (
       <>
         <View

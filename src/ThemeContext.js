@@ -57,7 +57,7 @@ function getBaseTheme() {
     shadowColor: "rgb(0,0,0)",
     shadowOpacity: 0.0,
     shadowOpacity_dropdown: 0.35,
-    shadowRadius: 5,
+    shadowRadius: 0,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -124,8 +124,8 @@ function getBaseTheme() {
 }
 
 function ThemeContextProvider(props) {
-  // const [theme, setTheme] = useState(getDarkTheme());
-  const [theme, setTheme] = useState(getLightTheme());
+  const [theme, setTheme] = useState(getDarkTheme());
+  // const [theme, setTheme] = useState(getLightTheme());
 
   useEffect(() => {
     const bgRGB = extractRGB(theme.colors.background1);

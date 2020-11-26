@@ -126,55 +126,58 @@ export function SearchInput(props) {
 
 export function HeaderSpace() {
   const { theme } = useContext(ThemeContext);
-  const height = 0;
+  const height = 44;
 
-  return <View style={{ height: theme.isDark ? height : 0, opacity: 0 }} />;
+  return <View style={{ height: height, opacity: 0 }} />;
 }
 
 export function Separator() {
-
   const { theme } = useContext(ThemeContext);
-  const height = 1
+  const height = 1;
 
-  return <View style={{
-      height: height,
-      width: "86%",
-      marginHorizontal: theme.rem * 0,
-      marginVertical: theme.rem * 0.25,
-      // marginTop: theme.rem * 0.5,
-      alignSelf: "center",
-      // backgroundColor: theme.colors.secondary,
-
-    }}
-  />;
+  return (
+    <View
+      style={{
+        height: height,
+        width: "86%",
+        marginHorizontal: theme.rem * 0,
+        marginVertical: theme.rem * 0.25,
+        // marginTop: theme.rem * 0.5,
+        alignSelf: "center",
+        // backgroundColor: theme.colors.secondary,
+      }}
+    />
+  );
 }
 
-export function Spacer({size}) {
-  const {theme} = useContext(ThemeContext)
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+export function Spacer({ size }) {
+  const { theme } = useContext(ThemeContext);
   const marginSize = size ? size : 0;
-  return <View style={{marginTop:marginSize}}/>
+  return <View style={{ marginTop: marginSize }} />;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export class ControlledLayoutAnimation {
-  static animSet = false
-  
+  static animSet = false;
+
   static configureNext(animObj) {
     if (ControlledLayoutAnimation.animSet) {
       // console.log("ControlledLayoutAnimation: skipping")
-      return
-    }
-  
-    ControlledLayoutAnimation.animSet = true
-    LayoutAnimation.configureNext(animObj)
-    
-    async function unSetNextFrame() {
-      await nextFrame()
-      ControlledLayoutAnimation.animSet = false
+      return;
     }
 
-    unSetNextFrame()
+    ControlledLayoutAnimation.animSet = true;
+    LayoutAnimation.configureNext(animObj);
+
+    async function unSetNextFrame() {
+      await nextFrame();
+      ControlledLayoutAnimation.animSet = false;
+    }
+
+    unSetNextFrame();
   }
 }
 
@@ -212,5 +215,69 @@ export function ToggleButton(props) {
     >
       <Animated.View style={{ opacity: pressFade }}>{props.children}</Animated.View>
     </Pressable>
+  );
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
+import _MultiSlider from "@ptomasroos/react-native-multi-slider";
+
+function MultiSliderMarker() {
+  const { theme } = useContext(ThemeContext);
+  
+  return (
+    <View
+      style={{
+        width: 80,
+        height: 80,
+        backgroundColor: "rgba(0,0,0,0.0)",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <View style={{ width: 18, height: 18, backgroundColor: theme.colors.primary, borderRadius: 9 }} />
+    </View>
+  );
+}
+
+export function MultiSlider(props) {
+  const { theme } = useContext(ThemeContext);
+  const [parentWidth, setParentWidth] = useState(0);
+  const [ready, setReady] = useState(false)
+
+  const parentContainerStyle = props.parentContainerStyle ? props.parentContainerStyle : {};
+
+  // if (parentWidth === 0) {
+  //   console.log('here')
+  //   // return <View style={parentContainerStyle} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)} />
+  // }
+
+  useEffect( () => {
+    if (parentWidth > 0 && props.max > 0) {
+      setReady(true)
+    }   
+  }, [parentWidth, props.max])
+
+  const readyStyle = {opacity: ready ? 1 : 0}
+
+  return (
+    <View style={[parentContainerStyle, readyStyle]} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}>
+      <_MultiSlider
+        touchDimensions={{ slipDisplacement: 2000 }}
+        allowOverlap={true}
+        customMarker={MultiSliderMarker}
+        markerOffsetY={1}
+        sliderLength={parentWidth}
+        trackStyle={{
+          height: 3,
+          backgroundColor: theme.colors.secondary,
+        }}
+        selectedStyle={{
+          height: 3,
+          backgroundColor: theme.colors.primary,
+        }}
+        {...props}
+      />
+    </View>
   );
 }

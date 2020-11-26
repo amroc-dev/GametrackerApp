@@ -6,6 +6,7 @@ import { ThemeContext } from  "./ThemeContext";
 import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
+import FilterRating from "./FilterRating";
 import { HeaderSpace, Separator, Spacer } from "./Common";
 
 export default function FiltersPage() {
@@ -31,6 +32,8 @@ export default function FiltersPage() {
           <FilterDevice />
           <Spacer size={theme.rem * 2} />
           <FilterPopularity setScrollEnabled={setScrollEnabled} />
+          <Spacer size={theme.rem * 2} />
+          <FilterRating setScrollEnabled={setScrollEnabled} />
           <View style={{marginTop:theme.rem}} />
         </View>
       </ScrollView>

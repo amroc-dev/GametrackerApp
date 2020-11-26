@@ -59,6 +59,8 @@ export default function ModalDropdown(props) {
     </Transition.Together>
   );
 
+  // const selectedLabelStyle = controller && controller.isOpen ? {} : styles.selectedLabelStyle
+
   return (
     <Transitioning.View style={{flexDirection: 'row'}} ref={modalTransitioningView} transition={modalTransition}>
       {overlay}
@@ -69,6 +71,8 @@ export default function ModalDropdown(props) {
         dropDownStyle={styles.dropdown}
         itemStyle={styles.itemStyle}
         labelStyle={styles.labelStyle}
+        activeLabelStyle={styles.activeLabelStyle}
+        selectedLabelStyle={styles.selectedLabelStyle}
         placeholderStyle={styles.placeholder}
         onOpen={onOpen}
         onClose={onClose}
@@ -126,12 +130,18 @@ function getStyles(theme) {
       flex: 1,
     },
     labelStyle: {
-      color: theme.fonts.colors.primary,
+      color: theme.fonts.colors.secondary,
       flex: 1,
-      fontSize: theme.fonts.sizes.primary,
+      fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
       marginLeft: theme.rem * 0.75,
     },
-    selectedLabelStyle: {},
+    activeLabelStyle: {
+      color: theme.fonts.colors.primary,
+    },
+    selectedLabelStyle: {
+      color: theme.fonts.colors.primary,
+      fontSize: theme.fonts.sizes.primary,
+    }
   });
 }

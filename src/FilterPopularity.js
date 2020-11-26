@@ -6,24 +6,16 @@ import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import RangeSlider from "@jesster2k10/react-native-range-slider";
-import rgbHex from "rgb-hex";
+import {MultiSlider} from "./Common";
 
-let sliderPressed = false;
-
-function FilterPopularity() {
+function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);
   const { popularityIntervals } = useContext(CoreContext);
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
-  const [sliderValRead, setSliderValRead] = useState({ min: 0, max: 0 });
-  const [sliderValWrite, setSliderValWrite] = useState({ min: 0, max: 0 });
+  const [sliderVal, setSliderVal] = useState({ min: 0, max: 10 });
 
   const styles = getStyles(theme)
   const filterStyles = getFilterStyles(theme)
-
-  useEffect(() => {
-    sliderPressed = false;
-  }, []);
 
   useEffect(() => {
     function getSliderMax() {
@@ -53,17 +45,13 @@ function FilterPopularity() {
       return 0;
     }
 
-    setSliderValWrite({ min: getSliderMin(), max: getSliderMax() });
+    setSliderVal({ min: getSliderMin(), max: getSliderMax() });
   }, [popularityIntervals, popularityFilter]);
 
-  function onChange(min, max) {
-    setSliderValRead({ min: min, max: max });
-  }
-
   function getText() {
-    let text = "";
-    const sliderMin = sliderValRead.min === -1 ? 0 : sliderValRead.min;
-    const sliderMax = sliderValRead.max === -1 ? popularityIntervals.length - 1 : sliderValRead.max;
+    let text = <Text></Text>;
+    const sliderMin = sliderVal.min === -1 ? 0 : sliderVal.min;
+    const sliderMax = sliderVal.max === -1 ? popularityIntervals.length - 1 : sliderVal.max;
 
     if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
       text = (
@@ -72,7 +60,7 @@ function FilterPopularity() {
         </View>
       );
     } else {
-      if (sliderValRead.max === popularityIntervals.length - 1) {
+      if (sliderVal.max === popularityIntervals.length - 1) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Min </Text>
@@ -80,7 +68,7 @@ function FilterPopularity() {
             <Text style={styles.text}> ratings </Text>
           </View>
         );
-      } else if (sliderValRead.min === 0) {
+      } else if (sliderVal.min === 0) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.text}>Max </Text>
@@ -104,14 +92,35 @@ function FilterPopularity() {
     return text;
   }
 
-  const [hitSlop, setHitSlop] = useState(0);
+  function onChange(vals) {
+    setSliderVal({ min: vals[0], max: vals[1] });
+  }
+
+  function onChangeFinish(vals) {
+    setSliderVal({ min: vals[0], max: vals[1] });
+    const minVal = vals[0] === 0 ? -1 : popularityIntervals[vals[0]];
+    const maxVal = vals[1] === popularityIntervals.length - 1 ? -1 : popularityIntervals[vals[1]];
+    setPopularityFilter(minVal, maxVal);
+    props.setScrollEnabled(true);
+  }
 
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
       <FilterHeader title={"Popularity"} />
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
-        <Pressable
+        <MultiSlider
+          parentContainerStyle={{marginHorizontal:theme.rem}}
+          values={[sliderVal.min, sliderVal.max]}
+          min={0}
+          // sliderLength={200}
+          max={popularityIntervals.length - 1}
+          onValuesChangeStart={() => props.setScrollEnabled(false)}
+          onValuesChangeFinish={onChangeFinish}
+          onValuesChange={onChange}
+        />
+        
+        {/* <Pressable
           style={styles.sliderContainer}
           hitSlop={hitSlop}
           onPressIn={() => {
@@ -143,7 +152,7 @@ function FilterPopularity() {
             selectedMaximum={sliderValWrite.max}
             onChange={onChange}
           />
-        </Pressable>
+        </Pressable> */}
       </View>
     </View>
   );
