@@ -126,7 +126,7 @@ export function SearchInput(props) {
 
 export function HeaderSpace() {
   const { theme } = useContext(ThemeContext);
-  const height = 44;
+  const height = 0;//44;
 
   return <View style={{ height: height, opacity: 0 }} />;
 }

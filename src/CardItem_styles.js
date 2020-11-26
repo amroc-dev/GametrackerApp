@@ -3,12 +3,20 @@ import { StyleSheet } from "react-native";
 import { ThemeConsumer } from "react-native-elements";
 
 function getStyles(theme) {
+  
+  const cardHeight = 100;
+  const cardSpacing = theme.rem * 0.5;
+  
   return StyleSheet.create({
+    
+    cardHeight: cardHeight,
+    cardSpacing: cardSpacing,
+    
     cardItem: {
       flexDirection: "row",
       backgroundColor: theme.colors.background2,
       borderRadius: theme.borderRadius,
-      marginTop: theme.rem * 0.5,
+      marginTop: cardSpacing,
       // marginHorizontal: theme.rem * 1,
       shadowColor: theme.shadowColor,
       shadowOpacity: theme.shadowOpacity,
@@ -20,8 +28,8 @@ function getStyles(theme) {
     },
 
     image: {
-      width: 100,
-      height: 100,
+      width: cardHeight,
+      height: cardHeight,
       borderRadius: theme.borderRadius,
       borderBottomRightRadius: 0,
       borderTopRightRadius: 0,

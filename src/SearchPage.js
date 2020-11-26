@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Button, SafeAreaView, View, StyleSheet, StatusBar } from "react-native";
 import SearchPageContent from "./SearchPageContent";
+import SearchPageContent_FlatList from "./SearchPageContent_FlatList";
 import { Platform } from "react-native";
 import FiltersPage from "./FiltersPage";
 import { transparentize, invert } from "polished";
@@ -15,7 +16,8 @@ export default function SearchPage() {
     return (
       <View style={[styles.root, { flexDirection: "row" }]}>
         <View style={styles.splitRoot_search}>
-          <SearchPageContent />
+          <SearchPageContent_FlatList />
+          {/* <SearchPageContent /> */}
         </View>
         {/* <View style={styles.splitRoot_spacer} /> */}
         <View style={styles.splitRoot_filters}>
@@ -27,7 +29,8 @@ export default function SearchPage() {
 
   return (
     <View style={styles.root}>
-      <SearchPageContent />
+      <SearchPageContent_FlatList />
+      {/* <SearchPageContent /> */}
     </View>
   );
 }
@@ -49,8 +52,8 @@ function getStyles(theme) {
     splitRoot_spacer: {
       width: 2,
       borderRadius: 1,
-      height: '75%',
-      alignSelf: 'center',
+      height: "75%",
+      alignSelf: "center",
       backgroundColor: theme.colors.background2,
     },
     splitRoot_filters: {

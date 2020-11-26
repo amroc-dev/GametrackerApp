@@ -1,34 +1,41 @@
 import React, { useContext, useEffect, useState } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 import { Wave } from "react-native-animated-spinkit";
 import { ThemeContext } from "./ThemeContext";
+import getCardItemStyles from "./CardItem_styles";
 import PropTypes from "prop-types";
 
 export default function LoadingSpinner(props) {
   const { theme } = useContext(ThemeContext);
 
-  const styles = getStyles(theme);
+  const cardItemStyles = getCardItemStyles(theme);
+  const style = {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: 'center',
+    height: cardItemStyles.cardHeight + cardItemStyles.cardSpacing,
+  }
+
+  const size = props.size ? props.size : 48
+
+  let indicator = <Wave size={size} color={theme.colors.primary} />
+
+  if (props.type && props.type === 'networkError') {
+    const networkErrorStyle = {
+      color: theme.fonts.colors.primary,
+      fontSize: theme.fonts.sizes.primary,
+    };
+    indicator = <Text style={networkErrorStyle}>Network error</Text>;
+  }
 
   return (
-    <View style={styles.parent}>
-      <Wave style={styles.spinner} size={48} color={theme.colors.primary} />
+    <View style={style}>
+      {indicator}
     </View>
   );
 }
 
 LoadingSpinner.propTypes = {
-  delayMs: PropTypes.number
+  size: PropTypes.number,
+  type: PropTypes.string,
 };
-
-
-function getStyles(theme) {
-  return StyleSheet.create({
-    parent: {
-      flexDirection: "row",
-      justifyContent: "center",
-    },
-    spinner: {
-      marginTop: theme.rem * 1.5,
-    },
-  });
-}
