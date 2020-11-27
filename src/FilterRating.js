@@ -9,8 +9,6 @@ import { lighten, darken, toColorString } from "polished";
 import { MultiSlider, Clamp } from "./Common";
 import rgbHex from "rgb-hex";
 
-let sliderPressed = false;
-
 export const MIN_VAL = 1.0;
 export const MAX_VAL = 5;
 
