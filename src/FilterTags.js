@@ -46,6 +46,7 @@ function FilterTags(props) {
       groups.pop();
     }
 
+    keyExtractorRoot = nanoid();
     setTagColumns(groups);
   }, [tagSearchField, tags, tagsViewContainerWidth]);
 
