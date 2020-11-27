@@ -121,7 +121,10 @@ export default function SearchPills() {
         text = "Min " + numberWithCommas(popularityFilter.min);
       } else if (popularityFilter.min === -1) {
         text = "Max " + numberWithCommas(popularityFilter.max);
-      } else {
+      } else if (popularityFilter.min === popularityFilter.max) {
+        text = numberWithCommas(popularityFilter.min)
+      }
+      else {
         text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
       }
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);

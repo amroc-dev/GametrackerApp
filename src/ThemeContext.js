@@ -63,7 +63,7 @@ function getBaseTheme() {
       height: 0,
     },
 
-    borderRadius: 6,
+    borderRadius: 5,
     borderRadius2: 12,
     pillBorderRadius: 100,
     pillHorizontalPadding: rem * 0.66,

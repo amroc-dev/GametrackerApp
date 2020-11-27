@@ -235,7 +235,7 @@ function MultiSliderMarker() {
         alignItems: "center",
       }}
     >
-      <View style={{ width: 18, height: 18, backgroundColor: theme.colors.primary, borderRadius: 9 }} />
+      <View style={{ width: 10, height: 18, backgroundColor: theme.colors.primary, borderRadius: 2 }} />
     </View>
   );
 }

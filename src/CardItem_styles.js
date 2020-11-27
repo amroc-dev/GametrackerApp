@@ -1,4 +1,4 @@
-import { borderRadius } from "polished";
+import { borderRadius, transparentize } from "polished";
 import { StyleSheet } from "react-native";
 import { ThemeConsumer } from "react-native-elements";
 

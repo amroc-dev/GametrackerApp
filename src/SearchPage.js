@@ -47,18 +47,20 @@ function getStyles(theme) {
 
     splitRoot_search: {
       flex: 1.45,
-      // marginLeft: theme.rem * 0.5,
+      marginLeft: theme.rem * 0.5,
     },
     splitRoot_spacer: {
-      width: 2,
+      width: 0,
       borderRadius: 1,
-      height: "75%",
+      height: "100%",
       alignSelf: "center",
-      backgroundColor: theme.colors.background2,
+      marginHorizontal: theme.rem * 0.0,
+      backgroundColor: transparentize(0.5, theme.colors.background2),
+      opacity: 0,
     },
     splitRoot_filters: {
       flex: 1,
-      // marginRight: theme.rem * 0.5,
+      marginRight: theme.rem * 0.5,
     },
   });
 }

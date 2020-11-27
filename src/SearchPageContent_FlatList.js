@@ -54,10 +54,10 @@ export default function SearchPageContent_FlatList() {
   useEffect(() => {
     if (networkError) {
       setLoadingSpinner(<LoadingSpinner type="networkError" />);
-    } else if (hasMoreItems && isFetchingResults) {
+    } else if (hasMoreItems) {
       setLoadingSpinner(<LoadingSpinner type="loading" />);
     } else setLoadingSpinner(<View style={{marginBottom:cardItemStyles.cardSpacing}} />);
-  }, [networkError, hasMoreItems, isFetchingResults]);
+  }, [networkError, hasMoreItems]);
 
   function renderItem({ item, index }) {
     if (React.isValidElement(item)) return item;
@@ -161,18 +161,18 @@ export default function SearchPageContent_FlatList() {
     <FlatList
       ref={flatListRef}
       onScroll={onScroll}
-      // scrollEventThrottle={1000}
+      scrollEventThrottle={500}
       data={items}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
       initialNumToRender={20}
       onEndReached={onEndReached}
-      onEndReachedThreshold={1}
+      onEndReachedThreshold={0.5}
       ListHeaderComponent={listHeaderComponent}
       ListFooterComponent={loadingSpinner}
-      // windowSize={200}
+      windowSize={80}
       maxToRenderPerBatch={FETCH_COUNT}
-      updateCellsBatchingPeriod={0}
+      updateCellsBatchingPeriod={1}
       style={styles.scrollView}
       indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardDismissMode="on-drag"

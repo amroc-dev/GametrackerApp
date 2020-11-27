@@ -76,10 +76,17 @@ function FilterPopularity(props) {
             <Text style={styles.text}> ratings </Text>
           </View>
         );
-      } else {
+      } else if (sliderVal.min === sliderVal.max) {
         text = (
           <View style={styles.textContainer}>
-            {/* <Text style={styles.text}>Min </Text> */}
+            <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
+            <Text style={styles.text}> ratings </Text>
+          </View>
+        );
+      } 
+      else {
+        text = (
+          <View style={styles.textContainer}>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> to </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
