@@ -8,34 +8,18 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* GametrackerAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GametrackerAppTests.m */; };
-		0D622855FD734F7BBA91CC8F /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D1B6AC3C4894CA6BCEDA6EA /* MaterialIcons.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		1D507A1EE2F342E0ADF50C2F /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3A745B472864C3B8EDBBB25 /* Feather.ttf */; };
-		21327954F8F44EB38BA48FF2 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6FCC3010A260481BB9977B1A /* SimpleLineIcons.ttf */; };
-		2A3E58A1AF144EBEBDF7AA3B /* AntDesign.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 94AD85154BCB429B8FEC690D /* AntDesign.ttf */; };
+		26397B93803489AD35178D9B /* libPods-GametrackerApp-GametrackerAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA20C53ED71EF0A4D65AC76 /* libPods-GametrackerApp-GametrackerAppTests.a */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* GametrackerAppTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* GametrackerAppTests.m */; };
-		3185019EBC5E457EB714F74C /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 83B89959C2324DD08BD7479D /* FontAwesome5_Solid.ttf */; };
-		3202B383669240F0A3736B48 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8CB6BF1DA1384D699228C0BC /* FontAwesome5_Regular.ttf */; };
-		343AB47A51C64A03B9DD1D04 /* Fontisto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B7F5312C735F4F46BAE10C60 /* Fontisto.ttf */; };
-		64E26D4FCDAA432D8020B73C /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 22229D48AE324A6CA0B39792 /* MaterialCommunityIcons.ttf */; };
-		6C766A8322F143A287707E9C /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EB27434D1D442218E17449F /* FontAwesome.ttf */; };
-		7E0ACDA0A10946AF9063768B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 747CDB0A6BDA4B4D8EDD64C9 /* Foundation.ttf */; };
-		7F4EAA12D0950389AA042B97 /* libPods-GametrackerApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C54C3B0AF71FC619DE639DDD /* libPods-GametrackerApp.a */; };
+		3D447CA4D4307DDF494C634C /* libPods-GametrackerApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 07174A5F8296369D968CE62F /* libPods-GametrackerApp.a */; };
+		5E18926E1A1F06A9C83E8526 /* libPods-GametrackerApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FF547BD3B34117372B84273C /* libPods-GametrackerApp-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9DFCE11192E04E6DB3CD5D58 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = B741349858264B4EB01C2E9A /* FontAwesome5_Brands.ttf */; };
-		AB960683CA5541A5A3939A87 /* Entypo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A5ABF118DED743549EC9888C /* Entypo.ttf */; };
-		C0B66E18786A45EEAE5E1C17 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 808B879AC8EC4B488003343C /* EvilIcons.ttf */; };
-		C3574DEDACC36A8A2BAAF377 /* libPods-GametrackerApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B4D97A122CF0FD3D397C32D6 /* libPods-GametrackerApp-tvOS.a */; };
-		C415E835185182F3A4621600 /* libPods-GametrackerApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9184B4656E17BFD238700A1E /* libPods-GametrackerApp-tvOSTests.a */; };
-		D123889E1E864ACEA5E5F7AC /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 47A16588768D44008C3C745E /* Octicons.ttf */; };
-		D4DD54593F5B4303AEE03AC3 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C1667157C95649D7BA2293E3 /* Zocial.ttf */; };
-		E6689E1B0B87314F552E3849 /* libPods-GametrackerApp-GametrackerAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F230C38F4E0A157BA7760B14 /* libPods-GametrackerApp-GametrackerAppTests.a */; };
-		FAA945D0E4524A69979D5E7D /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2D54A9C99DB345D482C5C59A /* Ionicons.ttf */; };
+		F95AE3C27AA6B9FA634A5276 /* libPods-GametrackerApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C15F015EE35B5C290A9E22C5 /* libPods-GametrackerApp-tvOS.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,45 +44,29 @@
 		00E356EE1AD99517003FC87E /* GametrackerAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GametrackerAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* GametrackerAppTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GametrackerAppTests.m; sourceTree = "<group>"; };
-		0A1E860F810C6F4BC20EDCC6 /* Pods-GametrackerApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOS/Pods-GametrackerApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		07174A5F8296369D968CE62F /* libPods-GametrackerApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07F961A680F5B00A75B9A /* GametrackerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GametrackerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = GametrackerApp/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = GametrackerApp/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = GametrackerApp/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = GametrackerApp/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = GametrackerApp/main.m; sourceTree = "<group>"; };
-		22229D48AE324A6CA0B39792 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
+		226FDE8EC340360D52DBEFC7 /* Pods-GametrackerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp.release.xcconfig"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* GametrackerApp-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GametrackerApp-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* GametrackerApp-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "GametrackerApp-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D54A9C99DB345D482C5C59A /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		47A16588768D44008C3C745E /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		4C2C2136FE4EC9658948C00C /* Pods-GametrackerApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOS/Pods-GametrackerApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		5EB27434D1D442218E17449F /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
-		65BBE34CC63C1FF56E532D2E /* Pods-GametrackerApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOSTests/Pods-GametrackerApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		6FCC3010A260481BB9977B1A /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
-		747CDB0A6BDA4B4D8EDD64C9 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
-		799B09E02BDDD7AC6D7C0E00 /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOSTests/Pods-GametrackerApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		7D1B6AC3C4894CA6BCEDA6EA /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		808B879AC8EC4B488003343C /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
+		36D65619772558C42030063C /* Pods-GametrackerApp-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOSTests/Pods-GametrackerApp-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GametrackerApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		83B89959C2324DD08BD7479D /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
-		8CB6BF1DA1384D699228C0BC /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
-		9184B4656E17BFD238700A1E /* libPods-GametrackerApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		94AD85154BCB429B8FEC690D /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		99847A53712EC66C3BD7F1A2 /* Pods-GametrackerApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp.release.xcconfig"; sourceTree = "<group>"; };
-		A5ABF118DED743549EC9888C /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
-		AD38C7197136E945503688AA /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig"; sourceTree = "<group>"; };
-		B4D97A122CF0FD3D397C32D6 /* libPods-GametrackerApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		B741349858264B4EB01C2E9A /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
-		B7F5312C735F4F46BAE10C60 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		C1667157C95649D7BA2293E3 /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
-		C2C4CD312B19BAB7C605386B /* Pods-GametrackerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C54C3B0AF71FC619DE639DDD /* libPods-GametrackerApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D3A745B472864C3B8EDBBB25 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Feather.ttf"; sourceTree = "<group>"; };
-		E5E6DF8D182C11EF7A75E33C /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		9AA13EB2201A3E0C50F9ECAF /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOSTests/Pods-GametrackerApp-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD3CFBF98B5443C15B387CA3 /* Pods-GametrackerApp-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOS/Pods-GametrackerApp-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BCA20C53ED71EF0A4D65AC76 /* libPods-GametrackerApp-GametrackerAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-GametrackerAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C15F015EE35B5C290A9E22C5 /* libPods-GametrackerApp-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E88A67DD3CBC7474BF1FDFA8 /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		F230C38F4E0A157BA7760B14 /* libPods-GametrackerApp-GametrackerAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-GametrackerAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F16A5E5844A2AF0354DFF2B3 /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; sourceTree = "<group>"; };
+		F6B74A091EFFDDCD2F6B6304 /* Pods-GametrackerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp.debug.xcconfig"; sourceTree = "<group>"; };
+		FAF34155D681B52962F9B705 /* Pods-GametrackerApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOS/Pods-GametrackerApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		FF547BD3B34117372B84273C /* libPods-GametrackerApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E6689E1B0B87314F552E3849 /* libPods-GametrackerApp-GametrackerAppTests.a in Frameworks */,
+				26397B93803489AD35178D9B /* libPods-GametrackerApp-GametrackerAppTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7F4EAA12D0950389AA042B97 /* libPods-GametrackerApp.a in Frameworks */,
+				3D447CA4D4307DDF494C634C /* libPods-GametrackerApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C3574DEDACC36A8A2BAAF377 /* libPods-GametrackerApp-tvOS.a in Frameworks */,
+				F95AE3C27AA6B9FA634A5276 /* libPods-GametrackerApp-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C415E835185182F3A4621600 /* libPods-GametrackerApp-tvOSTests.a in Frameworks */,
+				5E18926E1A1F06A9C83E8526 /* libPods-GametrackerApp-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -154,21 +122,6 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		01ADC9C80C0CF1E5440E0578 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				C2C4CD312B19BAB7C605386B /* Pods-GametrackerApp.debug.xcconfig */,
-				99847A53712EC66C3BD7F1A2 /* Pods-GametrackerApp.release.xcconfig */,
-				AD38C7197136E945503688AA /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */,
-				E5E6DF8D182C11EF7A75E33C /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */,
-				0A1E860F810C6F4BC20EDCC6 /* Pods-GametrackerApp-tvOS.debug.xcconfig */,
-				4C2C2136FE4EC9658948C00C /* Pods-GametrackerApp-tvOS.release.xcconfig */,
-				799B09E02BDDD7AC6D7C0E00 /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */,
-				65BBE34CC63C1FF56E532D2E /* Pods-GametrackerApp-tvOSTests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 		13B07FAE1A68108700A75B9A /* GametrackerApp */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,10 +141,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				C54C3B0AF71FC619DE639DDD /* libPods-GametrackerApp.a */,
-				F230C38F4E0A157BA7760B14 /* libPods-GametrackerApp-GametrackerAppTests.a */,
-				B4D97A122CF0FD3D397C32D6 /* libPods-GametrackerApp-tvOS.a */,
-				9184B4656E17BFD238700A1E /* libPods-GametrackerApp-tvOSTests.a */,
+				07174A5F8296369D968CE62F /* libPods-GametrackerApp.a */,
+				BCA20C53ED71EF0A4D65AC76 /* libPods-GametrackerApp-GametrackerAppTests.a */,
+				C15F015EE35B5C290A9E22C5 /* libPods-GametrackerApp-tvOS.a */,
+				FF547BD3B34117372B84273C /* libPods-GametrackerApp-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -211,9 +164,7 @@
 				00E356EF1AD99517003FC87E /* GametrackerAppTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				01ADC9C80C0CF1E5440E0578 /* Pods */,
-				F086D96C757B44B69F9B0DE4 /* Resources */,
-				A9D1403E256EB6A900F26AC3 /* Recovered References */,
+				850CFCBA6A7E724A624E3905 /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -231,35 +182,19 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A9D1403E256EB6A900F26AC3 /* Recovered References */ = {
+		850CFCBA6A7E724A624E3905 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				466BBFFEEE2B4269B10D291A /* libRangeSlider.a */,
+				F6B74A091EFFDDCD2F6B6304 /* Pods-GametrackerApp.debug.xcconfig */,
+				226FDE8EC340360D52DBEFC7 /* Pods-GametrackerApp.release.xcconfig */,
+				E88A67DD3CBC7474BF1FDFA8 /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */,
+				F16A5E5844A2AF0354DFF2B3 /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */,
+				AD3CFBF98B5443C15B387CA3 /* Pods-GametrackerApp-tvOS.debug.xcconfig */,
+				FAF34155D681B52962F9B705 /* Pods-GametrackerApp-tvOS.release.xcconfig */,
+				9AA13EB2201A3E0C50F9ECAF /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */,
+				36D65619772558C42030063C /* Pods-GametrackerApp-tvOSTests.release.xcconfig */,
 			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		F086D96C757B44B69F9B0DE4 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				94AD85154BCB429B8FEC690D /* AntDesign.ttf */,
-				A5ABF118DED743549EC9888C /* Entypo.ttf */,
-				808B879AC8EC4B488003343C /* EvilIcons.ttf */,
-				D3A745B472864C3B8EDBBB25 /* Feather.ttf */,
-				5EB27434D1D442218E17449F /* FontAwesome.ttf */,
-				B741349858264B4EB01C2E9A /* FontAwesome5_Brands.ttf */,
-				8CB6BF1DA1384D699228C0BC /* FontAwesome5_Regular.ttf */,
-				83B89959C2324DD08BD7479D /* FontAwesome5_Solid.ttf */,
-				B7F5312C735F4F46BAE10C60 /* Fontisto.ttf */,
-				747CDB0A6BDA4B4D8EDD64C9 /* Foundation.ttf */,
-				2D54A9C99DB345D482C5C59A /* Ionicons.ttf */,
-				22229D48AE324A6CA0B39792 /* MaterialCommunityIcons.ttf */,
-				7D1B6AC3C4894CA6BCEDA6EA /* MaterialIcons.ttf */,
-				47A16588768D44008C3C745E /* Octicons.ttf */,
-				6FCC3010A260481BB9977B1A /* SimpleLineIcons.ttf */,
-				C1667157C95649D7BA2293E3 /* Zocial.ttf */,
-			);
-			name = Resources;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -269,11 +204,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "GametrackerAppTests" */;
 			buildPhases = (
-				DB4C0A93AD62E0096510B41F /* [CP] Check Pods Manifest.lock */,
+				3D061A5BB84C4D0BD8894630 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				5F83D159211357E7E16FAA2A /* [CP] Copy Pods Resources */,
+				932A452212DC16B390064EB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -289,13 +224,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "GametrackerApp" */;
 			buildPhases = (
-				9212CE3D10C84894FED93D70 /* [CP] Check Pods Manifest.lock */,
+				F5683F42D61EBE0C786BAC3A /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				99299F94519254194DCC5747 /* [CP] Copy Pods Resources */,
+				13071A70C3D07E1834E3D056 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -310,7 +245,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GametrackerApp-tvOS" */;
 			buildPhases = (
-				3CAEAA7907FF5638C3F070D4 /* [CP] Check Pods Manifest.lock */,
+				F52BB1CADB39F1E7688CADFC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
 				2D02E4771E0B4A5D006451C7 /* Sources */,
 				2D02E4781E0B4A5D006451C7 /* Frameworks */,
@@ -330,7 +265,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "GametrackerApp-tvOSTests" */;
 			buildPhases = (
-				D11AAB33AA96B6295E6D9AFE /* [CP] Check Pods Manifest.lock */,
+				609FA9CCBCB799F3F640FBD5 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
 				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
 				2D02E48E1E0B4A5D006451C7 /* Resources */,
@@ -383,8 +318,6 @@
 			mainGroup = 83CBB9F61A601CBA00E9B192;
 			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-			);
 			projectRoot = "";
 			targets = (
 				13B07F861A680F5B00A75B9A /* GametrackerApp */,
@@ -394,9 +327,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		00E356EC1AD99517003FC87E /* Resources */ = {
@@ -412,22 +342,6 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				2A3E58A1AF144EBEBDF7AA3B /* AntDesign.ttf in Resources */,
-				AB960683CA5541A5A3939A87 /* Entypo.ttf in Resources */,
-				C0B66E18786A45EEAE5E1C17 /* EvilIcons.ttf in Resources */,
-				1D507A1EE2F342E0ADF50C2F /* Feather.ttf in Resources */,
-				6C766A8322F143A287707E9C /* FontAwesome.ttf in Resources */,
-				9DFCE11192E04E6DB3CD5D58 /* FontAwesome5_Brands.ttf in Resources */,
-				3202B383669240F0A3736B48 /* FontAwesome5_Regular.ttf in Resources */,
-				3185019EBC5E457EB714F74C /* FontAwesome5_Solid.ttf in Resources */,
-				343AB47A51C64A03B9DD1D04 /* Fontisto.ttf in Resources */,
-				7E0ACDA0A10946AF9063768B /* Foundation.ttf in Resources */,
-				FAA945D0E4524A69979D5E7D /* Ionicons.ttf in Resources */,
-				64E26D4FCDAA432D8020B73C /* MaterialCommunityIcons.ttf in Resources */,
-				0D622855FD734F7BBA91CC8F /* MaterialIcons.ttf in Resources */,
-				D123889E1E864ACEA5E5F7AC /* Octicons.ttf in Resources */,
-				21327954F8F44EB38BA48FF2 /* SimpleLineIcons.ttf in Resources */,
-				D4DD54593F5B4303AEE03AC3 /* Zocial.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +377,56 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
+		13071A70C3D07E1834E3D056 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp-resources.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -477,7 +441,7 @@
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
 		};
-		3CAEAA7907FF5638C3F070D4 /* [CP] Check Pods Manifest.lock */ = {
+		3D061A5BB84C4D0BD8894630 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -492,14 +456,36 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-GametrackerAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5F83D159211357E7E16FAA2A /* [CP] Copy Pods Resources */ = {
+		609FA9CCBCB799F3F640FBD5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		932A452212DC16B390064EB1 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -549,7 +535,29 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9212CE3D10C84894FED93D70 /* [CP] Check Pods Manifest.lock */ = {
+		F52BB1CADB39F1E7688CADFC /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5683F42D61EBE0C786BAC3A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -565,100 +573,6 @@
 			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		99299F94519254194DCC5747 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 8;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp-resources.sh",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
-				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
-				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D11AAB33AA96B6295E6D9AFE /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-tvOSTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB4C0A93AD62E0096510B41F /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-GametrackerApp-GametrackerAppTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -758,22 +672,16 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD38C7197136E945503688AA /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */;
+			baseConfigurationReference = E88A67DD3CBC7474BF1FDFA8 /* Pods-GametrackerApp-GametrackerAppTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = GametrackerAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -787,19 +695,13 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E5E6DF8D182C11EF7A75E33C /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */;
+			baseConfigurationReference = F16A5E5844A2AF0354DFF2B3 /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = GametrackerAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
@@ -813,20 +715,15 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C2C4CD312B19BAB7C605386B /* Pods-GametrackerApp.debug.xcconfig */;
+			baseConfigurationReference = F6B74A091EFFDDCD2F6B6304 /* Pods-GametrackerApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBCCP32BZY;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = GametrackerApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -843,19 +740,14 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 99847A53712EC66C3BD7F1A2 /* Pods-GametrackerApp.release.xcconfig */;
+			baseConfigurationReference = 226FDE8EC340360D52DBEFC7 /* Pods-GametrackerApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = WBCCP32BZY;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = GametrackerApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -871,7 +763,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0A1E860F810C6F4BC20EDCC6 /* Pods-GametrackerApp-tvOS.debug.xcconfig */;
+			baseConfigurationReference = AD3CFBF98B5443C15B387CA3 /* Pods-GametrackerApp-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -882,14 +774,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "GametrackerApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -905,7 +791,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4C2C2136FE4EC9658948C00C /* Pods-GametrackerApp-tvOS.release.xcconfig */;
+			baseConfigurationReference = FAF34155D681B52962F9B705 /* Pods-GametrackerApp-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -916,14 +802,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "GametrackerApp-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -939,7 +819,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 799B09E02BDDD7AC6D7C0E00 /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 9AA13EB2201A3E0C50F9ECAF /* Pods-GametrackerApp-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -949,14 +829,8 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "GametrackerApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -972,7 +846,7 @@
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 65BBE34CC63C1FF56E532D2E /* Pods-GametrackerApp-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 36D65619772558C42030063C /* Pods-GametrackerApp-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -982,14 +856,8 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				INFOPLIST_FILE = "GametrackerApp-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-				);
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -1050,7 +918,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",
@@ -1103,7 +971,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = "/usr/lib/swift $(inherited)";
 				LIBRARY_SEARCH_PATHS = (
 					"\"$(TOOLCHAIN_DIR)/usr/lib/swift/$(PLATFORM_NAME)\"",

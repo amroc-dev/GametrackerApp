@@ -276,7 +276,6 @@ export function MultiSlider(props) {
     <View style={[parentContainerStyle, readyStyle]} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}>
       <_MultiSlider
         touchDimensions={{ slipDisplacement: 2000 }}
-        allowOverlap={true}
         customMarker={MultiSliderMarker}
         markerOffsetY={1}
         trackStyle={{

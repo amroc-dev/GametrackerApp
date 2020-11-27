@@ -120,8 +120,10 @@ function FilterPopularity(props) {
           parentContainerStyle={{marginHorizontal:theme.rem}}
           values={[sliderVal.min, sliderVal.max]}
           min={0}
-          // sliderLength={200}
           max={popularityIntervals.length - 1}
+          allowOverlap={true}
+          // step={1}
+          // minMarkerOverlapStepDistance={50}
           onValuesChangeStart={() => props.setScrollEnabled(false)}
           onValuesChangeFinish={onChangeFinish}
           onValuesChange={onChange}

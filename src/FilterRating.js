@@ -9,7 +9,7 @@ import { lighten, darken, toColorString } from "polished";
 import { MultiSlider, Clamp } from "./Common";
 import rgbHex from "rgb-hex";
 
-export const MIN_VAL = 1.0;
+export const MIN_VAL = 1.9;
 export const MAX_VAL = 5;
 
 function FilterRating(props) {
@@ -77,10 +77,11 @@ function FilterRating(props) {
           min={MIN_VAL}
           max={MAX_VAL}
           step={0.1}
-          snapped={true}
+          // snapped={true}
           onValuesChangeStart={() => props.setScrollEnabled(false)}
           onValuesChangeFinish={onChangeFinish}
           onValuesChange={onChange}
+          allowOverlap={true}
           selectedStyle={{
             height: 3,
             backgroundColor: theme.colors.secondary,
