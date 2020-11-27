@@ -6,126 +6,92 @@ import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import {MultiSlider} from "./Common"
+import { MultiSlider, Clamp } from "./Common";
 import rgbHex from "rgb-hex";
 
 let sliderPressed = false;
 
+export const MIN_VAL = 1.0;
+export const MAX_VAL = 5;
+
 function FilterRating(props) {
   const { theme } = useContext(ThemeContext);
-  // const { ratingFilter, setRatingFilter } = useContext(SearchContext);
-  const [sliderValRead, setSliderValRead] = useState(0);
-  const [sliderValWrite, setSliderValWrite] = useState(0);
+  const { ratingFilter, setRatingFilter } = useContext(SearchContext);
+  const [sliderVal, setSliderVal] = useState(MIN_VAL);
 
   const styles = getStyles(theme);
   const filterStyles = getFilterStyles(theme);
 
   useEffect(() => {
-    sliderPressed = false;
-  }, []);
-
-  // useEffect(() => {
-  //   console.log("RF: " + ratingFilter);
-  //   setSliderValWrite(ratingFilter);
-  // }, [ratingFilter]);
-
-  // useEffect(() => {
-  //   setSliderValWrite(ratingFilter);
-  // }, []);
-
-  function onChange(min, max) {
-    console.log(max);
-    setSliderValRead(max);
-  }
+    setSliderVal(Clamp(ratingFilter, MIN_VAL, MAX_VAL));
+  }, [ratingFilter]);
 
   function getText() {
     let text = <Text></Text>;
-    // const sliderMin = sliderValRead.min === -1 ? 0 : sliderValRead.min;
-    // const sliderMax = sliderValRead.max === -1 ? popularityIntervals.length - 1 : sliderValRead.max;
+    const val = sliderVal;
+    if (val <= MIN_VAL) {
+      text = (
+        <View style={styles.textContainer}>
+          <Text style={styles.textUnits}>All</Text>
+        </View>
+      );
+    } else if (val < MAX_VAL) {
+      text = (
+        <View style={styles.textContainer}>
+            <Text style={styles.text}>At least </Text>
+            <Text style={styles.textUnits}>{val} ★</Text>
 
-    // if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
-    //   text = (
-    //     <View style={styles.textContainer}>
-    //       <Text style={styles.textUnits}>All</Text>
-    //     </View>
-    //   );
-    // } else {
-    //   if (sliderValRead.max === popularityIntervals.length - 1) {
-    //     text = (
-    //       <View style={styles.textContainer}>
-    //         <Text style={styles.text}>Min </Text>
-    //         <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
-    //         <Text style={styles.text}> ratings </Text>
-    //       </View>
-    //     );
-    //   } else if (sliderValRead.min === 0) {
-    //     text = (
-    //       <View style={styles.textContainer}>
-    //         <Text style={styles.text}>Max </Text>
-    //         <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
-    //         <Text style={styles.text}> ratings </Text>
-    //       </View>
-    //     );
-    //   } else {
-    //     text = (
-    //       <View style={styles.textContainer}>
-    //         {/* <Text style={styles.text}>Min </Text> */}
-    //         <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
-    //         <Text style={styles.text}> to </Text>
-    //         <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
-    //         <Text style={styles.text}> ratings </Text>
-    //       </View>
-    //     );
-    //   }
-    // }
+        </View>
+      );
+    } else {
+      text = (
+      <View style={styles.textContainer}>
+        <Text style={styles.textUnits}>{val} ★</Text>
 
+      </View>
+      )
+    }
     return text;
   }
 
-  const [hitSlop, setHitSlop] = useState(0);
+  function onChange(vals) {
+    setSliderVal(parseFloat(vals[0].toFixed(1)));
+  }
+
+  function onChangeFinish(vals) {
+    onChange(vals);
+    let val = parseFloat(vals[0].toFixed(1))
+    if (val === MIN_VAL) val = -1
+    setRatingFilter(val);
+    props.setScrollEnabled(true);
+  }
+
+
 
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
       <FilterHeader title={"User rating"} />
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
-
         <MultiSlider
+          parentContainerStyle={{ marginHorizontal: theme.rem }}
+          values={[sliderVal]}
+          min={MIN_VAL}
+          max={MAX_VAL}
+          step={0.1}
+          snapped={true}
           onValuesChangeStart={() => props.setScrollEnabled(false)}
-          onValuesChangeFinish={() => props.setScrollEnabled(true)}
+          onValuesChangeFinish={onChangeFinish}
+          onValuesChange={onChange}
+          selectedStyle={{
+            height: 3,
+            backgroundColor: theme.colors.secondary,
+          }}
+          trackStyle={{
+            height: 3,
+            backgroundColor: theme.colors.primary,
+          }}
         />
-
-        {/* <Pressable
-          style={styles.sliderContainer}
-          hitSlop={hitSlop}
-          onPressIn={() => {
-            sliderPressed = true;
-            setHitSlop(9999);
-          }}
-          onPressOut={() => {
-            sliderPressed = false;
-            console.log("SVR: " + sliderValRead);
-            setRatingFilter(sliderValRead);
-            setHitSlop(0);
-          }}
-        > */}
-        {/* <RangeSlider
-            type="slider"
-            style={styles.slider}
-            min={0}
-            max={50}
-            step={10}
-            lineHeight={3}
-            hideLabels={true}
-            tintColorBetweenHandles={lighten(0.0, theme.colors.secondary)}
-            handleColor={rgbHex(theme.colors.primary)}
-            tintColor={lighten(0.0, theme.colors.primary)}
-            // minDistance={popularityIntervals.length / 20}
-            // selectedMinimum={sliderValWrite}
-            // selectedMaxiumum={sliderValWrite}
-            onChange={onChange}
-          /> */}
-        {/* </Pressable> */}
       </View>
     </View>
   );

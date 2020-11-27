@@ -183,6 +183,18 @@ export class ControlledLayoutAnimation {
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
+export function Clamp(val, min, max) {
+  if (val < min)
+    return min
+
+  if (val > max)
+    return max
+
+  return val;
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+
 export function ToggleButton(props) {
   const pressFade = useRef(new Animated.Value(1)).current;
   const { theme } = useContext(ThemeContext);
@@ -267,7 +279,6 @@ export function MultiSlider(props) {
         allowOverlap={true}
         customMarker={MultiSliderMarker}
         markerOffsetY={1}
-        sliderLength={parentWidth}
         trackStyle={{
           height: 3,
           backgroundColor: theme.colors.secondary,
@@ -277,6 +288,7 @@ export function MultiSlider(props) {
           backgroundColor: theme.colors.primary,
         }}
         {...props}
+        sliderLength={parentWidth}
       />
     </View>
   );

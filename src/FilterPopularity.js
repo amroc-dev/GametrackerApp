@@ -63,7 +63,7 @@ function FilterPopularity(props) {
       if (sliderVal.max === popularityIntervals.length - 1) {
         text = (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Min </Text>
+            <Text style={styles.text}>At least </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>
@@ -71,7 +71,7 @@ function FilterPopularity(props) {
       } else if (sliderVal.min === 0) {
         text = (
           <View style={styles.textContainer}>
-            <Text style={styles.text}>Max </Text>
+            <Text style={styles.text}>At Most </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
             <Text style={styles.text}> ratings </Text>
           </View>

@@ -11,6 +11,7 @@ import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
 import Fade from "react-native-fade";
 import nextFrame from "next-frame";
+import {MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL} from "./FilterRating";
 
 function SearchPill({ name, clickCallback }) {
   const { theme } = useContext(ThemeContext);
@@ -58,6 +59,8 @@ export default function SearchPills() {
     toggleDeviceFilter,
     popularityFilter,
     setPopularityFilter,
+    ratingFilter,
+    setRatingFilter,
     searchID,
   } = useContext(SearchContext);
   const { theme } = useContext(ThemeContext);
@@ -111,16 +114,15 @@ export default function SearchPills() {
     });
 
     // popularity filter pill
-    function onPopularityPillClick(e) {
+    function onPopularityPillClick() {
       setPopularityFilter(-1, -1);
     }
-
     if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
       let text = "";
       if (popularityFilter.max === -1) {
-        text = "Min " + numberWithCommas(popularityFilter.min);
+        text = "> " + numberWithCommas(popularityFilter.min);
       } else if (popularityFilter.min === -1) {
-        text = "Max " + numberWithCommas(popularityFilter.max);
+        text = "< " + numberWithCommas(popularityFilter.max);
       } else if (popularityFilter.min === popularityFilter.max) {
         text = numberWithCommas(popularityFilter.min)
       }
@@ -128,6 +130,22 @@ export default function SearchPills() {
         text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
       }
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
+    }
+
+    // rating filter pill
+    function onRatingPillClick() {
+      setRatingFilter(-1);
+    }
+    if (ratingFilter != -1) {
+      let text = ""
+
+      if (ratingFilter < RATING_MAX_VAL) {
+        text = "> " + ratingFilter + " ★"
+      } else {
+        text = ratingFilter + " ★"
+      }
+      
+      pills.push(<SearchPill key={pills.length} name={"User rating " + text} clickCallback={onRatingPillClick} />);
     }
 
     setPillElems(pills);

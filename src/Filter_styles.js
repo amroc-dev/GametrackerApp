@@ -4,14 +4,14 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { ThemeContext } from "./ThemeContext"
 
 
-export function FilterHeader( {title} ) {
+export function FilterHeader( {title, textChildren} ) {
   const {theme} = useContext(ThemeContext)
 
   const filterStyles = getFilterStyles(theme)
   
   return (
     <View style={filterStyles.headerView}>
-      <Text style={filterStyles.headerText}>{title}</Text>
+      <Text style={filterStyles.headerText}>{title} {textChildren ? textChildren : null}</Text>
     </View>
   )
 }
