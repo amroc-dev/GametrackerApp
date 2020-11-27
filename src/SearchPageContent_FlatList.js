@@ -39,7 +39,7 @@ export default function SearchPageContent_FlatList() {
   const headerChangeTransition = <Transition.Change interpolation="easeInOut" />;
 
   const listHeaderComponent = (
-    <View>
+    <View style={{zIndex : 10}}>
       <HeaderSpace />
       <Spacer size={theme.searchPageTopPadding} />
       <SearchPills />
@@ -165,9 +165,9 @@ export default function SearchPageContent_FlatList() {
       data={items}
       renderItem={renderItem}
       keyExtractor={(item, index) => index.toString()}
-      initialNumToRender={20}
+      initialNumToRender={FETCH_COUNT}
       onEndReached={onEndReached}
-      onEndReachedThreshold={0.5}
+      onEndReachedThreshold={0.75}
       ListHeaderComponent={listHeaderComponent}
       ListFooterComponent={loadingSpinner}
       windowSize={80}
