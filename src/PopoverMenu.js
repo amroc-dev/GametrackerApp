@@ -186,7 +186,7 @@ function getStyles(theme) {
       // paddingVertical: theme.rem * 0.5,
       shadowColor: "black",
       shadowOpacity: theme.isDark ? 1 : 0.5,
-      shadowRadius: 200,
+      shadowRadius: theme.isDark ? 175 : 200,
       shadowOffset: {
         width: 0,
         height: 0,
