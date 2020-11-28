@@ -125,13 +125,13 @@ export default function SearchPageContent_FlatList() {
       transitionViewRef.current.animateNextTransition();
     }
 
-    ControlledLayoutAnimation.configureNext({
-      create: {
-        duration: theme.fadeSpeed,
-        type: LayoutAnimation.Types.easeIn,
-        property: LayoutAnimation.Properties.opacity,
-      },
-    });
+    // ControlledLayoutAnimation.configureNext({
+    //   create: {
+    //     duration: theme.fadeSpeed,
+    //     type: LayoutAnimation.Types.easeIn,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    // });
   }, [searchResults]);
 
 

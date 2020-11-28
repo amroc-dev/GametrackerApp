@@ -9,6 +9,7 @@ import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "./ThemeContext";
 import MenuDrawerNavigator from "./MenuDrawerNavigator";
 import Animated from "react-native-reanimated";
+import { MenuProvider } from 'react-native-popup-menu';
 
 function StatusBarSettings() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -28,9 +29,11 @@ export default function App() {
             <ThemeContextProvider>
               <StatusBarSettings />
               <SearchResultsContextProvider>
+              <MenuProvider>
                 <NavigationContainer ref={navContainerRef}>
                   <MenuDrawerNavigator />
                 </NavigationContainer>
+                </MenuProvider>
               </SearchResultsContextProvider>
             </ThemeContextProvider>
           </FilterTagsContextProvider>
