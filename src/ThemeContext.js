@@ -54,10 +54,10 @@ function getBaseTheme() {
       },
     },
 
-    shadowColor: "rgb(0,0,0)",
-    shadowOpacity: 0.0,
+    shadowColor: "black",
+    shadowOpacity: 0.1,
     shadowOpacity_dropdown: 0.35,
-    shadowRadius: 0,
+    shadowRadius: 4,
     shadowOffset: {
       width: 0,
       height: 0,
@@ -168,7 +168,7 @@ function ThemeContextProvider(props) {
         },
       },
 
-      shadowOpacity: 0.0,
+      // shadowOpacity: 0.0,
     };
 
     return merge.recursive(getBaseTheme(), theme);
@@ -213,7 +213,7 @@ function ThemeContextProvider(props) {
         // },
       },
 
-      shadowOpacity: 0.0,
+      shadowOpacity: 0.025,
       // shadowRadius: 1,
     };
 
