@@ -6,7 +6,8 @@ import { sortOptions } from "./shared/react/SortOptions";
 import { ThemeContext } from "./ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 import { renderers } from "react-native-popup-menu";
-const { Popover, ContextMenu } = renderers;
+const { Popover } = renderers;
+import PopoverMenu_Renderer from "./PopoverMenu_Renderer";
 import { Menu, MenuOptions, MenuOption, MenuTrigger, withMenuContext } from "react-native-popup-menu";
 import { rgba, transparentize, lighten, darken } from "polished";
 import { Separator } from "./Common";
@@ -30,7 +31,9 @@ function PopoverMenu(props) {
       <Button
         title={props.selected}
         onPress={menuProps.onPress}
-        buttonStyle={styles.menuButton}
+        type="clear"
+        containerStyle={styles.menuButton}
+        // buttonStyle={styles.menuButton}
         titleStyle={[styles.menuTitle, menuOpen ? styles.menuTitle_menuOpen : {}]}
         iconRight={true}
         icon={
@@ -97,7 +100,7 @@ function PopoverMenu(props) {
       onOpen={() => setMenuOpen(true)}
       onClose={() => setMenuOpen(false)}
       onBackdropPress={() => setMenuOpen(false)}
-      renderer={Popover}
+      renderer={PopoverMenu_Renderer}
       rendererProps={{ placement: "bottom", anchorStyle: styles.anchorStyle }}
       style={styles.menuButtonContainer}
     >
