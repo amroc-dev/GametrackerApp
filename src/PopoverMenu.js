@@ -21,8 +21,6 @@ function PopoverMenu(props) {
 
   const styles = getStyles(theme);
 
-  console.log(props.ctx.menuActions)
-
   function MenuButton(menuProps) {
     const iconName = "ios-chevron-down";
     // const iconName = menuOpen ? "ios-chevron-up" : "ios-chevron-down";
@@ -188,8 +186,8 @@ function getStyles(theme) {
       // borderColor: rgba(0,0,0,0.1),
       // paddingVertical: theme.rem * 0.5,
       shadowColor: "black",
-      shadowOpacity: theme.isDark ? 1 : 0.5,
-      shadowRadius: theme.isDark ? 175 : 200,
+      shadowOpacity: theme.isDark ? 0.5 : 0.25,
+      shadowRadius: 100,
       shadowOffset: {
         width: 0,
         height: 0,
