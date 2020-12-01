@@ -13,8 +13,9 @@ function CardItem({ doc }) {
   const styles = getStyles(theme);
 
   const doc_releaseDate = objectKeyFromDotString(doc, dbkeys.releaseDate);
-  const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
-  const doc_rating = objectKeyFromDotString(doc, dbkeys.rating);
+  // const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
+  const doc_ratingCount = objectKeyFromDotString(doc, dbkeys.ratingCountCurrentVersion);
+  const doc_rating = objectKeyFromDotString(doc, dbkeys.ratingCurrentVersion);
   const doc_formattedPrice = objectKeyFromDotString(doc, dbkeys.formattedPrice);
   const doc_trackName = objectKeyFromDotString(doc, dbkeys.trackName);
   const doc_trackId = objectKeyFromDotString(doc, dbkeys.trackId);
@@ -26,7 +27,6 @@ function CardItem({ doc }) {
   const releaseDate = `${releaseDateArr[2]} ${month} ${releaseDateArr[0]}`;
 
   //////// rating
-  const countForCurrentVersion = doc_popularity;
   let rating = "-";
   let ratingCellColour = theme.colors.rating.na;
 
@@ -35,7 +35,7 @@ function CardItem({ doc }) {
   const fixedDigits = remainder < 0.1 ? 0 : 1;
 
   rating = ratingVal.toFixed(fixedDigits);
-  if (countForCurrentVersion >= 5) {
+  if (doc_ratingCount >= 5) {
     ratingCellColour = theme.colors.rating.good;
 
     if (rating < 4) {
@@ -47,11 +47,11 @@ function CardItem({ doc }) {
     // rating *= 2;
     // rating = Math.round(rating * 20);
   } else {
-    rating = "-";
+    // rating = "-";
   }
 
   const ratingCellColor = { backgroundColor: ratingCellColour };
-  const ratingCountElem = formatRatingCount(countForCurrentVersion);
+  const ratingCountElem = formatRatingCount(doc_ratingCount);
   const formattedPriceElem = doc_formattedPrice;
 
   async function onTap() {
@@ -77,6 +77,28 @@ function CardItem({ doc }) {
             <Text numberOfLines={1} style={styles.artistText}>
               {doc_artistName}
             </Text>
+            {/* <Text numberOfLines={2} style={styles.artistText}>
+              {"sb.averageUserRating: " + doc.searchBlob.averageUserRating}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"sb.averageUserRatingForCV: " + doc.searchBlob.averageUserRatingForCurrentVersion}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"sb.userRatingCountForCV: " + doc.searchBlob.userRatingCountForCurrentVersion}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"lb.userRating.value: " + doc.lookupBlob.userRating.value}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"lb.userRating.valueCurrentVersion: " + doc.lookupBlob.userRating.valueCurrentVersion}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"lb.userRating.ratingCount: " + doc.lookupBlob.userRating.ratingCount}
+            </Text>
+            <Text numberOfLines={2} style={styles.artistText}>
+              {"lb.userRating.ratingCountCurrentVersion: " + doc.lookupBlob.userRating.ratingCountCurrentVersion}
+            </Text> */}
+            {/* <Text numberOfLines={2} style={styles.artistText}></Text> */}
           </View>
         </View>
         <View style={styles.bottomRowContainer}>
