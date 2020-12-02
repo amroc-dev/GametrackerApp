@@ -126,7 +126,7 @@ export function SearchInput(props) {
 
 export function HeaderSpace() {
   const { theme } = useContext(ThemeContext);
-  const height = 0;//44;
+  const height = 0; //44;
 
   return <View style={{ height: height, opacity: 0 }} />;
 }
@@ -184,11 +184,9 @@ export class ControlledLayoutAnimation {
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 export function Clamp(val, min, max) {
-  if (val < min)
-    return min
+  if (val < min) return min;
 
-  if (val > max)
-    return max
+  if (val > max) return max;
 
   return val;
 }
@@ -236,7 +234,9 @@ import _MultiSlider from "@ptomasroos/react-native-multi-slider";
 
 function MultiSliderMarker() {
   const { theme } = useContext(ThemeContext);
-  
+
+  const thumbSize = 24;
+
   return (
     <View
       style={{
@@ -247,7 +247,14 @@ function MultiSliderMarker() {
         alignItems: "center",
       }}
     >
-      <View style={{ width: 18, height: 18, backgroundColor: theme.colors.primary, borderRadius: 9 }} />
+      <View
+        style={{
+          width: thumbSize,
+          height: thumbSize,
+          backgroundColor: theme.colors.primary,
+          borderRadius: thumbSize / 2 + 1,
+        }}
+      />
     </View>
   );
 }
@@ -255,7 +262,7 @@ function MultiSliderMarker() {
 export function MultiSlider(props) {
   const { theme } = useContext(ThemeContext);
   const [parentWidth, setParentWidth] = useState(0);
-  const [ready, setReady] = useState(false)
+  const [ready, setReady] = useState(false);
 
   const parentContainerStyle = props.parentContainerStyle ? props.parentContainerStyle : {};
 
@@ -264,16 +271,19 @@ export function MultiSlider(props) {
   //   // return <View style={parentContainerStyle} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)} />
   // }
 
-  useEffect( () => {
+  useEffect(() => {
     if (parentWidth > 0 && props.max > 0) {
-      setReady(true)
-    }   
-  }, [parentWidth, props.max])
+      setReady(true);
+    }
+  }, [parentWidth, props.max]);
 
-  const readyStyle = {opacity: ready ? 1 : 0}
+  const readyStyle = { opacity: ready ? 1 : 0 };
 
   return (
-    <View style={[parentContainerStyle, readyStyle]} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}>
+    <View
+      style={[parentContainerStyle, readyStyle]}
+      onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}
+    >
       <_MultiSlider
         touchDimensions={{ slipDisplacement: 2000 }}
         customMarker={MultiSliderMarker}
@@ -292,3 +302,24 @@ export function MultiSlider(props) {
     </View>
   );
 }
+
+// import { Slider as _Slider } from "react-native-elements";
+
+// export function Slider(props) {
+//   const { theme } = useContext(ThemeContext);
+
+//   const parentContainerStyle = props.parentContainerStyle ? props.parentContainerStyle : {};
+
+//   return (
+//     <View style={parentContainerStyle}>
+//       <_Slider
+//         thumbStyle={{ width: 24, height: 24 }}
+//         thumbTintColor={theme.colors.primary}
+//         minimumTrackTintColor={theme.colors.secondary}
+//         maximumTrackTintColor={theme.colors.primary}
+//         trackStyle={{ borderRadius: 10, height: 3 }}
+//         allowTouchTrack={true}
+//       />
+//     </View>
+//   );
+// }

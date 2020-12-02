@@ -27,14 +27,8 @@ function CardItem({ doc }) {
   const releaseDate = `${releaseDateArr[2]} ${month} ${releaseDateArr[0]}`;
 
   //////// rating
-  let rating = "-";
+  let rating = parseFloat(parseFloat(doc_rating).toFixed(1));
   let ratingCellColour = theme.colors.rating.na;
-
-  const ratingVal = parseFloat(doc_rating);
-  const remainder = Math.abs(ratingVal - Math.round(ratingVal));
-  const fixedDigits = remainder < 0.1 ? 0 : 1;
-
-  rating = ratingVal.toFixed(fixedDigits);
   if (doc_ratingCount >= 5) {
     ratingCellColour = theme.colors.rating.good;
 
@@ -46,8 +40,8 @@ function CardItem({ doc }) {
     }
     // rating *= 2;
     // rating = Math.round(rating * 20);
-  } else {
-    // rating = "-";
+  } else if (doc_ratingCount === 0){
+    rating = "-";
   }
 
   const ratingCellColor = { backgroundColor: ratingCellColour };

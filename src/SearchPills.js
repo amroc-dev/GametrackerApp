@@ -9,6 +9,7 @@ import { MakeLabel, popularityFilterCategories } from "./shared/react/Popularity
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
+import { getPopularityScoreFromIndex} from "./FilterPopularity";
 import Fade from "react-native-fade";
 import nextFrame from "next-frame";
 import {MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL} from "./FilterRating";
@@ -74,6 +75,7 @@ export default function SearchPills() {
   });
 
   const { submittedSearchTerm, newSearchSubmitted } = useContext(SearchResultsContext);
+  const {popularityIntervals} = useContext(CoreContext)
 
   const [pillElems, setPillElems] = useState([]);
 
@@ -115,19 +117,15 @@ export default function SearchPills() {
 
     // popularity filter pill
     function onPopularityPillClick() {
-      setPopularityFilter(-1, -1);
+      setPopularityFilter(-1, 0, true);
     }
-    if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
+    if (popularityFilter.ratingCount > -1) {
       let text = "";
-      if (popularityFilter.max === -1) {
-        text = "> " + numberWithCommas(popularityFilter.min);
-      } else if (popularityFilter.min === -1) {
-        text = "< " + numberWithCommas(popularityFilter.max);
-      } else if (popularityFilter.min === popularityFilter.max) {
-        text = numberWithCommas(popularityFilter.min)
-      }
-      else {
-        text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
+      const ranking = getPopularityScoreFromIndex(popularityFilter.index)
+      if (popularityFilter.index === 0 || popularityFilter.index === popularityIntervals.length -1) {
+        text = "" + ranking
+      } else {
+        text = (popularityFilter.ascending ? "> " : "< ") + ranking
       }
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
