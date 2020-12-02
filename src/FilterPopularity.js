@@ -8,10 +8,10 @@ import { getFilterStyles, FilterHeader } from "./Filter_styles";
 import { lighten, darken, toColorString } from "polished";
 import { MultiSlider } from "./Common";
 
-export function getPopularityScoreFromIndex(index) {
-  // return parseFloat(((index + 1) / 100).toFixed(2))
-  return parseInt(index + 1)
-}
+// export function getPopularityScoreFromIndex(index) {
+//   // return parseFloat(((index + 1) / 100).toFixed(2))
+//   return parseInt(index + 1)
+// }
 
 function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);
@@ -51,7 +51,7 @@ function FilterPopularity(props) {
 
   function getText() {
     let textView = <Text></Text>;
-    rankingValue = getPopularityScoreFromIndex(sliderVal)
+    rankingValue = numberWithCommas(popularityIntervals[sliderVal])
 
     if (
       (sliderVal === 0 && popularityFilter.ascending) ||
@@ -62,27 +62,32 @@ function FilterPopularity(props) {
           <Text style={styles.textUnits}>All</Text>
         </View>
       );
-    } else if (
-      (sliderVal === 0 && !popularityFilter.descending) ||
-      (sliderVal === popularityIntervals.length - 1 && popularityFilter.ascending)
-    ) {
+    } 
+    // else if (
+    //   (sliderVal === 0 && !popularityFilter.descending) ||
+    //   (sliderVal === popularityIntervals.length - 1 && popularityFilter.ascending)
+    // ) {
+    //   textView = (
+    //     <View style={styles.textContainer}>
+    //       <Text style={styles.textUnits}>{rankingValue}</Text>
+    //     </View>
+    //   );
+    // } 
+    else if (!popularityFilter.ascending) {
       textView = (
         <View style={styles.textContainer}>
+          {/* <Text style={styles.text}>{'Up to '}</Text> */}
           <Text style={styles.textUnits}>{rankingValue}</Text>
-        </View>
-      );
-    } else if (!popularityFilter.ascending) {
-      textView = (
-        <View style={styles.textContainer}>
-          <Text style={styles.text}>{'Up to '}</Text>
-          <Text style={styles.textUnits}>{rankingValue}</Text>
+          {/* <Text style={styles.text}>{' ratings'}</Text> */}
+          <Text style={styles.text}>{' or fewer ratings'}</Text>
         </View>
       );
     } else {
       textView = (
         <View style={styles.textContainer}>
+          {/* <Text style={styles.text}>{'At least '}</Text> */}
           <Text style={styles.textUnits}>{rankingValue}</Text>
-          <Text style={styles.text}>{' and above'}</Text>
+          <Text style={styles.text}>{' or more ratings'}</Text>
         </View>
       );
     }
@@ -157,13 +162,13 @@ function FilterPopularity(props) {
     updatePopularityFilter(sliderVal, on);
   }
 
-  const switchBackground = darken(0.05, theme.colors.secondary);
+  const switchBackground = theme.isDark ? darken(0.05, theme.colors.secondary) : lighten(0.05, theme.colors.secondary);
   const sliderTrackSelectedColor = popularityFilter.ascending ? theme.colors.secondary : theme.colors.primary;
   const sliderTrackColor = popularityFilter.ascending ? theme.colors.primary : theme.colors.secondary;
 
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
-      <FilterHeader title={"Popularity score"} />
+      <FilterHeader title={"Popularity"} />
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
 

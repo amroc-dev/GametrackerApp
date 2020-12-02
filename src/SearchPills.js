@@ -9,10 +9,11 @@ import { MakeLabel, popularityFilterCategories } from "./shared/react/Popularity
 import { borderRadius } from "polished";
 import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
-import { getPopularityScoreFromIndex} from "./FilterPopularity";
 import Fade from "react-native-fade";
 import nextFrame from "next-frame";
 import {MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL} from "./FilterRating";
+
+// import { getPopularityScoreFromIndex} from "./FilterPopularity";
 
 function SearchPill({ name, clickCallback }) {
   const { theme } = useContext(ThemeContext);
@@ -120,13 +121,8 @@ export default function SearchPills() {
       setPopularityFilter(-1, 0, true);
     }
     if (popularityFilter.ratingCount > -1) {
-      let text = "";
-      const ranking = getPopularityScoreFromIndex(popularityFilter.index)
-      if (popularityFilter.index === 0 || popularityFilter.index === popularityIntervals.length -1) {
-        text = "" + ranking
-      } else {
-        text = (popularityFilter.ascending ? "> " : "< ") + ranking
-      }
+      const ranking = numberWithCommas(popularityIntervals[popularityFilter.index])
+      const text = (popularityFilter.ascending ? "> " : "< ") + ranking
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
 

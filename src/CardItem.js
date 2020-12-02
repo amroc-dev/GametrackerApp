@@ -13,7 +13,7 @@ function CardItem({ doc }) {
   const styles = getStyles(theme);
 
   const doc_releaseDate = objectKeyFromDotString(doc, dbkeys.releaseDate);
-  // const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
+  const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
   const doc_ratingCount = objectKeyFromDotString(doc, dbkeys.ratingCountCurrentVersion);
   const doc_rating = objectKeyFromDotString(doc, dbkeys.ratingCurrentVersion);
   const doc_formattedPrice = objectKeyFromDotString(doc, dbkeys.formattedPrice);
