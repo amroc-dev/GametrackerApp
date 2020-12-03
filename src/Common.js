@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useLayoutEffect, useRef } from "react";
+import React, { useContext, useState, useEffect, useLayoutEffect, useRef, useCallback } from "react";
 import {
   View,
   Text,
@@ -232,16 +232,16 @@ export function ToggleButton(props) {
 
 import _MultiSlider from "@ptomasroos/react-native-multi-slider";
 
+const THUMB_SIZE = 24;
+
 function MultiSliderMarker() {
   const { theme } = useContext(ThemeContext);
-
-  const thumbSize = 24;
 
   return (
     <View
       style={{
-        width: 80,
-        height: 80,
+        width: 64,
+        height: 64,
         backgroundColor: "rgba(0,0,0,0.0)",
         justifyContent: "center",
         alignItems: "center",
@@ -249,10 +249,10 @@ function MultiSliderMarker() {
     >
       <View
         style={{
-          width: thumbSize,
-          height: thumbSize,
+          width: THUMB_SIZE,
+          height: THUMB_SIZE,
           backgroundColor: theme.colors.primary,
-          borderRadius: thumbSize / 2 + 1,
+          borderRadius: THUMB_SIZE / 2 + 1,
         }}
       />
     </View>
@@ -293,8 +293,12 @@ export function MultiSlider(props) {
           backgroundColor: theme.colors.secondary,
         }}
         selectedStyle={{
-          height: 3,
+          height: THUMB_SIZE,
+          top:-(THUMB_SIZE/2 - 1),
           backgroundColor: theme.colors.primary,
+          borderTopWidth: 11,
+          borderBottomWidth: 10,
+          borderColor: theme.colors.background2,
         }}
         {...props}
         sliderLength={parentWidth}
@@ -303,22 +307,86 @@ export function MultiSlider(props) {
   );
 }
 
-// import { Slider as _Slider } from "react-native-elements";
+//////////////////////////////////////////////////////////////////////////////////////////////////////
+// import _RangeSlider from "rn-range-slider";
 
-// export function Slider(props) {
+// export function RangeSlider(props) {
 //   const { theme } = useContext(ThemeContext);
 
-//   const parentContainerStyle = props.parentContainerStyle ? props.parentContainerStyle : {};
+//   function Thumb() {
+//     const THUMB_RADIUS = 24;
+//     const TOUCH_RADIUS = THUMB_RADIUS + theme.rem * 0;
+
+//     const containerView = {
+//       width: TOUCH_RADIUS,
+//       height: TOUCH_RADIUS,
+//       justifyContent: "center",
+//       alignItems: "center",
+//       alignContent: 'center',
+//     };
+
+//     return (
+//       <View style={containerView}>
+//         <View
+//           style={{
+//             width: THUMB_RADIUS,
+//             height: THUMB_RADIUS,
+//             borderRadius: THUMB_RADIUS,
+//             borderWidth: 0,
+//             backgroundColor: theme.colors.primary,
+//           }}
+//         />
+//       </View>
+//     );
+//   }
+//   const renderThumb = useCallback(() => <Thumb />, []);
+
+//   function RailSelected() {
+//     return (
+//       <View
+//         style={{
+//           height: 3,
+//           backgroundColor: theme.colors.primary,
+//           borderRadius: 2,
+//         }}
+//       />
+//     );
+//   }
+//   const renderRailSelected = useCallback(() => <RailSelected />, []);
+
+//   function Rail() {
+//     return (
+//       <View
+//         style={{
+//           flex: 1,
+//           height: 3,
+//           borderRadius: 2,
+//           backgroundColor: theme.colors.secondary,
+//         }}
+//       />
+//     );
+//   }
+//   const renderRail = useCallback(() => <Rail />, []);
+
+//   const rootStyle = {
+//     marginHorizontal: theme.rem * 0.0,
+//     paddingHorizontal: 0,
+//   };
 
 //   return (
-//     <View style={parentContainerStyle}>
-//       <_Slider
-//         thumbStyle={{ width: 24, height: 24 }}
-//         thumbTintColor={theme.colors.primary}
-//         minimumTrackTintColor={theme.colors.secondary}
-//         maximumTrackTintColor={theme.colors.primary}
-//         trackStyle={{ borderRadius: 10, height: 3 }}
-//         allowTouchTrack={true}
+//     <View style={rootStyle}>
+//       <_RangeSlider
+//         style={rootStyle}
+//         // disableRange={true}
+//         min={0}
+//         max={100}
+//         step={1}
+//         renderThumb={renderThumb}
+//         renderRail={renderRail}
+//         renderRailSelected={renderRailSelected}
+//         // renderLabel={renderLabel}
+//         // renderNotch={renderNotch}
+//         {...props}
 //       />
 //     </View>
 //   );

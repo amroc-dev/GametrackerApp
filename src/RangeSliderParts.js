@@ -4,19 +4,28 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } fr
 //{ Thumb, RailSelected, Rail, Notch, Label }
 
 export function Thumb() {
-  const THUMB_RADIUS = 16;
-  
+  const THUMB_RADIUS = 24;
+
+  const containerView = {
+    width: 48,
+    height: 48,
+    justifyContent: "center",
+    alignItems: "center",
+  };
+
   return (
-    <View
-      style={{
-        width: THUMB_RADIUS * 2,
-        height: THUMB_RADIUS * 2,
-        borderRadius: THUMB_RADIUS,
-        borderWidth: 0,
-        borderColor: "#7f7f7f",
-        backgroundColor: "#ffffff",
-      }}
-    />
+    <View style={containerView}>
+      <View
+        style={{
+          width: THUMB_RADIUS,
+          height: THUMB_RADIUS,
+          borderRadius: THUMB_RADIUS,
+          borderWidth: 0,
+          borderColor: "#7f7f7f",
+          backgroundColor: "#ffffff",
+        }}
+      />
+    </View>
   );
 }
 
@@ -64,24 +73,24 @@ export function Notch(props) {
 }
 
 export function Label({ text, ...restProps }) {
-  return (
-    <View
-      style={{
-        alignItems: "center",
-        padding: 8,
-        backgroundColor: "#4499ff",
-        borderRadius: 4,
-      }}
-      {...restProps}
-    >
-      <Text
-        style={{
-          fontSize: 16,
-          color: "#fff",
-        }}
-      >
-        {text}
-      </Text>
-    </View>
-  );
+  return ( <View /> )
+  //   <View
+  //     style={{
+  //       alignItems: "center",
+  //       padding: 8,
+  //       backgroundColor: "#4499ff",
+  //       borderRadius: 4,
+  //     }}
+  //     {...restProps}
+  //   >
+  //     <Text
+  //       style={{
+  //         fontSize: 16,
+  //         color: "#fff",
+  //       }}
+  //     >
+  //       {text}
+  //     </Text>
+  //   </View>
+  // );
 }

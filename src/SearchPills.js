@@ -11,7 +11,7 @@ import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
 import Fade from "react-native-fade";
 import nextFrame from "next-frame";
-import {MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL} from "./FilterRating";
+import { MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL } from "./FilterRating";
 
 // import { getPopularityScoreFromIndex} from "./FilterPopularity";
 
@@ -23,7 +23,7 @@ function SearchPill({ name, clickCallback }) {
     setVisible(true);
   }, []);
 
-  const filtersStyles = getFilterStyles(theme)
+  const filtersStyles = getFilterStyles(theme);
 
   const styles = StyleSheet.create({
     button: {
@@ -45,9 +45,9 @@ function SearchPill({ name, clickCallback }) {
 
   return (
     // <Fade visible={visible}>
-      <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
-        <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text>
-      </ToggleButton>
+    <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
+      <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text>
+    </ToggleButton>
     // </Fade>
   );
 }
@@ -76,7 +76,7 @@ export default function SearchPills() {
   });
 
   const { submittedSearchTerm, newSearchSubmitted } = useContext(SearchResultsContext);
-  const {popularityIntervals} = useContext(CoreContext)
+  const { popularityIntervals } = useContext(CoreContext);
 
   const [pillElems, setPillElems] = useState([]);
 
@@ -117,12 +117,30 @@ export default function SearchPills() {
     });
 
     // popularity filter pill
+    // function onPopularityPillClick() {
+    //   setPopularityFilter(-1, 0, true);
+    // }
+    // if (popularityFilter.ratingCount > -1) {
+    //   const ranking = numberWithCommas(popularityIntervals[popularityFilter.index])
+    //   const text = (popularityFilter.ascending ? "> " : "< ") + ranking
+    //   pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
+    // }
+
     function onPopularityPillClick() {
-      setPopularityFilter(-1, 0, true);
+      setPopularityFilter(-1, -1);
     }
-    if (popularityFilter.ratingCount > -1) {
-      const ranking = numberWithCommas(popularityIntervals[popularityFilter.index])
-      const text = (popularityFilter.ascending ? "> " : "< ") + ranking
+
+    if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
+      let text = "";
+      if (popularityFilter.max === -1) {
+        text = "Min " + numberWithCommas(popularityFilter.min);
+        text = "> " + numberWithCommas(popularityFilter.min);
+      } else if (popularityFilter.min === -1) {
+        text = "Max " + numberWithCommas(popularityFilter.max);
+        text = "< " + numberWithCommas(popularityFilter.max);
+      } else if (popularityFilter.min === popularityFilter.max) {
+        text = numberWithCommas(popularityFilter.min);
+      }
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
 
@@ -131,19 +149,18 @@ export default function SearchPills() {
       setRatingFilter(-1);
     }
     if (ratingFilter != -1) {
-      let text = ""
+      let text = "";
 
       if (ratingFilter < RATING_MAX_VAL) {
-        text = "> " + ratingFilter + " ★"
+        text = "> " + ratingFilter + " ★";
       } else {
-        text = ratingFilter + " ★"
+        text = ratingFilter + " ★";
       }
-      
+
       pills.push(<SearchPill key={pills.length} name={"User rating " + text} clickCallback={onRatingPillClick} />);
     }
 
     setPillElems(pills);
-
   }, [newSearchSubmitted, searchID]);
 
   return <View style={styles.container}>{pillElems}</View>;

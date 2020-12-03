@@ -2,8 +2,8 @@ import { I18nManager, Animated, Easing, StyleSheet, View } from "react-native";
 import React from "react";
 import PropTypes from "prop-types";
 
-const OPEN_ANIM_DURATION = 100;
-const CLOSE_ANIM_DURATION = 100;
+const OPEN_ANIM_DURATION = 0;
+const CLOSE_ANIM_DURATION = 200;
 const USE_NATIVE_DRIVER = true;
 
 const popoverPadding = 7;
@@ -213,7 +213,7 @@ export default class PopoverMenu_Renderer extends React.Component {
     Animated.timing(this.state.scaleAnim, {
       duration: OPEN_ANIM_DURATION,
       toValue: 1,
-      easing: Easing.out(Easing.circle),
+      easing: Easing.in(Easing.circle),
       useNativeDriver: USE_NATIVE_DRIVER,
     }).start();
   }
@@ -223,7 +223,7 @@ export default class PopoverMenu_Renderer extends React.Component {
       Animated.timing(this.state.scaleAnim, {
         duration: CLOSE_ANIM_DURATION,
         toValue: 0,
-        easing: Easing.in(Easing.circle),
+        easing: Easing.out(Easing.circle),
         useNativeDriver: USE_NATIVE_DRIVER,
       }).start(resolve);
     });
