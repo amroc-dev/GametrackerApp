@@ -37,8 +37,8 @@ export default function FiltersPage() {
           <FilterPopularity setScrollEnabled={setScrollEnabled} />
           {spacer}
           <FilterRating setScrollEnabled={setScrollEnabled} />
-          {spacer}
-          <FilterYear setScrollEnabled={setScrollEnabled} />
+          {/* {spacer}
+          <FilterYear setScrollEnabled={setScrollEnabled} /> */}
           <View style={{marginTop:theme.rem}} />
         </View>
       </ScrollView>

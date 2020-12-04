@@ -42,7 +42,7 @@ function CardItem(props) {
       <Text style={[styles.releaseDate, {flex: 0, fontSize: theme.fonts.sizes.mini * 0.9}]}>Updated</Text>
       <Text style={[styles.releaseDate, {flex: 0}]}>{getDate(doc_recentReleaseDate, true)}</Text>
     </View>
-  ) : <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, false)}</Text>
+  ) : <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, true)}</Text>
 
   //////// rating
   let rating = parseFloat(parseFloat(doc_rating).toFixed(1));
