@@ -60,7 +60,7 @@ function SearchPill({ name, iconName, clickCallback }) {
           style={[
             styles.title,
             filtersStyles.filterTextSelected,
-            { fontSize: 23, marginVertical: -8, marginHorizontal: -4, color: theme.fonts.colors.secondary},
+            { fontSize: 28, marginVertical: -8, marginLeft: -6, marginRight: -8, color: theme.fonts.colors.secondary},
           ]}
           name={iconName}
         />

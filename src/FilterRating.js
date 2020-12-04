@@ -77,7 +77,7 @@ function FilterRating(props) {
           values={[sliderVal]}
           min={MIN_VAL}
           max={MAX_VAL}
-          step={0.1}
+          step={0.005}
           // snapped={true}
           onValuesChangeStart={() => props.setScrollEnabled(false)}
           onValuesChangeFinish={onChangeFinish}

@@ -240,7 +240,7 @@ function MultiSliderMarker() {
   return (
     <View
       style={{
-        width: 32,
+        width: 48,
         height: 48,
         backgroundColor: "rgba(0,0,0,0.0)",
         justifyContent: "center",
@@ -249,10 +249,10 @@ function MultiSliderMarker() {
     >
       <View
         style={{
-          width: THUMB_SIZE,
+          width: THUMB_SIZE / 2,
           height: THUMB_SIZE,
           backgroundColor: theme.colors.primary,
-          borderRadius: THUMB_SIZE / 2 + 1,
+          borderRadius: theme.borderRadius,//THUMB_SIZE / 2 + 1,
         }}
       />
     </View>

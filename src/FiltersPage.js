@@ -39,7 +39,8 @@ export default function FiltersPage() {
           <FilterRating setScrollEnabled={setScrollEnabled} />
           {/* {spacer}
           <FilterYear setScrollEnabled={setScrollEnabled} /> */}
-          <View style={{marginTop:theme.rem}} />
+          {spacer}
+          {/* <View style={{marginTop:theme.rem}} /> */}
         </View>
       </ScrollView>
     </View>
