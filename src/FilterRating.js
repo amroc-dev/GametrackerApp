@@ -119,7 +119,7 @@ function getStyles(theme) {
     },
     textUnits: {
       color: theme.fonts.colors.title,
-      fontSize: theme.fonts.sizes.header,
+      fontSize: theme.fonts.sizes.primary,
       fontWeight: theme.fonts.weights.bold,
     },
   });

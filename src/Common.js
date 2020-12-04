@@ -240,8 +240,8 @@ function MultiSliderMarker() {
   return (
     <View
       style={{
-        width: 64,
-        height: 64,
+        width: 32,
+        height: 48,
         backgroundColor: "rgba(0,0,0,0.0)",
         justifyContent: "center",
         alignItems: "center",
