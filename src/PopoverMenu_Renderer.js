@@ -225,6 +225,7 @@ export default class PopoverMenu_Renderer extends React.Component {
         toValue: 0,
         easing: Easing.out(Easing.circle),
         useNativeDriver: USE_NATIVE_DRIVER,
+        delay: 10,
       }).start(resolve);
     });
   }
