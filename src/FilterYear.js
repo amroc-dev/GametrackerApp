@@ -12,7 +12,7 @@ import rgbHex from "rgb-hex";
 export const MIN_VAL = 1.9;
 export const MAX_VAL = 5;
 
-function FilterRating(props) {
+function FilterYear(props) {
   const { theme } = useContext(ThemeContext);
   const { ratingFilter, setRatingFilter } = useContext(SearchContext);
   const [sliderVal, setSliderVal] = useState(MIN_VAL);
@@ -68,7 +68,7 @@ function FilterRating(props) {
 
   return (
     <View style={[filterStyles.outerContainer, styles.outer]}>
-      <FilterHeader title={"User rating"} />
+      <FilterHeader title={"Year"} />
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
         <MultiSlider
@@ -96,7 +96,7 @@ function FilterRating(props) {
   );
 }
 
-export default memo(FilterRating);
+export default memo(FilterYear);
 
 function getStyles(theme) {
   return StyleSheet.create({

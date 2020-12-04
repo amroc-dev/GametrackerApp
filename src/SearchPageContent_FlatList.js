@@ -20,7 +20,7 @@ const flatListWindowSizeBase = 20;
 export default function SearchPageContent_FlatList() {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
-  const { searchID } = useContext(SearchContext);
+  const { searchID, isSortingByRecentlyUpdated } = useContext(SearchContext);
   const [items, setItems] = useState([]);
   const [searchCountCard, setSearchCountCard] = useState();
   const [networkError, setNetworkError] = useState(false);
@@ -102,9 +102,11 @@ export default function SearchPageContent_FlatList() {
     const slicePoint = items.length;
     const resultsSlice = searchResults.results.slice(slicePoint);
 
+    const sortingByRecentlyUpdated = isSortingByRecentlyUpdated()
+
     const newItems = [];
     resultsSlice.map((item) => {
-      newItems.push(<CardItem key={item.searchBlob.trackId} doc={item} />);
+      newItems.push(<CardItem key={item.searchBlob.trackId} doc={item} showRecentReleaseDate={sortingByRecentlyUpdated} />);
       return null;
     });
 

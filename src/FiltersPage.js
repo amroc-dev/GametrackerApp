@@ -7,6 +7,7 @@ import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 import FilterRating from "./FilterRating";
+import FilterYear from "./FilterYear";
 import { HeaderSpace, Separator, Spacer } from "./Common";
 
 export default function FiltersPage() {
@@ -14,6 +15,8 @@ export default function FiltersPage() {
   const [scrollEnabled, setScrollEnabled] = useState(true)
 
   const styles = getStyles(theme)
+
+  const spacer = <Spacer size={theme.rem * 2} />
   
   return (
     <View style={styles.root} >
@@ -28,12 +31,14 @@ export default function FiltersPage() {
           <HeaderSpace />
           <Spacer size={theme.searchPageTopPadding} />
           <FilterTags />
-          <Spacer size={theme.rem * 2} />
+          {spacer}
           <FilterDevice />
-          <Spacer size={theme.rem * 2} />
+          {spacer}
           <FilterPopularity setScrollEnabled={setScrollEnabled} />
-          <Spacer size={theme.rem * 2} />
+          {spacer}
           <FilterRating setScrollEnabled={setScrollEnabled} />
+          {spacer}
+          <FilterYear setScrollEnabled={setScrollEnabled} />
           <View style={{marginTop:theme.rem}} />
         </View>
       </ScrollView>

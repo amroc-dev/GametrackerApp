@@ -6,13 +6,26 @@ import { ThemeContext } from "./ThemeContext";
 import ImageFadeIn from "./ImageFadeIn";
 const dbkeys = require("./shared/back-end/db-keys");
 import { Separator } from "./Common";
+import { transparentize } from "polished";
 
-function CardItem({ doc }) {
+function getDate(dateString, includeDay = false) {
+  const releaseDateObj = new Date(dateString);
+  const month = monthMap[parseInt(releaseDateObj.getUTCMonth()+1)];
+  if (includeDay) {
+    return `${releaseDateObj.getUTCDate()} ${month} ${releaseDateObj.getUTCFullYear()}`;
+  } else {
+    return `${month} ${releaseDateObj.getUTCFullYear()}`;
+  }
+}
+
+function CardItem(props) {
+  const { doc } = props;
   const { theme } = useContext(ThemeContext);
 
   const styles = getStyles(theme);
 
   const doc_releaseDate = objectKeyFromDotString(doc, dbkeys.releaseDate);
+  const doc_recentReleaseDate = objectKeyFromDotString(doc, dbkeys.currentVersionReleaseDate);
   const doc_popularity = objectKeyFromDotString(doc, dbkeys.popularity);
   const doc_ratingCount = objectKeyFromDotString(doc, dbkeys.ratingCountCurrentVersion);
   const doc_rating = objectKeyFromDotString(doc, dbkeys.ratingCurrentVersion);
@@ -22,9 +35,14 @@ function CardItem({ doc }) {
   const doc_artistName = objectKeyFromDotString(doc, dbkeys.artistName);
   const doc_artworkUrl = objectKeyFromDotString(doc, dbkeys.artworkUrl);
 
-  const releaseDateArr = doc_releaseDate.split("-");
-  const month = monthMap[parseInt(releaseDateArr[1])];
-  const releaseDate = `${releaseDateArr[2]} ${month} ${releaseDateArr[0]}`;
+
+  //const releaseDate = getDate(doc_releaseDate, false)// + " (" + getDate(doc_recentReleaseDate, true) + ")"
+  const releaseDateElem = props.showRecentReleaseDate ? (
+    <View style={{flexDirection: 'column', flex: 1}}>
+      <Text style={[styles.releaseDate, {flex: 0, fontSize: theme.fonts.sizes.mini * 0.9}]}>Updated</Text>
+      <Text style={[styles.releaseDate, {flex: 0}]}>{getDate(doc_recentReleaseDate, true)}</Text>
+    </View>
+  ) : <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, false)}</Text>
 
   //////// rating
   let rating = parseFloat(parseFloat(doc_rating).toFixed(1));
@@ -96,7 +114,7 @@ function CardItem({ doc }) {
           </View>
         </View>
         <View style={styles.bottomRowContainer}>
-          <Text style={styles.releaseDate}>{releaseDate}</Text>
+          {releaseDateElem}
           <View style={styles.ratingContainer}>
             <View style={[ratingCellColor, styles.ratingCell]}>
               <Text style={styles.ratingValue}>{rating}</Text>

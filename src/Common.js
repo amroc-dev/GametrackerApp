@@ -281,7 +281,7 @@ export function MultiSlider(props) {
 
   return (
     <View
-      style={[parentContainerStyle, readyStyle]}
+      style={[parentContainerStyle, readyStyle, {top: props.values.length == 2 ? 15 : 0}]}
       onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)}
     >
       <_MultiSlider
@@ -293,12 +293,13 @@ export function MultiSlider(props) {
           backgroundColor: theme.colors.secondary,
         }}
         selectedStyle={{
-          height: THUMB_SIZE,
-          top:-(THUMB_SIZE/2 - 1),
+          height: 32,
+          top:-15,
           backgroundColor: theme.colors.primary,
-          borderTopWidth: 11,
-          borderBottomWidth: 10,
+          borderTopWidth: 15,
+          borderBottomWidth: 14,
           borderColor: theme.colors.background2,
+          borderRadius: 0,
         }}
         {...props}
         sliderLength={parentWidth}

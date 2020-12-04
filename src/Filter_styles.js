@@ -23,7 +23,7 @@ export function getFilterStyles(theme) {
     },
     bodyContainer: {
       backgroundColor: theme.colors.background2,
-      marginTop: 0,
+      marginVertical: 0,
       marginHorizontal: theme.rem * 0.5,
       borderRadius: theme.borderRadius,
       shadowColor: theme.shadowColor,
@@ -57,6 +57,11 @@ export function getFilterStyles(theme) {
     },
     filterTextSelected: {
       color: theme.name === 'light' ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
-    }
+    },
+    multiSliderParentContainer: {
+      marginHorizontal: theme.rem, 
+      marginTop: -theme.rem * 0.25,
+      marginBottom: theme.rem * 0.25,
+    },
   });
 }

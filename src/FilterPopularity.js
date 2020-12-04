@@ -56,7 +56,7 @@ function FilterPopularity(props) {
     if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
       text = (
         <View style={styles.textContainer}>
-          <Text style={styles.textUnits}>All</Text>
+          <Text style={styles.textUnits}>...</Text>
         </View>
       );
     } else {
@@ -117,7 +117,7 @@ function FilterPopularity(props) {
       <View style={[filterStyles.bodyContainer, styles.body]}>
         {getText()}
         <MultiSlider
-          parentContainerStyle={{marginHorizontal:theme.rem}}
+          parentContainerStyle={filterStyles.multiSliderParentContainer}
           values={[sliderVal.min, sliderVal.max]}
           min={0}
           max={popularityIntervals.length - 1}
@@ -172,19 +172,14 @@ export default memo(FilterPopularity);
 function getStyles(theme) {
   return StyleSheet.create({
     outer: {},
-
     body: {
       paddingHorizontal: theme.rem * 0.5,
     },
-    sliderContainer: {
-      marginTop: theme.rem * -0.75,
-    },
-    slider: {},
     textContainer: {
       paddingTop: theme.rem * 1,
       alignSelf: "center",
       flexDirection: "row",
-      alignItems: "flex-end",
+      alignItems: "center",
     },
     text: {
       color: theme.fonts.colors.secondary,
