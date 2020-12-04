@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState, useLayoutEffect, useRef } from 
 import { View, Text, TextInput, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 import { SearchContext } from "./shared/react/SearchContext";
-import { sortOptions } from "./shared/react/SortOptions";
 import { ThemeContext } from "./ThemeContext";
 import ModalDropdown from "./ModalDropdown";
 import ModalSelector from "react-native-modal-selector";

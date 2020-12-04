@@ -5,8 +5,9 @@ import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { numberWithCommas } from "./shared/react/Misc";
 import { ThemeContext } from "./ThemeContext";
+import Icon from "react-native-vector-icons/Ionicons";
 import { MakeLabel, popularityFilterCategories } from "./shared/react/PopularityFilterCategories";
-import { borderRadius } from "polished";
+import { borderRadius, transparentize } from "polished";
 import { ToggleButton } from "./Common";
 import { getFilterStyles } from "./Filter_styles";
 import Fade from "react-native-fade";
@@ -15,7 +16,7 @@ import { MIN_VAL as RATING_MIN_VAL, MAX_VAL as RATING_MAX_VAL } from "./FilterRa
 
 // import { getPopularityScoreFromIndex} from "./FilterPopularity";
 
-function SearchPill({ name, clickCallback }) {
+function SearchPill({ name, iconName, clickCallback }) {
   const { theme } = useContext(ThemeContext);
   const [visible, setVisible] = useState(false);
 
@@ -30,7 +31,7 @@ function SearchPill({ name, clickCallback }) {
       marginBottom: theme.rem * 0.5,
       marginRight: theme.rem * 0.4,
       borderRadius: theme.pillBorderRadius,
-      minWidth: 60,
+      minWidth: iconName ? 0 : 60,
       alignItems: "center",
       height: "auto",
       paddingHorizontal: theme.pillHorizontalPadding,
@@ -45,8 +46,25 @@ function SearchPill({ name, clickCallback }) {
 
   return (
     // <Fade visible={visible}>
-    <ToggleButton style={styles.button} active={true} onPress={() => clickCallback(name)}>
-      <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text>
+    <ToggleButton
+      style={styles.button}
+      backgroundColor={iconName ? transparentize(1, theme.colors.primary) : theme.colors.primary}
+      active={true}
+      onPress={() => clickCallback(name)}
+    >
+      {name ? <Text style={[styles.title, filtersStyles.filterTextSelected]}>{name}</Text> : null}
+
+      {iconName ? (
+        <Icon
+          // style={{padding: 0, margin: 0, backgroundColor: 'red', fontSize: 24, borderWidth: 0}}
+          style={[
+            styles.title,
+            filtersStyles.filterTextSelected,
+            { fontSize: 23, marginVertical: -8, marginHorizontal: -4, color: theme.fonts.colors.secondary},
+          ]}
+          name={iconName}
+        />
+      ) : null}
     </ToggleButton>
     // </Fade>
   );
@@ -56,9 +74,11 @@ export default function SearchPills() {
   const {
     searchTags,
     removeSearchTag,
+    clearSearchTags,
     clearSearchTerm,
     deviceFilter,
     toggleDeviceFilter,
+    resetDeviceFilter,
     popularityFilter,
     setPopularityFilter,
     ratingFilter,
@@ -116,16 +136,6 @@ export default function SearchPills() {
       return filter[i];
     });
 
-    // popularity filter pill
-    // function onPopularityPillClick() {
-    //   setPopularityFilter(-1, 0, true);
-    // }
-    // if (popularityFilter.ratingCount > -1) {
-    //   const ranking = numberWithCommas(popularityIntervals[popularityFilter.index])
-    //   const text = (popularityFilter.ascending ? "> " : "< ") + ranking
-    //   pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
-    // }
-
     function onPopularityPillClick() {
       setPopularityFilter(-1, -1);
     }
@@ -140,7 +150,7 @@ export default function SearchPills() {
         text = "< " + numberWithCommas(popularityFilter.max);
       } else if (popularityFilter.min === popularityFilter.max) {
         text = numberWithCommas(popularityFilter.min);
-      } else text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max)
+      } else text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
       pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
 
@@ -158,6 +168,22 @@ export default function SearchPills() {
       }
 
       pills.push(<SearchPill key={pills.length} name={"User rating " + text} clickCallback={onRatingPillClick} />);
+    }
+
+    function clearAll() {
+      clearSearchTerm();
+      clearSearchTags();
+      resetDeviceFilter();
+      onPopularityPillClick();
+      onRatingPillClick();
+    }
+
+    if (pills.length > 1) {
+      pills.splice(
+        0,
+        0,
+        <SearchPill key={pills.length} iconName={"ios-close-circle-sharp"} clickCallback={clearAll} />
+      );
     }
 
     setPillElems(pills);

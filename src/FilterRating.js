@@ -30,7 +30,7 @@ function FilterRating(props) {
     if (val <= MIN_VAL) {
       text = (
         <View style={styles.textContainer}>
-          <Text style={styles.textUnits}>...</Text>
+          <Text style={styles.textUnits}>Any rating</Text>
         </View>
       );
     } else if (val < MAX_VAL) {

@@ -56,7 +56,7 @@ function FilterPopularity(props) {
     if (popularityIntervals.length === 0 || (sliderMin === 0 && sliderMax === popularityIntervals.length - 1)) {
       text = (
         <View style={styles.textContainer}>
-          <Text style={styles.textUnits}>...</Text>
+          <Text style={styles.textUnits}>Any popularity</Text>
         </View>
       );
     } else {

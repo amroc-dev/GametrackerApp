@@ -12,15 +12,9 @@ const { Popover, ContextMenu } = renderers;
 
 import { Menu, MenuOptions, MenuOption, MenuTrigger } from "react-native-popup-menu";
 
-
-
 export default function SortBy() {
   const { theme } = useContext(ThemeContext);
   const { sortOption, updateSortOption } = useContext(SearchContext);
-
-  // const pickerItems = sortOptions.map((item) => ({ label: item, value: item }));
-
-  const pickerItems = sortOptions.map((item) => <MenuOption key={item} text={item} />);
 
   const styles = getStyles(theme);
 
@@ -31,7 +25,7 @@ export default function SortBy() {
   return (
     <View style={styles.root}>
       <Text style={styles.sortByLabel}>Sort</Text>
-      <PopoverMenu menuOptions={sortOptions} selected={sortOption} onChange={updateSortOption} />
+      <PopoverMenu menuOptions={Object.values(sortOptions)} selected={sortOption} onChange={updateSortOption} />
 
       {/* <Menu renderer={Popover} rendererProps={{ placement: "bottom" }}>
         <MenuTrigger

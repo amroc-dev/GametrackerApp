@@ -201,7 +201,7 @@ export function ToggleButton(props) {
     padding: theme.rem * 0.5,
     // height: theme.rowHeight,
     justifyContent: "center",
-    backgroundColor: props.style.backgroundColor ? props.style.backgroundColor : theme.colors.primary,
+    backgroundColor: props.backgroundColor ? props.backgroundColor : theme.colors.primary,
   };
 
   return (
