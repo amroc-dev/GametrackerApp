@@ -56,11 +56,10 @@ function SearchPill({ name, iconName, clickCallback }) {
 
       {iconName ? (
         <Icon
-          // style={{padding: 0, margin: 0, backgroundColor: 'red', fontSize: 24, borderWidth: 0}}
           style={[
             styles.title,
             filtersStyles.filterTextSelected,
-            { fontSize: 28, marginVertical: -8, marginLeft: -6, marginRight: -8, color: theme.fonts.colors.secondary},
+            { fontSize: 28, marginVertical: -8, marginTop: -6, marginLeft: -6, marginRight: -8, color: theme.fonts.colors.secondary},
           ]}
           name={iconName}
         />
