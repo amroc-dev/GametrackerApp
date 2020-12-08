@@ -7,6 +7,8 @@ import ImageFadeIn from "./ImageFadeIn";
 const dbkeys = require("./shared/back-end/db-keys");
 import { Separator } from "./Common";
 import { transparentize } from "polished";
+import * as StoreViewManager from "react-native-store-view";
+
 
 function getDate(dateString, includeDay = false) {
   const releaseDateObj = new Date(dateString);
@@ -67,9 +69,28 @@ function CardItem(props) {
   const formattedPriceElem = doc_formattedPrice;
 
   async function onTap() {
-    await Linking.openURL("itms-apps://apps.apple.com/id/app/id" + doc_trackId).catch((err) => {
-      console.log(err);
-    });
+    // await Linking.openURL("itms-apps://apps.apple.com/id/app/id" + doc_trackId).catch((err) => {
+    //   console.log(err);
+    // });
+
+    StoreViewManager.loadProductWithParameters({
+      iTunesItemIdentifier: doc_trackId // The only mandatory parameter is a numeric App Store ID. This one is iBooks.
+      //, affiliateToken: 'string, optional, iOS 8.0+'
+      //, campaignToken: 'string, optional, iOS 8.0+'
+      //, providerToken: 'string, optional, iOS 8.3+'
+      //, advertisingPartnerToken: 'string, optional, iOS 9.3+'
+    })
+      .then(() => {
+        // here when content loaded
+      })
+      .then(() => {
+        // here when modal dismissed
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+
+      StoreViewManager.presentViewController();
   }
 
   return (

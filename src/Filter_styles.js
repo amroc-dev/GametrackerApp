@@ -1,19 +1,28 @@
 import { rgba, readableColor } from "polished";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import { ThemeContext } from "./ThemeContext"
+import { ThemeContext } from "./ThemeContext";
+import Icon from "react-native-vector-icons/Ionicons";
 
+export function FilterHeader({ title, textChildren }) {
+  const { theme } = useContext(ThemeContext);
 
-export function FilterHeader( {title, textChildren} ) {
-  const {theme} = useContext(ThemeContext)
+  const filterStyles = getFilterStyles(theme);
 
-  const filterStyles = getFilterStyles(theme)
-  
   return (
     <View style={filterStyles.headerView}>
-      <Text style={filterStyles.headerText}>{title} {textChildren ? textChildren : null}</Text>
+      <Text style={filterStyles.headerText}>
+        {title} {textChildren ? textChildren : null}
+      </Text>
+      {/* <Icon
+        name="help-circle"
+        style={[
+          filterStyles.headerText,
+          {fontSize: 24, paddingHorizontal: 0, marginVertical: -5, alignSelf: "flex-start", marginLeft: -5 },
+        ]}
+      /> */}
     </View>
-  )
+  );
 }
 
 export function getFilterStyles(theme) {
@@ -38,16 +47,15 @@ export function getFilterStyles(theme) {
       flexDirection: "row",
       alignSelf: "flex-start",
       alignItems: "center",
-      backgroundColor: rgba(0,0,0,0),// theme.colors.primary, //
+      backgroundColor: rgba(0, 0, 0, 0), // theme.colors.primary, //
       // height: theme.rowHeight * 0.5,
       marginLeft: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
       // borderRadius: theme.borderRadius,
       marginBottom: theme.rem * 0.35,
-
     },
-    headerText:{
+    headerText: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
@@ -56,10 +64,10 @@ export function getFilterStyles(theme) {
       paddingHorizontal: theme.rem * 0.25,
     },
     filterTextSelected: {
-      color: theme.name === 'light' ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
+      color: theme.name === "light" ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
     },
     multiSliderParentContainer: {
-      marginHorizontal: theme.rem, 
+      marginHorizontal: theme.rem,
       marginTop: -theme.rem * 0.25,
       marginBottom: theme.rem * 0.25,
     },

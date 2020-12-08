@@ -12,7 +12,7 @@ import {
 } from "react-native";
 import { Button as ElemButton } from "react-native-elements";
 import { ThemeContext } from "./ThemeContext";
-import { rgba, transparentize, invert } from "polished";
+import { rgba, transparentize, invert, darken, lighten } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ThemeProvider } from "@react-navigation/native";
 import nextFrame from "next-frame";
@@ -232,7 +232,7 @@ export function ToggleButton(props) {
 
 import _MultiSlider from "@ptomasroos/react-native-multi-slider";
 
-const THUMB_SIZE = 24;
+const THUMB_SIZE = 20;
 
 function MultiSliderMarker() {
   const { theme } = useContext(ThemeContext);
@@ -249,10 +249,12 @@ function MultiSliderMarker() {
     >
       <View
         style={{
-          width: THUMB_SIZE / 2,
+          width: THUMB_SIZE,
           height: THUMB_SIZE,
           backgroundColor: theme.colors.primary,
-          borderRadius: theme.borderRadius,//THUMB_SIZE / 2 + 1,
+          borderRadius: 30,//THUMB_SIZE / 2 + 1,
+          // borderWidth: 0,
+          // borderColor: theme.colors.primary,
         }}
       />
     </View>
