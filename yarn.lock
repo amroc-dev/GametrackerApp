@@ -5804,6 +5804,11 @@ react-native-animated-spinkit@^1.4.1:
   resolved "https://registry.yarnpkg.com/react-native-animated-spinkit/-/react-native-animated-spinkit-1.4.2.tgz#cb60ff8bcc2bb848409d9aa85ed528646ad1f953"
   integrity sha512-CLFkynkqRueQK/XUknleiYQr3T0E8cY0KbuaV78JGiHhnF12C3k0ngDAOk6FHssZn3JXnTOVkJsrIBOYkttRmA==
 
+react-native-device-info@^7.2.1:
+  version "7.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-7.2.1.tgz#06a71703af744a30a1eb621cf20e95b43b3bbf85"
+  integrity sha512-7zn2cASst13qlSSGsKOhGsPpeX2yV0O69s7o0kc/4E00VqWrlpx241YB09AL2ZerCPsVOPdKcAvXM+wcJ9xQTw==
+
 react-native-dropdown-picker@^3.7.0:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/react-native-dropdown-picker/-/react-native-dropdown-picker-3.7.1.tgz#ead80b69108bfe8cf56fef5a68d5545d5063b33c"

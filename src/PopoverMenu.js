@@ -58,7 +58,7 @@ function PopoverMenu(props) {
           width: "80%",
           marginHorizontal: theme.rem * 0.5,
           alignSelf: "center",
-          backgroundColor: theme.isDark ? lighten(0.05, theme.colors.secondary) : darken(0.05, theme.colors.secondary),
+          backgroundColor: theme.isDark ? lighten(0.1, theme.colors.secondary) : darken(0.05, theme.colors.secondary),
         }}
       />
     );
@@ -112,7 +112,7 @@ function PopoverMenu(props) {
 
 function getStyles(theme) {
   const buttonColor = theme.colors.background2;
-  const menuColor = buttonColor; //lighten(0.05, buttonColor);
+  const menuColor = lighten(0.05, buttonColor);
   const arrowSize = 40;
   const MAGIC = 0.7;
 
@@ -138,7 +138,7 @@ function getStyles(theme) {
     arrow: {
       position: "absolute",
       backgroundColor: "rgba(0,0,0,0)",
-      color: buttonColor,
+      color: menuColor,
       alignSelf: "center",
       top: arrowSize * -MAGIC,
     },

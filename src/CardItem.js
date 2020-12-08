@@ -8,6 +8,7 @@ const dbkeys = require("./shared/back-end/db-keys");
 import { Separator } from "./Common";
 import { transparentize } from "polished";
 import * as StoreViewManager from "react-native-store-view";
+import DeviceInfo from 'react-native-device-info'
 
 
 function getDate(dateString, includeDay = false) {
@@ -73,8 +74,13 @@ function CardItem(props) {
     //   console.log(err);
     // });
 
+    let simulator = false
+    await DeviceInfo.isEmulator().then( (val) => simulator = val)
+    if (simulator)
+      return
+
     StoreViewManager.loadProductWithParameters({
-      iTunesItemIdentifier: doc_trackId // The only mandatory parameter is a numeric App Store ID. This one is iBooks.
+      iTunesItemIdentifier: doc_trackId 
       //, affiliateToken: 'string, optional, iOS 8.0+'
       //, campaignToken: 'string, optional, iOS 8.0+'
       //, providerToken: 'string, optional, iOS 8.3+'
