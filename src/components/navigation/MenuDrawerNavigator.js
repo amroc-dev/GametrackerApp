@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import MenuDrawerContent from "./MenuDrawerContent"
 import SearchStackNavigator from "./SearchStackNavigator";
-import SettingsPage from "./SettingsPage";
+import SettingsPage from "@root/SettingsPage";
 import { transparentize } from "polished";
 
 const Drawer = createDrawerNavigator();

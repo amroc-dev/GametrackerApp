@@ -3,7 +3,7 @@ const ThemeContext = React.createContext();
 import { lighten, darken, rgb, rgbToColorString } from "polished";
 import RootViewBackgroundColor from "react-native-root-view-background-color";
 import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
-import { extractRGB } from "./shared/react/Misc";
+import { extractRGB } from "@shared/react/Misc";
 import { Platform } from "react-native";
 import merge from "merge";
 

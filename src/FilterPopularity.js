@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect, memo, useRef } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } from "react-native";
-import { numberWithCommas } from "./shared/react/Misc";
-import { SearchContext } from "./shared/react/SearchContext";
-import { CoreContext } from "./shared/react/CoreContext";
+import { numberWithCommas } from "@shared/react/Misc";
+import { SearchContext } from "@shared/react/SearchContext";
+import { CoreContext } from "@shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { getFilterStyles, FilterHeader } from "./styles/Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import {MultiSlider} from "./components/common/Common";
+import {MultiSlider} from "@components/common/Common";
 
 function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);

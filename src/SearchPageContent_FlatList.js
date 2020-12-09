@@ -6,11 +6,11 @@ import SearchCountCard from "./SearchCountCard";
 import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
-import { SearchContext } from "./shared/react/SearchContext";
-import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsContext";
+import { SearchContext } from "@shared/react/SearchContext";
+import { SearchResultsContext, statusCodes } from "@shared/react/SearchResultsContext";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./components/common/Common";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Common";
 import getCardItemStyles from "@styles/CardItem_styles";
 
 let lastYScrollPos = 0;

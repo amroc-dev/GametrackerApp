@@ -1,12 +1,12 @@
 import React, { useContext, useEffect, useLayoutEffect, useRef, useState, memo, useMemo } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimation, Pressable } from "react-native";
-import { CoreContext } from "./shared/react/CoreContext";
+import { CoreContext } from "@shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
-import { SearchContext } from "./shared/react/SearchContext";
+import { SearchContext } from "@shared/react/SearchContext";
 import { getFilterStyles, FilterHeader } from "styles/Filter_styles";
 import { rgba, darken, readableColor } from "polished";
-import { FilterTagsContext } from "./shared/react/FilterTagsContext";
-import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "./components/common/Common";
+import { FilterTagsContext } from "@shared/react/FilterTagsContext";
+import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "@components/common/Common";
 import { Dimensions } from "react-native";
 import { nanoid } from "nanoid/non-secure";
 

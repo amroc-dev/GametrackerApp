@@ -1,13 +1,13 @@
 import React, { useContext, useRef, useEffect } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
-import { CoreContextProvider } from "./shared/react/CoreContext";
-import { NetworkContextProvider } from "./shared/react/NetworkContext";
-import { SearchContextProvider } from "./shared/react/SearchContext";
-import { SearchResultsContextProvider } from "./shared/react/SearchResultsContext";
-import { FilterTagsContextProvider } from "./shared/react/FilterTagsContext";
+import { CoreContextProvider } from "@shared/react/CoreContext";
+import { NetworkContextProvider } from "@shared/react/NetworkContext";
+import { SearchContextProvider } from "@shared/react/SearchContext";
+import { SearchResultsContextProvider } from "@shared/react/SearchResultsContext";
+import { FilterTagsContextProvider } from "@shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "./ThemeContext";
-import MenuDrawerNavigator from "./MenuDrawerNavigator";
+import MenuDrawerNavigator from "@components/navigation/MenuDrawerNavigator";
 import Animated from "react-native-reanimated";
 import { MenuProvider } from 'react-native-popup-menu';
 
@@ -43,7 +43,7 @@ export default function App() {
   );
 }
 
-// import { abortOngoingFetches, serverFetch } from "./shared/react/ServerFetch";
+// import { abortOngoingFetches, serverFetch } from "@shared/react/ServerFetch";
 
 // async function fetchTest(id) {
 

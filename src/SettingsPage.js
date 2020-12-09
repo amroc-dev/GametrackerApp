@@ -1,10 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, Button } from "react-native";
 import { ThemeContext } from "./ThemeContext";
-import { MenuButton } from "./NavigationCommon";
-import { getHeaderScreenOptions } from "./NavigationCommon";
-import { HeaderSpace, Separator, Spacer } from "./components/common/Common";
-import { SectionWithHeader } from "./components/common/Section";
+import { MenuButton } from "./components/navigation/NavigationCommon";
+import { getHeaderScreenOptions } from "./components/navigation/NavigationCommon";
+import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
+import { SectionWithHeader } from "@components/common/Section";
 
 export default function SettingsPage({ navigation }) {
   const { theme, toggleTheme } = useContext(ThemeContext);

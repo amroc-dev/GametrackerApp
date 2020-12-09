@@ -4,7 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import SearchPageScreen from "./SearchPageScreen";
 import FiltersPageScreen from "./FiltersPageScreen";
 import { BlurView } from "@react-native-community/blur";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import { getHeaderScreenOptions } from "./NavigationCommon" 
 
 const Stack = createStackNavigator();

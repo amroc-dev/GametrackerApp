@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Button } from "react-native-elements";
-import { ThemeContext } from "./ThemeContext"
+import { ThemeContext } from "@root/ThemeContext"
 import { useNavigation } from '@react-navigation/native';
 import { transparentize } from "polished";
 

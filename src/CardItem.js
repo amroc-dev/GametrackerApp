@@ -1,11 +1,11 @@
 import React, { memo, useState, useEffect, useContext, useRef } from "react";
 import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native";
-import { monthMap, formatRatingCount, objectKeyFromDotString } from "./shared/react/Misc";
+import { monthMap, formatRatingCount, objectKeyFromDotString } from "@shared/react/Misc";
 import getStyles from "./styles/CardItem_styles";
 import { ThemeContext } from "./ThemeContext";
-import ImageFadeIn from "./components/common/ImageFadeIn";
-const dbkeys = require("./shared/back-end/db-keys");
-import { Separator } from "./components/common/Common";
+import ImageFadeIn from "@components/common/ImageFadeIn";
+const dbkeys = require("@shared/back-end/db-keys");
+import { Separator } from "@components/common/Common";
 import { transparentize } from "polished";
 import * as StoreViewManager from "react-native-store-view";
 import DeviceInfo from 'react-native-device-info'

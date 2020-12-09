@@ -1,14 +1,14 @@
 import React, { useContext, useState } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
-import { SearchContext } from "./shared/react/SearchContext";
-import { SearchResultsContext } from "./shared/react/SearchResultsContext";
+import { SearchContext } from "@shared/react/SearchContext";
+import { SearchResultsContext } from "@shared/react/SearchResultsContext";
 import { ThemeContext } from "./ThemeContext";
 import FilterTags from "./FilterTags";
 import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 import FilterRating from "./FilterRating";
 import FilterYear from "./FilterYear";
-import { HeaderSpace, Separator, Spacer } from "./components/common/Common";
+import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
 
 export default function FiltersPage() {
   const { theme } = useContext(ThemeContext);
