@@ -5,9 +5,10 @@ import { MenuButton } from "./navigation/NavigationCommon";
 import { getHeaderScreenOptions } from "./navigation/NavigationCommon";
 import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
 import { SectionWithHeader } from "@components/common/Section";
+import OptionList from "@components/common/OptionList";
 
 export default function SettingsPage({ navigation }) {
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { theme, setLightTheme, setDarkTheme } = useContext(ThemeContext);
 
   const screenOptions = getHeaderScreenOptions();
 
@@ -17,7 +18,13 @@ export default function SettingsPage({ navigation }) {
     navigation.setOptions(screenOptions);
   }, [navigation, theme]);
 
-  // const sectionStyles = getSectionStyles(theme);
+  function onThemeStateChange(state) {
+    if (state['Light']) {
+      setLightTheme()
+    } else if (state['Dark']) {
+      setDarkTheme()
+    }
+  }
 
   return (
     <View style={styles.root}>
@@ -29,9 +36,12 @@ export default function SettingsPage({ navigation }) {
         keyboardDismissMode="on-drag"
         style={styles.scrollView}
       >
-        <SectionWithHeader title="Theme">
-          <Text>Light</Text>
-          <Text>Dark</Text>
+        {/* <HeaderSpace /> */}
+        <Spacer size={theme.searchPageTopPadding} />
+        <SectionWithHeader title="Theme" containerStyle={{padding: 0}}>
+          <OptionList 
+            options={{'Light' : theme.isLight, 'Dark' : theme.isDark}} 
+            onStateChanged={onThemeStateChange} />
         </SectionWithHeader>
 
         {/* <Button title="Toggle Theme" onPress={ () => toggleTheme() } /> */}

@@ -34,7 +34,7 @@ function getBaseTheme() {
     fonts: {
       sizes: {
         header: 1.1 * fontSize,
-        primary: 1 * fontSize,  
+        primary: 1 * fontSize,
         primary2: 0.9 * fontSize,
         secondary: 0.75 * fontSize,
         mini: 0.65 * fontSize,
@@ -132,9 +132,12 @@ function ThemeContextProvider(props) {
     RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
   }, [theme]);
 
-  function setThemeWithName(name) {
-    if (name === "light") setTheme(getLightTheme());
-    else if (name === "dark") setTheme((p) => getDarkTheme());
+  function setLightTheme() {
+    if (!theme.isLight) setTheme(getLightTheme());
+  }
+
+  function setDarkTheme() {
+    if (!theme.isDark) setTheme(getDarkTheme());
   }
 
   ////////////////////////////////////////////////////////////
@@ -221,15 +224,16 @@ function ThemeContextProvider(props) {
   }
 
   function toggleTheme() {
-    if (theme.isDark) setThemeWithName("light");
-    else setThemeWithName("dark");
+    if (theme.isDark) setLightTheme();
+    else setDarkTheme();
   }
 
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        setThemeWithName,
+        setLightTheme,
+        setDarkTheme,
         toggleTheme,
       }}
     >

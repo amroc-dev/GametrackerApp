@@ -131,21 +131,16 @@ export function HeaderSpace() {
   return <View style={{ height: height, opacity: 0 }} />;
 }
 
-export function Separator() {
+export function Separator({style}) {
   const { theme } = useContext(ThemeContext);
-  const height = 1;
+  const height = StyleSheet.hairlineWidth;
 
   return (
     <View
-      style={{
+      style={[{
         height: height,
-        width: "86%",
-        marginHorizontal: theme.rem * 0,
-        marginVertical: theme.rem * 0.25,
-        // marginTop: theme.rem * 0.5,
-        alignSelf: "center",
-        // backgroundColor: theme.colors.secondary,
-      }}
+        backgroundColor: theme.colors.secondary,
+      }, style]}
     />
   );
 }

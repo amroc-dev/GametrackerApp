@@ -23,7 +23,7 @@ export default function MenuDrawerNavigator() {
     drawerStyle={{
       backgroundColor: theme.isDark ? theme.colors.background : theme.colors.secondary,
       width: 200,
-      marginTop: 44,
+      paddingTop: 44,
     }}
       drawerType="back"
       edgeWidth={0}
