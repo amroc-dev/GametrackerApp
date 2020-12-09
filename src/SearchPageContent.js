@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
 import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation, Text } from "react-native";
 import CardItem from "./CardItem";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "./components/common/LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
 import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsContext";
-import InfiniteScrollView from "./InfiniteScrollView";
+import InfiniteScrollView from "./components/common/InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./Common";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./components/common/Common";
 
 export default memo(function SearchPageContent() {
   const { theme } = useContext(ThemeContext);

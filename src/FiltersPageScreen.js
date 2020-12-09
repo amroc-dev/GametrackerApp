@@ -2,7 +2,7 @@ import React, { useEffect, useLayoutEffect, useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { SearchResultsContext } from "./shared/react/SearchResultsContext";
 import FiltersPage from "./FiltersPage";
-import { BackButton } from "./NavButtons";
+import { BackButton } from "./NavigationCommon";
 
 export default function FiltersPageScreen({ navigation }) {
   const { setHoldSearch } = useContext(SearchResultsContext)

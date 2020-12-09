@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { View, ScrollView, Text } from "react-native";
 import LoadingSpinner from "./LoadingSpinner";
 import PropTypes from "prop-types";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../../ThemeContext";
 import nextFrame from "next-frame";
 import { Dimensions } from "react-native";
 

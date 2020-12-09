@@ -1,18 +1,17 @@
 import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
 import { View, FlatList, StyleSheet, SafeAreaView, LayoutAnimation, Text } from "react-native";
 import CardItem from "./CardItem";
-import LoadingSpinner from "./LoadingSpinner";
+import LoadingSpinner from "@components/common/LoadingSpinner";
 import SearchCountCard from "./SearchCountCard";
 import SearchPills from "./SearchPills";
 import Searchbar from "./Searchbar";
 import SortBy from "./SortBy";
 import { SearchContext } from "./shared/react/SearchContext";
 import { SearchResultsContext, statusCodes } from "./shared/react/SearchResultsContext";
-import InfiniteScrollView from "./InfiniteScrollView";
 import { ThemeContext } from "./ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./Common";
-import getCardItemStyles from "./CardItem_styles";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "./components/common/Common";
+import getCardItemStyles from "@styles/CardItem_styles";
 
 let lastYScrollPos = 0;
 const flatListWindowSizeBase = 20;
@@ -39,7 +38,7 @@ export default function SearchPageContent_FlatList() {
   const headerChangeTransition = <Transition.Change interpolation="easeInOut" />;
 
   const listHeaderComponent = (
-    <View style={{zIndex : 10}}>
+    <View>
       <HeaderSpace />
       <Spacer size={theme.searchPageTopPadding} />
       <SearchPills />
@@ -176,6 +175,7 @@ export default function SearchPageContent_FlatList() {
       maxToRenderPerBatch={FETCH_COUNT}
       updateCellsBatchingPeriod={1}
       style={styles.scrollView}
+      contentInsetAdjustmentBehavior="automatic"
       indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardDismissMode="on-drag"
       getItemLayout={(data, index) => ({

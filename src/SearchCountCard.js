@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import {View, Text, StyleSheet} from 'react-native';
 import { numberWithCommas } from "./shared/react/Misc";
-import getStyles from "./CardItem_styles"
+import getStyles from "./styles/CardItem_styles"
 import { ThemeContext } from "./ThemeContext";
 
 //////////

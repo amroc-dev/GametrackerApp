@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState, useLayoutEffect, useRef } from "react";
 import { View, Text, TextInput, StyleSheet, LayoutAnimation, Pressable } from "react-native";
 import { Button } from "react-native-elements";
-import { SearchContext } from "./shared/react/SearchContext";
-import { ThemeContext } from "./ThemeContext";
+import { SearchContext } from "../../shared/react/SearchContext";
+import { ThemeContext } from "../../ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 import { renderers } from "react-native-popup-menu";
 const { Popover } = renderers;

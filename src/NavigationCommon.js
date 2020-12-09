@@ -3,8 +3,17 @@ import { StyleSheet, View } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import { Button } from "react-native-elements";
 import { ThemeContext } from "./ThemeContext"
+import { useNavigation } from '@react-navigation/native';
+import { transparentize } from "polished";
 
 const iconSize = 32;
+
+const styles = StyleSheet.create({
+  icon: {
+    height: iconSize,
+  },
+});
+
 
 export function BackButton(props) {
   const { theme } = useContext(ThemeContext)
@@ -50,8 +59,37 @@ export function ForwardButton(props) {
   );
 }
 
-const styles = StyleSheet.create({
-  icon: {
-    height: iconSize,
-  },
-});
+import { BlurView } from "@react-native-community/blur";
+
+export function getHeaderScreenOptions()
+{
+  const { theme }  = useContext(ThemeContext)
+  const navigation = useNavigation();
+
+  const blurType = theme.name === "light" ? "thinMaterialLight" : "materialDark";
+  const borderColor = transparentize(theme.isDark ? 0.6 : 0.875, 'black');
+
+  return {
+    headerShown: true,
+    headerTitleStyle: theme.headerTitleStyle,
+    headerTransparent: true,
+    headerBackground: () => (
+      <>
+        <BlurView
+          blurType={blurType}
+          style={{ ...StyleSheet.absoluteFillObject, borderWidth: StyleSheet.hairlineWidth, borderColor: borderColor }}
+        ></BlurView>
+      </>
+    ),
+    headerLeft: () => <MenuButton onPress={() => navigation.openDrawer()} />,
+    headerStyle: {
+      backgroundColor: theme.colors.header,
+      shadowOpacity: 0,
+      borderBottomWidth: StyleSheet.hairlineWidth,
+      borderBottomColor: theme.isDark ? "rgba(0,0,0,1)" : "rgba(0,0,0,0.15)",
+      borderColor: theme.colors.header,
+      shadowColor: theme.colors.primary,
+    },
+  };
+}
+

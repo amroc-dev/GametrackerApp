@@ -4,9 +4,9 @@ import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
-import { getFilterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "./styles/Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import {MultiSlider} from "./Common";
+import {MultiSlider} from "./components/common/Common";
 
 function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);

@@ -3,10 +3,10 @@ import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimatio
 import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
 import { SearchContext } from "./shared/react/SearchContext";
-import { getFilterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "styles/Filter_styles";
 import { rgba, darken, readableColor } from "polished";
 import { FilterTagsContext } from "./shared/react/FilterTagsContext";
-import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "./Common";
+import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "./components/common/Common";
 import { Dimensions } from "react-native";
 import { nanoid } from "nanoid/non-secure";
 

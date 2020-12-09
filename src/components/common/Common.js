@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Button as ElemButton } from "react-native-elements";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../../ThemeContext";
 import { rgba, transparentize, invert, darken, lighten } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ThemeProvider } from "@react-navigation/native";
@@ -126,7 +126,7 @@ export function SearchInput(props) {
 
 export function HeaderSpace() {
   const { theme } = useContext(ThemeContext);
-  const height = 0; //44;
+  const height = 44;
 
   return <View style={{ height: height, opacity: 0 }} />;
 }
@@ -267,11 +267,6 @@ export function MultiSlider(props) {
   const [ready, setReady] = useState(false);
 
   const parentContainerStyle = props.parentContainerStyle ? props.parentContainerStyle : {};
-
-  // if (parentWidth === 0) {
-  //   console.log('here')
-  //   // return <View style={parentContainerStyle} onLayout={({ nativeEvent }) => setParentWidth(nativeEvent.layout.width)} />
-  // }
 
   useEffect(() => {
     if (parentWidth > 0 && props.max > 0) {

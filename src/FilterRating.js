@@ -4,9 +4,10 @@ import { numberWithCommas } from "./shared/react/Misc";
 import { SearchContext } from "./shared/react/SearchContext";
 import { CoreContext } from "./shared/react/CoreContext";
 import { ThemeContext } from "./ThemeContext";
-import { getFilterStyles, FilterHeader } from "./Filter_styles";
+import { getFilterStyles, FilterHeader } from "./styles/Filter_styles";
+import { SectionWithHeader } from "./components/common/Section";
 import { lighten, darken, toColorString } from "polished";
-import { MultiSlider, Clamp } from "./Common";
+import { MultiSlider, Clamp } from "./components/common/Common";
 import rgbHex from "rgb-hex";
 
 export const MIN_VAL = 1.9;
@@ -68,9 +69,10 @@ function FilterRating(props) {
 
 
   return (
-    <View style={[filterStyles.outerContainer, styles.outer]}>
-      <FilterHeader title={"User rating"} />
-      <View style={[filterStyles.bodyContainer, styles.body]}>
+    // <View style={[filterStyles.outerContainer, styles.outer]}>
+    //   <FilterHeader title={"User rating"} />
+    //   <View style={[filterStyles.bodyContainer, styles.body]}>
+      <SectionWithHeader title={"User rating"}>
         {getText()}
         <MultiSlider
           parentContainerStyle={filterStyles.multiSliderParentContainer}
@@ -92,8 +94,7 @@ function FilterRating(props) {
             backgroundColor: theme.colors.primary,
           }}
         />
-      </View>
-    </View>
+        </SectionWithHeader>
   );
 }
 

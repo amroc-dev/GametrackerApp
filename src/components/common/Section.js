@@ -1,39 +1,46 @@
 import { rgba, readableColor } from "polished";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "../../ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 
-export function FilterHeader({ title, textChildren }) {
+export function SectionHeader({ title, textChildren }) {
   const { theme } = useContext(ThemeContext);
 
-  const filterStyles = getFilterStyles(theme);
+  const sectionStyles = getSectionStyles(theme);
 
   return (
-    <View style={filterStyles.headerView}>
-      <Text style={filterStyles.headerText}>
+    <View style={sectionStyles.headerView}>
+      <Text style={sectionStyles.headerText}>
         {title} {textChildren ? textChildren : null}
       </Text>
-      {/* <Icon
-        name="help-circle"
-        style={[
-          filterStyles.headerText,
-          {fontSize: 24, paddingHorizontal: 0, marginVertical: -5, alignSelf: "flex-start", marginLeft: -5 },
-        ]}
-      /> */}
     </View>
   );
 }
 
-export function getFilterStyles(theme) {
+export function SectionWithHeader(props) {
+  const { theme } = useContext(ThemeContext);
+  const {title, children, containerStyle} = props;
+
+  const sectionStyles = getSectionStyles(theme);
+
+  return(
+    <View>
+      <SectionHeader title={title ?? "Title"} />
+      <View style={[sectionStyles.container, containerStyle ?? null]}>
+        {children ?? null}
+      </View>
+    </View>
+  )
+}
+
+export function getSectionStyles(theme) {
   return StyleSheet.create({
-    outerContainer: {
-      // marginHorizontal: theme.rem * 0.5,
-    },
-    bodyContainer: {
+    container: {
       backgroundColor: theme.colors.background2,
       marginVertical: 0,
       marginHorizontal: theme.rem * 0.5,
+      padding: theme.rem * 0.5,
       borderRadius: theme.borderRadius,
       shadowColor: theme.shadowColor,
       shadowOpacity: theme.shadowOpacity,
@@ -48,28 +55,24 @@ export function getFilterStyles(theme) {
       alignSelf: "flex-start",
       alignItems: "center",
       backgroundColor: rgba(0, 0, 0, 0), // theme.colors.primary, //
-      // height: theme.rowHeight * 0.5,
       marginLeft: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
-      // borderRadius: theme.borderRadius,
       marginBottom: theme.rem * 0.35,
     },
     headerText: {
       color: theme.fonts.colors.secondary,
       fontSize: theme.fonts.sizes.primary2,
       fontWeight: theme.fonts.weights.bold,
-
-      // width: 100,
       paddingHorizontal: theme.rem * 0.25,
     },
-    filterTextSelected: {
-      color: theme.name === "light" ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
-    },
-    multiSliderParentContainer: {
-      marginHorizontal: theme.rem,
-      marginTop: -theme.rem * 0.25,
-      marginBottom: theme.rem * 0.25,
-    },
+    // filterTextSelected: {
+    //   color: theme.name === "light" ? readableColor(theme.fonts.colors.title) : theme.fonts.colors.title,
+    // },
+    // multiSliderParentContainer: {
+    //   marginHorizontal: theme.rem,
+    //   marginTop: -theme.rem * 0.25,
+    //   marginBottom: theme.rem * 0.25,
+    // },
   });
 }
