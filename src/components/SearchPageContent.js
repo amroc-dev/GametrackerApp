@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
 import { View, ScrollView, StyleSheet, SafeAreaView, LayoutAnimation, Text } from "react-native";
-import CardItem from "./CardItem";
+import CardItem from "@components/CardItem";
 import LoadingSpinner from "@components/common/LoadingSpinner";
-import SearchCountCard from "./SearchCountCard";
-import SearchPills from "./SearchPills";
-import Searchbar from "./Searchbar";
-import SortBy from "./SortBy";
+import SearchCountCard from "@components/SearchCountCard";
+import SearchPills from "@components/SearchPills";
+import Searchbar from "@components/Searchbar";
+import SortBy from "@components/SortBy";
 import { SearchContext } from "@shared/react/SearchContext";
 import { SearchResultsContext, statusCodes } from "@shared/react/SearchResultsContext";
 import InfiniteScrollView from "@components/common/InfiniteScrollView";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
 import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Common";
 

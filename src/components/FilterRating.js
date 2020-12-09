@@ -3,8 +3,8 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Pressable, Platform } fr
 import { numberWithCommas } from "@shared/react/Misc";
 import { SearchContext } from "@shared/react/SearchContext";
 import { CoreContext } from "@shared/react/CoreContext";
-import { ThemeContext } from "./ThemeContext";
-import { getFilterStyles, FilterHeader } from "./styles/Filter_styles";
+import { ThemeContext } from "@root/ThemeContext";
+import { getFilterStyles, FilterHeader } from "@styles/Filter_styles";
 import { SectionWithHeader } from "@components/common/Section";
 import { lighten, darken, toColorString } from "polished";
 import { MultiSlider, Clamp } from "@components/common/Common";

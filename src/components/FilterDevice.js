@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "@shared/react/SearchContext";
-import { ThemeContext } from "./ThemeContext";
-import { getFilterStyles, FilterHeader } from "./styles/Filter_styles";
+import { ThemeContext } from "@root/ThemeContext";
+import { getFilterStyles, FilterHeader } from "@styles/Filter_styles";
 import { ToggleButton } from "@components/common/Common";
 
 export default function FilterDevice() {

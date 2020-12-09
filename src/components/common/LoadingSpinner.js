@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { View, StyleSheet, Text } from "react-native";
 import { Wave } from "react-native-animated-spinkit";
 import { ThemeContext } from "@root/ThemeContext";
-import getCardItemStyles from "../../styles/CardItem_styles";
+import getCardItemStyles from "@styles/CardItem_styles";
 import PropTypes from "prop-types";
 
 export default function LoadingSpinner(props) {

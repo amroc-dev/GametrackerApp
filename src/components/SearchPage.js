@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
 import { Button, SafeAreaView, View, StyleSheet, StatusBar } from "react-native";
-import SearchPageContent from "./SearchPageContent";
-import SearchPageContent_FlatList from "./SearchPageContent_FlatList";
+import SearchPageContent from "@components/SearchPageContent";
+import SearchPageContent_FlatList from "@components/SearchPageContent_FlatList";
 import { Platform } from "react-native";
 import FiltersPage from "./FiltersPage";
 import { transparentize, invert } from "polished";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 
 export default function SearchPage() {
   const { theme } = useContext(ThemeContext);

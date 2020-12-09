@@ -1,8 +1,8 @@
 import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, Button } from "react-native";
-import { ThemeContext } from "./ThemeContext";
-import { MenuButton } from "./components/navigation/NavigationCommon";
-import { getHeaderScreenOptions } from "./components/navigation/NavigationCommon";
+import { ThemeContext } from "@root/ThemeContext";
+import { MenuButton } from "./navigation/NavigationCommon";
+import { getHeaderScreenOptions } from "./navigation/NavigationCommon";
 import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
 import { SectionWithHeader } from "@components/common/Section";
 

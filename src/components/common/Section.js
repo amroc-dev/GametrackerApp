@@ -1,7 +1,7 @@
 import { rgba, readableColor } from "polished";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
-import { ThemeContext } from "../../ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 
 export function SectionHeader({ title, textChildren }) {

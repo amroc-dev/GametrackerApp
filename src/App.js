@@ -6,7 +6,7 @@ import { NetworkContextProvider } from "@shared/react/NetworkContext";
 import { SearchContextProvider } from "@shared/react/SearchContext";
 import { SearchResultsContextProvider } from "@shared/react/SearchResultsContext";
 import { FilterTagsContextProvider } from "@shared/react/FilterTagsContext";
-import { ThemeContextProvider, ThemeContext } from "./ThemeContext";
+import { ThemeContextProvider, ThemeContext } from "@root/ThemeContext";
 import MenuDrawerNavigator from "@components/navigation/MenuDrawerNavigator";
 import Animated from "react-native-reanimated";
 import { MenuProvider } from 'react-native-popup-menu';

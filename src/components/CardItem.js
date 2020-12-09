@@ -1,8 +1,8 @@
 import React, { memo, useState, useEffect, useContext, useRef } from "react";
 import { View, Text, Image, StyleSheet, Linking, Pressable } from "react-native";
 import { monthMap, formatRatingCount, objectKeyFromDotString } from "@shared/react/Misc";
-import getStyles from "./styles/CardItem_styles";
-import { ThemeContext } from "./ThemeContext";
+import getStyles from "@styles/CardItem_styles";
+import { ThemeContext } from "@root/ThemeContext";
 import ImageFadeIn from "@components/common/ImageFadeIn";
 const dbkeys = require("@shared/back-end/db-keys");
 import { Separator } from "@components/common/Common";

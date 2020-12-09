@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import MenuDrawerContent from "./MenuDrawerContent"
 import SearchStackNavigator from "./SearchStackNavigator";
-import SettingsPage from "@root/SettingsPage";
+import SettingsPage from "@components/SettingsPage";
 import { transparentize } from "polished";
 
 const Drawer = createDrawerNavigator();

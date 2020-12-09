@@ -11,7 +11,7 @@ import {
   ScrollView,
 } from "react-native";
 import { Button as ElemButton } from "react-native-elements";
-import { ThemeContext } from "../../ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import { rgba, transparentize, invert, darken, lighten } from "polished";
 import Icon from "react-native-vector-icons/Ionicons";
 import { ThemeProvider } from "@react-navigation/native";

@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, LayoutAnimation, Pressable } from "r
 import { Button } from "react-native-elements";
 import { SearchContext } from "@shared/react/SearchContext";
 import { sortOptions } from "@shared/react/SortOptions";
-import { ThemeContext } from "./ThemeContext";
+import { ThemeContext } from "@root/ThemeContext";
 import PopoverMenu from "@components/common/PopoverMenu";
 import { renderers } from "react-native-popup-menu";
 

@@ -1,6 +1,6 @@
 import React, { useContext, useLayoutEffect } from "react";
 import { Platform } from "react-native";
-import SearchPage from "@root/SearchPage";
+import SearchPage from "@components/SearchPage";
 import { ForwardButton } from "./NavigationCommon";
 
 export default function SearchPageScreen({ navigation }) {
