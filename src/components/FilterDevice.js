@@ -2,7 +2,8 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView } from "react-native";
 import { SearchContext } from "@shared/react/SearchContext";
 import { ThemeContext } from "@root/ThemeContext";
-import { getFilterStyles, FilterHeader } from "@styles/Filter_styles";
+import { SectionWithHeader } from "@components/common/Section";
+import { getFilterStyles } from "@styles/Filter_styles";
 import { ToggleButton } from "@components/common/Common";
 
 export default function FilterDevice() {
@@ -35,18 +36,17 @@ export default function FilterDevice() {
   }, [deviceFilter, theme]);
 
   return (
-    <View style={[filterStyles.outerContainer, styles.outer]}>
-      <FilterHeader title={"Device"} />
-      <View style={[filterStyles.bodyContainer, styles.body]}>
+    <SectionWithHeader title="Device">
+      <View style={styles.body}>
         <View style={styles.inner}>{elements}</View>
       </View>
-    </View>
+    </SectionWithHeader>
   );
 }
 
 function getStyles(theme) {
   const itemSpacing = theme.rem * 0.5;
-  
+
   return StyleSheet.create({
     outer: {},
 

@@ -3,7 +3,8 @@ import { View, Text, TextInput, StyleSheet, ScrollView, FlatList, LayoutAnimatio
 import { CoreContext } from "@shared/react/CoreContext";
 import { ThemeContext } from "@root/ThemeContext";
 import { SearchContext } from "@shared/react/SearchContext";
-import { getFilterStyles, FilterHeader } from "styles/Filter_styles";
+import { SectionWithHeader } from "@components/common/Section";
+import { getFilterStyles } from "styles/Filter_styles";
 import { rgba, darken, readableColor } from "polished";
 import { FilterTagsContext } from "@shared/react/FilterTagsContext";
 import { SearchInput, ToggleButton, ControlledLayoutAnimation } from "@components/common/Common";
@@ -69,7 +70,9 @@ function FilterTags(props) {
         <View style={cardStyle}>
           <View style={styles.tagRow}>
             <View style={styles.tagButton}>
-            <Text style={{ fontSize: theme.fonts.sizes.primary, color: theme.fonts.colors.secondary}}>No matches</Text>
+              <Text style={{ fontSize: theme.fonts.sizes.primary, color: theme.fonts.colors.secondary }}>
+                No matches
+              </Text>
             </View>
           </View>
         </View>
@@ -131,36 +134,36 @@ function FilterTags(props) {
           onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
           style={[filterStyles.outerContainer, styles.outer]}
         >
-          <FilterHeader title={"Tags"} />
-
-          <View style={filterStyles.bodyContainer}>
-            <FlatList
-              ref={flatListRef}
-              data={tagColumns}
-              renderItem={renderItem}
-              keyExtractor={(item, index) => index.toString() + keyExtractorRoot}
-              initialNumToRender={2}
-              horizontal={true}
-              windowSize={3}
-              maxToRenderPerBatch={2}
-              // updateCellsBatchingPeriod={16}
-              style={styles.scrollView}
-              indicatorStyle={theme.isDark ? "white" : "black"}
-              showsHorizontalScrollIndicator={tagColumns.length > 2}
-              // snapToInterval={tagsViewContainerWidth / 2}
-              // snapToAlignment={"start"}
-              pagingEnabled
-              keyboardDismissMode="on-drag"
-              decelerationRate={"fast"}
-              getItemLayout={(data, index) => ({
-                length: tagsViewContainerWidth / 2,
-                offset: (tagsViewContainerWidth / 2) * index,
-                index,
-              })}
-            />
-          </View>
+          <SectionWithHeader title="Tags" containerStyle={{padding: 0}}>
+            <View style={filterStyles.bodyContainer}>
+              <FlatList
+                ref={flatListRef}
+                data={tagColumns}
+                renderItem={renderItem}
+                keyExtractor={(item, index) => index.toString() + keyExtractorRoot}
+                initialNumToRender={2}
+                horizontal={true}
+                windowSize={3}
+                maxToRenderPerBatch={2}
+                // updateCellsBatchingPeriod={16}
+                style={styles.scrollView}
+                indicatorStyle={theme.isDark ? "white" : "black"}
+                showsHorizontalScrollIndicator={tagColumns.length > 2}
+                // snapToInterval={tagsViewContainerWidth / 2}
+                // snapToAlignment={"start"}
+                pagingEnabled
+                keyboardDismissMode="on-drag"
+                decelerationRate={"fast"}
+                getItemLayout={(data, index) => ({
+                  length: tagsViewContainerWidth / 2,
+                  offset: (tagsViewContainerWidth / 2) * index,
+                  index,
+                })}
+              />
+            </View>
+          </SectionWithHeader>
           <SearchInput
-            style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
+            style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle, {marginHorizontal: theme.rem * 0.5}]}
             returnKeyType="done"
             placeholder={"Search " + tags.length + " tags"}
             onChangeText={onChangeText}

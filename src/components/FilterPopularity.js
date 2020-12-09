@@ -4,9 +4,10 @@ import { numberWithCommas } from "@shared/react/Misc";
 import { SearchContext } from "@shared/react/SearchContext";
 import { CoreContext } from "@shared/react/CoreContext";
 import { ThemeContext } from "@root/ThemeContext";
-import { getFilterStyles, FilterHeader } from "@styles/Filter_styles";
+import { SectionWithHeader } from "@components/common/Section";
+import { getFilterStyles } from "@styles/Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import {MultiSlider} from "@components/common/Common";
+import { MultiSlider } from "@components/common/Common";
 
 function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);
@@ -14,8 +15,8 @@ function FilterPopularity(props) {
   const { popularityFilter, setPopularityFilter } = useContext(SearchContext);
   const [sliderVal, setSliderVal] = useState({ min: 0, max: 10 });
 
-  const styles = getStyles(theme)
-  const filterStyles = getFilterStyles(theme)
+  const styles = getStyles(theme);
+  const filterStyles = getFilterStyles(theme);
 
   useEffect(() => {
     function getSliderMax() {
@@ -84,8 +85,7 @@ function FilterPopularity(props) {
             <Text style={styles.text}> ratings </Text>
           </View>
         );
-      } 
-      else {
+      } else {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
@@ -113,58 +113,21 @@ function FilterPopularity(props) {
   }
 
   return (
-    <View style={[filterStyles.outerContainer, styles.outer]}>
-      <FilterHeader title={"Popularity"} />
-      <View style={[filterStyles.bodyContainer, styles.body]}>
-        {getText()}
-        <MultiSlider
-          parentContainerStyle={filterStyles.multiSliderParentContainer}
-          values={[sliderVal.min, sliderVal.max]}
-          min={0}
-          max={popularityIntervals.length - 1}
-          allowOverlap={true}
-          // step={1}
-          // minMarkerOverlapStepDistance={50}
-          onValuesChangeStart={() => props.setScrollEnabled(false)}
-          onValuesChangeFinish={onChangeFinish}
-          onValuesChange={onChange}
-        />
-        
-        {/* <Pressable
-          style={styles.sliderContainer}
-          hitSlop={hitSlop}
-          onPressIn={() => {
-            sliderPressed = true;
-            setHitSlop(9999);
-          }}
-          onPressOut={() => {
-            sliderPressed = false;
-            const minVal = sliderValRead.min === 0 ? -1 : popularityIntervals[sliderValRead.min];
-            const maxVal =
-              sliderValRead.max === popularityIntervals.length - 1 ? -1 : popularityIntervals[sliderValRead.max];
-            setPopularityFilter(minVal, maxVal);
-            setHitSlop(0);
-          }}
-        >
-          <RangeSlider
-            type="range"
-            style={styles.slider}
-            min={0}
-            max={popularityIntervals.length - 1}
-            step={1}
-            lineHeight={3}
-            hideLabels={true}
-            tintColor={theme.colors.secondary}
-            tintColorBetweenHandles={rgbHex(theme.colors.primary)}
-            handleColor={lighten(0.0, theme.colors.primary)}
-            minDistance={popularityIntervals.length / 20}
-            selectedMinimum={sliderValWrite.min}
-            selectedMaximum={sliderValWrite.max}
-            onChange={onChange}
-          />
-        </Pressable> */}
-      </View>
-    </View>
+    <SectionWithHeader title={"Popularity"}>
+      {getText()}
+      <MultiSlider
+        parentContainerStyle={filterStyles.multiSliderParentContainer}
+        values={[sliderVal.min, sliderVal.max]}
+        min={0}
+        max={popularityIntervals.length - 1}
+        allowOverlap={true}
+        // step={1}
+        // minMarkerOverlapStepDistance={50}
+        onValuesChangeStart={() => props.setScrollEnabled(false)}
+        onValuesChangeFinish={onChangeFinish}
+        onValuesChange={onChange}
+      />
+    </SectionWithHeader>
   );
 }
 

@@ -38,9 +38,9 @@ export function getSectionStyles(theme) {
   return StyleSheet.create({
     container: {
       backgroundColor: theme.colors.background2,
-      marginVertical: 0,
       marginHorizontal: theme.rem * 0.5,
-      padding: theme.rem * 0.5,
+      marginVertical: 0,
+      padding: theme.rem * 0.25,
       borderRadius: theme.borderRadius,
       shadowColor: theme.shadowColor,
       shadowOpacity: theme.shadowOpacity,
