@@ -3,7 +3,7 @@ import { View, Text, TextInput, StyleSheet, ScrollView, Button } from "react-nat
 import { ThemeContext } from "@root/ThemeContext";
 import { MenuButton } from "./navigation/NavigationCommon";
 import { getHeaderScreenOptions } from "./navigation/NavigationCommon";
-import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
+import { HeaderSpace, Separator, Spacer } from "@components/common/Misc";
 import { SectionWithHeader } from "@components/common/Section";
 import OptionList from "@components/common/OptionList";
 

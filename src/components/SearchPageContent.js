@@ -11,7 +11,7 @@ import { SearchResultsContext, statusCodes } from "@shared/react/SearchResultsCo
 import InfiniteScrollView from "@components/common/InfiniteScrollView";
 import { ThemeContext } from "@root/ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Common";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Misc";
 
 export default memo(function SearchPageContent() {
   const { theme } = useContext(ThemeContext);

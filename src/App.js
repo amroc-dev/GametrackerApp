@@ -8,14 +8,11 @@ import { SearchResultsContextProvider } from "@shared/react/SearchResultsContext
 import { FilterTagsContextProvider } from "@shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "@root/ThemeContext";
 import MenuDrawerNavigator from "@components/navigation/MenuDrawerNavigator";
-import Animated from "react-native-reanimated";
 import { MenuProvider } from 'react-native-popup-menu';
 
 function StatusBarSettings() {
-  const { theme, toggleTheme } = useContext(ThemeContext);
-
-  const barStyle = theme.name === "dark" ? "light-content" : "dark-content";
-  return <StatusBar barStyle={barStyle} />;
+  const { theme } = useContext(ThemeContext);
+  return <StatusBar barStyle={theme.isDark ? "light-content" : "dark-content"} />;
 }
 
 export default function App() {

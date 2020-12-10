@@ -8,7 +8,7 @@ import FilterDevice from "./FilterDevice";
 import FilterPopularity from "./FilterPopularity";
 import FilterRating from "./FilterRating";
 import FilterYear from "./FilterYear";
-import { HeaderSpace, Separator, Spacer } from "@components/common/Common";
+import { HeaderSpace, Separator, Spacer } from "@components/common/Misc";
 
 export default function FiltersPage() {
   const { theme } = useContext(ThemeContext);

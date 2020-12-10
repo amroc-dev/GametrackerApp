@@ -9,7 +9,7 @@ const { Popover } = renderers;
 import PopoverMenu_Renderer from "./PopoverMenu_Renderer";
 import { Menu, MenuOptions, MenuOption, MenuTrigger, withMenuContext } from "react-native-popup-menu";
 import { rgba, transparentize, lighten, darken } from "polished";
-import { Separator } from "./Common";
+import { Separator } from "./Misc";
 import { HeaderStyleInterpolators } from "@react-navigation/stack";
 
 export default withMenuContext(PopoverMenu);

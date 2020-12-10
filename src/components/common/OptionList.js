@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, SafeAreaView, StatusBar, Animated, Pressable } 
 import { ThemeContext } from "@root/ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 import { shallowEqualObjects } from "shallow-equal";
-import { Separator } from "@components/common/Common";
+import { Separator } from "@components/common/Misc";
 
 export function OptionButton({ children, checked, edgePosition, onPressed, id }) {
   const pressFade = useRef(new Animated.Value(0)).current;
@@ -48,7 +48,6 @@ export function OptionButton({ children, checked, edgePosition, onPressed, id })
           duration: 200,
           useNativeDriver: false,
         }).start();
-
       }}
       onPress={() => {
         onPressed ? onPressed(id) : null;
@@ -95,8 +94,7 @@ export default function OptionList({ options, multiSelect, onStateChanged }) {
   }, [selectionState]);
 
   useEffect(() => {
-    if (!shallowEqualObjects(options, selectionState)) 
-      setSelectionState(options);
+    if (!shallowEqualObjects(options, selectionState)) setSelectionState(options);
   }, [options]);
 
   const stateKeys = Object.keys(selectionState);

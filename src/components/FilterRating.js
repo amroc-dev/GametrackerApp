@@ -7,7 +7,8 @@ import { ThemeContext } from "@root/ThemeContext";
 import { getFilterStyles } from "@styles/Filter_styles";
 import { SectionWithHeader } from "@components/common/Section";
 import { lighten, darken, toColorString } from "polished";
-import { MultiSlider, Clamp } from "@components/common/Common";
+import { Clamp } from "@components/common/Misc";
+import { MultiSlider } from "@components/common/MultiSlider";
 import rgbHex from "rgb-hex";
 
 export const MIN_VAL = 1.9;

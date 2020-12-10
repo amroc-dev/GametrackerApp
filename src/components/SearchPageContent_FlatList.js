@@ -10,7 +10,7 @@ import { SearchContext } from "@shared/react/SearchContext";
 import { SearchResultsContext, statusCodes } from "@shared/react/SearchResultsContext";
 import { ThemeContext } from "@root/ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
-import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Common";
+import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Misc";
 import getCardItemStyles from "@styles/CardItem_styles";
 
 let lastYScrollPos = 0;

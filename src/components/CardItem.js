@@ -5,7 +5,7 @@ import getStyles from "@styles/CardItem_styles";
 import { ThemeContext } from "@root/ThemeContext";
 import ImageFadeIn from "@components/common/ImageFadeIn";
 const dbkeys = require("@shared/back-end/db-keys");
-import { Separator } from "@components/common/Common";
+import { Separator } from "@components/common/Misc";
 import { transparentize } from "polished";
 import * as StoreViewManager from "react-native-store-view";
 import DeviceInfo from 'react-native-device-info'

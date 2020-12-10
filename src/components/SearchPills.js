@@ -8,7 +8,7 @@ import { ThemeContext } from "@root/ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 import { MakeLabel, popularityFilterCategories } from "@shared/react/PopularityFilterCategories";
 import { borderRadius, transparentize } from "polished";
-import { ToggleButton } from "@components/common/Common";
+import { ToggleButton } from "@components/common/ToggleButton";
 import { getFilterStyles } from "@styles/Filter_styles";
 import Fade from "react-native-fade";
 import nextFrame from "next-frame";

@@ -6,7 +6,7 @@ import { ThemeContext } from "@root/ThemeContext";
 import ModalDropdown from "./ModalDropdown";
 import ModalSelector from "react-native-modal-selector";
 import { Picker } from "@react-native-picker/picker";
-import { ControlledLayoutAnimation } from "./Common";
+import { ControlledLayoutAnimation } from "./Misc";
 import { borderRadius } from "polished";
 import Modal from "react-native-modal";
 import { shallowEqualObjects } from "shallow-equal";

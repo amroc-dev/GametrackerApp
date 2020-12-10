@@ -4,7 +4,7 @@ import { SearchContext } from "@shared/react/SearchContext";
 import { ThemeContext } from "@root/ThemeContext";
 import { SectionWithHeader } from "@components/common/Section";
 import { getFilterStyles } from "@styles/Filter_styles";
-import { ToggleButton } from "@components/common/Common";
+import { ToggleButton } from "@components/common/ToggleButton";
 
 export default function FilterDevice() {
   const { theme } = useContext(ThemeContext);

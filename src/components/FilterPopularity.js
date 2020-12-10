@@ -7,7 +7,7 @@ import { ThemeContext } from "@root/ThemeContext";
 import { SectionWithHeader } from "@components/common/Section";
 import { getFilterStyles } from "@styles/Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import { MultiSlider } from "@components/common/Common";
+import { MultiSlider } from "@components/common/MultiSlider";
 
 function FilterPopularity(props) {
   const { theme } = useContext(ThemeContext);
