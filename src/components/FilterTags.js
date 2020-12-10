@@ -165,7 +165,7 @@ function FilterTags(props) {
             </View>
           </SectionWithHeader>
           <SearchInput
-            style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle, {marginHorizontal: theme.rem * 0.5}]}
+            style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
             returnKeyType="done"
             placeholder={"Search " + tags.length + " tags"}
             onChangeText={onChangeText}
@@ -232,7 +232,7 @@ function getStyles(theme) {
       justifyContent: "flex-start",
       alignItems: "center",
       // padding: theme.rem * 0.25,
-      paddingHorizontal: theme.rem * 0.55,
+      // paddingHorizontal: theme.rem * 0.5,
       paddingVertical: theme.rem * 0.25,
       borderRadius: theme.pillBorderRadius,
     },

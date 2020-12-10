@@ -7,7 +7,7 @@ import { ThemeContext } from "@root/ThemeContext";
 import { getFilterStyles } from "@styles/Filter_styles";
 import { SectionWithHeader } from "@components/common/Section";
 import { lighten, darken, toColorString } from "polished";
-import { Clamp } from "@components/common/Misc";
+import { Clamp } from "@root/Helpers";
 import { MultiSlider } from "@components/common/MultiSlider";
 import rgbHex from "rgb-hex";
 
@@ -105,7 +105,7 @@ function getStyles(theme) {
   return StyleSheet.create({
     outer: {},
     body: {
-      paddingHorizontal: theme.rem * 0.5,
+      // paddingHorizontal: theme.rem * 0.5,
     },
     slider: {},
     textContainer: {

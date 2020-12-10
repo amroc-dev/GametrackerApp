@@ -16,12 +16,11 @@ export default function SearchPage() {
     return (
       <View style={[styles.root, { flexDirection: "row" }]}>
         <View style={styles.splitRoot_search}>
-          <SearchPageContent_FlatList />
-          {/* <SearchPageContent /> */}
+          <SearchPageContent_FlatList scrollViewStyle={{paddingRight:theme.pageHorizontalPadding * 0.5}}/>
         </View>
         {/* <View style={styles.splitRoot_spacer} /> */}
         <View style={styles.splitRoot_filters}>
-          <FiltersPage />
+          <FiltersPage scrollViewStyle={{paddingLeft:theme.pageHorizontalPadding * 0.5}} />
         </View>
       </View>
     );
@@ -47,7 +46,7 @@ function getStyles(theme) {
 
     splitRoot_search: {
       flex: 1.45,
-      marginLeft: theme.rem * 0.5,
+      // marginLeft: theme.rem * 0.5,
     },
     splitRoot_spacer: {
       width: 0,
@@ -60,7 +59,7 @@ function getStyles(theme) {
     },
     splitRoot_filters: {
       flex: 1,
-      marginRight: theme.rem * 0.5,
+      // marginRight: theme.rem * 0.5,
     },
   });
 }

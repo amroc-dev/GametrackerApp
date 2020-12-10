@@ -136,7 +136,7 @@ function getStyles(theme) {
   return StyleSheet.create({
     scrollView: {
       // height: "100%",
-      paddingHorizontal: theme.rem * 0.5,
+      paddingHorizontal: theme.pageHorizontalPadding,
     },
     contentRoot: {
     },

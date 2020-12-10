@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext, useRef } from "react";
 const ThemeContext = React.createContext();
 import { lighten, darken, rgb, rgbToColorString } from "polished";
 import RootViewBackgroundColor from "react-native-root-view-background-color";
 import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
 import { extractRGB } from "@shared/react/Misc";
-import { Platform } from "react-native";
+import { Platform, Appearance } from "react-native";
 import merge from "merge";
 
 function getBaseTheme() {
@@ -120,25 +120,49 @@ function getBaseTheme() {
     get searchPageTopPadding() {
       return rem * (Platform.isPad ? 0.5 : 0.5);
     },
+    get pageHorizontalPadding() {
+      return rem * (Platform.isPad ? 1 : 0.5);
+    },
   };
 }
 
+import { SettingsContext, themeIDs } from "@root/SettingsContext";
+
 function ThemeContextProvider(props) {
-  const [theme, setTheme] = useState(getDarkTheme());
-  // const [theme, setTheme] = useState(getLightTheme());
+  const { themeSetting, setThemeSetting } = useContext(SettingsContext);
+  const themeSettingRef = useRef(themeSetting);
+  themeSettingRef.current = themeSetting;
+
+  const [theme, setTheme] = useState(getThemeFromSettings());
+
+  function getThemeFromSettings() {
+    if (themeSettingRef.current === themeIDs.LIGHT) {
+      return getLightTheme();
+    } else if (themeSettingRef.current === themeIDs.DARK) {
+      return getDarkTheme();
+    } else if (themeSettingRef.current === themeIDs.IOS) {
+      return Appearance.getColorScheme() === "light" ? getLightTheme() : getDarkTheme();
+    }
+    return getLightTheme();
+  }
+
+  function syncToSettings() {
+    setTheme(getThemeFromSettings());
+  }
+
+  useEffect(() => {
+    const subscription = Appearance.addChangeListener(() => syncToSettings());
+    return () => subscription.remove();
+  }, []);
+
+  useEffect(() => {
+    syncToSettings();
+  }, [themeSetting]);
 
   useEffect(() => {
     const bgRGB = extractRGB(theme.colors.background1);
     RootViewBackgroundColor.setBackground(bgRGB[0], bgRGB[1], bgRGB[2], 1);
   }, [theme]);
-
-  function setLightTheme() {
-    if (!theme.isLight) setTheme(getLightTheme());
-  }
-
-  function setDarkTheme() {
-    if (!theme.isDark) setTheme(getDarkTheme());
-  }
 
   ////////////////////////////////////////////////////////////
 
@@ -185,7 +209,7 @@ function ThemeContextProvider(props) {
 
   function getLightTheme() {
     const primary = "rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
-    const background1 = "rgb(240, 244, 245)"; //"rgb(240, 244, 245)"; //    "
+    const background1 = "rgb(241, 241, 245)"; //"rgb(240, 244, 245)"; //    "
     const background2 = "rgb(255, 255, 255)";
 
     const theme = {
@@ -196,7 +220,7 @@ function ThemeContextProvider(props) {
         header: background2,
         background1: background1,
         background2: background2,
-        secondary: rgb(213, 217, 221).toString(), //darken(0.09, background1).toString(),
+        secondary: rgb(225, 225, 230).toString(), //darken(0.09, background1).toString(),
 
         rating: {
           na: "rgb(175, 175, 175)",
@@ -223,18 +247,10 @@ function ThemeContextProvider(props) {
     return merge.recursive(getBaseTheme(), theme);
   }
 
-  function toggleTheme() {
-    if (theme.isDark) setLightTheme();
-    else setDarkTheme();
-  }
-
   return (
     <ThemeContext.Provider
       value={{
         theme,
-        setLightTheme,
-        setDarkTheme,
-        toggleTheme,
       }}
     >
       {props.children}

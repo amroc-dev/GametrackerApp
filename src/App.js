@@ -5,10 +5,11 @@ import { CoreContextProvider } from "@shared/react/CoreContext";
 import { NetworkContextProvider } from "@shared/react/NetworkContext";
 import { SearchContextProvider } from "@shared/react/SearchContext";
 import { SearchResultsContextProvider } from "@shared/react/SearchResultsContext";
+import { SettingsContextProvider } from "@root/SettingsContext";
 import { FilterTagsContextProvider } from "@shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "@root/ThemeContext";
 import MenuDrawerNavigator from "@components/navigation/MenuDrawerNavigator";
-import { MenuProvider } from 'react-native-popup-menu';
+import { MenuProvider } from "react-native-popup-menu";
 
 function StatusBarSettings() {
   const { theme } = useContext(ThemeContext);
@@ -21,20 +22,22 @@ export default function App() {
   return (
     <NetworkContextProvider>
       <CoreContextProvider>
-        <SearchContextProvider>
-          <FilterTagsContextProvider>
-            <ThemeContextProvider>
-              <StatusBarSettings />
-              <SearchResultsContextProvider>
-              <MenuProvider>
-                <NavigationContainer ref={navContainerRef}>
-                  <MenuDrawerNavigator />
-                </NavigationContainer>
-                </MenuProvider>
-              </SearchResultsContextProvider>
-            </ThemeContextProvider>
-          </FilterTagsContextProvider>
-        </SearchContextProvider>
+        <SettingsContextProvider>
+          <SearchContextProvider>
+            <FilterTagsContextProvider>
+              <ThemeContextProvider>
+                <StatusBarSettings />
+                <SearchResultsContextProvider>
+                  <MenuProvider>
+                    <NavigationContainer ref={navContainerRef}>
+                      <MenuDrawerNavigator />
+                    </NavigationContainer>
+                  </MenuProvider>
+                </SearchResultsContextProvider>
+              </ThemeContextProvider>
+            </FilterTagsContextProvider>
+          </SearchContextProvider>
+        </SettingsContextProvider>
       </CoreContextProvider>
     </NetworkContextProvider>
   );

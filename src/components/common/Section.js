@@ -38,8 +38,6 @@ export function getSectionStyles(theme) {
   return StyleSheet.create({
     container: {
       backgroundColor: theme.colors.background2,
-      marginHorizontal: theme.rem * 0.5,
-      marginVertical: 0,
       padding: theme.rem * 0.25,
       borderRadius: theme.borderRadius,
       shadowColor: theme.shadowColor,
@@ -55,7 +53,7 @@ export function getSectionStyles(theme) {
       alignSelf: "flex-start",
       alignItems: "center",
       backgroundColor: rgba(0, 0, 0, 0), // theme.colors.primary, //
-      marginLeft: theme.rem * 0.5,
+      // marginLeft: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
       marginBottom: theme.rem * 0.35,

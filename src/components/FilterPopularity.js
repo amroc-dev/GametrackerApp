@@ -137,7 +137,7 @@ function getStyles(theme) {
   return StyleSheet.create({
     outer: {},
     body: {
-      paddingHorizontal: theme.rem * 0.5,
+      // paddingHorizontal: theme.rem * 0.5,
     },
     textContainer: {
       paddingTop: theme.rem * 1,

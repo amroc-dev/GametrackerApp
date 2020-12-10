@@ -6,7 +6,7 @@ import { CoreContext } from "@shared/react/CoreContext";
 import { ThemeContext } from "@root/ThemeContext";
 import { getFilterStyles, FilterHeader } from "@styles/Filter_styles";
 import { lighten, darken, toColorString } from "polished";
-import { Clamp } from "@components/common/Misc";
+import { Clamp } from "@root/Helpers";
 import { MultiSlider } from "@components/common/MultiSlider";
 import rgbHex from "rgb-hex";
 

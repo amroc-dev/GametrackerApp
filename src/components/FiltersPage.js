@@ -10,7 +10,7 @@ import FilterRating from "./FilterRating";
 import FilterYear from "./FilterYear";
 import { HeaderSpace, Separator, Spacer } from "@components/common/Misc";
 
-export default function FiltersPage() {
+export default function FiltersPage( {scrollViewStyle}) {
   const { theme } = useContext(ThemeContext);
   const [scrollEnabled, setScrollEnabled] = useState(true);
 
@@ -27,7 +27,8 @@ export default function FiltersPage() {
         keyboardShouldPersistTaps="handled"
         contentInsetAdjustmentBehavior="automatic"
         keyboardDismissMode="on-drag"
-        style={styles.scrollView}
+        showsVerticalScrollIndicator={false}
+        style={[styles.scrollView, scrollViewStyle]}
       >
         <View>
           <HeaderSpace />
@@ -56,6 +57,7 @@ function getStyles(theme) {
     },
     scrollView: {
       height: "100%",
+      paddingHorizontal: theme.pageHorizontalPadding,
     },
   });
 }

@@ -5,6 +5,7 @@ import { ThemeContext } from "@root/ThemeContext";
 import Icon from "react-native-vector-icons/Ionicons";
 import { shallowEqualObjects } from "shallow-equal";
 import { Separator } from "@components/common/Misc";
+import PropTypes from "prop-types";
 
 export function OptionButton({ children, checked, edgePosition, onPressed, id }) {
   const pressFade = useRef(new Animated.Value(0)).current;
@@ -61,7 +62,14 @@ export function OptionButton({ children, checked, edgePosition, onPressed, id })
   );
 }
 
-export default function OptionList({ options, multiSelect, onStateChanged }) {
+OptionList.propTypes = {
+  options: PropTypes.object.isRequired, // Required. object of key / value pairs. key = option id, value = bool, where the option selected or not
+  optionNames: PropTypes.array, // Optional. Names for each of the object ids (array needs to match number of keys in options)
+  multiSelect: PropTypes.bool, // Optional. Whether options list is single or multiselect, defaults to single.
+  onStateChanged: PropTypes.func, // Optional. Callback for when selection changes
+};
+
+export default function OptionList({ options, optionNames, multiSelect, onStateChanged }) {
   const { theme } = useContext(ThemeContext);
 
   const [selectionState, setSelectionState] = useState(options);
@@ -106,7 +114,7 @@ export default function OptionList({ options, multiSelect, onStateChanged }) {
           id={key}
           onPressed={onOptionButtonPressed}
         >
-          <Text style={styles.text}>{key}</Text>
+          <Text style={styles.text}>{optionNames ? optionNames[index] : key}</Text>
           {selectionState[key] ? (
             <Icon
               style={[styles.text, { fontSize: 24, color: theme.colors.primary }]}

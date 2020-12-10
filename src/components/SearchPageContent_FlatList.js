@@ -16,7 +16,7 @@ import getCardItemStyles from "@styles/CardItem_styles";
 let lastYScrollPos = 0;
 const flatListWindowSizeBase = 20;
 
-export default function SearchPageContent_FlatList() {
+export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
   const { searchID, isSortingByRecentlyUpdated } = useContext(SearchContext);
@@ -174,7 +174,7 @@ export default function SearchPageContent_FlatList() {
       windowSize={80}
       maxToRenderPerBatch={FETCH_COUNT}
       updateCellsBatchingPeriod={1}
-      style={styles.scrollView}
+      style={[styles.scrollView, scrollViewStyle]}
       contentInsetAdjustmentBehavior="automatic"
       indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardDismissMode="on-drag"
@@ -191,7 +191,7 @@ function getStyles(theme) {
   return StyleSheet.create({
     scrollView: {
       height: "100%",
-      paddingHorizontal: theme.rem * 0.5,
+      paddingHorizontal: theme.pageHorizontalPadding,
     },
     contentRoot: {},
     cardList: {},
