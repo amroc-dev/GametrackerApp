@@ -19,10 +19,10 @@ export default function SettingsPage({ navigation }) {
   }, [navigation, theme]);
 
   function onThemeStateChange(state) {
-    if (state['Light']) {
-      setLightTheme()
-    } else if (state['Dark']) {
-      setDarkTheme()
+    if (state["Light"]) {
+      setLightTheme();
+    } else if (state["Dark"]) {
+      setDarkTheme();
     }
   }
 
@@ -38,10 +38,8 @@ export default function SettingsPage({ navigation }) {
       >
         {/* <HeaderSpace /> */}
         <Spacer size={theme.searchPageTopPadding} />
-        <SectionWithHeader title="Theme" containerStyle={{padding: 0}}>
-          <OptionList 
-            options={{'Light' : theme.isLight, 'Dark' : theme.isDark}} 
-            onStateChanged={onThemeStateChange} />
+        <SectionWithHeader title="Theme" containerStyle={{ padding: 0 }}>
+          <OptionList options={{ Light: theme.isLight, Dark: theme.isDark }} onStateChanged={onThemeStateChange} />
         </SectionWithHeader>
 
         {/* <Button title="Toggle Theme" onPress={ () => toggleTheme() } /> */}

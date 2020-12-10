@@ -48,6 +48,9 @@ export function OptionButton({ children, checked, edgePosition, onPressed, id })
           duration: 200,
           useNativeDriver: false,
         }).start();
+
+      }}
+      onPress={() => {
         onPressed ? onPressed(id) : null;
       }}
       style={[styles.optionRow]}
