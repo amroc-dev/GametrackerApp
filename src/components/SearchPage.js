@@ -16,11 +16,11 @@ export default function SearchPage() {
     return (
       <View style={[styles.root, { flexDirection: "row" }]}>
         <View style={styles.splitRoot_search}>
-          <SearchPageContent_FlatList scrollViewStyle={{paddingRight:theme.pageHorizontalPadding * 0.5}}/>
+          <SearchPageContent_FlatList />
         </View>
         {/* <View style={styles.splitRoot_spacer} /> */}
         <View style={styles.splitRoot_filters}>
-          <FiltersPage scrollViewStyle={{paddingLeft:theme.pageHorizontalPadding * 0.5}} />
+          <FiltersPage scrollViewStyle={{paddingLeft:0}} />
         </View>
       </View>
     );

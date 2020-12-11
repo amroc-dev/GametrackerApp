@@ -1,12 +1,25 @@
 import React, { useState, useEffect, useContext } from "react";
 import { makeEnumObject } from "@root/Helpers"
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import storageKeys from '@root/StorageKeys';
 
 const SettingsContext = React.createContext();
 
 export const themeIDs = makeEnumObject(['LIGHT', 'DARK', 'IOS'])
 
 function SettingsContextProvider(props) {
-  const [themeSetting, _setThemeSetting] = useState(themeIDs.LIGHT);
+  const [themeSetting, _setThemeSetting] = useState(null);
+
+  useEffect( () => {
+    if (themeSetting)
+      AsyncStorage.setItem(storageKeys.themeSetting, themeSetting)
+  }, [themeSetting])
+
+  useEffect( () => {
+    AsyncStorage.getItem(storageKeys.themeSetting).then( (val) => {
+      _setThemeSetting(val ?? themeIDs.DARK)
+    })
+  }, [])
 
   function setThemeSetting(theme) {
     _setThemeSetting(theme)

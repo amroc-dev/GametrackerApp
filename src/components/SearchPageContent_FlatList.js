@@ -173,6 +173,7 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
       ListFooterComponent={loadingSpinner}
       windowSize={80}
       maxToRenderPerBatch={FETCH_COUNT}
+      scrollIndicatorInsets={{top: 44, left: -1, bottom: 0, right: -StyleSheet.hairlineWidth}}
       updateCellsBatchingPeriod={1}
       style={[styles.scrollView, scrollViewStyle]}
       contentInsetAdjustmentBehavior="automatic"

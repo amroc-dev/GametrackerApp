@@ -121,7 +121,7 @@ function getBaseTheme() {
       return rem * (Platform.isPad ? 0.5 : 0.5);
     },
     get pageHorizontalPadding() {
-      return rem * (Platform.isPad ? 1 : 0.5);
+      return rem * (Platform.isPad ? 0.5 : 0.5);
     },
   };
 }
