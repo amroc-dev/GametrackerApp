@@ -37,12 +37,19 @@ export function SearchInput(props) {
     },
     searchInput: {
       flex: 1,
+      borderWidth: 0,//StyleSheet.hairlineWidth,
+      borderColor: transparentize(theme.isDark ? 0.1 : 0.35, placeholderColor),
       height: theme.rowHeight,
       flexDirection: "row",
       backgroundColor: inputBackgroundColor,
       alignItems: "center",
       borderRadius: theme.borderRadius2,
       paddingHorizontal: theme.rem * 0.5,
+
+      // shadowColor: theme.shadowColor,
+      // shadowOpacity: theme.shadowOpacity,
+      // shadowRadius: theme.shadowRadius,
+      // shadowOffset: theme.shadowOffset,
     },
     textInput: {
       flex: 1,

@@ -6,7 +6,7 @@ const SettingsContext = React.createContext();
 export const themeIDs = makeEnumObject(['LIGHT', 'DARK', 'IOS'])
 
 function SettingsContextProvider(props) {
-  const [themeSetting, _setThemeSetting] = useState(themeIDs.DARK);
+  const [themeSetting, _setThemeSetting] = useState(themeIDs.LIGHT);
 
   function setThemeSetting(theme) {
     _setThemeSetting(theme)

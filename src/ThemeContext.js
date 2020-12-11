@@ -152,7 +152,7 @@ function ThemeContextProvider(props) {
 
   useEffect(() => {
     const subscription = Appearance.addChangeListener(() => syncToSettings());
-    return () => subscription.remove();
+    return () => subscription ? subscription.remove() : null;
   }, []);
 
   useEffect(() => {
@@ -208,7 +208,7 @@ function ThemeContextProvider(props) {
   // });
 
   function getLightTheme() {
-    const primary = "rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
+    const primary = rgb(35, 171, 242);//rgb(0, 132, 208); //"rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
     const background1 = "rgb(241, 241, 245)"; //"rgb(240, 244, 245)"; //    "
     const background2 = "rgb(255, 255, 255)";
 
@@ -220,7 +220,7 @@ function ThemeContextProvider(props) {
         header: background2,
         background1: background1,
         background2: background2,
-        secondary: rgb(225, 225, 230).toString(), //darken(0.09, background1).toString(),
+        secondary: darken(0.09, background1).toString(),
 
         rating: {
           na: "rgb(175, 175, 175)",
@@ -240,8 +240,8 @@ function ThemeContextProvider(props) {
         // },
       },
 
-      shadowOpacity: 0.025,
-      // shadowRadius: 1,
+      shadowOpacity: 0.05,
+      shadowRadius: 5,
     };
 
     return merge.recursive(getBaseTheme(), theme);

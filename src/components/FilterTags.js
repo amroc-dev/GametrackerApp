@@ -133,7 +133,7 @@ function FilterTags(props) {
     return (
       <>
         <View
-          onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width - theme.rem)}
+          onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width)}
           style={[filterStyles.outerContainer, styles.outer]}
         >
           <SectionWithHeader title="Tags" containerStyle={{padding: 0}}>
