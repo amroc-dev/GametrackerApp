@@ -1,4 +1,4 @@
-import { rgba, readableColor } from "polished";
+import { rgba, readableColor, invert, lighten, darken } from "polished";
 import React, { useContext } from "react";
 import { StyleSheet, Text, View, SafeAreaView, StatusBar } from "react-native";
 import { ThemeContext } from "@root/ThemeContext";
@@ -25,11 +25,12 @@ export function SectionWithHeader(props) {
   const sectionStyles = getSectionStyles(theme);
 
   return(
-    <View>
-      <SectionHeader title={title ?? "Title"} />
+    <View style={{flexDirection: 'column-reverse'}}>
+
       <View style={[sectionStyles.container, containerStyle ?? null]}>
         {children ?? null}
       </View>
+      <SectionHeader title={title ?? "Title"} />
     </View>
   )
 }
@@ -52,10 +53,15 @@ export function getSectionStyles(theme) {
       flexDirection: "row",
       alignSelf: "flex-start",
       alignItems: "center",
-      backgroundColor: rgba(0, 0, 0, 0), // theme.colors.primary, //
-      // marginLeft: theme.rem * 0.5,
+      backgroundColor: rgba(0, 0, 0, 0),//darken(0.025, theme.colors.background2),//rgba(0, 0, 0, 0), // theme.colors.primary, //
+      // marginLeft: theme.rem * 0.25,
+      // padding: theme.rem * 0.5,
       borderTopLeftRadius: theme.borderRadius,
       borderTopRightRadius: theme.borderRadius,
+      // width: 110,
+      // height: 30,
+      // borderBottomWidth: StyleSheet.hairlineWidth,
+      // borderColor: lighten(0.0, theme.colors.secondary),
       marginBottom: theme.rem * 0.35,
     },
     headerText: {

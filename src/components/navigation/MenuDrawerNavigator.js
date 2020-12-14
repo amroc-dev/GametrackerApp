@@ -4,7 +4,7 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
 import MenuDrawerContent from "./MenuDrawerContent"
 import SearchStackNavigator from "./SearchStackNavigator";
-import SettingsPage from "@components/SettingsPage";
+import SettingsStackNavigator from "./SettingsStackNavigator";
 import { transparentize } from "polished";
 
 const Drawer = createDrawerNavigator();
@@ -31,7 +31,7 @@ export default function MenuDrawerNavigator() {
       // screenOptions={{ headerShown: true, background: theme.colors.background }}
     >
       <Drawer.Screen name="Search" component={SearchStackNavigator} />
-      <Drawer.Screen name="Settings" component={SettingsPage} />
+      <Drawer.Screen name="Settings" component={SettingsStackNavigator} />
     </Drawer.Navigator>
   );
 }

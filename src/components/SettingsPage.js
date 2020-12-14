@@ -2,23 +2,15 @@ import React, { useContext, useState, useEffect } from "react";
 import { View, Text, TextInput, StyleSheet, ScrollView, Button, Platform } from "react-native";
 import { ThemeContext } from "@root/ThemeContext";
 import { SettingsContext, themeIDs } from "@root/SettingsContext";
-import { MenuButton } from "./navigation/NavigationCommon";
-import { getHeaderScreenOptions } from "./navigation/NavigationCommon";
 import { HeaderSpace, Separator, Spacer } from "@components/common/Misc";
 import { SectionWithHeader } from "@components/common/Section";
 import OptionList from "@components/common/OptionList";
 
-export default function SettingsPage({ navigation }) {
+export default function SettingsPage() {
   const { theme } = useContext(ThemeContext);
   const { themeSetting, setThemeSetting } = useContext(SettingsContext);
 
-  const screenOptions = getHeaderScreenOptions();
-
   const styles = getStyles(theme);
-
-  useEffect(() => {
-    navigation.setOptions(screenOptions);
-  }, [navigation, theme]);
 
   function onThemeStateChange(state) {
     for ( key in state) {
@@ -62,7 +54,7 @@ export default function SettingsPage({ navigation }) {
         keyboardDismissMode="on-drag"
         style={styles.scrollView}
       >
-        {/* <HeaderSpace /> */}
+        <HeaderSpace />
         <Spacer size={theme.searchPageTopPadding} />
         <SectionWithHeader title="Theme" containerStyle={{ padding: 0 }}>
           <OptionList options={optionsState} optionNames={optionNames} onStateChanged={onThemeStateChange} />

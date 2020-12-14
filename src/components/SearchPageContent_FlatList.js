@@ -12,11 +12,12 @@ import { ThemeContext } from "@root/ThemeContext";
 import { Transitioning, Transition } from "react-native-reanimated";
 import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Misc";
 import getCardItemStyles from "@styles/CardItem_styles";
+import nextFrame from "next-frame";
 
 let lastYScrollPos = 0;
 const flatListWindowSizeBase = 20;
 
-export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
+export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
   const { searchID, isSortingByRecentlyUpdated } = useContext(SearchContext);
@@ -55,7 +56,7 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
       setLoadingSpinner(<LoadingSpinner type="networkError" />);
     } else if (hasMoreItems) {
       setLoadingSpinner(<LoadingSpinner type="loading" />);
-    } else setLoadingSpinner(<View style={{marginBottom:cardItemStyles.cardSpacing}} />);
+    } else setLoadingSpinner(<View style={{ marginBottom: cardItemStyles.cardSpacing }} />);
   }, [networkError, hasMoreItems]);
 
   function renderItem({ item, index }) {
@@ -74,6 +75,10 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
+  }, [newSearchSubmitted]);
+
+  useEffect(() => {
+
   }, [newSearchSubmitted]);
 
   useEffect(() => {
@@ -101,11 +106,13 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
     const slicePoint = items.length;
     const resultsSlice = searchResults.results.slice(slicePoint);
 
-    const sortingByRecentlyUpdated = isSortingByRecentlyUpdated()
+    const sortingByRecentlyUpdated = isSortingByRecentlyUpdated();
 
     const newItems = [];
     resultsSlice.map((item) => {
-      newItems.push(<CardItem key={item.searchBlob.trackId} doc={item} showRecentReleaseDate={sortingByRecentlyUpdated} />);
+      newItems.push(
+        <CardItem key={item.searchBlob.trackId} doc={item} showRecentReleaseDate={sortingByRecentlyUpdated} />
+      );
       return null;
     });
 
@@ -124,6 +131,12 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
   useEffect(() => {
     if (searchResults.status === statusCodes.None && transitionViewRef.current) {
       transitionViewRef.current.animateNextTransition();
+      async function next(wait) {
+        if (wait) await nextFrame();
+        if (flatListRef.current) flatListRef.current.scrollToOffset({ offset: -500, animated: false });
+      }
+      next(false)
+      next(true);
     }
 
     // ControlledLayoutAnimation.configureNext({
@@ -134,8 +147,6 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
     //   },
     // });
   }, [searchResults]);
-
-
 
   // function onScroll({ nativeEvent }) {
   //   const yPos = nativeEvent.contentOffset.y;
@@ -173,7 +184,7 @@ export default function SearchPageContent_FlatList( {scrollViewStyle} ) {
       ListFooterComponent={loadingSpinner}
       windowSize={80}
       maxToRenderPerBatch={FETCH_COUNT}
-      scrollIndicatorInsets={{top: 44, left: -1, bottom: 0, right: -StyleSheet.hairlineWidth}}
+      scrollIndicatorInsets={{ top: 44, left: -1, bottom: 0, right: -StyleSheet.hairlineWidth }}
       updateCellsBatchingPeriod={1}
       style={[styles.scrollView, scrollViewStyle]}
       contentInsetAdjustmentBehavior="automatic"

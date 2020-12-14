@@ -4,7 +4,7 @@ import { SearchResultsContext } from "@shared/react/SearchResultsContext";
 import FiltersPage from "@components/FiltersPage";
 import { BackButton } from "./NavigationCommon";
 
-export default function FiltersPageScreen({ navigation }) {
+export default function FiltersScreen({ navigation }) {
   const { setHoldSearch } = useContext(SearchResultsContext)
   
   useEffect(() => {
