@@ -25,7 +25,6 @@ export default function FiltersPage( {scrollViewStyle}) {
         indicatorStyle={theme.isDark ? "white" : "black"}
         decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
-        contentInsetAdjustmentBehavior="automatic"
         keyboardDismissMode="on-drag"
         showsVerticalScrollIndicator={false}
         style={[styles.scrollView, scrollViewStyle]}

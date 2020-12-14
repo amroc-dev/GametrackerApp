@@ -131,12 +131,12 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   useEffect(() => {
     if (searchResults.status === statusCodes.None && transitionViewRef.current) {
       transitionViewRef.current.animateNextTransition();
-      async function next(wait) {
-        if (wait) await nextFrame();
-        if (flatListRef.current) flatListRef.current.scrollToOffset({ offset: -500, animated: false });
-      }
-      next(false)
-      next(true);
+      // async function next(wait) {
+      //   if (wait) await nextFrame();
+      //   if (flatListRef.current) flatListRef.current.scrollToOffset({ offset: -500, animated: false });
+      // }
+      // next(false)
+      // next(true);
     }
 
     // ControlledLayoutAnimation.configureNext({
@@ -187,7 +187,6 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
       scrollIndicatorInsets={{ top: 44, left: -1, bottom: 0, right: -StyleSheet.hairlineWidth }}
       updateCellsBatchingPeriod={1}
       style={[styles.scrollView, scrollViewStyle]}
-      contentInsetAdjustmentBehavior="automatic"
       indicatorStyle={theme.isDark ? "white" : "black"}
       keyboardDismissMode="on-drag"
       getItemLayout={(data, index) => ({

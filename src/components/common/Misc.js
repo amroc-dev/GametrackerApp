@@ -19,11 +19,12 @@ import nextFrame from "next-frame";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-export function HeaderSpace() {
-  const { theme } = useContext(ThemeContext);
-  const height = 44;
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import { useHeaderHeight } from '@react-navigation/stack';
 
-  return <View style={{ height: height, opacity: 0 }} />;
+export function HeaderSpace() {
+  const headerHeight = useHeaderHeight();
+  return <View style={{ height: headerHeight, opacity: 0 }} />;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
