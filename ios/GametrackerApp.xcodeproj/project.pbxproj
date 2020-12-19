@@ -18,6 +18,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9D9AF669584B22357307F2B5 /* libPods-GametrackerApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A39631E03AB6528CDECF0913 /* libPods-GametrackerApp.a */; };
 		A20EB92CECC1B3435AF4C61A /* libPods-GametrackerApp-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C59503C72BDCFD0E43DFFF2E /* libPods-GametrackerApp-tvOSTests.a */; };
+		A9108F07258E003600489D91 /* BootSplash.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A9108F06258E003600489D91 /* BootSplash.storyboard */; };
 		D3BB081FCEA70802962AE718 /* libPods-GametrackerApp-GametrackerAppTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 186E71406060E2148B47B9AC /* libPods-GametrackerApp-GametrackerAppTests.a */; };
 		EA9937C7F6C512BA82CB6295 /* libPods-GametrackerApp-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4958655B31F6C940506DA509 /* libPods-GametrackerApp-tvOS.a */; };
 /* End PBXBuildFile section */
@@ -60,6 +61,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = GametrackerApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9D41940D343990351F8E38AC /* Pods-GametrackerApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp.debug.xcconfig"; path = "Target Support Files/Pods-GametrackerApp/Pods-GametrackerApp.debug.xcconfig"; sourceTree = "<group>"; };
 		A39631E03AB6528CDECF0913 /* libPods-GametrackerApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9108F06258E003600489D91 /* BootSplash.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = BootSplash.storyboard; path = GametrackerApp/BootSplash.storyboard; sourceTree = "<group>"; };
 		C006461F3AE800934811F5B3 /* Pods-GametrackerApp-GametrackerAppTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-GametrackerAppTests/Pods-GametrackerApp-GametrackerAppTests.release.xcconfig"; sourceTree = "<group>"; };
 		C59503C72BDCFD0E43DFFF2E /* libPods-GametrackerApp-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GametrackerApp-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D1D6F4F0372B25813E68DA33 /* Pods-GametrackerApp-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GametrackerApp-tvOS.release.xcconfig"; path = "Target Support Files/Pods-GametrackerApp-tvOS/Pods-GametrackerApp-tvOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		13B07FAE1A68108700A75B9A /* GametrackerApp */ = {
 			isa = PBXGroup;
 			children = (
+				A9108F06258E003600489D91 /* BootSplash.storyboard */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -340,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A9108F07258E003600489D91 /* BootSplash.storyboard in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

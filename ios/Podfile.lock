@@ -266,6 +266,8 @@ PODS:
     - React-jsi (= 0.63.4)
   - ReactNativeStoreView (3.1.2):
     - React
+  - RNBootSplash (3.1.2):
+    - React-Core
   - RNCAsyncStorage (1.13.2):
     - React
   - RNCMaskedView (0.1.10):
@@ -326,6 +328,7 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - ReactNativeStoreView (from `../node_modules/react-native-store-view`)
+  - RNBootSplash (from `../node_modules/react-native-bootsplash`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-async-storage/async-storage`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - RNDeviceInfo (from `../node_modules/react-native-device-info`)
@@ -406,6 +409,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   ReactNativeStoreView:
     :path: "../node_modules/react-native-store-view"
+  RNBootSplash:
+    :path: "../node_modules/react-native-bootsplash"
   RNCAsyncStorage:
     :path: "../node_modules/@react-native-async-storage/async-storage"
   RNCMaskedView:
@@ -459,6 +464,7 @@ SPEC CHECKSUMS:
   React-RCTVibration: ae4f914cfe8de7d4de95ae1ea6cc8f6315d73d9d
   ReactCommon: 73d79c7039f473b76db6ff7c6b159c478acbbb3b
   ReactNativeStoreView: d686106fc90fa9fbadd1900ca97c7ebb440d6c17
+  RNBootSplash: a9544ba7f1a68b561e61e9efc68e2b3eec05dcef
   RNCAsyncStorage: 05bae7ecfab1cbd5441993f1ca098f7c3b3f8d0e
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNDeviceInfo: 6ecb1d1c87d20e4c62354be0348de23362824dcd

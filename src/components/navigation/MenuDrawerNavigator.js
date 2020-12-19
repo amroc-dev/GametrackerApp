@@ -27,8 +27,6 @@ export default function MenuDrawerNavigator() {
     }}
       drawerType="back"
       edgeWidth={0}
-      // initialRouteName="Search"
-      // screenOptions={{ headerShown: true, background: theme.colors.background }}
     >
       <Drawer.Screen name="Search" component={SearchStackNavigator} />
       <Drawer.Screen name="Settings" component={SettingsStackNavigator} />

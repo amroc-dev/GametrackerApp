@@ -10,6 +10,7 @@ import { FilterTagsContextProvider } from "@shared/react/FilterTagsContext";
 import { ThemeContextProvider, ThemeContext } from "@root/ThemeContext";
 import MenuDrawerNavigator from "@components/navigation/MenuDrawerNavigator";
 import { MenuProvider } from "react-native-popup-menu";
+import RNBootSplash from "react-native-bootsplash";
 
 function StatusBarSettings() {
   const { theme } = useContext(ThemeContext);
@@ -17,19 +18,18 @@ function StatusBarSettings() {
 }
 
 export default function App() {
-  const navContainerRef = useRef();
-
   return (
     <NetworkContextProvider>
       <CoreContextProvider>
         <SettingsContextProvider>
+          <Splash />
           <SearchContextProvider>
             <FilterTagsContextProvider>
               <ThemeContextProvider>
                 <StatusBarSettings />
                 <SearchResultsContextProvider>
                   <MenuProvider>
-                    <NavigationContainer ref={navContainerRef}>
+                    <NavigationContainer>
                       <MenuDrawerNavigator />
                     </NavigationContainer>
                   </MenuProvider>
@@ -43,28 +43,15 @@ export default function App() {
   );
 }
 
-// import { abortOngoingFetches, serverFetch } from "@shared/react/ServerFetch";
+import { SettingsContext } from "@root/SettingsContext";
+function Splash() {
+  const { settingsLoaded, setSettings } = useContext(SettingsContext);
 
-// async function fetchTest(id) {
+  useEffect(() => {
+    if (settingsLoaded) {
+      RNBootSplash.hide({ fade: true });
+    }
+  }, [settingsLoaded]);
 
-//   console.log("Fetching id: " + id)
-
-//   const results = await serverFetch(
-//     "indie",
-//     [],
-//     "Popularity",
-//     { iPhone: false, iPad: false, tvOS: false, watch: false},
-//     { min: -1, max: -1 },
-//     1,
-//     0
-//   );
-
-//   console.log("Response id: " + id)
-//   console.log(results)
-// }
-
-// fetchTest(1)
-
-// setTimeout( () => {fetchTest(2)}, 50)
-
-// setTimeout( () => {abortOngoingFetches()}, 1000)
+  return null;
+}

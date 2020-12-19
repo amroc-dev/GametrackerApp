@@ -6,7 +6,7 @@ import {
   StyleSheet,
   Button,
   LayoutAnimation,
-  Pressable,
+  // Pressable,
   Animated,
   ScrollView,
 } from "react-native";
@@ -19,7 +19,6 @@ import nextFrame from "next-frame";
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useHeaderHeight } from '@react-navigation/stack';
 
 export function HeaderSpace() {

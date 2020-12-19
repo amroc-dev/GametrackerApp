@@ -8,12 +8,12 @@ const dbkeys = require("@shared/back-end/db-keys");
 import { Separator } from "@components/common/Misc";
 import { transparentize } from "polished";
 import * as StoreViewManager from "react-native-store-view";
-import DeviceInfo from 'react-native-device-info'
-
+import DeviceInfo from "react-native-device-info";
+import { Platform } from "react-native";
 
 function getDate(dateString, includeDay = false) {
   const releaseDateObj = new Date(dateString);
-  const month = monthMap[parseInt(releaseDateObj.getUTCMonth()+1)];
+  const month = monthMap[parseInt(releaseDateObj.getUTCMonth() + 1)];
   if (includeDay) {
     return `${releaseDateObj.getUTCDate()} ${month} ${releaseDateObj.getUTCFullYear()}`;
   } else {
@@ -38,14 +38,15 @@ function CardItem(props) {
   const doc_artistName = objectKeyFromDotString(doc, dbkeys.artistName);
   const doc_artworkUrl = objectKeyFromDotString(doc, dbkeys.artworkUrl);
 
-
   //const releaseDate = getDate(doc_releaseDate, false)// + " (" + getDate(doc_recentReleaseDate, true) + ")"
   const releaseDateElem = props.showRecentReleaseDate ? (
-    <View style={{flexDirection: 'column', flex: 1}}>
-      <Text style={[styles.releaseDate, {flex: 0, fontSize: theme.fonts.sizes.mini * 0.9}]}>Updated</Text>
-      <Text style={[styles.releaseDate, {flex: 0}]}>{getDate(doc_recentReleaseDate, true)}</Text>
+    <View style={{ flexDirection: "column", flex: 1 }}>
+      <Text style={[styles.releaseDate, { flex: 0, fontSize: theme.fonts.sizes.mini * 0.9 }]}>Updated</Text>
+      <Text style={[styles.releaseDate, { flex: 0 }]}>{getDate(doc_recentReleaseDate, true)}</Text>
     </View>
-  ) : <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, true)}</Text>
+  ) : (
+    <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, true)}</Text>
+  );
 
   //////// rating
   let rating = parseFloat(parseFloat(doc_rating).toFixed(1));
@@ -61,7 +62,7 @@ function CardItem(props) {
     }
     // rating *= 2;
     // rating = Math.round(rating * 20);
-  } else if (doc_ratingCount === 0){
+  } else if (doc_ratingCount === 0) {
     rating = "-";
   }
 
@@ -74,13 +75,11 @@ function CardItem(props) {
     //   console.log(err);
     // });
 
-    let simulator = false
-    await DeviceInfo.isEmulator().then( (val) => simulator = val)
-    if (simulator)
-      return
+    const macAddr = await DeviceInfo.getMacAddress();
+    if (macAddr === "02:00:00:00:00:00") return;
 
     StoreViewManager.loadProductWithParameters({
-      iTunesItemIdentifier: doc_trackId 
+      iTunesItemIdentifier: doc_trackId,
       //, affiliateToken: 'string, optional, iOS 8.0+'
       //, campaignToken: 'string, optional, iOS 8.0+'
       //, providerToken: 'string, optional, iOS 8.3+'
@@ -96,7 +95,9 @@ function CardItem(props) {
         console.error(err);
       });
 
+    try {
       StoreViewManager.presentViewController();
+    } catch (err) {}
   }
 
   return (
