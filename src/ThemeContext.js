@@ -168,7 +168,9 @@ function ThemeContextProvider(props) {
 
   function getDarkTheme() {
     const primary = "rgb(230, 126, 34)";
-    const background1 = "rgb(21, 23, 25)";
+    // const background1 = "rgb(0, 0, 0)";
+    // const background2 = "rgb(36, 39, 42)";
+    const background1 = "rgb(11, 13, 15)";
     const background2 = "rgb(41, 44, 47)";
 
     const theme = {
@@ -220,7 +222,7 @@ function ThemeContextProvider(props) {
         header: background2,
         background1: background1,
         background2: background2,
-        secondary: darken(0.09, background1).toString(),
+        secondary: "rgb(226, 226, 231)",//darken(0.09, background1).toString(),
 
         rating: {
           na: "rgb(175, 175, 175)",

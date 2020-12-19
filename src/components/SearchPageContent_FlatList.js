@@ -13,6 +13,7 @@ import { Transitioning, Transition } from "react-native-reanimated";
 import { HeaderSpace, Spacer, ControlledLayoutAnimation } from "@components/common/Misc";
 import getCardItemStyles from "@styles/CardItem_styles";
 import nextFrame from "next-frame";
+import { NetworkContext } from "../shared/react/NetworkContext";
 
 let lastYScrollPos = 0;
 const flatListWindowSizeBase = 20;
@@ -27,6 +28,7 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   const [hasMoreItems, setHasMoreItems] = useState(false);
   const [flatListWindowSize, setFlatListWindowSize] = useState(flatListWindowSizeBase);
   const [loadingSpinner, setLoadingSpinner] = useState(null);
+  const { connected } = useContext(NetworkContext);
 
   const FETCH_COUNT = 20;
 
@@ -75,10 +77,6 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
     setItems([]);
     setHasMoreItems(true);
     fetchMoreResults(FETCH_COUNT);
-  }, [newSearchSubmitted]);
-
-  useEffect(() => {
-
   }, [newSearchSubmitted]);
 
   useEffect(() => {
@@ -158,16 +156,20 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   //   lastYScrollPos = yPos;
   // }
 
-  function onScroll() {
+  function onScroll(wait = true) {
     if (networkError) {
       const elapsed = new Date().getTime() - networkError;
-      if (elapsed > 1000) {
+      if (elapsed > 1000 || !wait) {
         setNetworkError(false);
         setHasMoreItems(true);
         fetchMoreResults(FETCH_COUNT);
       }
     }
   }
+
+  useEffect(() => {
+    onScroll(false)
+  }, [connected]);
 
   return (
     <FlatList

@@ -35,7 +35,7 @@ export default function SettingsPage() {
         break;
 
       case themeIDs.IOS:
-        optionNames.push("Match " + (Platform.isPad ? 'iPad' : 'iPhone') + " theme")
+        optionNames.push("Set automatically")//"Match " + (Platform.isPad ? 'iPad' : 'iPhone') + " theme")
         break;
       
       default:
