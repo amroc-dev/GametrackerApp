@@ -1,0 +1,15 @@
+{
+    "popularity" : "lookupBlob.userRating.ratingCount",
+    "ratingCountCurrentVersion" : "lookupBlob.userRating.ratingCountCurrentVersion",
+    "ratingCurrentVersion" : "searchBlob.averageUserRatingForCurrentVersion",
+    "releaseDate" : "searchBlob.releaseDate",
+    "currentVersionReleaseDate" : "searchBlob.currentVersionReleaseDate",
+    "formattedPrice" : "searchBlob.formattedPrice",
+    "price" : "searchBlob.price",
+    "trackName" : "trackName",
+    "trackId" : "searchBlob.trackId",
+    "artistName" : "searchBlob.artistName",
+    "artworkUrl" : "searchBlob.artworkUrl512",
+    "tags" : "tags",
+    "metaRanking" : "metaRanking"
+}
