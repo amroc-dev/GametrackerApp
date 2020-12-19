@@ -34,6 +34,7 @@ export function SearchInput(props) {
     container: {
       flexDirection: "row-reverse",
       alignItems: "center",
+      marginHorizontal: theme.rem * 0.5,
     },
     searchInput: {
       flex: 1,

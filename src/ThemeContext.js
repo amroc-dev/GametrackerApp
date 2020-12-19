@@ -170,7 +170,7 @@ function ThemeContextProvider(props) {
     const primary = "rgb(230, 126, 34)";
     // const background1 = "rgb(0, 0, 0)";
     // const background2 = "rgb(36, 39, 42)";
-    const background1 = "rgb(11, 13, 15)";
+    const background1 = "rgb(15, 18, 20)";
     const background2 = "rgb(41, 44, 47)";
 
     const theme = {
