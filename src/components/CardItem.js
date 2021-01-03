@@ -75,8 +75,8 @@ function CardItem(props) {
     //   console.log(err);
     // });
 
-    const macAddr = await DeviceInfo.getMacAddress();
-    if (macAddr === "02:00:00:00:00:00") return;
+    // const macAddr = await DeviceInfo.getMacAddress();
+    // if (macAddr === "02:00:00:00:00:00") return;
 
     StoreViewManager.loadProductWithParameters({
       iTunesItemIdentifier: doc_trackId,
