@@ -45,7 +45,7 @@ function CardItem(props) {
       <Text style={[styles.releaseDate, { flex: 0 }]}>{getDate(doc_recentReleaseDate, true)}</Text>
     </View>
   ) : (
-    <Text style={styles.releaseDate}>{getDate(doc_recentReleaseDate, true)}</Text>
+    <Text style={styles.releaseDate}>{getDate(doc_releaseDate, true)}</Text>
   );
 
   //////// rating
