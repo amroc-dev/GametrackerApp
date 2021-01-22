@@ -72,7 +72,7 @@ export default function ModalDropdown2(props) {
     <>
       <View ref={selectorRef} style={styles.selectorRoot}>
         <Button
-          title="Popularity"
+          title="Number of ratings"
           onPress={() => onOpen(true)}
           containerStyle={styles.selectorButtonContainer}
           buttonStyle={styles.selectorButton}

@@ -58,7 +58,7 @@ function FilterPopularity(props) {
       text = (
         <View style={styles.textContainer}>
           <Text style={styles.textUnits}>Any</Text>
-          <Text style={styles.text}> popularity</Text>
+          <Text style={styles.text}> number</Text>
         </View>
       );
     } else {
@@ -67,7 +67,7 @@ function FilterPopularity(props) {
           <View style={styles.textContainer}>
             <Text style={styles.text}>At least </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
-            <Text style={styles.text}> ratings </Text>
+            {/* <Text style={styles.text}> ratings </Text> */}
           </View>
         );
       } else if (sliderVal.min === 0) {
@@ -75,14 +75,14 @@ function FilterPopularity(props) {
           <View style={styles.textContainer}>
             <Text style={styles.text}>Up to </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
-            <Text style={styles.text}> ratings </Text>
+            {/* <Text style={styles.text}> ratings </Text> */}
           </View>
         );
       } else if (sliderVal.min === sliderVal.max) {
         text = (
           <View style={styles.textContainer}>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
-            <Text style={styles.text}> ratings </Text>
+            {/* <Text style={styles.text}> ratings </Text> */}
           </View>
         );
       } else {
@@ -91,7 +91,7 @@ function FilterPopularity(props) {
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMin])}</Text>
             <Text style={styles.text}> to </Text>
             <Text style={styles.textUnits}>{numberWithCommas(popularityIntervals[sliderMax])}</Text>
-            <Text style={styles.text}> ratings </Text>
+            {/* <Text style={styles.text}> ratings </Text> */}
           </View>
         );
       }
@@ -113,7 +113,7 @@ function FilterPopularity(props) {
   }
 
   return (
-    <SectionWithHeader title={"Popularity"}>
+    <SectionWithHeader title={"Number of reviews"}>
       {getText()}
       <MultiSlider
         parentContainerStyle={filterStyles.multiSliderParentContainer}

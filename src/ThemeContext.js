@@ -5,7 +5,7 @@ import RootViewBackgroundColor from "react-native-root-view-background-color";
 import { StyleSheet, View, Text, LayoutAnimation } from "react-native";
 import { extractRGB } from "@shared/react/Misc";
 import { Platform, Appearance } from "react-native";
-import merge from "merge";
+import merge from "merge"; 
 
 function getBaseTheme() {
   const fontSize = 16;

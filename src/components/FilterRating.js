@@ -73,7 +73,7 @@ function FilterRating(props) {
     // <View style={[filterStyles.outerContainer, styles.outer]}>
     //   <FilterHeader title={"User rating"} />
     //   <View style={[filterStyles.bodyContainer, styles.body]}>
-      <SectionWithHeader title={"User rating"}>
+      <SectionWithHeader title={"★ Rating"}>
         {getText()}
         <MultiSlider
           parentContainerStyle={filterStyles.multiSliderParentContainer}
