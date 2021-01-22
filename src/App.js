@@ -1,6 +1,7 @@
 import React, { useContext, useRef, useEffect } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { enableScreens } from 'react-native-screens';
 import { CoreContextProvider } from "@shared/react/CoreContext";
 import { NetworkContextProvider } from "@shared/react/NetworkContext";
 import { SearchContextProvider } from "@shared/react/SearchContext";
@@ -16,6 +17,8 @@ function StatusBarSettings() {
   const { theme } = useContext(ThemeContext);
   return <StatusBar barStyle={theme.isDark ? "light-content" : "dark-content"} />;
 }
+
+enableScreens();
 
 export default function App() {
   return (
