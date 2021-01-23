@@ -15,6 +15,9 @@ import getCardItemStyles from "@styles/CardItem_styles";
 import nextFrame from "next-frame";
 import { NetworkContext } from "../shared/react/NetworkContext";
 
+let lastYScrollPos = 0;
+const flatListWindowSizeBase = 20;
+
 export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   const { theme } = useContext(ThemeContext);
   const { searchResults, fetchMoreResults, newSearchSubmitted, isFetchingResults } = useContext(SearchResultsContext);
@@ -23,6 +26,7 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   const [searchCountCard, setSearchCountCard] = useState();
   const [networkError, setNetworkError] = useState(false);
   const [hasMoreItems, setHasMoreItems] = useState(false);
+  const [flatListWindowSize, setFlatListWindowSize] = useState(flatListWindowSizeBase);
   const [loadingSpinner, setLoadingSpinner] = useState(null);
   const { connected } = useContext(NetworkContext);
 
@@ -125,8 +129,32 @@ export default function SearchPageContent_FlatList({ scrollViewStyle }) {
   useEffect(() => {
     if (searchResults.status === statusCodes.None && transitionViewRef.current) {
       transitionViewRef.current.animateNextTransition();
+      // async function next(wait) {
+      //   if (wait) await nextFrame();
+      //   if (flatListRef.current) flatListRef.current.scrollToOffset({ offset: -500, animated: false });
+      // }
+      // next(false)
+      // next(true);
     }
+
+    // ControlledLayoutAnimation.configureNext({
+    //   create: {
+    //     duration: theme.fadeSpeed,
+    //     type: LayoutAnimation.Types.easeIn,
+    //     property: LayoutAnimation.Properties.opacity,
+    //   },
+    // });
   }, [searchResults]);
+
+  // function onScroll({ nativeEvent }) {
+  //   const yPos = nativeEvent.contentOffset.y;
+  //   const diff = Math.abs(yPos - lastYScrollPos);
+  //   let extra = Math.floor(diff / 20);
+  //   if (extra > 80) extra = 80;
+  //   const newWindowSize = flatListWindowSizeBase + extra;
+  //   setFlatListWindowSize(newWindowSize);
+  //   lastYScrollPos = yPos;
+  // }
 
   function onScroll(wait = true) {
     if (networkError) {

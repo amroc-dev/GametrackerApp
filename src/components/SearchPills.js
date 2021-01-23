@@ -142,13 +142,15 @@ export default function SearchPills() {
     if (popularityFilter.max !== -1 || popularityFilter.min !== -1) {
       let text = "";
       if (popularityFilter.max === -1) {
-        text = "At least " + numberWithCommas(popularityFilter.min) + " reviews";
+        text = "Min " + numberWithCommas(popularityFilter.min);
+        text = "> " + numberWithCommas(popularityFilter.min);
       } else if (popularityFilter.min === -1) {
-        text = "Up to " + numberWithCommas(popularityFilter.max) + " reviews";
+        text = "Max " + numberWithCommas(popularityFilter.max);
+        text = "< " + numberWithCommas(popularityFilter.max);
       } else if (popularityFilter.min === popularityFilter.max) {
-        text = numberWithCommas(popularityFilter.min) + " reviews";
-      } else text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max) + " reviews";
-      pills.push(<SearchPill key={pills.length} name={text} clickCallback={onPopularityPillClick} />);
+        text = numberWithCommas(popularityFilter.min);
+      } else text = numberWithCommas(popularityFilter.min) + " to " + numberWithCommas(popularityFilter.max);
+      pills.push(<SearchPill key={pills.length} name={"Popularity " + text} clickCallback={onPopularityPillClick} />);
     }
 
     // rating filter pill
@@ -159,12 +161,12 @@ export default function SearchPills() {
       let text = "";
 
       if (ratingFilter < RATING_MAX_VAL) {
-        text = "At least " + ratingFilter + " ★";
+        text = "> " + ratingFilter + " ★";
       } else {
         text = ratingFilter + " ★";
       }
 
-      pills.push(<SearchPill key={pills.length} name={text} clickCallback={onRatingPillClick} />);
+      pills.push(<SearchPill key={pills.length} name={"User rating " + text} clickCallback={onRatingPillClick} />);
     }
 
     function clearAll() {

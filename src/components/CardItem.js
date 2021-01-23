@@ -71,6 +71,13 @@ function CardItem(props) {
   const formattedPriceElem = doc_formattedPrice;
 
   async function onTap() {
+    // await Linking.openURL("itms-apps://apps.apple.com/id/app/id" + doc_trackId).catch((err) => {
+    //   console.log(err);
+    // });
+
+    // const macAddr = await DeviceInfo.getMacAddress();
+    // if (macAddr === "02:00:00:00:00:00") return;
+
     StoreViewManager.loadProductWithParameters({
       iTunesItemIdentifier: doc_trackId,
       //, affiliateToken: 'string, optional, iOS 8.0+'
