@@ -5,12 +5,12 @@ import { ThemeContext } from "@root/ThemeContext";
 import { SearchContext } from "@shared/react/SearchContext";
 import { SectionWithHeader } from "@components/common/Section";
 import { getFilterStyles } from "styles/Filter_styles";
-import { rgba, darken, readableColor } from "polished";
+import { rgba, darken, readableColor, transparentize } from "polished";
 import { FilterTagsContext } from "@shared/react/FilterTagsContext";
 import { SearchInput } from "@components/common/SearchInput";
 import { ControlledLayoutAnimation } from "@components/common/Misc";
 import { ToggleButton } from "@components/common/ToggleButton";
-import { Dimensions } from "react-native";
+import Icon from "react-native-vector-icons/Entypo";
 import { nanoid } from "nanoid/non-secure";
 
 let keyExtractorRoot = 0;
@@ -21,11 +21,15 @@ function FilterTags(props) {
   const { searchTags, addSearchTag, removeSearchTag } = useContext(SearchContext);
   const { tagSearchField, setTagSearchField } = useContext(FilterTagsContext);
   const [tagColumns, setTagColumns] = useState([]);
-  const [tagsViewContainerWidth, setTagsViewContainerWidth] = useState(0);
+  const [tagsViewContainerSize, setTagsViewContainerSize] = useState({ width: 0, height: 0 });
   const flatListRef = useRef(null);
 
   const styles = getStyles(theme);
   const filterStyles = getFilterStyles(theme);
+
+  useLayoutEffect(() => {
+    setTimeout(() => flatListRef.current.flashScrollIndicators(), 200);
+  }, []);
 
   useLayoutEffect(() => {
     if (!tags) {
@@ -49,9 +53,12 @@ function FilterTags(props) {
       groups.pop();
     }
 
+    // if (groups.length > 1 && groups.length % 2 === 1)
+    //   groups.push([])
+
     keyExtractorRoot = nanoid();
     setTagColumns(groups);
-  }, [tagSearchField, tags, tagsViewContainerWidth]);
+  }, [tagSearchField, tags, tagsViewContainerSize]);
 
   useLayoutEffect(() => {
     ControlledLayoutAnimation.configureNext({
@@ -63,8 +70,10 @@ function FilterTags(props) {
     });
   }, [tagColumns]);
 
+  const NEXT_PAGE_PEEK_WIDTH = 15
+
   function renderItem({ item, index }) {
-    const cardStyle = [styles.tagCard, { width: tagsViewContainerWidth / 2 }];
+    const cardStyle = [styles.tagCard, { width: tagsViewContainerSize.width / 2 - NEXT_PAGE_PEEK_WIDTH}];
 
     // this is the condition for when whatever the user has entered in the tag search fields brought back no tag matches
     if (tagColumns.length === 1 && tagColumns[0].length === 0) {
@@ -129,40 +138,61 @@ function FilterTags(props) {
     </Text>
   );
 
+  const listFooterComponent = <View style={{width:NEXT_PAGE_PEEK_WIDTH * 2}} />
+
   return useMemo(() => {
     return (
       <>
-        <View
-          onLayout={(e) => setTagsViewContainerWidth(e.nativeEvent.layout.width)}
-          style={[filterStyles.outerContainer, styles.outer]}
-        >
-          <SectionWithHeader title="Tags" containerStyle={{padding: 0}}>
-            <View style={filterStyles.bodyContainer}>
+        <View style={[filterStyles.outerContainer, styles.outer]}>
+          <SectionWithHeader title="Tags" containerStyle={{ padding: 0 }}>
+            <View
+              style={filterStyles.bodyContainer}
+              onLayout={(e) =>
+                setTagsViewContainerSize({ width: e.nativeEvent.layout.width, height: e.nativeEvent.layout.height })
+              }
+            >
               <FlatList
                 ref={flatListRef}
                 data={tagColumns}
                 renderItem={renderItem}
                 keyExtractor={(item, index) => index.toString() + keyExtractorRoot}
-                initialNumToRender={2}
+                initialNumToRender={3}
                 horizontal={true}
                 windowSize={3}
                 maxToRenderPerBatch={2}
-                // updateCellsBatchingPeriod={16}
                 style={styles.scrollView}
                 indicatorStyle={theme.isDark ? "white" : "black"}
                 showsHorizontalScrollIndicator={tagColumns.length > 2}
-                // snapToInterval={tagsViewContainerWidth / 2}
-                // snapToAlignment={"start"}
+                snapToInterval={tagsViewContainerSize.width / 2 - NEXT_PAGE_PEEK_WIDTH}
                 pagingEnabled
+                ListFooterComponent={listFooterComponent}
                 keyboardDismissMode="on-drag"
                 decelerationRate={"fast"}
                 getItemLayout={(data, index) => ({
-                  length: tagsViewContainerWidth / 2,
-                  offset: (tagsViewContainerWidth / 2) * index,
+                  length: tagsViewContainerSize.width / 2 - NEXT_PAGE_PEEK_WIDTH,
+                  offset: (tagsViewContainerSize.width / 2 - NEXT_PAGE_PEEK_WIDTH) * index,
                   index,
                 })}
               />
             </View>
+            {/* <Button
+              containerStyle={{ position: "absolute", top: tagsViewContainerSize.height / 2 - theme.rem, right: -theme.rem * 0.5}}
+              type="clear"
+              titleStyle={theme.headerNavButtonStyle}
+              iconRight={false}
+              icon={
+                <Icon name="chevron-thin-right" size={24} color={transparentize(0.0, theme.fonts.colors.secondary)} />
+              }
+              {...props}
+            /> */}
+            {/* <Button
+              containerStyle={{ position: "absolute", top: tagsViewContainerSize.height / 2 - theme.rem, left: -theme.rem * 0.5 }}
+              type="clear"
+              titleStyle={theme.headerNavButtonStyle}
+              iconRight={false}
+              icon={<Icon style={styles.icon} name="chevron-thin-left" size={24} color={transparentize(0.0, theme.fonts.colors.secondary)} />}
+              {...props}
+            /> */}
           </SectionWithHeader>
           <SearchInput
             style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
@@ -223,6 +253,7 @@ function getStyles(theme) {
       justifyContent: "flex-start",
       alignItems: "center",
       marginBottom: theme.rem * 0.1,
+      // marginLeft: theme.rem * 0.75,
       // marginRight: theme.rem * 0.25,
       // paddingRight: theme.rem * 0.5,
       // backgroundColor: "red",

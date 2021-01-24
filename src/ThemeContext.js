@@ -210,7 +210,7 @@ function ThemeContextProvider(props) {
   // });
 
   function getLightTheme() {
-    const primary = rgb(35, 171, 242);//rgb(0, 132, 208); //"rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
+    const primary = rgb(0, 161, 222);//rgb(0, 132, 208); //"rgb(54, 164, 234)"; //"rgb(33, 149, 211)";
     const background1 = "rgb(241, 241, 245)"; //"rgb(240, 244, 245)"; //    "
     const background2 = "rgb(255, 255, 255)";
 

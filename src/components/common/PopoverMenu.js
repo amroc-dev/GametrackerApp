@@ -159,8 +159,9 @@ function getStyles(theme) {
       shadowOffset: theme.shadowOffset,
     },
     menuTitle: {
-      color: theme.fonts.colors.title,
+      color: theme.colors.primary,
       fontSize: theme.fonts.sizes.primary,
+      fontWeight: theme.fonts.weights.bold,
       marginLeft: theme.rem * 0.5,
     },
     menuTitle_menuOpen: {
