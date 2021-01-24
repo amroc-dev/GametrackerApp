@@ -10,7 +10,6 @@ import { FilterTagsContext } from "@shared/react/FilterTagsContext";
 import { SearchInput } from "@components/common/SearchInput";
 import { ControlledLayoutAnimation } from "@components/common/Misc";
 import { ToggleButton } from "@components/common/ToggleButton";
-import Icon from "react-native-vector-icons/Entypo";
 import { nanoid } from "nanoid/non-secure";
 
 let keyExtractorRoot = 0;
@@ -175,24 +174,6 @@ function FilterTags(props) {
                 })}
               />
             </View>
-            {/* <Button
-              containerStyle={{ position: "absolute", top: tagsViewContainerSize.height / 2 - theme.rem, right: -theme.rem * 0.5}}
-              type="clear"
-              titleStyle={theme.headerNavButtonStyle}
-              iconRight={false}
-              icon={
-                <Icon name="chevron-thin-right" size={24} color={transparentize(0.0, theme.fonts.colors.secondary)} />
-              }
-              {...props}
-            /> */}
-            {/* <Button
-              containerStyle={{ position: "absolute", top: tagsViewContainerSize.height / 2 - theme.rem, left: -theme.rem * 0.5 }}
-              type="clear"
-              titleStyle={theme.headerNavButtonStyle}
-              iconRight={false}
-              icon={<Icon style={styles.icon} name="chevron-thin-left" size={24} color={transparentize(0.0, theme.fonts.colors.secondary)} />}
-              {...props}
-            /> */}
           </SectionWithHeader>
           <SearchInput
             style={[filterStyles.bodyContainer, styles.searchInput, theme.noShadowStyle]}
