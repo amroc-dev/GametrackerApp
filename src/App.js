@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useEffect } from "react";
+import React, { useContext, useRef, useEffect, useState } from "react";
 import { StatusBar, StyleSheet, View, Text, Button } from "react-native";
 import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { enableScreens } from 'react-native-screens';
@@ -49,12 +49,24 @@ export default function App() {
 import { SettingsContext } from "@root/SettingsContext";
 function Splash() {
   const { settingsLoaded, setSettings } = useContext(SettingsContext);
+  const [waitElapsed, setWaitElapsed] = useState(false);
+
+  function completeCheck() {
+    if (settingsLoaded && waitElapsed)
+      RNBootSplash.hide({ fade: true });
+  }
+
+  useEffect( () => {
+    setTimeout( () => setWaitElapsed(true), 1000)
+  }, [])
 
   useEffect(() => {
-    if (settingsLoaded) {
-      RNBootSplash.hide({ fade: true });
-    }
+      completeCheck()
   }, [settingsLoaded]);
+
+  useEffect(() => {
+    completeCheck()
+}, [waitElapsed]);
 
   return null;
 }
