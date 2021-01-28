@@ -15,7 +15,7 @@ export default function MenuDrawerNavigator() {
 
   return (
     <Drawer.Navigator
-    // drawerContent={MenuDrawerContent}
+    drawerContent={ (props) => <MenuDrawerContent {...props} />}
     drawerContentOptions={{
       activeBackgroundColor: 'rgba(0,0,0,0)',//transparentize(0.0, theme.colors.background2),
       // labelStyle:{color: theme.fonts.colors.title},
