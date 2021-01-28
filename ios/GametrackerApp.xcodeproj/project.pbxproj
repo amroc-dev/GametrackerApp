@@ -726,7 +726,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 159;
+				CURRENT_PROJECT_VERSION = 160;
 				DEVELOPMENT_TEAM = WBCCP32BZY;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = GametrackerApp/Info.plist;
@@ -738,7 +738,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mmazzoli.gametracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmazzoli.marcobot;
 				PRODUCT_NAME = GametrackerApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -756,7 +756,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 159;
+				CURRENT_PROJECT_VERSION = 160;
 				DEVELOPMENT_TEAM = WBCCP32BZY;
 				INFOPLIST_FILE = GametrackerApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -767,7 +767,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.mmazzoli.gametracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mmazzoli.marcobot;
 				PRODUCT_NAME = GametrackerApp;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
