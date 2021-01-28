@@ -9,7 +9,7 @@ function CoreContextProvider(props) {
   const [releaseYears, setReleaseYears] = useState(null)
   const [menuOpen, setMenuOpen] = useState(false)
   const {connected} = useContext(NetworkContext);
-  const [appVersion, setAppVersion] = useState(props.version);
+  const [appVersion, setAppVersion] = useState(props.version + "." + props.build);
 
   useEffect( () => {
 

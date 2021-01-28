@@ -33,7 +33,8 @@ static void InitializeFlipper(UIApplication *application) {
 #endif
   
   NSString *version = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleShortVersionString"];
-  NSDictionary *initialProps = @{@"version": version};
+  NSString *build = [[[NSBundle mainBundle] infoDictionary] objectForKey: @"CFBundleVersion"];
+  NSDictionary *initialProps = @{@"version": version, @"build": build};
 
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
