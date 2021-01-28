@@ -165,7 +165,7 @@ function getStyles(theme) {
       marginLeft: theme.rem * 0.5,
     },
     menuTitle_menuOpen: {
-      color: transparentize(0.75, theme.fonts.colors.title),
+      color: transparentize(0.75, theme.colors.primary),
     },
     optionTextStyle: {
       color: theme.fonts.colors.title,

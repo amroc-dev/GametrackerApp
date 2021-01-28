@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { View } from "react-native";
 import { ThemeContext } from "@root/ThemeContext";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { NavigationContainer } from "@react-navigation/native";
@@ -14,6 +15,7 @@ export default function MenuDrawerNavigator() {
 
   return (
     <Drawer.Navigator
+    // drawerContent={MenuDrawerContent}
     drawerContentOptions={{
       activeBackgroundColor: 'rgba(0,0,0,0)',//transparentize(0.0, theme.colors.background2),
       // labelStyle:{color: theme.fonts.colors.title},

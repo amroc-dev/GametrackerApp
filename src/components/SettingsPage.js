@@ -50,7 +50,6 @@ export default function SettingsPage() {
         indicatorStyle="white"
         decelerationRate="fast"
         keyboardShouldPersistTaps="handled"
-        contentInsetAdjustmentBehavior="automatic"
         keyboardDismissMode="on-drag"
         style={styles.scrollView}
       >

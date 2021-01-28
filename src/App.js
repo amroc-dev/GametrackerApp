@@ -32,7 +32,7 @@ export default function App() {
                 <StatusBarSettings />
                 <SearchResultsContextProvider>
                   <MenuProvider>
-                    <NavigationContainer>
+                    <NavigationContainer theme={{ colors: { background: 'rgba(0,0,0,0)'}}}>
                       <MenuDrawerNavigator />
                     </NavigationContainer>
                   </MenuProvider>
