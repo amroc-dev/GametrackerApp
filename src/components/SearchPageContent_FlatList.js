@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useLayoutEffect, useContext, useRef, memo } from "react";
 import { View, FlatList, StyleSheet, SafeAreaView, LayoutAnimation, Text } from "react-native";
 import CardItem from "@components/CardItem";
+import CardItem2 from "@components/CardItem2";
 import LoadingSpinner from "@components/common/LoadingSpinner";
 import SearchCountCard from "@components/SearchCountCard";
 import SearchPills from "@components/SearchPills";

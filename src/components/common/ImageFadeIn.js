@@ -18,7 +18,7 @@ export default function ImageFadeIn(props) {
   return (
     <AnimatedFastImage
       onLoad={onLoad}
-      resizeMode={FastImage.resizeMode.contain}
+      resizeMode={FastImage.resizeMode.cover}
       {...props}
       style={[
         {

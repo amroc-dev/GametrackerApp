@@ -113,7 +113,7 @@ export function getRateData() {
   return rateData;
 }
 
-// const serverAddr = "http://marco-macbook.local:80/"
+// const serverAddr = "http://marcos-macbook-air.local:80/"
 // const serverAddr = "http://localhost:80/";
 const serverAddr = "https://amroc-gametracker-server.herokuapp.com";
 

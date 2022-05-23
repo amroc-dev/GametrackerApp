@@ -4,7 +4,7 @@ import { ThemeConsumer } from "react-native-elements";
 
 function getStyles(theme) {
   
-  const cardHeight = 100;
+  const cardHeight = 200;
   const cardSpacing = theme.rem * 0.5;
   
   return StyleSheet.create({
@@ -28,7 +28,7 @@ function getStyles(theme) {
     },
 
     image: {
-      width: cardHeight,
+      width: "100%",
       height: cardHeight,
       borderRadius: theme.borderRadius,
       borderBottomRightRadius: 0,
